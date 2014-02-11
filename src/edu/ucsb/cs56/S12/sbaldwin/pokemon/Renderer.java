@@ -1,0 +1,372 @@
+package edu.ucsb.cs56.S12.sbaldwin.pokemon;
+
+
+import javax.swing.*;
+import javax.imageio.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
+import java.awt.image.RGBImageFilter;
+import java.io.*;
+
+public class Renderer
+{
+	private Graphics buffer;
+	private BufferedImage bufferImage;
+	
+	private Graphics finalBuffer;
+	private BufferedImage finalImage;
+	
+	private GameGrid gg;
+	
+	private int width;
+	private int height;
+	private int bufferWidth;
+	private int bufferHeight;
+	
+	private BufferedImage TileSet_Main;
+	private BufferedImage TileSet_Characters;
+	
+	private int cameraX;
+	private int cameraY;
+	private int cameraWidth;
+	private int cameraHeight;
+	
+	private int tileWidth;
+	private int tileHeight;
+
+	public Renderer(int width, int height)
+	{
+		// Set Tile size
+		this.tileWidth = 32;
+		this.tileHeight = 32; 
+		
+		// Set width and height
+		this.width = width;
+		this.height = height;
+		
+		this.bufferWidth = width + (6 * tileWidth);
+		this.bufferHeight = height + (6 * tileHeight);
+		
+		// Create the new Game Grid
+		gg = new GameGrid(100, 100);
+		
+		// Create the buffer
+		bufferImage = new BufferedImage(this.bufferWidth, this.bufferHeight, BufferedImage.TYPE_4BYTE_ABGR);
+		buffer = bufferImage.getGraphics();
+		
+		// Create the finalBuffer
+		finalImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_4BYTE_ABGR);
+		finalBuffer = finalImage.getGraphics();
+    		
+    		ClassLoader cl = getClass().getClassLoader();
+		// Load in TileSets
+		try
+		{
+			TileSet_Main = ImageIO.read(cl.getResource("images/TilesetMain.bmp"));
+		} 
+		catch(IOException ie){
+			System.out.println("Error loading in Images");
+		}
+		
+		try
+		{
+			TileSet_Characters = ImageIO.read(cl.getResource("images/NPC_frlg.bmp"));
+		} 
+		catch(IOException ie){
+			System.out.println("Error loading in Images");
+		}
+		
+		if(TileSet_Characters == null)
+		{
+			System.out.println("Error loading in Images");
+		}
+		
+		// Make Black areas transparent
+		TileSet_Main = imageToBufferedImage(makeColorTransparent(TileSet_Main, Color.black));
+		
+		// Make Pink areas transparent
+		TileSet_Characters = imageToBufferedImage(makeColorTransparent(TileSet_Characters, new Color(255, 0, 255)));
+	}
+	
+	public void loadMap()
+	{
+		Texture grass_Default = new Texture("GRASS_DEFAULT", "TileSet_Main", 16, 0, 32, 16);
+		Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
+		//Texture water_Square = new Texture("WATER_Square_DEFAULT", 80, 416, 128, 464);
+		
+		// Load the grass Texture
+		for(int wCounter = 0; wCounter < gg.getWidth(); wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < gg.getHeight(); hCounter ++)
+			{			
+				gg.setCollisionGrid(GameGrid.GridValue.FREE, wCounter, hCounter);
+				
+				gg.setTextureGrid(grass_Default, wCounter, hCounter, 0);
+			}
+		}
+		
+		// Load the Wild Grass
+		for(int counter1 = 43; counter1 < 49; counter1 ++)
+		{
+			for(int counter2 = 34; counter2 < 40; counter2 ++)
+			{
+				if((counter1 != 45 && counter1 != 46) || (counter2 != 36 && counter2 != 37))
+					if((counter1 != 43 || counter2 != 34) && (counter1 != 48 || counter2 != 39))
+						if((counter1 != 43 || counter2 != 39) && (counter1 != 48 || counter2 != 34))
+							gg.setTextureGrid(grass_Wild, counter1, counter2, 0);
+			}
+		}
+		
+		
+		// Load the Buildings
+		Building pokeCenter = new Building(40, 40, "POKECENTER");
+		Building pokeMart = new Building(45, 41, "POKEMART");
+		Building smallHouse = new Building(55, 35, "HOUSE_SMALL_1");
+		smallHouse = new Building(60, 35, "HOUSE_SMALL_1");
+		Building mediumHouse = new Building(57, 45, "HOUSE_MEDIUM_1");
+		Building largeHouse = new Building(41, 28, "HOUSE_LARGE_1");
+		
+		// Create Trees
+		Building tree;
+		for(int counter1 = 0; counter1 < 30; counter1 ++)
+		{
+			for(int counter2 = 0; counter2 < 30; counter2 ++)
+			{
+				if(counter1 == 0 || counter1 == 29 || counter2 == 0 || counter2 == 29)
+				{
+					tree = new Building(37 + counter1, 25 + counter2, "BASE_TREE_1");
+				}
+			}
+		}
+		tree = new Building(45, 36, "NICE_TREE_1");
+		
+		// Create the player
+		Player player = new Player(45, 45, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		GameMain.gameLogic.registerPlayer(player);
+	}
+	
+	public void startRender()
+	{
+		// Reset the buffer
+		clearBuffer();
+	}
+	
+	// Takes in parameters for starting tile positions and finishing tile positions
+	public void renderTextureGrid(int tileXStart, int tileYStart, int tileXEnd, int tileYEnd)
+	{
+		
+		// Loop and render
+		for(int tileX = tileXStart; tileX <= tileXEnd; tileX++)
+		{
+			// Dont render out of bounds indexes
+			if(tileX < 0)
+			{
+				tileX = 0;
+			}
+			
+			for(int tileY = tileYStart; tileY <= tileYEnd; tileY++)
+			{
+				// Dont render out of bounds indexes
+				if(tileY < 0)
+				{
+					tileY = 0;
+				}
+				
+				// Draw texture				
+				Texture tex = gg.getTextureGrid(tileX, tileY, 0);
+				
+				buffer.drawImage(tex.getImage(), 
+					   ((tileX - tileXStart) * tileWidth), 
+					   ((tileY - tileYStart) * tileHeight), 
+					   ((tileX - tileXStart) * tileWidth) + tileWidth, 
+					   ((tileY - tileYStart) * tileHeight) + tileHeight,
+					   0,
+					   0,
+					   16,
+					   16,
+					   null);
+			}
+		}
+	
+	}
+	
+	public void renderObjectGrid(int tileXStart, int tileYStart, int tileXEnd, int tileYEnd)
+	{		
+		// Loop and render
+		for(int tileX = tileXStart; tileX <= tileXEnd; tileX++)
+		{
+			// Dont render out of bounds indexs
+			if(tileX < 0)
+			{
+				tileX = 0;
+			}
+			
+			for(int tileY = tileYStart; tileY <= tileYEnd; tileY++)
+			{
+				// Dont render out of bounds indexs
+				if(tileY < 0)
+				{
+					tileY = 0;
+				}
+				
+				GameObject tmp = gg.getObjectGrid(tileX, tileY);
+				
+				if(tmp != null)
+				{
+					drawObject(tmp, (tileX - tileXStart), (tileY - tileYStart));
+				}
+			}
+		}
+	}
+	
+	// Helper Object for renderObjectGrid
+	private void drawObject(GameObject gObject, int tileX, int tileY)
+	{
+		// Update the collision grid first
+		for(int wCounter = 0; wCounter < gObject.getWidth(); wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < gObject.getHeight(); hCounter ++)
+			{
+				if(gObject.getCollisionValue(wCounter, hCounter) != GameGrid.GridValue.FREE)
+				{
+					gg.setCollisionGrid(gObject.getCollisionValue(wCounter, hCounter),
+										     (gObject.getXPos() + wCounter), 
+										     (gObject.getYPos() + hCounter));
+				}
+			}
+		}
+		
+		// Render object
+		
+		buffer.drawImage(gObject.getTexture().getImage(),
+				 tileX * tileWidth + gObject.getXOffset(),
+				 tileY * tileHeight + gObject.getYOffset(),
+				 gObject.getWidth() * tileWidth,
+				 gObject.getHeight() * tileHeight,
+				 null);
+	
+	}
+	
+	// Measured in tiles except offsets(measured in pixels)
+	public void drawFinalImage(int xpos, int ypos, int xOff, int yOff, int width, int height)
+	{
+		finalBuffer.drawImage(bufferImage, 0, 0, this.width, this.height,
+					      (xpos * tileWidth) + xOff, 
+					      (ypos * tileHeight) + yOff, 
+					      (xpos * tileWidth) + xOff + (width * tileWidth), 
+					      (ypos * tileHeight) + yOff + (height * tileHeight), 
+					      null);
+		
+	}
+	
+	public void clearBuffer()
+	{
+		buffer.setColor(Color.black);
+		buffer.fillRect(0, 0, bufferWidth, bufferHeight);
+	}
+	
+	public Graphics getBufferGraphics()
+	{
+		return buffer;
+	}
+	
+	public BufferedImage getBufferImage()
+	{
+		return bufferImage;
+	}
+	
+	public BufferedImage getFinalImage()
+	{
+		return finalImage;
+	}
+	
+	public GameGrid getGameGrid()
+	{
+		return gg;
+	}
+	
+	
+	
+	///// The next two methods are courtesy of corgrath from:
+	///// http://stackoverflow.com/questions/665406/how-to-make-a-color-transparent-in-a-bufferedimage-and-save-as-png
+	
+	private static BufferedImage imageToBufferedImage(Image image)
+	{
+
+		BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = bufferedImage.createGraphics();
+		g2.drawImage(image, 0, 0, null);
+		g2.dispose();
+		return bufferedImage;
+	}
+
+	private static Image makeColorTransparent(BufferedImage im, final Color color)
+	{
+		ImageFilter filter = new RGBImageFilter() {
+
+			// the color we are looking for... Alpha bits are set to opaque
+			public int markerRGB = color.getRGB() | 0xFF000000;
+
+			public final int filterRGB(int x, int y, int rgb) {
+				if ((rgb | 0xFF000000) == markerRGB) {
+					// Mark the alpha bits as zero - transparent
+					return 0x00FFFFFF & rgb;
+				} else {
+				// nothing to do
+					return rgb;
+				}
+			}
+        	};
+
+		ImageProducer ip = new FilteredImageSource(im.getSource(), filter);
+		return Toolkit.getDefaultToolkit().createImage(ip);
+	}
+
+
+	public BufferedImage getTile(String set, int x1, int y1, int x2, int y2)
+	{
+		int w = Math.abs(x2 - x1);
+		int h = Math.abs(y2 - y1);
+		
+		BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_4BYTE_ABGR);
+		Graphics g = image.getGraphics();
+		
+		if(set.equals("TileSet_Main"))
+			g.drawImage(TileSet_Main, 0, 0, w, h, x1, y1, x2, y2, null);
+		else if(set.equals("TileSet_Characters"))
+			g.drawImage(TileSet_Characters, 0, 0, w, h, x1, y1, x2, y2, null);
+		
+		return image;
+	}
+	
+	public void setCameraPos(int x, int y)
+	{
+		this.cameraX = x;
+		this.cameraY = y;
+	}
+	
+	public int getCameraPosX()
+	{
+		return this.cameraX;
+	}
+	
+	public int getCameraPosY()
+	{
+		return this.cameraY;
+	}
+	
+	public int getTileWidth()
+	{
+		return tileWidth;
+	}
+	
+	public int getTileHeight()
+	{
+		return tileHeight;
+	}
+
+}
