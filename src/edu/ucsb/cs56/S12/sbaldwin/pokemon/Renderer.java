@@ -48,8 +48,8 @@ public class Renderer
 		this.width = width;
 		this.height = height;
 		
-		this.bufferWidth = width + (6 * tileWidth);
-		this.bufferHeight = height + (6 * tileHeight);
+		this.bufferWidth = width + (7 * tileWidth);//ORIGINALLY 6
+		this.bufferHeight = height + (7 * tileHeight);
 		
 		// Create the new Game Grid
 		gg = new GameGrid(100, 100);

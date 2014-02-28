@@ -27,7 +27,9 @@ public class MainWindow
 		
 		// Account for size of Border
 		Insets insets = frame.getInsets();
-		frame.setSize((width + insets.left + insets.right), (height + insets.top + insets.bottom));
+		frame.setSize((width + insets.left + insets.right)-176, (height + insets.top + insets.bottom)-176);
+		//<<MAKE THE WINDOW SMALLER SO IT RENDERS PROPERLY
+		
 		
 		gp.startLoop();
 	}

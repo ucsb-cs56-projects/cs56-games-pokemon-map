@@ -196,6 +196,7 @@ class Building extends GameObject
 		this.width = 7;
 		this.height = 5;
 		
+
 		this.interactable = false;
 		
 		// Create Collision Values and Initialize to BLOCKED
