@@ -17,7 +17,7 @@ public class MainWindow
 		
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		GamePanel gp = new GamePanel(width, height);
 
 		frame.setSize(width, height);		

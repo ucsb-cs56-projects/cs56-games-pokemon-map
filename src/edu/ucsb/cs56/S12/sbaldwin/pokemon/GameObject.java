@@ -6,7 +6,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
-
+/** The parent class for any object in the game
+    @author Samuel Baldwin
+    @author Marcus Liou
+    @author Alec Harrell
+*/
 public class GameObject
 {
 	protected int xPos;   // Measured in Tiles
@@ -23,7 +27,8 @@ public class GameObject
 	
 	protected boolean interactable;
 	
-	
+/** No arg constructor
+ */
 	public GameObject()
 	{
 		/*
@@ -41,7 +46,13 @@ public class GameObject
 		texture = GameMain.getRenderer().getTile(0, 0, 16, 16);
 		*/
 	}
-	
+/** Four arg constructor
+    @param x - x position of the object
+    @param y - y position of the object
+    @param width - width of the object
+    @param height - height of the object
+    @param interactable - indicate whether or not the object is interactable
+*/
 	public GameObject(int x, int y, int width, int height, boolean interactable)
 	{
 		this.width = width;
@@ -65,57 +76,81 @@ public class GameObject
 		
 		
 	}
-	
+/** Getter for interactable
+    @return interactable, whether or not the object can be interacted with
+*/
 	public boolean isInteractable()
 	{
 		return interactable;
 	}
-	
+/** Performs an action when interacted with
+*/	
 	public void interact()
 	{
 		return;
 	}
-	
+/** Getter for yPos
+    @return yPos, vertical position of object
+*/
 	public int getYPos()
 	{
 		return yPos;
 	}
-	
+/** Getter for xPos
+    @return xPos, horizontal position of object
+*/
 	public int getXPos()
 	{
 		return xPos;
 	}
-	
+/** Getter for width
+    @return width, width of the object
+*/
 	public int getWidth()
 	{
 		return width;
 	}
-	
+/** Getter for height
+    @return height, height of object
+*/
 	public int getHeight()
 	{
 		return height;
 	}
-	
+/** Getter for xOffset
+    @return xOffset, horizontal pixel offset
+*/
 	public int getXOffset()
 	{
 		return this.xOffset;
 	}
-	
+/** Getter for yOffset
+    @return yOffset, vertical pixel offset
+*/
 	public int getYOffset()
 	{
 		return this.yOffset;
 	}
-	
+/** Getter for texture
+    @return texture
+*/
 	public Texture getTexture()
 	{
 		return texture;
 	}
-	
+/** Getter for the collision value at point (x,y)
+    @param x - x coordinate in question
+    @param y - y coordinate in question
+    @return collisionValue[x][y], the collision value at the point
+*/
 	public GameGrid.GridValue getCollisionValue(int x, int y)
 	{
 		return collisionValue[x][y];
 	}
-	
+/** Set the object at point (x,y)
+    @param x - the x coordinate the object is to be set
+    @param y - the y coordinate the object is to be set
+*/
 	public void setPos(int x, int y)
 	{
 		this.xPos = x;
@@ -139,12 +174,19 @@ public class GameObject
 		}
 				
 	}
-	
+
+/** Sets the object grid using the current values of xPos and yPos
+*/    
 	public void updatePos()
 	{
-		GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
+ 		GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
 	}
-	
+
+/** Sets the collision value at point (x,y) to cv
+    @param cv - the collision value
+    @param x - the x position
+    @param y - the y position
+*/
 	public void setCollisionValue(GameGrid.GridValue cv, int x, int y)
 	{
 		this.collisionValue[x][y] = cv;
