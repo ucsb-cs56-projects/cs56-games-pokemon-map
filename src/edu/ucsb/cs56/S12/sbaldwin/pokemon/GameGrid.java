@@ -1,11 +1,17 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
+/** The class to hold and interact with the Collison, Texture and Object values at each point in the grid
+    @author Samuel Baldwin
+    @author Marcus Liou
+    @author Alec Harrell
+*/
+
 public class GameGrid
 {
 	// Width * height
 	
 	private GameObject[][] objectGrid;
-	private Texture[][][] textureGrid;
+        private Texture[][][] textureGrid; //Third array of texture grid will always have length 3
 	private GridValue[][] collisionGrid;
 	
 	private final static int pixelW = 16;
@@ -30,7 +36,11 @@ public class GameGrid
 	////////////////////////////////////   Methods   ///////////////////////////////////
 	
 	// Constructor
-	
+
+        /** Two arg constructor
+	    @param w width of GameGrid
+	    @param h height of GameGrid
+	*/
 	public GameGrid(int w, int h)
 	{
 		this.width = w;
@@ -54,45 +64,69 @@ public class GameGrid
 	}
 	
 	///// Getters
-	
+
+        /** Returns the GameObject at (w,h) 
+	    @param w horizontal position
+	    @param h vertical position
+	*/
 	// GameGrid
 	public GameObject getObjectGrid(int w, int h)
 	{
 		return this.objectGrid[w][h];
 	}
-	
+
+        /** Returns the Texture at (w,h,l)
+	    @param w horizontal position
+	    @param h vertical position
+	    @param l
+	*/
 	// TextureGrid
 	public Texture getTextureGrid(int w, int h, int l)
 	{
 		return this.textureGrid[w][h][l];
 	}
 	
+        /**  Returns the collision value at point w,h
+	     @param w
+	     @param h
+	     @return GridValue
+	*/
 	// CollisionGrid
 	public GridValue getCollisionGrid(int w, int h)
 	{
 		return this.collisionGrid[w][h];
 	}
 	
-	
+        /**  Getter for width
+	     @return width
+	*/
 	// Get Width
 	public int getWidth()
 	{
 		return this.width;
 	}
 	
+        /** Getter for height
+	    @return height
+	*/
 	// get Height
 	public int getHeight()
 	{
 		return this.height;
 	}
 	
-	
+        /** Getter for pixel width
+	    @return pixelW
+	*/
 	// Pixel Width
 	public int getPixelWidth()
 	{
 		return this.pixelW;
 	}
 	
+        /** Getter for pixel height
+	    @return pixelH
+	*/
 	// Pixel height
 	public int getPixelHeight()
 	{
@@ -102,18 +136,34 @@ public class GameGrid
 	
 	///// Setters
 	
+        /** Setter for the ObjectGrid at point w,h
+	    @param value
+	    @param w
+	    @param h
+	*/
 	// GameGrid
 	public void setObjectGrid(GameObject value, int w, int h)
 	{
 		this.objectGrid[w][h] = value;
 	}
 	
+        /** Setter for the TextureGrid at point w,h
+	    @param value
+	    @param w
+	    @param h
+	    @param l
+	*/
 	// TextureGrid
 	public void setTextureGrid(Texture value, int w, int h, int l)
 	{
 		this.textureGrid[w][h][l] = value;
 	}
 	
+        /** Setter for the Collision grid at w,h
+	    @param value
+	    @param w
+	    @param h
+	*/
 	// CollisionGrid
 	public void setCollisionGrid(GridValue value, int w, int h)
 	{

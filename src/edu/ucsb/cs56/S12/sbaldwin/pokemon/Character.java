@@ -1,5 +1,10 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
+/** The class for objects of type Character.
+    @author Samuel Baldwin
+    @author Marcus Liou
+    @author Marcus Liou
+*/
 public class Character extends GameObject
 {
 	///// Variables
@@ -40,7 +45,14 @@ public class Character extends GameObject
 	
 	
 	///// Methods
-	
+
+        /** Four arg constructor
+	    @param x xPos of character
+	    @param y yPos of character
+	    @param r direction of character
+	    @param cm character model
+	    @param name name of character
+	*/
 	// Constructor
 	public Character(int x, int y, Direction r, String cm, String name)
 	{
@@ -59,15 +71,19 @@ public class Character extends GameObject
 		this.isMoving = false;
 		this.moveSwitch = false;
 	}
-	
+
+        /** Method to extract the character sprite from the bitmap, currently can only place Professor Oak
+	    @param cm character model
+	*/
 	public void setCharacter(String cm)
 	{
 		this.character = cm;
 		
 		if(cm == "PROFESSOR_OAK")
 		{
-			this.front = new Texture(cm, "TileSet_Characters", 509, 194, 525, 215);
-			this.front.forceSize(16, 32);
+		        //Harvesting the Professor Oak sprite from the bitmap
+		        this.front = new Texture(cm, "TileSet_Characters", 509, 194, 525, 215); //The pixels where Professor Oak is located on the bitmap 
+			this.front.forceSize(16, 32); //Make sure the sprite fits within 16 pixels by 32 pixels
 			
 			this.back = new Texture(cm, "TileSet_Characters", 524, 194, 540, 215);
 			this.back.forceSize(16, 32);
@@ -102,10 +118,15 @@ public class Character extends GameObject
 			this.rightMoving2 = new Texture(cm, "TileSet_Characters", 613, 194, 598, 215);
 			this.rightMoving2.forceSize(16, 32);
 			
+			//Set Professor oak to face forward
 			this.texture = front;
 		}
 	}
-	
+
+        /** Method to move the character
+	    @param xOff the x offset
+	    @param yoff the y offset
+	*/
 	public void move(int xOff, int yOff)
 	{
 		// Check to see if path is blocked
@@ -284,59 +305,92 @@ public class Character extends GameObject
 		
 	
 	// Getters
-	
+
+        /** Getter for rotation
+	    @return rotation the direction the character is facing, i.e. NORTH, SOUTH, EAST, WEST
+	*/
 	public Direction getRotation()
 	{
 		return rotation;
 	}
-	
+
+       /** Getter for character
+	   @return character
+       */
 	public String getCharacter()
 	{
 		return character;
 	}
-	
+
+        /** Getter for name
+	    @return name name of character
+	*/
 	public String getName()
 	{
 		return name;
 	}
-	
+
+        /** Getter for speed
+	    @return speed, how fast the character moves
+	*/	
 	public int getSpeed()
 	{
 		return this.speed;
 	}
 	
 	// Setters
-	
+
+        /** Setter for xPos
+	    @param xPos x position of character
+	*/
 	public void setXPos(int x)
 	{
 		this.xPos = x;
 	}
-	
+
+        /** Setter for yPos
+	    @param yPos y position of character
+	*/	
 	public void setYPos(int y)
 	{
 		this.yPos = y;
 	}
-	
+
+        /** Setter for rotation
+	    @param rotation direction character is facing i.e. NORTH, SOUTH, EAST, WEST
+	*/	
 	public void setRotation(Direction r)
 	{
 		this.rotation = r;
 	}
-	
+    
+        /** Setter for name
+	    @param name name of character
+	*/
 	public void setName(String name)
 	{
 		this.name = name;
 	}
-	
+
+        /** Setter for speed
+	    @param speed how fast the character moves
+	*/
 	public void setSpeed(int speed)
 	{
 		this.speed = speed;
 	}
-	
+
+        /** Getter for isMoving
+	    @return isMoving determines if the character is moving
+	*/	
 	public boolean isMoving()
 	{
 		return isMoving;
 	}
-	
+
+        /** Setter for isMoving
+	    @param isMoving a boolean to indicate whether the character is moving
+	*/
 	public void setMoving(boolean value)
 	{
 		this.isMoving = value;

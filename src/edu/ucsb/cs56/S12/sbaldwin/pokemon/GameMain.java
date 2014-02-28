@@ -2,7 +2,7 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
 ///// Starting point for game
 
-/** Starting point for the game. Creates a Renderer, GameLogic, and MainWindow Object
+/** Starting point for the game. Creates a Renderer, GameLogic, and MainWindow Object.
     @author Samuel Baldwin
     @author Marcus Liou
     @author Alec Harrell
@@ -12,8 +12,9 @@ public class GameMain
 	public static Renderer renderer;
 	private static MainWindow mw;
 	public static GameLogic gameLogic;
-/** The starting point for the pokemon map game
- */
+
+        /** The starting point for the pokemon map game
+	 */
 	public static void main(String args[])
 	{
 		renderer = new Renderer(25 * 32, 25 * 32);
@@ -22,23 +23,26 @@ public class GameMain
 		
 		mw = new MainWindow(25 * 32, 25 * 32);
 	}
-/** Getter for MainWindow
-    @return MainWindow Object
-*/
+
+        /** Getter for MainWindow
+	    @return mw 
+	*/
 	public static MainWindow getMainWindow()
 	{
 		return mw;
 	}
-/** Getter for Renderer
-    @return Renderer Object
-*/
+
+        /** Getter for Renderer
+	    @return renderer
+	*/
 	public static Renderer getRenderer()
 	{
 		return renderer;
 	}
-/** Getter for GameLogic
-    @return GameLogic Object
-*/
+
+        /** Getter for GameLogic
+	    @return gameLogic
+	*/
 	public static GameLogic getGameLogic()
 	{
 		return gameLogic;
