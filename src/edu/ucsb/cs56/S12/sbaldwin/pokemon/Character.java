@@ -134,6 +134,8 @@ public class Character extends GameObject
 		{
 			if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos + 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
 			{
+			        //turn right without moving, if blocked
+			        this.texture = right;
 				return;
 			}
 		}
@@ -141,13 +143,17 @@ public class Character extends GameObject
 		{
 			if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos - 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
 			{
-				return;
+			        //turn left without moving, if blocked
+			        this.texture = left;
+			        return;
 			}
 		}
 		else if(yOff > 0)
 		{
 			if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos + 2) == GameGrid.GridValue.BLOCKED)
 			{
+			        //turn front without moving, if blocked
+			        this.texture = front;
 				return;
 			}
 		}
@@ -156,6 +162,8 @@ public class Character extends GameObject
 			
 			if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos) == GameGrid.GridValue.BLOCKED)
 			{
+			        //turn back without moving, if blocked
+			        this.texture = back;
 				return;
 			}
 		}
