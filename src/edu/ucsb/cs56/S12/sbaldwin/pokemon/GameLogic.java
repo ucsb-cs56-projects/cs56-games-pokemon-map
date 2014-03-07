@@ -70,20 +70,19 @@ public class GameLogic
 		{
 			if(rightPressed)
 			{
-				player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
+			    player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
 			}
 			else if(leftPressed)
 			{
-				player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
+			    player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
 			}
 			else if(upPressed)
 			{
-				// System.out.println(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate));
-				player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
+			    player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
 			}
 			else if (downPressed)
 			{
-				player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
+			    player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
 			}
 		}
 				
@@ -96,6 +95,10 @@ public class GameLogic
 			playerXOffset = player.getXOffset();
 			playerYOffset = player.getYOffset();
 		}
+		/*try{
+		    Thread.sleep(25);
+		} catch(Exception e) {}
+		*/
 	}
 
         /** Prepares the next frame	
@@ -121,8 +124,7 @@ public class GameLogic
 		
 		// Render the Grids to Buffer Image
 		renderer.renderTextureGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15); 
-		renderer.renderObjectGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15);
-        
+		renderer.renderObjectGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15);        
 
 		// Draw actual Image from Buffer Image
 		renderer.drawFinalImage(5, 5, playerXOffset+56, playerYOffset+56, 25, 25);
@@ -178,7 +180,8 @@ public class GameLogic
 		}
 	
 		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
-		{
+
+	{
 			downPressed = false;
 		}
 		

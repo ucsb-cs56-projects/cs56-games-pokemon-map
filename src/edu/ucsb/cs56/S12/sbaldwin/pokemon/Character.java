@@ -1,9 +1,10 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
+
 /** The class for objects of type Character.
     @author Samuel Baldwin
     @author Marcus Liou
-    @author Marcus Liou
+    @author Alec Harrell
 */
 public class Character extends GameObject
 {
@@ -167,7 +168,29 @@ public class Character extends GameObject
 				return;
 			}
 		}
-	
+		
+		//Here we make Professor Oak turn if he moves in a direction he isn't facing          
+		    if((xOff > 0) && ((this.texture != right) && (this.texture != rightMoving1) && (this.texture != rightMoving2)))
+			{
+			    this.texture = right;
+			    return;
+			}
+		    else if((xOff < 0) && ((this.texture != left) && (this.texture != leftMoving1) && (this.texture != leftMoving2)))
+			{
+			    this.texture = left;
+			    return;
+			}
+		    else if((yOff > 0) && ((this.texture != front) && (this.texture != frontMoving1) && (this.texture != frontMoving2)))
+			{
+			    this.texture = front;
+			    return;
+			}
+		    else if((yOff < 0) && ((this.texture != back) && (this.texture != backMoving1) && (this.texture != backMoving2)))
+			{
+			    this.texture = back; 
+			    return;
+			}
+		
 		///// Move offset
 		this.xOffset += xOff;
 		this.yOffset += yOff;
@@ -234,6 +257,7 @@ public class Character extends GameObject
 			}
 		}			
 		
+
 		// Update isMoving variable
 		isMoving = true;
 		
