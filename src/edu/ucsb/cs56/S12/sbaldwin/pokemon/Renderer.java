@@ -12,6 +12,12 @@ import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
 import java.io.*;
 
+/** The class responsible for deciding what to display to the GamePanel, and loading the buffers.
+    @author Samuel Baldwin
+    @author Marcus Liou
+    @author Alec Harrell
+*/
+
 public class Renderer
 {
 	private Graphics buffer;
@@ -38,6 +44,10 @@ public class Renderer
 	private int tileWidth;
 	private int tileHeight;
 
+        /** Two arg constructor
+	    @param width width of game screen
+	    @param height height of game screen
+	*/
 	public Renderer(int width, int height)
 	{
 		// Set Tile size
@@ -48,8 +58,8 @@ public class Renderer
 		this.width = width;
 		this.height = height;
 		
-		this.bufferWidth = width + (6 * tileWidth);
-		this.bufferHeight = height + (6 * tileHeight);
+		this.bufferWidth = width + (7 * tileWidth);//ORIGINALLY 6
+		this.bufferHeight = height + (7 * tileHeight);
 		
 		// Create the new Game Grid
 		gg = new GameGrid(100, 100);
@@ -91,7 +101,9 @@ public class Renderer
 		// Make Pink areas transparent
 		TileSet_Characters = imageToBufferedImage(makeColorTransparent(TileSet_Characters, new Color(255, 0, 255)));
 	}
-	
+
+        /** Loads the map, sets all the buildings and textures, and registers the player
+	 */	
 	public void loadMap()
 	{
 		Texture grass_Default = new Texture("GRASS_DEFAULT", "TileSet_Main", 16, 0, 32, 16);
@@ -148,13 +160,21 @@ public class Renderer
 		Player player = new Player(45, 45, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
 	}
-	
+
+        /** Clears the buffer
+	 */	
 	public void startRender()
 	{
 		// Reset the buffer
 		clearBuffer();
 	}
-	
+
+        /** Renders the TextureGrid to the buffer
+	    @param tileXStart initial x point
+	    @param tileYStart initial y point
+	    @param tileXEnd terminal X point
+	    @param tileYEnd terminal Y point
+	*/	
 	// Takes in parameters for starting tile positions and finishing tile positions
 	public void renderTextureGrid(int tileXStart, int tileYStart, int tileXEnd, int tileYEnd)
 	{
@@ -193,7 +213,13 @@ public class Renderer
 		}
 	
 	}
-	
+
+        /** Draws the object at the specified location
+	    @param tileXStart
+	    @param tileYStart
+	    @param tileXEnd
+	    @param tileYEnd
+	*/
 	public void renderObjectGrid(int tileXStart, int tileYStart, int tileXEnd, int tileYEnd)
 	{		
 		// Loop and render
@@ -222,7 +248,12 @@ public class Renderer
 			}
 		}
 	}
-	
+
+        /** Draws an object to the buffer
+	    @param gObject the GameObject
+	    @param tileX the horizontal position
+	    @param tileY the vertical position
+	*/
 	// Helper Object for renderObjectGrid
 	private void drawObject(GameObject gObject, int tileX, int tileY)
 	{
@@ -250,7 +281,15 @@ public class Renderer
 				 null);
 	
 	}
-	
+
+        /** Moves the buffer to the final buffer
+	    @param xpos the x position
+	    @param ypos the y position
+	    @param xOff the x offset
+	    @param yOff the y offset
+	    @param width
+	    @param height
+	*/
 	// Measured in tiles except offsets(measured in pixels)
 	public void drawFinalImage(int xpos, int ypos, int xOff, int yOff, int width, int height)
 	{
@@ -262,28 +301,42 @@ public class Renderer
 					      null);
 		
 	}
-	
+    
+        /** Fills the Buffer with all black
+	 */	
 	public void clearBuffer()
 	{
 		buffer.setColor(Color.black);
 		buffer.fillRect(0, 0, bufferWidth, bufferHeight);
 	}
-	
+    
+        /** Getter for buffer
+	    @return buffer
+	*/
 	public Graphics getBufferGraphics()
 	{
 		return buffer;
 	}
-	
+
+        /** Getter for bufferImage
+	    @return bufferImage
+	*/
 	public BufferedImage getBufferImage()
 	{
 		return bufferImage;
 	}
-	
+    
+        /** Getter for finalImage
+	    @return finalImage
+	*/
 	public BufferedImage getFinalImage()
 	{
 		return finalImage;
 	}
-	
+
+        /** Getter for GameGrid
+	    @return gg, GameGrid
+	*/
 	public GameGrid getGameGrid()
 	{
 		return gg;
@@ -293,7 +346,10 @@ public class Renderer
 	
 	///// The next two methods are courtesy of corgrath from:
 	///// http://stackoverflow.com/questions/665406/how-to-make-a-color-transparent-in-a-bufferedimage-and-save-as-png
-	
+        /** Creates a bufferedImage from image
+	    @param image
+	    @return bufferedImage
+	*/
 	private static BufferedImage imageToBufferedImage(Image image)
 	{
 
@@ -303,7 +359,12 @@ public class Renderer
 		g2.dispose();
 		return bufferedImage;
 	}
-
+    
+        /** Makes a specific color transparent in a BufferedImage
+	    @param im the BufferedImage
+	    @param color the color you want to make Transparent
+	    @return rgb 
+	*/
 	private static Image makeColorTransparent(BufferedImage im, final Color color)
 	{
 		ImageFilter filter = new RGBImageFilter() {
@@ -326,7 +387,14 @@ public class Renderer
 		return Toolkit.getDefaultToolkit().createImage(ip);
 	}
 
-
+        /** Returns an image of the tile with the given specifications
+	   @param set
+	   @param x1
+	   @param y1
+	   @param x2
+	   @param y2
+	   @return image
+	*/
 	public BufferedImage getTile(String set, int x1, int y1, int x2, int y2)
 	{
 		int w = Math.abs(x2 - x1);
@@ -342,28 +410,44 @@ public class Renderer
 		
 		return image;
 	}
-	
+
+        /** Setter for cameraX and cameraY
+	    @param x
+	    @param y
+	*/
 	public void setCameraPos(int x, int y)
 	{
 		this.cameraX = x;
 		this.cameraY = y;
 	}
 	
+        /** Getter for cameraX
+	    @return cameraX
+	*/
 	public int getCameraPosX()
 	{
 		return this.cameraX;
 	}
-	
-	public int getCameraPosY()
+
+        /** Getter for cameraY
+	    @return cameraY
+	*/
+        public int getCameraPosY()
 	{
 		return this.cameraY;
 	}
-	
+        
+        /** Getter for tileWidth
+	    @return tileWidth
+        */
 	public int getTileWidth()
 	{
 		return tileWidth;
 	}
-	
+
+        /** Getter for tileHeight
+	    @return tileHeight
+	*/
 	public int getTileHeight()
 	{
 		return tileHeight;

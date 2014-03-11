@@ -2,6 +2,11 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
 import java.awt.event.KeyEvent;
 
+/** GameLogic tells the program when to do what when a key is pressed.
+    @author Samuel Baldwin
+    @author Marcus Liou
+    @author Alec Harrell
+*/
 public class GameLogic
 {
 	private Player player;
@@ -25,7 +30,8 @@ public class GameLogic
 	
 	Renderer renderer;
 	
-	
+        /** No arg constructor
+	 */	
 	public GameLogic()
 	{
 		renderer = GameMain.getRenderer();
@@ -35,8 +41,10 @@ public class GameLogic
 		playerXOffset = 0;
 		playerYOffset = 0;
 	}
-	
-	public void updateGame()
+
+        /** If the player isMoving, update game moves the character and renders the next frame. Otherwise, updateGame listens for a key to be pressed, and indicates the character to move	
+	 */	
+        public void updateGame()
 	{
 		// Move player
 		if(player.isMoving())
@@ -89,7 +97,9 @@ public class GameLogic
 			playerYOffset = player.getYOffset();
 		}
 	}
-	
+
+        /** Prepares the next frame	
+	 */
 	public void renderNextFrame()
 	{
 		// Update the clock
@@ -112,12 +122,16 @@ public class GameLogic
 		// Render the Grids to Buffer Image
 		renderer.renderTextureGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15); 
 		renderer.renderObjectGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15);
-		
-		// Draw actual Image from Buffer Image
-		renderer.drawFinalImage(3, 3, playerXOffset, playerYOffset, 25, 25);
+        
 
+		// Draw actual Image from Buffer Image
+		renderer.drawFinalImage(5, 5, playerXOffset+56, playerYOffset+56, 25, 25);
+                //original values are 3,3,25,25
+		//<<MOVED THE OFFSET
 	}
-	
+        /** Registers the player into the game
+	    @param player
+	*/
 	public void registerPlayer(Player player)
 	{
 		this.player = player;
@@ -125,7 +139,10 @@ public class GameLogic
 		playerXPos = player.getXPos();
 		playerYPos = player.getYPos();
 	}
-	
+
+        /** Indicates when a key has been pressed
+	    @param e KeyEvent
+	*/
 	public void sendKeyPressed(KeyEvent e)
 	{
 		
@@ -149,7 +166,10 @@ public class GameLogic
 			rightPressed = true;
 		}		
 	}
-	
+
+        /** Indicates when a key has been released
+	    @param e KeyEvent
+	*/
 	public void sendKeyReleased(KeyEvent e)
 	{
 		if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
