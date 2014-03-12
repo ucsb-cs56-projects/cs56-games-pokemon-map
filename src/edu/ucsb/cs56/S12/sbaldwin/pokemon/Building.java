@@ -15,7 +15,7 @@ class Building extends GameObject
         /** Three arg constructor
 	    @param x xPos of building
 	    @param y yPos of building
-	    @oaran type the type of building, i.e. PokeCenter, House, tree
+	    @param type the type of building, i.e. PokeCenter, House, tree
 	*/
 	public Building(int x, int y, String type)
 	{

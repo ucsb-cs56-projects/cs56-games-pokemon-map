@@ -47,7 +47,7 @@ public class Character extends GameObject
 	
 	///// Methods
 
-        /** Four arg constructor
+        /** Five arg constructor
 	    @param x xPos of character
 	    @param y yPos of character
 	    @param r direction of character
