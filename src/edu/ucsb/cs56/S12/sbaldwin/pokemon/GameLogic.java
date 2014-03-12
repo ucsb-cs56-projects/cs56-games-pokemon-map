@@ -95,10 +95,6 @@ public class GameLogic
 			playerXOffset = player.getXOffset();
 			playerYOffset = player.getYOffset();
 		}
-		/*try{
-		    Thread.sleep(25);
-		} catch(Exception e) {}
-		*/
 	}
 
         /** Prepares the next frame	
@@ -147,26 +143,36 @@ public class GameLogic
 	*/
 	public void sendKeyPressed(KeyEvent e)
 	{
-		
+	    //Here we try to fix the turning issue by introducing sleep. Whereas normally you would have to tap the button
+	    //extremely quickly in order to only turn, now it is a bit easier to turn, because it takes a bit longer for 
+	    //the system to sense the button is still being pressed. A pretty crude solution, but a cleaner solution 
+	    //requires serious refactoring in registering the button presses.
+	    try{
 		if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			upPressed = true;
+			Thread.sleep(10);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			downPressed = true;
+			Thread.sleep(10);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			leftPressed = true;
+			Thread.sleep(10);
+
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			rightPressed = true;
-		}		
+			Thread.sleep(10);
+		}
+	    } catch(Exception ex){}
 	}
 
         /** Indicates when a key has been released
@@ -181,7 +187,7 @@ public class GameLogic
 	
 		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
 
-	{
+		{
 			downPressed = false;
 		}
 		
