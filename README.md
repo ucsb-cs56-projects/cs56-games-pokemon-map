@@ -7,4 +7,4 @@ The goal of the program is to create a 2D Rendering engine in the style of the P
 
 The project allows the player to walk around a small town as Professor Oak. There is collision detection on everything that should have it. 
 
-http://imgur.com/NbE8wZP
+![](http://i.imgur.com/NbE8wZP.png)
