@@ -1,9 +1,10 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
+
 /** The class for objects of type Character.
     @author Samuel Baldwin
     @author Marcus Liou
-    @author Marcus Liou
+    @author Alec Harrell
 */
 public class Character extends GameObject
 {
@@ -46,7 +47,7 @@ public class Character extends GameObject
 	
 	///// Methods
 
-        /** Four arg constructor
+        /** Five arg constructor
 	    @param x xPos of character
 	    @param y yPos of character
 	    @param r direction of character
@@ -134,6 +135,8 @@ public class Character extends GameObject
 		{
 			if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos + 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
 			{
+			        //turn right without moving, if blocked
+			        this.texture = right;
 				return;
 			}
 		}
@@ -141,13 +144,17 @@ public class Character extends GameObject
 		{
 			if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos - 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
 			{
-				return;
+			        //turn left without moving, if blocked
+			        this.texture = left;
+			        return;
 			}
 		}
 		else if(yOff > 0)
 		{
 			if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos + 2) == GameGrid.GridValue.BLOCKED)
 			{
+			        //turn front without moving, if blocked
+			        this.texture = front;
 				return;
 			}
 		}
@@ -156,10 +163,34 @@ public class Character extends GameObject
 			
 			if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos) == GameGrid.GridValue.BLOCKED)
 			{
+			        //turn back without moving, if blocked
+			        this.texture = back;
 				return;
 			}
 		}
-	
+		
+		//Here we make Professor Oak turn if he moves in a direction he isn't facing          
+		    if((xOff > 0) && ((this.texture != right) && (this.texture != rightMoving1) && (this.texture != rightMoving2)))
+			{
+			    this.texture = right;
+			    return;
+			}
+		    else if((xOff < 0) && ((this.texture != left) && (this.texture != leftMoving1) && (this.texture != leftMoving2)))
+			{
+			    this.texture = left;
+			    return;
+			}
+		    else if((yOff > 0) && ((this.texture != front) && (this.texture != frontMoving1) && (this.texture != frontMoving2)))
+			{
+			    this.texture = front;
+			    return;
+			}
+		    else if((yOff < 0) && ((this.texture != back) && (this.texture != backMoving1) && (this.texture != backMoving2)))
+			{
+			    this.texture = back; 
+			    return;
+			}
+		
 		///// Move offset
 		this.xOffset += xOff;
 		this.yOffset += yOff;
@@ -226,6 +257,7 @@ public class Character extends GameObject
 			}
 		}			
 		
+
 		// Update isMoving variable
 		isMoving = true;
 		

@@ -70,20 +70,19 @@ public class GameLogic
 		{
 			if(rightPressed)
 			{
-				player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
+			    player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
 			}
 			else if(leftPressed)
 			{
-				player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
+			    player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
 			}
 			else if(upPressed)
 			{
-				// System.out.println(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate));
-				player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
+			    player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
 			}
 			else if (downPressed)
 			{
-				player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
+			    player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
 			}
 		}
 				
@@ -121,8 +120,7 @@ public class GameLogic
 		
 		// Render the Grids to Buffer Image
 		renderer.renderTextureGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15); 
-		renderer.renderObjectGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15);
-        
+		renderer.renderObjectGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15);        
 
 		// Draw actual Image from Buffer Image
 		renderer.drawFinalImage(5, 5, playerXOffset+56, playerYOffset+56, 25, 25);
@@ -145,26 +143,36 @@ public class GameLogic
 	*/
 	public void sendKeyPressed(KeyEvent e)
 	{
-		
+	    //Here we try to fix the turning issue by introducing sleep. Whereas normally you would have to tap the button
+	    //extremely quickly in order to only turn, now it is a bit easier to turn, because it takes a bit longer for 
+	    //the system to sense the button is still being pressed. A pretty crude solution, but a cleaner solution 
+	    //requires serious refactoring in registering the button presses.
+	    try{
 		if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			upPressed = true;
+			Thread.sleep(10);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			downPressed = true;
+			Thread.sleep(10);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			leftPressed = true;
+			Thread.sleep(10);
+
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			rightPressed = true;
-		}		
+			Thread.sleep(10);
+		}
+	    } catch(Exception ex){}
 	}
 
         /** Indicates when a key has been released
@@ -178,6 +186,7 @@ public class GameLogic
 		}
 	
 		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
+
 		{
 			downPressed = false;
 		}
