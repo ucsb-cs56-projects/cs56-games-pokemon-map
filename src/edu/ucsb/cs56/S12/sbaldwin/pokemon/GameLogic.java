@@ -64,60 +64,126 @@ public class GameLogic
 			if(player.getXOffset() > 0)
 			{
 				player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK");
-				if((pkmn.getTexture() == rightMoving1) || (pkmn.getTexture() == rightMoving2))
-				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
-				else
-				    pkmn.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");				    
+				if(pkmn.getXOffset() > 0)
+				 {
+				     pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				 }
+				 else if(pkmn.getXOffset() < 0)
+				 {
+				     pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				 }
+				 else if(pkmn.getYOffset() > 0)
+				 {
+				     pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				 }
+				 else if(pkmn.getYOffset() < 0)
+				 {
+				     pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				 }
 			}
 			else if(player.getXOffset() < 0)
 			{
 				player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK");
-				if((pkmn.getTexture() == leftMoving1) || (pkmn.getTexture() == leftMoving2))				
-				pkmn.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
-				else
-				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");				    
+				if(pkmn.getXOffset() > 0)
+				 {
+				     pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				 }
+				 else if(pkmn.getXOffset() < 0)
+				 {
+				     pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				 }
+				 else if(pkmn.getYOffset() > 0)
+				 {
+				     pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				 }
+				 else if(pkmn.getYOffset() < 0)
+				 {
+				     pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				 }
 			}
 			else if(player.getYOffset() > 0)
 			{
 			    player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK");
-			    if((pkmn.getTexture() == backMoving1) || (pkmn.getTexture() == backMoving2))
-			    pkmn.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
-			    else
-				pkmn.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");				
+				if(pkmn.getXOffset() > 0)
+				 {
+				     pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				 }
+				 else if(pkmn.getXOffset() < 0)
+				 {
+				     pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				 }
+				 else if(pkmn.getYOffset() > 0)
+				 {
+				     pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				 }
+				 else if(pkmn.getYOffset() < 0)
+				 {
+				     pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				 }				
 			}
 			else if (player.getYOffset() < 0)
 			{
 				player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK");
-				if((pkmn.getTexture() == frontMoving1) || (pkmn.getTexture() == frontMoving2))
-				pkmn.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
-				else
-				    pkmn.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
-            }
-		}
-        
+				if(pkmn.getXOffset() > 0)
+				 {
+				     pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				 }
+				 else if(pkmn.getXOffset() < 0)
+				 {
+				     pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				 }
+				 else if(pkmn.getYOffset() > 0)
+				 {
+				     pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				 }
+				 else if(pkmn.getYOffset() < 0)
+				 {
+				     pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				 }
+			  }
+			}
 		else
 		{
 			if(rightPressed)
 			{
 			    player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK");
 			    if(player.isMoving())
+			    {
+				if(player.getYPos() > pkmn.getYPos())
+			        {
+				     pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				}				    
+				else if(player.getYPos() < pkmn.getYPos())
 				{
-				    if((player.getXPos()-pkmn.getXPos()) >= 1) 
-				    pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
-				    else
-					pkmn.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				     pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
 				}
-					
+				else if(player.getXPos()-pkmn.getXPos() >= 1)
+				{
+				    pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");					
+				}
+				else 
+				    pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+			    }
 			}
 			else if(leftPressed)
 			{
 			    player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK");
 			    if(player.isMoving())
 				{
-				    if((player.getXPos()-pkmn.getXPos()) <= -1)
-					pkmn.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
-				    else
-					pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");	
+			    if(player.getYPos() > pkmn.getYPos())
+			    {
+				pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+			    }				    
+			    else if(player.getYPos() < pkmn.getYPos())
+			    {
+				pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+			    }
+			    else if(player.getXPos()-pkmn.getXPos() <= -1)
+		            {
+				pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");					
+			    }
+			    else 
+				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
 				}				
 			}
 			else if(upPressed)
@@ -125,25 +191,43 @@ public class GameLogic
 			    player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK");
 			    if(player.isMoving())
 				{
-				    if((player.getYPos()-pkmn.getYPos()) <= -1)
-				    pkmn.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
-				    else
-					pkmn.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
-				}	
+			    if(player.getXPos() > pkmn.getXPos())
+			    {
+				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU");
+			    }				    
+			    else if(player.getXPos() < pkmn.getXPos())
+			    {
+				pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU");
+			    }
+			    else if(player.getYPos()-pkmn.getYPos() <= -1)
+		            {
+				pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU");					
+			    }
+			    else 
+				pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU");
+				}				
 			}
 			else if (downPressed)
 			{
 			    player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK");
 			    if(player.isMoving())
 				{
-				    if((player.getYPos()-pkmn.getYPos()) >= 1)
-					pkmn.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
-				    else
-					pkmn.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
-				}
+			    if(player.getXPos() > pkmn.getXPos())
+			    {
+				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU");
+			    }				    
+			    else if(player.getXPos() < pkmn.getXPos())
+			    {
+				pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU");
+			    }
+			    else if(player.getYPos()-pkmn.getYPos() >= 1)
+		            {
+				pkmn.move(0, (int)(1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU");					
+			    }
+			    else 
+				pkmn.move(0, -1 * (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU");
+			}           
 			}
-            
-           
 		}
         
         //pkmn.move(player.getXPos(),player.getYPos());
@@ -227,31 +311,25 @@ public class GameLogic
 	*/
 	public void sendKeyPressed(KeyEvent e)
 	{
-	    try{
 		if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			upPressed = true;
-			Thread.sleep(10);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			downPressed = true;
-			Thread.sleep(10);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			leftPressed = true;
-			Thread.sleep(10);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			rightPressed = true;
-			Thread.sleep(10);
 		}
-	    } catch(Exception ex){ }
 	}
 
         /** Indicates when a key has been released

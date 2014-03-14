@@ -180,8 +180,8 @@ public class Character extends GameObject
 	public void move(int xOff, int yOff, String name)
 	{
 		// Check to see if path is blocked
-        //if(name == "PROFESSOR_OAK")
-        //{
+        if(name == "PROFESSOR_OAK")
+        {
             if(xOff > 0)
             {
           
@@ -221,8 +221,6 @@ public class Character extends GameObject
                     return;
                 }
             }
-		//if(name == "PROFESSOR_OAK")
-        //{
             //Here we make Professor Oak turn if he moves in a direction he isn't facing
 		    if((xOff > 0) && ((this.texture != right) && (this.texture != rightMoving1) && (this.texture != rightMoving2)))
 			{
@@ -244,7 +242,7 @@ public class Character extends GameObject
 			    this.texture = back; 
 			    return;
 			}
-        //}
+        }
         /*if(name == "PIKACHU")
         {
             if((xOff > 0) && (this.texture ==left))
@@ -356,7 +354,7 @@ public class Character extends GameObject
 			// Delete previous position data
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-										     xPos, yPos + 1);
+									      xPos, yPos + 1);
 			
 			xPos += xOffset / tileWidth;
 			xOffset = 0;
@@ -370,7 +368,7 @@ public class Character extends GameObject
 			// Delete previous position data
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-										     xPos, yPos + 1);
+									      xPos, yPos + 1);
 			
 			xPos -= xOffset / (-1 * tileWidth);
 			xOffset = 0;
@@ -385,7 +383,7 @@ public class Character extends GameObject
 			// Delete previous position data
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-										     xPos, yPos + 1);
+									      xPos, yPos + 1);
 			
 			yPos += yOffset / tileHeight;
 			yOffset = 0;
@@ -399,7 +397,7 @@ public class Character extends GameObject
 			// Delete previous position data
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-										     xPos, yPos + 1);
+									      xPos, yPos + 1);
 			
 			yPos -= yOffset / (-1 * tileHeight);
 			yOffset = 0;
@@ -423,7 +421,7 @@ public class Character extends GameObject
      @param xOff the x offset
      @param yoff the y offset
      */
-	public void pkmnMove(int xOff, int yOff)
+    public void pkmnMove(int xOff, int yOff, String name)
 	{
 		
 	    /*	
@@ -689,8 +687,8 @@ public class Character extends GameObject
 		{
 			// Delete previous position data
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
-			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-                                                                 xPos, yPos);
+		    	GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
+									      xPos, yPos);
 			if(this.texture == right)
             {
                 xPos += xOffset / tileWidth;
@@ -722,9 +720,9 @@ public class Character extends GameObject
 		else if(xOffset <= (-1 * tileWidth))
 		{
 			// Delete previous position data
-			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
+		    	GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-                                                                  xPos, yPos);
+									      xPos, yPos);
             
             if(this.texture == right)
             {
@@ -762,7 +760,7 @@ public class Character extends GameObject
 			// Delete previous position data
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-                                                                  xPos, yPos);
+									      xPos, yPos);
 			
 			yPos += yOffset / tileHeight;
 			yOffset = 0;
@@ -776,7 +774,7 @@ public class Character extends GameObject
 			// Delete previous position data
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-                                                                  xPos, yPos);
+									      xPos, yPos);
 			
 			yPos -= yOffset / (-1 * tileHeight);
 			yOffset = 0;

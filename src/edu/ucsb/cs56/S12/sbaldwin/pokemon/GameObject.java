@@ -78,7 +78,7 @@ public class GameObject
 				collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
                 }
             }
-		}
+	    }
 		// Set the position (Has to be after the Initialization of collisionValues
 		this.setPos(x, y);
 		
