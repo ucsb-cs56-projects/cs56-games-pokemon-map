@@ -10,12 +10,19 @@ import java.awt.event.KeyEvent;
 public class GameLogic
 {
 	private Player player;
+    private Player pkmn;
 	
 	// Player positioning
 	private int playerXPos;
 	private int playerYPos;
 	private int playerXOffset;
 	private int playerYOffset;
+    
+    //Pkmn positioning
+    private int pkmnXPos;
+    private int pkmnYPos;
+    private int pkmnXOffset;
+    private int pkmnYOffset;
 	
 	// Input
 	private boolean upPressed;
@@ -40,6 +47,11 @@ public class GameLogic
 		playerYPos = 0;
 		playerXOffset = 0;
 		playerYOffset = 0;
+        
+        pkmnXPos = -1;
+        pkmnYPos = 0;
+        pkmnXOffset = 0;
+        pkmnYOffset = 0;
 	}
 
         /** If the player isMoving, update game moves the character and renders the next frame. Otherwise, updateGame listens for a key to be pressed, and indicates the character to move	
@@ -51,41 +63,90 @@ public class GameLogic
 		{
 			if(player.getXOffset() > 0)
 			{
-				player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
+				player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK");
+				if((pkmn.getTexture() == rightMoving1) || (pkmn.getTexture() == rightMoving2))
+				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				else
+				    pkmn.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");				    
 			}
 			else if(player.getXOffset() < 0)
 			{
-				player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
+				player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK");
+				if((pkmn.getTexture() == leftMoving1) || (pkmn.getTexture() == leftMoving2))				
+				pkmn.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				else
+				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");				    
 			}
 			else if(player.getYOffset() > 0)
 			{
-				player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
+			    player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK");
+			    if((pkmn.getTexture() == backMoving1) || (pkmn.getTexture() == backMoving2))
+			    pkmn.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+			    else
+				pkmn.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");				
 			}
 			else if (player.getYOffset() < 0)
 			{
-				player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
-			}
+				player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK");
+				if((pkmn.getTexture() == frontMoving1) || (pkmn.getTexture() == frontMoving2))
+				pkmn.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				else
+				    pkmn.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+            }
 		}
+        
 		else
 		{
 			if(rightPressed)
 			{
-			    player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
+			    player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK");
+			    if(player.isMoving())
+				{
+				    if((player.getXPos()-pkmn.getXPos()) >= 1) 
+				    pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				    else
+					pkmn.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				}
+					
 			}
 			else if(leftPressed)
 			{
-			    player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0);
+			    player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK");
+			    if(player.isMoving())
+				{
+				    if((player.getXPos()-pkmn.getXPos()) <= -1)
+					pkmn.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");
+				    else
+					pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU");	
+				}				
 			}
 			else if(upPressed)
 			{
-			    player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
+			    player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK");
+			    if(player.isMoving())
+				{
+				    if((player.getYPos()-pkmn.getYPos()) <= -1)
+				    pkmn.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				    else
+					pkmn.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				}	
 			}
 			else if (downPressed)
 			{
-			    player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)));
+			    player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK");
+			    if(player.isMoving())
+				{
+				    if((player.getYPos()-pkmn.getYPos()) >= 1)
+					pkmn.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				    else
+					pkmn.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU");
+				}
 			}
+            
+           
 		}
-				
+        
+        //pkmn.move(player.getXPos(),player.getYPos());
 	
 		// Update position
 		if(player != null)
@@ -94,7 +155,21 @@ public class GameLogic
 			playerYPos = player.getYPos();
 			playerXOffset = player.getXOffset();
 			playerYOffset = player.getYOffset();
+            
 		}
+        
+        if(pkmn != null)
+        {
+            pkmnXPos = pkmn.getXPos();
+            pkmnYPos = pkmn.getYPos();
+            pkmnXOffset = pkmn.getXOffset();
+            pkmnYOffset = pkmn.getYOffset();
+        }
+        
+		/*try{
+		    Thread.sleep(25);
+		} catch(Exception e) {}
+		*/
 	}
 
         /** Prepares the next frame	
@@ -137,16 +212,21 @@ public class GameLogic
 		playerXPos = player.getXPos();
 		playerYPos = player.getYPos();
 	}
+    
+    public void registerPkmn(Player pkmn)
+    {
+        this.pkmn = pkmn;
+        
+        pkmnXPos = pkmn.getXPos();
+        pkmnYPos = pkmn.getYPos();
+        
+    }
 
         /** Indicates when a key has been pressed
 	    @param e KeyEvent
 	*/
 	public void sendKeyPressed(KeyEvent e)
 	{
-	    //Here we try to fix the turning issue by introducing sleep. Whereas normally you would have to tap the button
-	    //extremely quickly in order to only turn, now it is a bit easier to turn, because it takes a bit longer for 
-	    //the system to sense the button is still being pressed. A pretty crude solution, but a cleaner solution 
-	    //requires serious refactoring in registering the button presses.
 	    try{
 		if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
 		{
@@ -164,7 +244,6 @@ public class GameLogic
 		{
 			leftPressed = true;
 			Thread.sleep(10);
-
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
@@ -172,7 +251,7 @@ public class GameLogic
 			rightPressed = true;
 			Thread.sleep(10);
 		}
-	    } catch(Exception ex){}
+	    } catch(Exception ex){ }
 	}
 
         /** Indicates when a key has been released
@@ -187,7 +266,7 @@ public class GameLogic
 	
 		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
 
-		{
+	{
 			downPressed = false;
 		}
 		

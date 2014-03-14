@@ -25,6 +25,7 @@ public class GameObject
 	
 	protected Texture texture;
 	
+    protected boolean pkmn;
 	protected boolean interactable;
 	
         /** No arg constructor
@@ -54,24 +55,30 @@ public class GameObject
 	    @param height height of the object
 	    @param interactable indicate whether or not the object is interactable
 	*/
-	public GameObject(int x, int y, int width, int height, boolean interactable)
+	public GameObject(int x, int y, int width, int height, boolean interactable, boolean pkmn)
 	{
 		this.width = width;
 		this.height = height;
-		
+		this.pkmn = pkmn;
 		this.interactable = interactable;
+        if(x==44)
+        {
+            this.pkmn = true;
+        }
 		
 		// Create Collision Values and Initialize to FREE
-		collisionValue = new GameGrid.GridValue[width][height];
+        if(pkmn == false)
+        {
+            collisionValue = new GameGrid.GridValue[width][height];
 		
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
+            for(int wCounter = 0; wCounter < this.width; wCounter ++)
+            {
+                for(int hCounter = 0; hCounter < this.height; hCounter ++)
+                {
 				collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
-			}
+                }
+            }
 		}
-		
 		// Set the position (Has to be after the Initialization of collisionValues
 		this.setPos(x, y);
 		
@@ -156,7 +163,10 @@ public class GameObject
 	*/
 	public GameGrid.GridValue getCollisionValue(int x, int y)
 	{
-		return collisionValue[x][y];
+       
+            return collisionValue[x][y];
+        
+        
 	}
 
         /** Set the object at point (x,y)
@@ -168,30 +178,35 @@ public class GameObject
 		this.xPos = x;
 		this.yPos = y;
 		
-		// Update the Object Grid
-		GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
-		
-		// Update the Collision Grid
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
-				{
-					GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
+        
+            // Update the Object Grid
+            GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
+		//if(pkmn == false)
+        //{
+            // Update the Collision Grid
+            for(int wCounter = 0; wCounter < this.width; wCounter ++)
+            {
+                for(int hCounter = 0; hCounter < this.height; hCounter ++)
+                {
+                    if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
+                    {
+                        GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
 										  	     (xPos + wCounter), (yPos + hCounter));
-				}
+                    }
 										     
-			}
-		}
-				
+                }
+            }
+        //}
 	}
 
         /** Sets the object grid using the current values of xPos and yPos
 	 */    
 	public void updatePos()
 	{
- 		GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
+       //if(pkmn == false)
+        //{
+            GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
+        //}
 	}
 
         /** Sets the collision value at point (x,y) to cv
@@ -201,19 +216,23 @@ public class GameObject
 	*/
 	public void setCollisionValue(GameGrid.GridValue cv, int x, int y)
 	{
-		this.collisionValue[x][y] = cv;
+        //if(pkmn == false)
+        //{
+            this.collisionValue[x][y] = cv;
 		
-		// Update the Grid
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
-				{
-					GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
+            // Update the Grid
+            for(int wCounter = 0; wCounter < this.width; wCounter ++)
+            {
+                for(int hCounter = 0; hCounter < this.height; hCounter ++)
+                {
+                    if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
+                    {
+                        GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
 										  	     (xPos + wCounter), (yPos + hCounter));
-				}
-			}
-		}
-	}
+                    }
+                }
+            }
+        //}
+    
+    }
 }

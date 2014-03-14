@@ -35,6 +35,7 @@ public class Renderer
 	
 	private BufferedImage TileSet_Main;
 	private BufferedImage TileSet_Characters;
+    private BufferedImage TileSet_Pkmn;
 	
 	private int cameraX;
 	private int cameraY;
@@ -89,6 +90,16 @@ public class Renderer
 		catch(IOException ie){
 			System.out.println("Error loading in Images");
 		}
+        
+        //Added in a pikachu sprite
+        try
+        {
+            TileSet_Pkmn = ImageIO.read(cl.getResource("images/pkmn.bmp"));
+        }
+        catch(IOException ie){
+            System.out.println("Error loading in Images");
+        }
+        
 		
 		if(TileSet_Characters == null)
 		{
@@ -100,6 +111,9 @@ public class Renderer
 		
 		// Make Pink areas transparent
 		TileSet_Characters = imageToBufferedImage(makeColorTransparent(TileSet_Characters, new Color(255, 0, 255)));
+        
+        //Make White areas transparent
+        TileSet_Pkmn = imageToBufferedImage(makeColorTransparent(TileSet_Pkmn, Color.white));
 	}
 
         /** Loads the map, sets all the buildings and textures, and registers the player
@@ -155,10 +169,16 @@ public class Renderer
 			}
 		}
 		tree = new Building(45, 36, "NICE_TREE_1");
-		
+        
+        //create pikachu
+        Player pkmn = new Player(44, 45, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+        GameMain.gameLogic.registerPkmn(pkmn);
+        
 		// Create the player
 		Player player = new Player(45, 45, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
+        
+       
 	}
 
         /** Clears the buffer
@@ -407,6 +427,8 @@ public class Renderer
 			g.drawImage(TileSet_Main, 0, 0, w, h, x1, y1, x2, y2, null);
 		else if(set.equals("TileSet_Characters"))
 			g.drawImage(TileSet_Characters, 0, 0, w, h, x1, y1, x2, y2, null);
+        else if(set.equals("TileSet_Pkmn"))
+            g.drawImage(TileSet_Pkmn, 0, 0, w, h, x1, y1, x2, y2, null);
 		
 		return image;
 	}
