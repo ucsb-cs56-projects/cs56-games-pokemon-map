@@ -55,20 +55,20 @@ public class GameObject
 	    @param height height of the object
 	    @param interactable indicate whether or not the object is interactable
 	*/
-	public GameObject(int x, int y, int width, int height, boolean interactable, boolean pkmn)
+	public GameObject(int x, int y, int width, int height, boolean interactable)
 	{
 		this.width = width;
 		this.height = height;
 		this.pkmn = pkmn;
 		this.interactable = interactable;
-        if(x==44)
+		/* if(x==44)
         {
             this.pkmn = true;
-        }
+	    }*/
 		
 		// Create Collision Values and Initialize to FREE
-        if(pkmn == false)
-        {
+		//  if(pkmn == false)
+		// {
             collisionValue = new GameGrid.GridValue[width][height];
 		
             for(int wCounter = 0; wCounter < this.width; wCounter ++)
@@ -78,7 +78,7 @@ public class GameObject
 				collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
                 }
             }
-	    }
+	    //  }
 		// Set the position (Has to be after the Initialization of collisionValues
 		this.setPos(x, y);
 		

@@ -58,8 +58,8 @@ public class Character extends GameObject
 	// Constructor
 	public Character(int x, int y, Direction r, String cm, String name)
 	{
-        
-        super(x, y, 1, 2, true,false);
+		    super(x, y, 1, 2, true);
+		
 
         
 		collisionValue[0][1] = GameGrid.GridValue.BLOCKED;
@@ -413,6 +413,7 @@ public class Character extends GameObject
 		}
 		
 		// Update current position to grid
+		if(name == "PROFESSOR_OAK")
 		GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.BLOCKED, xPos, yPos + 1);
 		this.updatePos();
 	}
