@@ -26,5 +26,8 @@ The source directory (src/edu/ucsb/cs56/S12/sbaldwin/pokemon/) has 12 different 
 * Texture.java holds the class for Texture. Texture objects are decorations in the game that don't cause collisions, like the grass on the floor, and the tall grass around the nice tree. Texture also has a method to force sprites harvested from the bitmap into a particular size.
 * GameGrid.java holds the grid values for the program. At any given space in the game, there is an object value, a collision value, and a texture value. GameGrid allows you to get and set those values.
 
+## How to Extract from Bitmaps
+In order to get the tileset from the actual games, you need to get the images of the sprites you want. These images must be bmp files; any png file can be converted into bmp files via an online converter. Put the image in the images file, and simply read that image in Renderer.java. Harvest textures in Renderer.java, buildings in Building.java and characters in character.java.
+
 ## How to Run
 To start the game, use ant run. It will compile automatically for you.

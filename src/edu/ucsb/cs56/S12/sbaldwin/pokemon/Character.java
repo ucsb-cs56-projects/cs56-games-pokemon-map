@@ -38,7 +38,7 @@ public class Character extends GameObject
 	private Texture rightMoving2;
 	
 	private String character;
-    private String character1;
+        private String character1;
 	
 	private String name;
 	
@@ -174,8 +174,10 @@ public class Character extends GameObject
 	}
 
         /** Method to move the character
-	    @param xOff the x offset
-	    @param yoff the y offset
+	    @param xOff the horizontal direction the character is moving
+	    @param yoff the vertical direction the character is moving
+	    @param name the name of the character to move
+	    @param intoOak whether or not the following pokemon is moving into Oak
 	*/
     public void move(int xOff, int yOff, String name, boolean intoOak)
 	{
@@ -188,8 +190,8 @@ public class Character extends GameObject
             
                 if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos + 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
                 {
-			        //turn right without moving, if blocked
-			        this.texture = right;
+		    //turn right without moving, if blocked
+		    this.texture = right;
                     return;
                 }
             }
@@ -197,17 +199,17 @@ public class Character extends GameObject
             {
                 if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos - 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
                 {
-			        //turn left without moving, if blocked
-			        this.texture = left;
-			        return;
+		    //turn left without moving, if blocked
+		    this.texture = left;
+		    return;
                 }
             }
             else if(yOff > 0)
             {
                 if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos + 2) == GameGrid.GridValue.BLOCKED)
                 {
-			        //turn front without moving, if blocked
-			        this.texture = front;
+		    //turn front without moving, if blocked
+		    this.texture = front;
                     return;
                 }
             }
@@ -216,45 +218,45 @@ public class Character extends GameObject
 			
                 if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos) == GameGrid.GridValue.BLOCKED)
                 {
-			        //turn back without moving, if blocked
-			        this.texture = back;
+		    //turn back without moving, if blocked
+		    this.texture = back;
                     return;
                 }
             }
             //Here we make Professor Oak turn if he moves in a direction he isn't facing
-		    if((xOff > 0) && ((this.texture != right) && (this.texture != rightMoving1) && (this.texture != rightMoving2)))
+	    if((xOff > 0) && ((this.texture != right) && (this.texture != rightMoving1) && (this.texture != rightMoving2)))
+		{
+		    this.texture = right;
+		    return;
+		}
+	    else if((xOff < 0) && ((this.texture != left) && (this.texture != leftMoving1) && (this.texture != leftMoving2)))
+		{
+		    this.texture = left;
+		    return;
+		}
+	    else if((yOff > 0) && ((this.texture != front) && (this.texture != frontMoving1) && (this.texture != frontMoving2)))
+		{
+		    this.texture = front;
+		    return;
+		}
+	    else if((yOff < 0) && ((this.texture != back) && (this.texture != backMoving1) && (this.texture != backMoving2)))
+		{
+		    this.texture = back; 
+		    return;
+		}
+        }
+	        ///// Move offset
+	        this.xOffset += xOff;
+	        this.yOffset += yOff;		
+            
+	        // Update character image
+	        if(xOffset > 0)
+		{
+		        if(xOffset < 5 || xOffset > 25)
 			{
 			    this.texture = right;
-			    return;
 			}
-		    else if((xOff < 0) && ((this.texture != left) && (this.texture != leftMoving1) && (this.texture != leftMoving2)))
-			{
-			    this.texture = left;
-			    return;
-			}
-		    else if((yOff > 0) && ((this.texture != front) && (this.texture != frontMoving1) && (this.texture != frontMoving2)))
-			{
-			    this.texture = front;
-			    return;
-			}
-		    else if((yOff < 0) && ((this.texture != back) && (this.texture != backMoving1) && (this.texture != backMoving2)))
-			{
-			    this.texture = back; 
-			    return;
-			}
-        }
-		///// Move offset
-		this.xOffset += xOff;
-		this.yOffset += yOff;		
-                           
-		// Update character image
-		if(xOffset > 0)
-		{
-			if(xOffset < 5 || xOffset > 25)
-			{
-				this.texture = right;
-			}
-			else if(moveSwitch)
+		        else if(moveSwitch)
 			{
 				this.texture = rightMoving1;
 			}

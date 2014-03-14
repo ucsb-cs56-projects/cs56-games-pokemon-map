@@ -25,30 +25,16 @@ public class GameObject
 	
 	protected Texture texture;
 	
-    protected boolean pkmn;
+        protected boolean pkmn;
 	protected boolean interactable;
 	
         /** No arg constructor
 	 */
-	public GameObject()
-	{
-		/*
-		this.xPos = 0;
-		this.yPos = 0;
-		
-		this.width = 1;
-		this.height = 1;
-		
-		collisionValue = new GameGrid.GridValue[width][height];
-		collisionValue[0][0] = GameGrid.GridValue.FREE;
-		
-		interactable = false;
-		
-		texture = GameMain.getRenderer().getTile(0, 0, 16, 16);
-		*/
-	}
+        public GameObject()
+        {
+        }
 
-        /** Four arg constructor
+        /** Five arg constructor
 	    @param x x position of the object
 	    @param y y position of the object
 	    @param width width of the object
@@ -195,10 +181,7 @@ public class GameObject
 	 */    
 	public void updatePos()
 	{
-       //if(pkmn == false)
-        //{
             GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
-        //}
 	}
 
         /** Sets the collision value at point (x,y) to cv

@@ -122,8 +122,7 @@ public class Renderer
 	{
 		Texture grass_Default = new Texture("GRASS_DEFAULT", "TileSet_Main", 16, 0, 32, 16);
 		Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
-		//Texture water_Square = new Texture("WATER_Square_DEFAULT", 80, 416, 128, 464);
-		
+		//Texture water_Square = new Texture("WATER_Square_DEFAULT", 80, 416, 128, 464);		
 		// Load the grass Texture
 		for(int wCounter = 0; wCounter < gg.getWidth(); wCounter ++)
 		{
