@@ -323,6 +323,10 @@ public class GameLogic
 		if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			leftPressed = true;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 39d9440d26f46dfc0286f1e0460f566100a1e869
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
