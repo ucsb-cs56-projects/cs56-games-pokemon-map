@@ -64,6 +64,7 @@ public class GameLogic
 			if(player.getXOffset() > 0)
 			{
 			    player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
+			    //For each case when Player.isMoving, have Pikachu continue to walk the way he is facing
 				if(pkmn.getXOffset() > 0)
 				 {
 				     pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
@@ -142,11 +143,12 @@ public class GameLogic
 				 }
 			  }
 			}
-		else
+		else 
 		{
 			if(rightPressed)
 			{
 			    player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
+			    //If player successfully moves, make Pikachu walk into the place that Professor Oak just was
 			    if(player.isMoving())
 			    {
 				if(player.getYPos() > pkmn.getYPos())
@@ -230,7 +232,7 @@ public class GameLogic
 			}
 		}
         
-        //pkmn.move(player.getXPos(),player.getYPos());
+
 	
 		// Update position
 		if(player != null)
@@ -241,19 +243,15 @@ public class GameLogic
 			playerYOffset = player.getYOffset();
             
 		}
+		//Update Pikachu's position
+		if(pkmn != null)
+		{
+		    pkmnXPos = pkmn.getXPos();
+		    pkmnYPos = pkmn.getYPos();
+		    pkmnXOffset = pkmn.getXOffset();
+		    pkmnYOffset = pkmn.getYOffset();
+		}
         
-        if(pkmn != null)
-        {
-            pkmnXPos = pkmn.getXPos();
-            pkmnYPos = pkmn.getYPos();
-            pkmnXOffset = pkmn.getXOffset();
-            pkmnYOffset = pkmn.getYOffset();
-        }
-        
-		/*try{
-		    Thread.sleep(25);
-		} catch(Exception e) {}
-		*/
 	}
 
         /** Prepares the next frame	

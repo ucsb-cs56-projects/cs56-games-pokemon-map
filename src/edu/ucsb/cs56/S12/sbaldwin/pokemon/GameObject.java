@@ -61,14 +61,7 @@ public class GameObject
 		this.height = height;
 		this.pkmn = pkmn;
 		this.interactable = interactable;
-		/* if(x==44)
-        {
-            this.pkmn = true;
-	    }*/
-		
-		// Create Collision Values and Initialize to FREE
-		//  if(pkmn == false)
-		// {
+
             collisionValue = new GameGrid.GridValue[width][height];
 		
             for(int wCounter = 0; wCounter < this.width; wCounter ++)
@@ -78,7 +71,6 @@ public class GameObject
 				collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
                 }
             }
-	    //  }
 		// Set the position (Has to be after the Initialization of collisionValues
 		this.setPos(x, y);
 		
@@ -216,9 +208,9 @@ public class GameObject
 	*/
 	public void setCollisionValue(GameGrid.GridValue cv, int x, int y)
 	{
-        //if(pkmn == false)
-        //{
+
             this.collisionValue[x][y] = cv;
+	    //Very gimmicky way to make sure Pikachu gets initialized without a collision value. Pikachu is initialized at x=44				       
 	    if(x!=44)
 		{	
             // Update the Grid
