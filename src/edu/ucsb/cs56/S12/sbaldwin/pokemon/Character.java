@@ -61,7 +61,7 @@ public class Character extends GameObject
 		    super(x, y, 1, 2, true);
 		
 
-        
+		    if(name != "PIKACHU")
 		collisionValue[0][1] = GameGrid.GridValue.BLOCKED;
 		
 		this.xOffset = 0;

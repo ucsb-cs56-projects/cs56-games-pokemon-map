@@ -219,7 +219,8 @@ public class GameObject
         //if(pkmn == false)
         //{
             this.collisionValue[x][y] = cv;
-		
+	    if(x!=44)
+		{	
             // Update the Grid
             for(int wCounter = 0; wCounter < this.width; wCounter ++)
             {
@@ -231,6 +232,7 @@ public class GameObject
 										  	     (xPos + wCounter), (yPos + hCounter));
                     }
                 }
+	    }
             }
         //}
     
