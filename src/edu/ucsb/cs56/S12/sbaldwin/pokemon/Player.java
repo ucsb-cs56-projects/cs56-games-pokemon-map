@@ -9,8 +9,8 @@ public class Player extends Character
 {
 	// Variables
 	
-	private boolean onBike;
-	private boolean running;
+    private boolean onBike;//neither onBike or running currently have any effect on this program
+    private boolean running;
 	
 	
 	///// Methods

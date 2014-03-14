@@ -72,7 +72,8 @@ public class GameObject
 	}
 
         /** Performs an action when interacted with
-	 */	
+	 */
+    //is not currently used in the program	
 	public void interact()
 	{
 		return;
@@ -159,8 +160,7 @@ public class GameObject
         
             // Update the Object Grid
             GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
-		//if(pkmn == false)
-        //{
+      
             // Update the Collision Grid
             for(int wCounter = 0; wCounter < this.width; wCounter ++)
             {
@@ -174,7 +174,7 @@ public class GameObject
 										     
                 }
             }
-        //}
+        
 	}
 
         /** Sets the object grid using the current values of xPos and yPos
@@ -196,20 +196,20 @@ public class GameObject
 	    //Very gimmicky way to make sure Pikachu gets initialized without a collision value. Pikachu is initialized at x=44				       
 	    if(x!=44)
 		{	
-            // Update the Grid
-            for(int wCounter = 0; wCounter < this.width; wCounter ++)
-            {
-                for(int hCounter = 0; hCounter < this.height; hCounter ++)
-                {
-                    if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
-                    {
-                        GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
+		    // Update the Grid
+		    for(int wCounter = 0; wCounter < this.width; wCounter ++)
+			{
+			    for(int hCounter = 0; hCounter < this.height; hCounter ++)
+				{
+				    if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
+					{
+					    GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
 										  	     (xPos + wCounter), (yPos + hCounter));
-                    }
-                }
-	    }
-            }
-        //}
+					}
+				}
+			}
+		}
+        
     
-    }
-}
+	}
+}//end bracket for GameObject

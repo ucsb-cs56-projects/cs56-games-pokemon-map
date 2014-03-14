@@ -77,7 +77,7 @@ public class Character extends GameObject
 		this.moveSwitch = false;
 	}
 
-        /** Method to extract the character sprite from the bitmap, currently can only place Professor Oak
+        /** Method to extract the character sprite from the bitmap, currently can place Professor Oak and Pikachu
 	    @param cm character model
 	*/
 	public void setCharacter(String cm)
@@ -85,54 +85,61 @@ public class Character extends GameObject
 		
 		
 		if(cm == "PIKACHU")
-		{
-            //Credit to PokeAnayze and celebi23 for the sprites
-            this.character1 = cm;
-		        //Harvesting the Pikachu sprite from the bitmap
-		        this.front = new Texture(cm, "TileSet_Pkmn", 148, 178, 170, 198); //The pixels where Pikachu is located on the bitmap
-			this.front.forceSize(22, 44); //Make sure the sprite fits within 20 pixels by 40 pixels
+		    {
+		    //Credit to PokeAnayze and celebi23 for the sprites
+		    this.character1 = cm;
+
+		    //Harvesting the Pikachu sprite from the bitmap with coords (topleftx,toplefty,bottomrightx,bottomrighty), 
+		    //with y coords measured from the top of the bitmap in pixels
+
+		    //texture for pikachu facing the top of the screen
+		    this.front = new Texture(cm, "TileSet_Pkmn", 148, 178, 170, 198); //The pixels where Pikachu is located on the bitmap
+		    this.front.forceSize(22, 44); //Make sure the sprite fits within 22 pixels by 44 pixels
 			
-			this.back = new Texture(cm, "TileSet_Pkmn", 148, 152, 170, 172);
-			this.back.forceSize(22, 44);
+		    this.back = new Texture(cm, "TileSet_Pkmn", 148, 152, 170, 172);
+		    this.back.forceSize(22, 44);
 			
-			this.left = new Texture(cm, "TileSet_Pkmn", 148, 222, 170, 242);
-			this.left.forceSize(22, 44);
+		    this.left = new Texture(cm, "TileSet_Pkmn", 148, 222, 170, 242);
+		    this.left.forceSize(22, 44);
 			
-			this.right = new Texture(cm, "TileSet_Pkmn", 146, 200, 168, 220);
-			this.right.forceSize(22, 44);
+		    this.right = new Texture(cm, "TileSet_Pkmn", 146, 200, 168, 220);
+		    this.right.forceSize(22, 44);
 			
-			this.frontMoving1 = new Texture(cm, "TileSet_Pkmn", 170, 178, 192, 198);
-			this.frontMoving1.forceSize(22, 44);
+		    //setting texture for one foot forward facing towards the top of the screen
+		    this.frontMoving1 = new Texture(cm, "TileSet_Pkmn", 170, 178, 192, 198);  
+		    this.frontMoving1.forceSize(22, 44);
+		
+		    //setting texture for other foot forwards facing towards the top of the screen
+		    this.frontMoving2 = new Texture(cm, "TileSet_Pkmn", 126, 178, 148, 198);
+		    this.frontMoving2.forceSize(22, 44);
 			
-			this.frontMoving2 = new Texture(cm, "TileSet_Pkmn", 126, 178, 148, 198);
-			this.frontMoving2.forceSize(22, 44);
+		    this.backMoving1 = new Texture(cm, "TileSet_Pkmn", 126, 152, 148, 172);
+		    this.backMoving1.forceSize(22, 44);
 			
-			this.backMoving1 = new Texture(cm, "TileSet_Pkmn", 126, 152, 148, 172);
-			this.backMoving1.forceSize(22, 44);
+		    this.backMoving2 = new Texture(cm, "TileSet_Pkmn", 170, 152, 192, 172);
+		    this.backMoving2.forceSize(22, 44);
 			
-			this.backMoving2 = new Texture(cm, "TileSet_Pkmn", 170, 152, 192, 172);
-			this.backMoving2.forceSize(22, 44);
+		    this.leftMoving1 = new Texture(cm, "TileSet_Pkmn", 126, 222, 148, 242);
+		    this.leftMoving1.forceSize(22, 44);
 			
-			this.leftMoving1 = new Texture(cm, "TileSet_Pkmn", 126, 222, 148, 242);
-			this.leftMoving1.forceSize(22, 44);
+		    this.leftMoving2 = new Texture(cm, "TileSet_Pkmn", 170, 222, 192, 242);
+		    this.leftMoving2.forceSize(22, 44);
 			
-			this.leftMoving2 = new Texture(cm, "TileSet_Pkmn", 170, 222, 192, 242);
-			this.leftMoving2.forceSize(22, 44);
+		    this.rightMoving1 = new Texture(cm, "TileSet_Pkmn", 124, 200, 146, 220);
+		    this.rightMoving1.forceSize(22, 44);
 			
-			this.rightMoving1 = new Texture(cm, "TileSet_Pkmn", 124, 200, 146, 220);
-			this.rightMoving1.forceSize(22, 44);
+		    this.rightMoving2 = new Texture(cm, "TileSet_Pkmn", 168, 200, 190, 220);
+		    this.rightMoving2.forceSize(22, 44);
 			
-			this.rightMoving2 = new Texture(cm, "TileSet_Pkmn", 168, 200, 190, 220);
-			this.rightMoving2.forceSize(22, 44);
-			
-			//Set pikachu to face right
-			this.texture = right;
+		    //Set pikachu to face right
+		    this.texture = right;
 		}
-        if(cm == "PROFESSOR_OAK")
-        {
-            this.character = cm;
+
+		if(cm == "PROFESSOR_OAK")
+                    {
+			this.character = cm;
             
-            this.front = new Texture(cm, "TileSet_Characters", 509, 194, 525, 215); //The pixels where Professor Oak is located on the bitmap
+			this.front = new Texture(cm, "TileSet_Characters", 509, 194, 525, 215); //The pixels where Professor Oak is located on the bitmap
 			this.front.forceSize(16, 32); //Make sure the sprite fits within 16 pixels by 32 pixels
 			
 			this.back = new Texture(cm, "TileSet_Characters", 524, 194, 540, 215);
@@ -170,8 +177,9 @@ public class Character extends GameObject
 			
 			//Set Professor oak to face forward
 			this.texture = front;
-        }
-	}
+		    }
+
+	}//ending brace for setCharacter
 
         /** Method to move the character
 	    @param xOff the horizontal direction the character is moving
@@ -179,72 +187,77 @@ public class Character extends GameObject
 	    @param name the name of the character to move
 	    @param intoOak whether or not the following pokemon is moving into Oak
 	*/
+
     public void move(int xOff, int yOff, String name, boolean intoOak)
 	{
-	// Check to see if path is blocked   
-	    if(name == "PROFESSOR_OAK")        //Here we make sure only Professor Oak turns if he moves in a way if he isnt facing; we don't want Pikachu to have that feature
-        {
-            if(xOff > 0)
-            {
-          
-            
-                if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos + 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
-                {
-		    //turn right without moving, if blocked
-		    this.texture = right;
-                    return;
-                }
-            }
-            else if(xOff < 0)
-            {
-                if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos - 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
-                {
-		    //turn left without moving, if blocked
-		    this.texture = left;
-		    return;
-                }
-            }
-            else if(yOff > 0)
-            {
-                if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos + 2) == GameGrid.GridValue.BLOCKED)
-                {
-		    //turn front without moving, if blocked
-		    this.texture = front;
-                    return;
-                }
-            }
-            else if(yOff < 0)
-            {
-			
-                if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos) == GameGrid.GridValue.BLOCKED)
-                {
-		    //turn back without moving, if blocked
-		    this.texture = back;
-                    return;
-                }
-            }
-            //Here we make Professor Oak turn if he moves in a direction he isn't facing
-	    if((xOff > 0) && ((this.texture != right) && (this.texture != rightMoving1) && (this.texture != rightMoving2)))
+	    // Check to see if path is blocked   
+
+	    //Here we make sure only Professor Oak does not move if he is blocked, Pikachu will never be
+	    //blocked so he does not have this feature
+	    if(name == "PROFESSOR_OAK")       
 		{
-		    this.texture = right;
-		    return;
-		}
-	    else if((xOff < 0) && ((this.texture != left) && (this.texture != leftMoving1) && (this.texture != leftMoving2)))
-		{
-		    this.texture = left;
-		    return;
-		}
-	    else if((yOff > 0) && ((this.texture != front) && (this.texture != frontMoving1) && (this.texture != frontMoving2)))
-		{
-		    this.texture = front;
-		    return;
-		}
-	    else if((yOff < 0) && ((this.texture != back) && (this.texture != backMoving1) && (this.texture != backMoving2)))
-		{
-		    this.texture = back; 
-		    return;
-		}
-        }
+		    if(xOff > 0)
+			{
+			    if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos + 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
+				{
+				    //turn right without moving, if blocked
+				    this.texture = right;
+				    return;
+				}
+			}
+		    else if(xOff < 0)
+			{
+			    if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos - 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
+				{
+				    //turn left without moving, if blocked
+				    this.texture = left;
+				    return;
+				}
+			}
+		    else if(yOff > 0)
+			{
+			    if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos + 2) == GameGrid.GridValue.BLOCKED)
+				{
+				    //turn front without moving, if blocked
+				    this.texture = front;
+				    return;
+				}
+			}
+		    else if(yOff < 0)
+			{
+			    if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos) == GameGrid.GridValue.BLOCKED)
+				{
+				    //turn back without moving, if blocked
+				    this.texture = back;
+				    return;
+				}
+			}
+
+
+		    //Here we make Professor Oak turn if his offset is in a direction he isn't facing
+		    if((xOff > 0) && ((this.texture != right) && (this.texture != rightMoving1) && (this.texture != rightMoving2)))
+			{
+			    this.texture = right;
+			    return;
+			}
+		    else if((xOff < 0) && ((this.texture != left) && (this.texture != leftMoving1) && (this.texture != leftMoving2)))
+			{
+			    this.texture = left;
+			    return;
+			}
+		    else if((yOff > 0) && ((this.texture != front) && (this.texture != frontMoving1) && (this.texture != frontMoving2)))
+			{
+			    this.texture = front;
+			    return;
+			}
+		    else if((yOff < 0) && ((this.texture != back) && (this.texture != backMoving1) && (this.texture != backMoving2)))
+			{
+			    this.texture = back; 
+			    return;
+			}
+		}//end brace for if name is PROFESSOR_OAK, PIKACHU does not do any of these
+
+
 	        ///// Move offset
 	        this.xOffset += xOff;
 	        this.yOffset += yOff;		
@@ -253,62 +266,62 @@ public class Character extends GameObject
 	        if(xOffset > 0)
 		{
 		        if(xOffset < 5 || xOffset > 25)
-			{
-			    this.texture = right;
-			}
+			    {
+				this.texture = right;
+			    }
 		        else if(moveSwitch)
-			{
+			    {
 				this.texture = rightMoving1;
-			}
+			    }
 			else
-			{
+			    {
 				this.texture = rightMoving2;
-			}
+			    }
 		}
 		else if(xOffset < 0)
 		{
 			if(xOffset > -5 || xOffset < -25)
-			{
+			    {
 				this.texture = left;
-			}
+			    }
 			else if(moveSwitch)
-			{
+			    {
 				this.texture = leftMoving1;
-			}
+			    }
 			else
-			{
+			    {
 				this.texture = leftMoving2;
-			}
+			    }
 		}
 		else if(yOffset > 0)
 		{
 			if(yOffset < 5 || yOffset > 25)
-			{
+			    {
 				this.texture = front;
-			}
+			    }
 			else if(moveSwitch)
-			{
+			    {
 				this.texture = frontMoving1;
-			}
+			    }
 			else
-			{
+			    {
 				this.texture = frontMoving2;
-			}
+			    }
 		}
 		else if(yOffset < 0)
 		{
 			if(yOffset > -5 || yOffset < -25)
-			{
+			    {
 				this.texture = back;
-			}
+			    }
 			else if(moveSwitch)
-			{
+			    {
 				this.texture = backMoving1;
-			}
+			    }
 			else
-			{
+			    {
 				this.texture = backMoving2;
-			}
+			    }
 		}			
 		
 
@@ -323,76 +336,96 @@ public class Character extends GameObject
 		
 		if(xOffset >= tileWidth)
 		{
-			// Delete previous position data
+		    // Delete previous position data
 		    //If Pikachu is moving into Oak, we don't want Pikachu to delete Oak's object grid
-		if(intoOak == false)
-			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
-			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
+		    //Otherwise, Oak will disappear for a split second
+		    if(intoOak == false)
+			{
+			    GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
+			}
+
+		    GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
 									      xPos, yPos + 1);
 			
-			xPos += xOffset / tileWidth;
-			xOffset = 0;
+		    xPos += xOffset / tileWidth;
+		    xOffset = 0;
 			
-			// Update character image and moveSwitch
-			this.texture = right;
-			this.moveSwitch = !moveSwitch;
+		    // Update character image and moveSwitch
+		    this.texture = right;
+		    this.moveSwitch = !moveSwitch;
+			
 		}
 		else if(xOffset <= (-1 * tileWidth))
 		{
 			// Delete previous position data
 		    if(intoOak == false)
-			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
-			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
+			{
+			    GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
+			}
+
+		    GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
 									      xPos, yPos + 1);
 			
-			xPos -= xOffset / (-1 * tileWidth);
-			xOffset = 0;
+		    xPos -= xOffset / (-1 * tileWidth);
+		    xOffset = 0;
 			
-			// Update character image
-			this.texture = left;
-			this.moveSwitch = !moveSwitch;
+		    // Update character image
+		    this.texture = left;
+		    this.moveSwitch = !moveSwitch;
+			
 		}
 		
 		if(yOffset >= tileHeight)
 		{
 			// Delete previous position data
-		if(intoOak == false)
-			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
-			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
+		    if(intoOak == false)
+			{
+			    GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
+			}
+
+		    GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
 									      xPos, yPos + 1);
 			
-			yPos += yOffset / tileHeight;
-			yOffset = 0;
+		    yPos += yOffset / tileHeight;
+		    yOffset = 0;
 			
-			// Update character image
-			this.texture = front;
-			this.moveSwitch = !moveSwitch;
+		    // Update character image
+		    this.texture = front;
+		    this.moveSwitch = !moveSwitch;
+			
 		}
 		else if(yOffset <= (-1 * tileHeight))
 		{
 			// Delete previous position data
-		if(intoOak == false)
-			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
-			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
+		    if(intoOak == false)
+			{
+			    GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
+			}
+
+		    GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
 									      xPos, yPos + 1);
 			
-			yPos -= yOffset / (-1 * tileHeight);
-			yOffset = 0;
+		    yPos -= yOffset / (-1 * tileHeight);
+		    yOffset = 0;
 			
-			// Update character image
-			this.texture = back;
-			this.moveSwitch = !moveSwitch;
+		    // Update character image
+		    this.texture = back;
+		    this.moveSwitch = !moveSwitch;
+			
 		}
 		
 		if(xOffset == 0 && yOffset == 0)
-		{
+		    {
 			isMoving = false;
-		}
+		    }
 		
 		// Update current position to grid
 		if(name == "PROFESSOR_OAK")
-		GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.BLOCKED, xPos, yPos + 1);
+		    {
+			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.BLOCKED, xPos, yPos + 1);
+		    }
 		this.updatePos();
+		    
 	}
                                             
    	// Getters

@@ -59,7 +59,7 @@ public class Renderer
 		this.width = width;
 		this.height = height;
 		
-		this.bufferWidth = width + (7 * tileWidth);//ORIGINALLY 6
+		this.bufferWidth = width + (7 * tileWidth);
 		this.bufferHeight = height + (7 * tileHeight);
 		
 		// Create the new Game Grid
@@ -75,6 +75,8 @@ public class Renderer
     		
     		ClassLoader cl = getClass().getClassLoader();
 		// Load in TileSets
+
+		//load in buildings and textures
 		try
 		{
 			TileSet_Main = ImageIO.read(cl.getResource("images/TilesetMain.bmp"));
@@ -82,7 +84,8 @@ public class Renderer
 		catch(IOException ie){
 			System.out.println("Error loading in Images");
 		}
-		
+	
+		//load in Professor Oak sprite	
 		try
 		{
 			TileSet_Characters = ImageIO.read(cl.getResource("images/NPC_frlg.bmp"));
@@ -91,14 +94,14 @@ public class Renderer
 			System.out.println("Error loading in Images");
 		}
         
-        //Added in a pikachu sprite
-        try
-        {
-            TileSet_Pkmn = ImageIO.read(cl.getResource("images/pkmn.bmp"));
-        }
-        catch(IOException ie){
-            System.out.println("Error loading in Images");
-        }
+		//Added in a pikachu sprite
+		try
+		{
+		    TileSet_Pkmn = ImageIO.read(cl.getResource("images/pkmn.bmp"));
+		}
+		catch(IOException ie){
+		    System.out.println("Error loading in Images");
+		}
         
 		
 		if(TileSet_Characters == null)
@@ -112,8 +115,8 @@ public class Renderer
 		// Make Pink areas transparent
 		TileSet_Characters = imageToBufferedImage(makeColorTransparent(TileSet_Characters, new Color(255, 0, 255)));
         
-        //Make White areas transparent
-        TileSet_Pkmn = imageToBufferedImage(makeColorTransparent(TileSet_Pkmn, Color.white));
+		//Make White areas transparent
+		TileSet_Pkmn = imageToBufferedImage(makeColorTransparent(TileSet_Pkmn, Color.white));
 	}
 
         /** Loads the map, sets all the buildings and textures, and registers the player
@@ -122,8 +125,7 @@ public class Renderer
 	{
 		Texture grass_Default = new Texture("GRASS_DEFAULT", "TileSet_Main", 16, 0, 32, 16);
 		Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
-		//Texture water_Square = new Texture("WATER_Square_DEFAULT", 80, 416, 128, 464);		
-		// Load the grass Texture
+	        
 		for(int wCounter = 0; wCounter < gg.getWidth(); wCounter ++)
 		{
 			for(int hCounter = 0; hCounter < gg.getHeight(); hCounter ++)
