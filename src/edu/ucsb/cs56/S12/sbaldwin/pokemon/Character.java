@@ -177,7 +177,7 @@ public class Character extends GameObject
 	    @param xOff the x offset
 	    @param yoff the y offset
 	*/
-	public void move(int xOff, int yOff, String name)
+    public void move(int xOff, int yOff, String name, boolean intoOak)
 	{
 		// Check to see if path is blocked
         if(name == "PROFESSOR_OAK")
@@ -352,6 +352,7 @@ public class Character extends GameObject
 		if(xOffset >= tileWidth)
 		{
 			// Delete previous position data
+		if(intoOak == false)
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
 									      xPos, yPos + 1);
@@ -366,6 +367,7 @@ public class Character extends GameObject
 		else if(xOffset <= (-1 * tileWidth))
 		{
 			// Delete previous position data
+		    if(intoOak == false)
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
 									      xPos, yPos + 1);
@@ -381,6 +383,7 @@ public class Character extends GameObject
 		if(yOffset >= tileHeight)
 		{
 			// Delete previous position data
+		if(intoOak == false)
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
 									      xPos, yPos + 1);
@@ -395,6 +398,7 @@ public class Character extends GameObject
 		else if(yOffset <= (-1 * tileHeight))
 		{
 			// Delete previous position data
+		if(intoOak == false)
 			GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
 			GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
 									      xPos, yPos + 1);
