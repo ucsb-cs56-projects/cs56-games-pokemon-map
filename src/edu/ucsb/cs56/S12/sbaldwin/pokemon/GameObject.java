@@ -25,29 +25,16 @@ public class GameObject
 	
 	protected Texture texture;
 	
+        protected boolean pkmn;
 	protected boolean interactable;
 	
         /** No arg constructor
 	 */
-	public GameObject()
-	{
-		/*
-		this.xPos = 0;
-		this.yPos = 0;
-		
-		this.width = 1;
-		this.height = 1;
-		
-		collisionValue = new GameGrid.GridValue[width][height];
-		collisionValue[0][0] = GameGrid.GridValue.FREE;
-		
-		interactable = false;
-		
-		texture = GameMain.getRenderer().getTile(0, 0, 16, 16);
-		*/
-	}
+        public GameObject()
+        {
+        }
 
-        /** Four arg constructor
+        /** Five arg constructor
 	    @param x x position of the object
 	    @param y y position of the object
 	    @param width width of the object
@@ -58,20 +45,18 @@ public class GameObject
 	{
 		this.width = width;
 		this.height = height;
-		
+		this.pkmn = pkmn;
 		this.interactable = interactable;
+
+            collisionValue = new GameGrid.GridValue[width][height];
 		
-		// Create Collision Values and Initialize to FREE
-		collisionValue = new GameGrid.GridValue[width][height];
-		
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
+            for(int wCounter = 0; wCounter < this.width; wCounter ++)
+            {
+                for(int hCounter = 0; hCounter < this.height; hCounter ++)
+                {
 				collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
-			}
-		}
-		
+                }
+            }
 		// Set the position (Has to be after the Initialization of collisionValues
 		this.setPos(x, y);
 		
@@ -87,7 +72,8 @@ public class GameObject
 	}
 
         /** Performs an action when interacted with
-	 */	
+	 */
+    //is not currently used in the program	
 	public void interact()
 	{
 		return;
@@ -156,7 +142,10 @@ public class GameObject
 	*/
 	public GameGrid.GridValue getCollisionValue(int x, int y)
 	{
-		return collisionValue[x][y];
+       
+            return collisionValue[x][y];
+        
+        
 	}
 
         /** Set the object at point (x,y)
@@ -168,30 +157,31 @@ public class GameObject
 		this.xPos = x;
 		this.yPos = y;
 		
-		// Update the Object Grid
-		GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
-		
-		// Update the Collision Grid
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
-				{
-					GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
+        
+            // Update the Object Grid
+            GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
+      
+            // Update the Collision Grid
+            for(int wCounter = 0; wCounter < this.width; wCounter ++)
+            {
+                for(int hCounter = 0; hCounter < this.height; hCounter ++)
+                {
+                    if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
+                    {
+                        GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
 										  	     (xPos + wCounter), (yPos + hCounter));
-				}
+                    }
 										     
-			}
-		}
-				
+                }
+            }
+        
 	}
 
         /** Sets the object grid using the current values of xPos and yPos
 	 */    
 	public void updatePos()
 	{
- 		GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
+            GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
 	}
 
         /** Sets the collision value at point (x,y) to cv
@@ -201,19 +191,25 @@ public class GameObject
 	*/
 	public void setCollisionValue(GameGrid.GridValue cv, int x, int y)
 	{
-		this.collisionValue[x][y] = cv;
-		
-		// Update the Grid
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+
+            this.collisionValue[x][y] = cv;
+	    //Very gimmicky way to make sure Pikachu gets initialized without a collision value. Pikachu is initialized at x=44				       
+	    if(x!=44)
+		{	
+		    // Update the Grid
+		    for(int wCounter = 0; wCounter < this.width; wCounter ++)
 			{
-				if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
+			    for(int hCounter = 0; hCounter < this.height; hCounter ++)
 				{
-					GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
+				    if(collisionValue[wCounter][hCounter] != GameGrid.GridValue.FREE)
+					{
+					    GameMain.getRenderer().getGameGrid().setCollisionGrid(collisionValue[wCounter][hCounter],
 										  	     (xPos + wCounter), (yPos + hCounter));
+					}
 				}
 			}
 		}
+        
+    
 	}
-}
+}//end bracket for GameObject

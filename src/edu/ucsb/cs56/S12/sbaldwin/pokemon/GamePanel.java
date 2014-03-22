@@ -39,14 +39,14 @@ class GamePanel extends JPanel implements KeyListener
 	*/
 	public void paintComponent(Graphics g)
 	{
-		//System.out.print("Rendering new frame...");
-		// render the texture grid
-		GameMain.gameLogic.renderNextFrame();
+	        
+	    // render the texture grid
+	    GameMain.gameLogic.renderNextFrame();
+	    
+	    // Draws the back buffer
+	    g.drawImage(renderer.getFinalImage(), 0, 0, this);
 		
-		// Draws the back buffer
-		g.drawImage(renderer.getFinalImage(), 0, 0, this);
-		
-		//System.out.println("Finished");
+        
 	}
 
         /** Calls paint component on the Graphics parameter g
@@ -61,17 +61,16 @@ class GamePanel extends JPanel implements KeyListener
 	 */
 	public void startLoop()
 	{	
-		//renderer.renderTextureGrid();
-		//this.repaint();	
-		while(true)
+        	
+	    while(true)
 		{
-			this.repaint();
-	
-			try
+		    this.repaint();
+		    
+		    try
 			{
-				Thread.sleep(10);
+			    Thread.sleep(10);
 			}
-			catch(Exception ex){}
+		    catch(Exception ex){}
 		}
 	}
 	
@@ -101,4 +100,4 @@ class GamePanel extends JPanel implements KeyListener
 	}
     
 
-}
+}//end braces for GamePanel

@@ -15,7 +15,7 @@ class Building extends GameObject
         /** Three arg constructor
 	    @param x xPos of building
 	    @param y yPos of building
-	    @oaran type the type of building, i.e. PokeCenter, House, tree
+	    @param type the type of building, i.e. PokeCenter, House, tree
 	*/
 	public Building(int x, int y, String type)
 	{
@@ -74,7 +74,7 @@ class Building extends GameObject
 		
 		this.setPos(x, y);
 		
-		// Set Textures
+		// Set Textures, see Renderer
 		this.texture = new Texture("PokeCenter", "TileSet_Main", 0, 720, 80, 800);
 	}
 
@@ -103,7 +103,7 @@ class Building extends GameObject
 		
 		this.setPos(x, y);
 		
-		// Set Textures
+		// Set Textures, see Renderer
 		this.texture = new Texture("PokeMart", "TileSet_Main", 0, 656, 64, 720);
 	}
     
@@ -132,7 +132,7 @@ class Building extends GameObject
 		
 		this.setPos(x, y);
 		
-		// Set Textures
+		// Set Textures, see Renderer
 		this.texture = new Texture("BaseTree", "TileSet_Main", 240, 3632, 256, 3664);
 	}
 
@@ -161,7 +161,7 @@ class Building extends GameObject
 		
 		this.setPos(x, y);
 		
-		// Set Textures
+		// Set Textures, see Renderer
 		this.texture = new Texture("NiceTree", "TileSet_Main", 192, 3696, 224, 3728);
 	}
 
@@ -190,7 +190,7 @@ class Building extends GameObject
 		
 		this.setPos(x, y);
 		
-		// Set Textures
+		// Set Textures, see Renderer
 		this.texture = new Texture("SmallHouse", "TileSet_Main", 0, 1840, 80, 1888);
 	}
 
@@ -219,7 +219,7 @@ class Building extends GameObject
 		
 		this.setPos(x, y);
 		
-		// Set Textures
+		// Set Textures, see Renderer
 		this.texture = new Texture("MediumHouse", "TileSet_Main", 0, 1888, 80, 1968);
 	}
 
@@ -249,7 +249,7 @@ class Building extends GameObject
 		
 		this.setPos(x, y);
 		
-		// Set Textures
+		// Set Textures, see Renderer
 		this.texture = new Texture("LargeHouse", "TileSet_Main", 16, 1968, 128, 2048);
 	}
 

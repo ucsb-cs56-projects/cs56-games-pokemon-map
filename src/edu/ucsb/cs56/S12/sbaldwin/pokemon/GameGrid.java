@@ -75,6 +75,7 @@ public class GameGrid
 		return this.objectGrid[w][h];
 	}
 
+
         /** Returns the Texture at (w,h,l)
 	    @param w horizontal position
 	    @param h vertical position
@@ -86,6 +87,7 @@ public class GameGrid
 		return this.textureGrid[w][h][l];
 	}
 	
+
         /**  Returns the collision value at point w,h
 	     @param w
 	     @param h
@@ -96,6 +98,7 @@ public class GameGrid
 	{
 		return this.collisionGrid[w][h];
 	}
+
 	
         /**  Getter for width
 	     @return width
@@ -106,6 +109,7 @@ public class GameGrid
 		return this.width;
 	}
 	
+
         /** Getter for height
 	    @return height
 	*/
@@ -115,6 +119,7 @@ public class GameGrid
 		return this.height;
 	}
 	
+
         /** Getter for pixel width
 	    @return pixelW
 	*/
@@ -124,6 +129,7 @@ public class GameGrid
 		return this.pixelW;
 	}
 	
+
         /** Getter for pixel height
 	    @return pixelH
 	*/
@@ -147,6 +153,7 @@ public class GameGrid
 		this.objectGrid[w][h] = value;
 	}
 	
+
         /** Setter for the TextureGrid at point w,h
 	    @param value
 	    @param w
@@ -158,6 +165,7 @@ public class GameGrid
 	{
 		this.textureGrid[w][h][l] = value;
 	}
+
 	
         /** Setter for the Collision grid at w,h
 	    @param value
