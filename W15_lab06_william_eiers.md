@@ -44,4 +44,5 @@ Fixes/additions that I could accomplish in 2-3 hours would include:
  3. Add the infrastructure for dialogue, such that it will be easy to add new dialogue later in the
     project history (moderate implementation)
  4. Give professor oak a bike to ride around on (moderate implementation)
-
+ 5. Add some more graphical elements to the current map, extracting from the bitmap images. These will
+    have no collision detection (minor).
