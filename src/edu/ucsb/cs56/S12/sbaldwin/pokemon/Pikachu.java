@@ -1,17 +1,14 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
-/** The class for the Sprite of type Player. This is the actual character you control, and is a subclass of Character.
+/** class Pikachu is the pokemon that always follows the player around
     @author Samuel Baldwin
     @author Marcus Liou
     @author Alec Harrell
     @author William Eiers
 */
-public class Player extends Character
+public class Pikachu extends Character
 {
 	// Variables
-
-    private boolean onBike;//neither onBike or running currently have any effect on this program
-    private boolean running;
     // All the angles for textures
 	private Texture front;
 	private Texture frontMoving1;
@@ -32,7 +29,7 @@ public class Player extends Character
 	private String cm;
 	///// Methods
 
-        /** Five arg constructor
+        /** 6 arg constructor
 	    @param x initial xPos
 	    @param y initial yPos
 	    @param rotation initial direction to be facing, i.e. NORTH, SOUTH, EAST, WEST
@@ -41,13 +38,12 @@ public class Player extends Character
 	    @param id the id of the character
 	*/
 	// Constructor
-	public Player(int x, int y, Direction rotation, String cm, String name, int id)
+	public Pikachu(int x, int y, Direction rotation, String cm, String name, int id)
 	{
 		super(x, y, rotation, name, id);
-		onBike = false;
-		running = false;
-		initializeTexture();
 		this.cm = cm;
+		this.setInteractable(false);
+		initializeTexture();
 		GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
 		this.updateSpritePosition(x,y);
 		this.isMoving = false;
@@ -61,44 +57,50 @@ public class Player extends Character
 	}
 
     public void initializeTexture() {
-        this.front = new Texture(cm, "TileSet_Characters", 509, 194, 525, 215); //The pixels where Professor Oak is located on the bitmap
-		this.front.forceSize(16, 32); //Make sure the sprite fits within 16 pixels by 32 pixels
+        //Harvesting the Pikachu sprite from the bitmap with coords (topleftx,toplefty,bottomrightx,bottomrighty),
+        //with y coords measured from the top of the bitmap in pixels
 
-		this.back = new Texture(cm, "TileSet_Characters", 524, 194, 540, 215);
-		this.back.forceSize(16, 32);
+        //texture for pikachu facing the top of the screen
+        this.front = new Texture(cm, "TileSet_Pkmn", 148, 178, 170, 198); //The pixels where Pikachu is located on the bitmap
+        this.front.forceSize(22, 44); //Make sure the sprite fits within 22 pixels by 44 pixels
 
-		this.left = new Texture(cm, "TileSet_Characters", 539, 194, 554, 215);
-		this.left.forceSize(16, 32);
+        this.back = new Texture(cm, "TileSet_Pkmn", 148, 152, 170, 172);
+        this.back.forceSize(22, 44);
 
-		this.right = new Texture(cm, "TileSet_Characters", 554, 194, 539, 215);
-		this.right.forceSize(16, 32);
+        this.left = new Texture(cm, "TileSet_Pkmn", 148, 222, 170, 242);
+        this.left.forceSize(22, 44);
 
-		this.frontMoving1 = new Texture(cm, "TileSet_Characters", 554, 194, 570, 215);
-		this.frontMoving1.forceSize(16, 32);
+        this.right = new Texture(cm, "TileSet_Pkmn", 146, 200, 168, 220);
+        this.right.forceSize(22, 44);
 
-		this.frontMoving2 = new Texture(cm, "TileSet_Characters", 570, 194, 554, 215);
-		this.frontMoving2.forceSize(16, 32);
+        //setting texture for one foot forward facing towards the top of the screen
+        this.frontMoving1 = new Texture(cm, "TileSet_Pkmn", 170, 178, 192, 198);
+        this.frontMoving1.forceSize(22, 44);
 
-		this.backMoving1 = new Texture(cm, "TileSet_Characters", 569, 194, 585, 215);
-		this.backMoving1.forceSize(16, 32);
+        //setting texture for other foot forwards facing towards the top of the screen
+        this.frontMoving2 = new Texture(cm, "TileSet_Pkmn", 126, 178, 148, 198);
+        this.frontMoving2.forceSize(22, 44);
 
-		this.backMoving2 = new Texture(cm, "TileSet_Characters", 585, 194, 569, 215);
-		this.backMoving2.forceSize(16, 32);
+        this.backMoving1 = new Texture(cm, "TileSet_Pkmn", 126, 152, 148, 172);
+        this.backMoving1.forceSize(22, 44);
 
-		this.leftMoving1 = new Texture(cm, "TileSet_Characters", 584, 194, 599, 215);
-		this.leftMoving1.forceSize(16, 32);
+        this.backMoving2 = new Texture(cm, "TileSet_Pkmn", 170, 152, 192, 172);
+        this.backMoving2.forceSize(22, 44);
 
-		this.leftMoving2 = new Texture(cm, "TileSet_Characters", 598, 194, 613, 215);
-		this.leftMoving2.forceSize(16, 32);
+        this.leftMoving1 = new Texture(cm, "TileSet_Pkmn", 126, 222, 148, 242);
+        this.leftMoving1.forceSize(22, 44);
 
-		this.rightMoving1 = new Texture(cm, "TileSet_Characters", 599, 194, 584, 215);
-		this.rightMoving1.forceSize(16, 32);
+        this.leftMoving2 = new Texture(cm, "TileSet_Pkmn", 170, 222, 192, 242);
+        this.leftMoving2.forceSize(22, 44);
 
-		this.rightMoving2 = new Texture(cm, "TileSet_Characters", 613, 194, 598, 215);
-		this.rightMoving2.forceSize(16, 32);
+        this.rightMoving1 = new Texture(cm, "TileSet_Pkmn", 124, 200, 146, 220);
+        this.rightMoving1.forceSize(22, 44);
 
-		//Set Professor oak to face forward
-		this.texture = front;
+        this.rightMoving2 = new Texture(cm, "TileSet_Pkmn", 168, 200, 190, 220);
+        this.rightMoving2.forceSize(22, 44);
+
+        //Set pikachu to face right
+        this.texture = right;
     }
 
     /** Method to move the player
@@ -106,69 +108,10 @@ public class Player extends Character
 	    @param yoff the vertical direction the player is moving
     */
 	public void move(int xOff, int yOff) {
-	    int prevX = xPos;
-	    int prevY = yPos;
-        if(xOff > 0)
-			{
-			    if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos + 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
-				{
-				    //turn right without moving, if blocked
-				    this.texture = right;
-				    return;
-				}
-			}
-		    else if(xOff < 0)
-			{
-			    if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos - 1, yPos + 1) == GameGrid.GridValue.BLOCKED)
-				{
-				    //turn left without moving, if blocked
-				    this.texture = left;
-				    return;
-				}
-			}
-		    else if(yOff > 0)
-			{
-			    if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos + 2) == GameGrid.GridValue.BLOCKED)
-				{
-				    //turn front without moving, if blocked
-				    this.texture = front;
-				    return;
-				}
-			}
-		    else if(yOff < 0)
-			{
-			    if(GameMain.getRenderer().getGameGrid().getCollisionGrid(xPos, yPos) == GameGrid.GridValue.BLOCKED)
-				{
-				    //turn back without moving, if blocked
-				    this.texture = back;
-				    return;
-				}
-			}
-		    //Here we make Professor Oak turn if his offset is in a direction he isn't facing
-		    if((xOff > 0) && ((this.texture != right) && (this.texture != rightMoving1) && (this.texture != rightMoving2)))
-			{
-			    this.texture = right;
-			    return;
-			}
-		    else if((xOff < 0) && ((this.texture != left) && (this.texture != leftMoving1) && (this.texture != leftMoving2)))
-			{
-			    this.texture = left;
-			    return;
-			}
-		    else if((yOff > 0) && ((this.texture != front) && (this.texture != frontMoving1) && (this.texture != frontMoving2)))
-			{
-			    this.texture = front;
-			    return;
-			}
-		    else if((yOff < 0) && ((this.texture != back) && (this.texture != backMoving1) && (this.texture != backMoving2)))
-			{
-			    this.texture = back;
-			    return;
-			}
-
-			///// Move offset
+	        ///// Move offset
 	        this.xOffset += xOff;
 	        this.yOffset += yOff;
+
 	        // Update character image
 	        if(xOffset > 0)
             {
@@ -231,8 +174,10 @@ public class Player extends Character
                     }
             }
 
+
             // Update isMoving variable
             isMoving = true;
+
 
             ///// If offset is >= GridPixelSize reset offset and move character
 
@@ -241,7 +186,6 @@ public class Player extends Character
 
             if(xOffset >= tileWidth)
             {
-
                 GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
                 GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
                                               xPos, yPos + 1);
@@ -300,9 +244,9 @@ public class Player extends Character
 
             if(xOffset == 0 && yOffset == 0)
                 {
-                isMoving = true;
+                isMoving = false;
                 }
-            GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.BLOCKED, xPos, yPos + 1);
             GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
         }
 }
+

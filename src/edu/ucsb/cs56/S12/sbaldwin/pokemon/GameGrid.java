@@ -1,6 +1,6 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
-/** The class to hold and interact with the Collison, Texture and Object values at each point in the grid
+/** The class to hold and interact with the Collision, Texture and Object values at each point in the grid
     @author Samuel Baldwin
     @author Marcus Liou
     @author Alec Harrell
@@ -9,32 +9,32 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 public class GameGrid
 {
 	// Width * height
-	
-	private GameObject[][] objectGrid;
+
+	private Sprite[][] objectGrid;
         private Texture[][][] textureGrid; //Third array of texture grid will always have length 3
 	private GridValue[][] collisionGrid;
-	
+
 	private final static int pixelW = 16;
 	private final static int pixelH = 16;
-	
+
 	int width;
 	int height;
-	
+
 	// possible values
-	
+
 	public static enum GridValue
 	{
 		///// CollisionGrid values
-		
-		BLOCKED, FREE, OPEN_NORTH, OPEN_SOUTH, OPEN_WEST, OPEN_EAST		
+
+		BLOCKED, FREE, OPEN_NORTH, OPEN_SOUTH, OPEN_WEST, OPEN_EAST
 	}
-		
-		
-	
-	
-	
+
+
+
+
+
 	////////////////////////////////////   Methods   ///////////////////////////////////
-	
+
 	// Constructor
 
         /** Two arg constructor
@@ -45,11 +45,11 @@ public class GameGrid
 	{
 		this.width = w;
 		this.height = h;
-		
-		this.objectGrid = new GameObject[w][h];		
+
+		this.objectGrid = new Sprite[w][h];
 		this.collisionGrid = new GridValue[w][h];
 		this.textureGrid = new Texture[w][h][2];
-		
+
 		// Initialize value
 		for(int counter1 = 0; counter1 < w; counter1 ++)
 		{
@@ -62,15 +62,15 @@ public class GameGrid
 			}
 		}
 	}
-	
+
 	///// Getters
 
-        /** Returns the GameObject at (w,h) 
+        /** Returns the Sprite at (w,h)
 	    @param w horizontal position
 	    @param h vertical position
 	*/
 	// GameGrid
-	public GameObject getObjectGrid(int w, int h)
+	public Sprite getObjectGrid(int w, int h)
 	{
 		return this.objectGrid[w][h];
 	}
@@ -86,7 +86,7 @@ public class GameGrid
 	{
 		return this.textureGrid[w][h][l];
 	}
-	
+
 
         /**  Returns the collision value at point w,h
 	     @param w
@@ -99,7 +99,7 @@ public class GameGrid
 		return this.collisionGrid[w][h];
 	}
 
-	
+
         /**  Getter for width
 	     @return width
 	*/
@@ -108,7 +108,7 @@ public class GameGrid
 	{
 		return this.width;
 	}
-	
+
 
         /** Getter for height
 	    @return height
@@ -118,7 +118,7 @@ public class GameGrid
 	{
 		return this.height;
 	}
-	
+
 
         /** Getter for pixel width
 	    @return pixelW
@@ -128,7 +128,7 @@ public class GameGrid
 	{
 		return this.pixelW;
 	}
-	
+
 
         /** Getter for pixel height
 	    @return pixelH
@@ -138,21 +138,21 @@ public class GameGrid
 	{
 		return this.pixelH;
 	}
-	
-	
+
+
 	///// Setters
-	
+
         /** Setter for the ObjectGrid at point w,h
 	    @param value
 	    @param w
 	    @param h
 	*/
 	// GameGrid
-	public void setObjectGrid(GameObject value, int w, int h)
+	public void setObjectGrid(Sprite value, int w, int h)
 	{
 		this.objectGrid[w][h] = value;
 	}
-	
+
 
         /** Setter for the TextureGrid at point w,h
 	    @param value
@@ -166,7 +166,7 @@ public class GameGrid
 		this.textureGrid[w][h][l] = value;
 	}
 
-	
+
         /** Setter for the Collision grid at w,h
 	    @param value
 	    @param w
@@ -178,4 +178,4 @@ public class GameGrid
 		this.collisionGrid[w][h] = value;
 	}
 }
-	
+

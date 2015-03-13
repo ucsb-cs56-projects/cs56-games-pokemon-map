@@ -1,256 +1,48 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
-/** The class for objects of type building, i.e. PokeCenters, PokeMarts, trees and houses
+/** The class for sprites of type building, i.e. PokeCenters, PokeMarts, trees and houses
     @author Samuel Baldwin
     @author Marcus Liou
     @author Alec Harrell
+    @author William Eiers
 */
-class Building extends GameObject
-{
-	public static enum Type
-	{
-		POKECENTER, POKEMART
-	}
 
-        /** Three arg constructor
-	    @param x xPos of building
-	    @param y yPos of building
-	    @param type the type of building, i.e. PokeCenter, House, tree
+public abstract class Building extends StaticSprite {
+
+    private boolean hasInterior;
+
+
+    /** 7 arg constructor
+	    @param x x position of the object
+	    @param y y position of the object
+	    @param width width of the object
+	    @param height height of the object
+	    @param interactable indicate whether or not the object is interactable
+	    @param id id of the sprite
+	    @param interior status of interior of building
 	*/
-	public Building(int x, int y, String type)
-	{
-		if(type.equals("POKECENTER"))
-		{
-			this.createPokeCenter(x, y);
-		}
-		else if(type.equals("POKEMART"))
-		{
-			this.createPokeMart(x, y);
-		}
-		else if(type.equals("BASE_TREE_1"))
-		{
-			this.createBaseTree1(x, y);
-		}
-		else if(type.equals("NICE_TREE_1"))
-		{
-			this.createNiceTree1(x, y);
-		}
-		else if(type.equals("HOUSE_SMALL_1"))
-		{
-			this.createSmallHouse1(x, y);
-		}
-		else if(type.equals("HOUSE_MEDIUM_1"))
-		{
-			this.createMediumHouse1(x, y);
-		}
-		else if(type.equals("HOUSE_LARGE_1"))
-		{
-			this.createLargeHouse1(x, y);
-		}
+	public Building(int x, int y, int width, int height, boolean interactable, int id, boolean interior) {
+        super(x,y,width,height,interactable,id);
+        hasInterior = interior;
 	}
 
-        /** Creates a Pokecenter (5x5) at (x,y)
-	    @param x xPos of PokeCenter
-	    @param y yPos of PokeCenter
-	*/
-	private void createPokeCenter(int x, int y)
-	{
-		// Set Position and width
-		this.width = 5;
-		this.height = 5;
-		
-		this.interactable = false;
-		
-		// Create Collision Values and Initialize to BLOCKED
-		this.collisionValue = new GameGrid.GridValue[width][height];
-			
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
-			}
-		}
-		
-		this.setPos(x, y);
-		
-		// Set Textures, see Renderer
-		this.texture = new Texture("PokeCenter", "TileSet_Main", 0, 720, 80, 800);
+    /** Method to build interior of a building
+        Must be implemented in subclasses
+        NOT USED YET
+    */
+	public abstract void buildInterior();
+
+	/** Setter for hasInterior
+        @param interior true if there is an inside to the building, false otherwise
+    */
+	public void setHasInterior(boolean interior) {
+        hasInterior = interior;
 	}
 
-        /** Creates a Pokemart (4x4) at (x,y)
-	    @param x xPos of PokeMart
-	    @param y yPos of PokeMart
-	*/
-	private void createPokeMart(int x, int y)
-	{
-		// Set Position and width
-		this.width = 4;
-		this.height = 4;
-		
-		this.interactable = false;
-		
-		// Create Collision Values and Initialize to BLOCKED
-		this.collisionValue = new GameGrid.GridValue[width][height];
-			
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
-			}
-		}
-		
-		this.setPos(x, y);
-		
-		// Set Textures, see Renderer
-		this.texture = new Texture("PokeMart", "TileSet_Main", 0, 656, 64, 720);
+	/** Getter for hasInterior
+        @return true if there is an inside to the building, false otherwise
+    */
+	public boolean getHasInterior() {
+        return hasInterior;
 	}
-    
-        /** Creates a base tree, 1x2, (the ones that outline the map) at (x,y)
-	    @param x xPos of base tree
-	    @param y yPos of base tree
-	*/
-	private void createBaseTree1(int x, int y)
-	{
-		// Set Position and width
-		this.width = 1;
-		this.height = 2;
-		
-		this.interactable = false;
-		
-		// Create Collision Values and Initialize to BLOCKED
-		this.collisionValue = new GameGrid.GridValue[width][height];
-			
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
-			}
-		}
-		
-		this.setPos(x, y);
-		
-		// Set Textures, see Renderer
-		this.texture = new Texture("BaseTree", "TileSet_Main", 240, 3632, 256, 3664);
-	}
-
-        /** Creates a nice tree ,2x2, (the one that is surrounded by grass in this map; they are plentiful in Mossdeep city in R/S/E) at (x,y)
-	    @param x xPos of nice tree
-	    @param y yPos of nice tree
-	*/
-	private void createNiceTree1(int x, int y)
-	{
-		// Set Position and width
-		this.width = 2;
-		this.height = 2;
-		
-		this.interactable = false;
-		
-		// Create Collision Values and Initialize to BLOCKED
-		this.collisionValue = new GameGrid.GridValue[width][height];
-			
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
-			}
-		}
-		
-		this.setPos(x, y);
-		
-		// Set Textures, see Renderer
-		this.texture = new Texture("NiceTree", "TileSet_Main", 192, 3696, 224, 3728);
-	}
-
-        /** Creates a small house (5x3) at (x,y)
-	    @param x, xPos of small house
-	    @param y, yPos of small house
-	*/
-        private void createSmallHouse1(int x, int y)
-	{
-		// Set Position and width
-		this.width = 5;
-		this.height = 3;
-		
-		this.interactable = false;
-		
-		// Create Collision Values and Initialize to BLOCKED
-		this.collisionValue = new GameGrid.GridValue[width][height];
-			
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
-			}
-		}
-		
-		this.setPos(x, y);
-		
-		// Set Textures, see Renderer
-		this.texture = new Texture("SmallHouse", "TileSet_Main", 0, 1840, 80, 1888);
-	}
-
-        /** Creates a medium house (5x5) at (x,y)
-	    @param x xPos of medium house
-	    @param y yPos of meduium house
-	*/	
-	private void createMediumHouse1(int x, int y)
-	{
-		// Set Position and width
-		this.width = 5;
-		this.height = 5;
-		
-		this.interactable = false;
-		
-		// Create Collision Values and Initialize to BLOCKED
-		this.collisionValue = new GameGrid.GridValue[width][height];
-			
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
-			}
-		}
-		
-		this.setPos(x, y);
-		
-		// Set Textures, see Renderer
-		this.texture = new Texture("MediumHouse", "TileSet_Main", 0, 1888, 80, 1968);
-	}
-
-        /** Creates a large house (7x5) at (x,y)
-	    @param x xPos of large house
-	    @param y yPos of large house
-	*/	
-	private void createLargeHouse1(int x, int y)
-	{
-		// Set Position and width
-		this.width = 7;
-		this.height = 5;
-		
-
-		this.interactable = false;
-		
-		// Create Collision Values and Initialize to BLOCKED
-		this.collisionValue = new GameGrid.GridValue[width][height];
-			
-		for(int wCounter = 0; wCounter < this.width; wCounter ++)
-		{
-			for(int hCounter = 0; hCounter < this.height; hCounter ++)
-			{
-				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
-			}
-		}
-		
-		this.setPos(x, y);
-		
-		// Set Textures, see Renderer
-		this.texture = new Texture("LargeHouse", "TileSet_Main", 16, 1968, 128, 2048);
-	}
-
 }
