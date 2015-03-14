@@ -24,6 +24,11 @@ class Tree extends StaticSprite {
         GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
         this.initializeTexture();
         this.updateSpritePosition(x,y);
+        for(int i = 0; i < width; i++) {
+        	for(int j = 0; j < height; j++) {
+        		collisionValue[i][j] = GameGrid.GridValue.BLOCKED;
+        	}
+        }
     }
 
     /** Method for interacting with the trees
@@ -44,6 +49,8 @@ class Tree extends StaticSprite {
         case "NICE_TREE_1":
             this.texture = new Texture("NiceTree", "TileSet_Main", 192, 3696, 224, 3728);
             break;
+        case "EVUL_TREE_1":
+        	this.texture = new Texture("EvilTree", "TileSet_Main", 80,64,128,144);
 	    }
 	}
 

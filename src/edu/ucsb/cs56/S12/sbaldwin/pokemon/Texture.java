@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
     @author Samuel Baldwin
     @author Marcus Liou
     @author Alec Harrell
+    @author William Eiers
 */
 
 class Texture

@@ -18,12 +18,12 @@ public abstract class Character extends DynamicSprite {
 
 	public static enum Direction
 	{
-		NORTH, SOUTH, WEST, EAST
+		NORTH, SOUTH, WEST, EAST, STAGNANT
 	}
 
 	private int speed;    // Measured in pixels
-	private Direction rotation;
-    private boolean isMoving;
+	protected Direction orientation;
+    protected boolean isMoving;
     private boolean moveSwitch;
 	private String name;
 	private String character;
@@ -36,13 +36,13 @@ public abstract class Character extends DynamicSprite {
 	    @param id id of sprite
 	*/
 	// Constructor
-	public Character(int x, int y, Direction r,String name, int id)
+	public Character(int x, int y, Direction o,String name, int id)
 	{
         super(x, y, 1, 2, true, id);
 		this.xOffset = 0;
 		this.yOffset = 0;
 		this.speed =  5;      // Default speed - measured in tiles per second
-		this.rotation = r;
+		this.orientation = o;
 		this.name = name;
 		this.isMoving = false;
 		this.moveSwitch = false;
@@ -52,16 +52,6 @@ public abstract class Character extends DynamicSprite {
         Must be implemented in subclass
     */
     public abstract void move(int x, int y);
-
-	// Getters
-
-        /** Getter for rotation
-	    @return rotation the direction the character is facing, i.e. NORTH, SOUTH, EAST, WEST
-	*/
-	public Direction getRotation()
-	{
-		return rotation;
-	}
 
        /** Getter for character
 	   @return character
@@ -105,13 +95,19 @@ public abstract class Character extends DynamicSprite {
 		this.yPos = y;
 	}
 
-        /** Setter for rotation
-	    @param rotation direction character is facing i.e. NORTH, SOUTH, EAST, WEST
-	*/
-	public void setRotation(Direction r)
-	{
-		this.rotation = r;
-	}
+    /** Getter for orientation
+        @return direction player is facing
+    */
+    public Direction getOrientation() {
+        return orientation;
+    }
+
+    /** Setter for orientation
+        @param current orientation of player
+    */
+    public void setOrientation(Direction o) {
+        this.orientation = o;
+    }
 
         /** Setter for name
 	    @param name name of character
@@ -145,18 +141,3 @@ public abstract class Character extends DynamicSprite {
 		this.isMoving = value;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

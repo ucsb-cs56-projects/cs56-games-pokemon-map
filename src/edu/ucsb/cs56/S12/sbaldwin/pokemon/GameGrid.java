@@ -4,6 +4,7 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
     @author Samuel Baldwin
     @author Marcus Liou
     @author Alec Harrell
+    @author William Eiers
 */
 
 public class GameGrid

@@ -24,6 +24,11 @@ public abstract class Building extends StaticSprite {
 	public Building(int x, int y, int width, int height, boolean interactable, int id, boolean interior) {
         super(x,y,width,height,interactable,id);
         hasInterior = interior;
+        for(int i = 0; i < width; i++) {
+        	for(int j = 0; j < height; j++) {
+        		collisionValue[i][j] = GameGrid.GridValue.BLOCKED;
+        	}
+        }
 	}
 
     /** Method to build interior of a building

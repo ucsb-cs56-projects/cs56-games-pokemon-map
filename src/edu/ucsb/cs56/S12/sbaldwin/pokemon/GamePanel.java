@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
     @author Samuel Baldwin
     @author Marcus Liou
     @author Alec Harrell
+    @author William Eiers
 */
 class GamePanel extends JPanel implements KeyListener
 {

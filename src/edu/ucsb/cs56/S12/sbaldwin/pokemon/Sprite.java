@@ -22,6 +22,7 @@ public abstract class Sprite {
 
 	protected int width;  // Measured in Tiles
 	protected int height; // Measured in Tiles
+	protected GameGrid.GridValue[][] collisionValue;
 	protected boolean interactable;
 	protected Texture texture;
 
@@ -45,6 +46,12 @@ public abstract class Sprite {
 		this.height = height;
 		this.interactable = interactable;
 		this.id = id;
+		this.collisionValue = new GameGrid.GridValue[width][height];
+		for(int wCounter = 0; wCounter < this.width; wCounter ++) {
+			for(int hCounter = 0; hCounter < this.height; hCounter++) {
+				this.collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
+			}
+		}
 		this.updateSpritePosition(xPos, yPos);
 	}
 

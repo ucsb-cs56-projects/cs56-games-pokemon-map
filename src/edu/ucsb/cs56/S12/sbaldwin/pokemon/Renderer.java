@@ -171,13 +171,14 @@ public class Renderer
 			}
 		}
 		tree = new Tree(45, 36, 2, 2, 80, "NICE_TREE_1");
+		Tree t = new Tree(52, 40, 4, 8, 90, "EVUL_TREE_1");
 
 		//create Pikachu
-		Pikachu pkmn = new Pikachu(44, 45, Character.Direction.EAST, "PIKACHU", "PIKACHU", -1);
+		Pikachu pkmn = new Pikachu(44, 45, Character.Direction.STAGNANT, "PIKACHU", "PIKACHU", -1);
 		GameMain.gameLogic.registerPkmn(pkmn);
 
 		// Create the player
-		Player player = new Player(45, 45, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK", -2);
+		Player player = new Player(45, 45, Character.Direction.STAGNANT, "PROFESSOR_OAK", "PROFESSOR_OAK", -2);
 		GameMain.gameLogic.registerPlayer(player);
 
 

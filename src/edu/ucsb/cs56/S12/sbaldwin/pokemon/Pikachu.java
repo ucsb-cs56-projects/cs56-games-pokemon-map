@@ -10,6 +10,7 @@ public class Pikachu extends Character
 {
 	// Variables
     // All the angles for textures
+    private boolean running;
 	private Texture front;
 	private Texture frontMoving1;
 	private Texture frontMoving2;
@@ -25,8 +26,9 @@ public class Pikachu extends Character
 
     private boolean isMoving;
 	private boolean moveSwitch;
-
+	
 	private String cm;
+	public static boolean intoOak = false;
 	///// Methods
 
         /** 6 arg constructor
@@ -46,6 +48,8 @@ public class Pikachu extends Character
 		initializeTexture();
 		GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
 		this.updateSpritePosition(x,y);
+		this.setCollisionValue(GameGrid.GridValue.FREE, xPos, yPos);
+		this.setCollisionValue(GameGrid.GridValue.FREE, xPos, yPos+1);
 		this.isMoving = false;
 		this.moveSwitch = false;
     }
@@ -55,6 +59,28 @@ public class Pikachu extends Character
 	public void interact() {
         // todo
 	}
+
+	/** Rotate orientation based on movement
+        @param current orientation of player
+        @param moving moving uses a different texture
+    */
+    public void rotateView(Direction o, boolean moving) {
+        switch(o) {
+        	case NORTH:
+        		this.texture = moving ? frontMoving1 : front;
+        		break;
+        	case SOUTH:
+        		this.texture = moving ? backMoving1 : back;
+        		break;
+        	case EAST:
+        		this.texture = moving ? rightMoving1 : right;
+        		break;
+        	case WEST:
+        		this.texture = moving ? leftMoving1 : left;
+        		break;
+        }
+        setOrientation(o);
+    }
 
     public void initializeTexture() {
         //Harvesting the Pikachu sprite from the bitmap with coords (topleftx,toplefty,bottomrightx,bottomrighty),
@@ -108,145 +134,50 @@ public class Pikachu extends Character
 	    @param yoff the vertical direction the player is moving
     */
 	public void move(int xOff, int yOff) {
-	        ///// Move offset
-	        this.xOffset += xOff;
-	        this.yOffset += yOff;
-
-	        // Update character image
-	        if(xOffset > 0)
-            {
-                    if(xOffset < 5 || xOffset > 25)
-                    {
-                    this.texture = right;
-                    }
-                    else if(moveSwitch)
-                    {
-                    this.texture = rightMoving1;
-                    }
-                else
-                    {
-                    this.texture = rightMoving2;
-                    }
-            }
-            else if(xOffset < 0)
-            {
-                if(xOffset > -5 || xOffset < -25)
-                    {
-                    this.texture = left;
-                    }
-                else if(moveSwitch)
-                    {
-                    this.texture = leftMoving1;
-                    }
-                else
-                    {
-                    this.texture = leftMoving2;
-                    }
-            }
-            else if(yOffset > 0)
-            {
-                if(yOffset < 5 || yOffset > 25)
-                    {
-                    this.texture = front;
-                    }
-                else if(moveSwitch)
-                    {
-                    this.texture = frontMoving1;
-                    }
-                else
-                    {
-                    this.texture = frontMoving2;
-                    }
-            }
-            else if(yOffset < 0)
-            {
-                if(yOffset > -5 || yOffset < -25)
-                    {
-                    this.texture = back;
-                    }
-                else if(moveSwitch)
-                    {
-                    this.texture = backMoving1;
-                    }
-                else
-                    {
-                    this.texture = backMoving2;
-                    }
-            }
-
-
-            // Update isMoving variable
-            isMoving = true;
-
-
-            ///// If offset is >= GridPixelSize reset offset and move character
-
-            int tileWidth = GameMain.getRenderer().getTileWidth();
-            int tileHeight = GameMain.getRenderer().getTileHeight();
-
-            if(xOffset >= tileWidth)
-            {
-                GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
-                GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-                                              xPos, yPos + 1);
-
-                xPos += xOffset / tileWidth;
-                xOffset = 0;
-
-                // Update character image and moveSwitch
-                this.texture = right;
-                this.moveSwitch = !moveSwitch;
-
-            }
-            else if(xOffset <= (-1 * tileWidth))
-            {
-                GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
-                GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-                                              xPos, yPos + 1);
-
-                xPos -= xOffset / (-1 * tileWidth);
-                xOffset = 0;
-
-                // Update character image
-                this.texture = left;
-                this.moveSwitch = !moveSwitch;
-
-            }
-
-            if(yOffset >= tileHeight)
-            {
-                GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
-                GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-                                              xPos, yPos + 1);
-
-                yPos += yOffset / tileHeight;
-                yOffset = 0;
-
-                // Update character image
-                this.texture = front;
-                this.moveSwitch = !moveSwitch;
-
-            }
-            else if(yOffset <= (-1 * tileHeight))
-            {
-                GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
-                GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,
-                                              xPos, yPos + 1);
-
-                yPos -= yOffset / (-1 * tileHeight);
-                yOffset = 0;
-
-                // Update character image
-                this.texture = back;
-                this.moveSwitch = !moveSwitch;
-
-            }
-
-            if(xOffset == 0 && yOffset == 0)
-                {
-                isMoving = false;
-                }
-            GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
+		if(xPos + xOff >= GameMain.SIZE || yPos + yOff >= GameMain.SIZE) {
+    		setMoving(false);
+    		rotateView(orientation, false);
+    		return;
+    	}
+    	
+    	// free up the current spot in every grid
+    	isMoving = true;
+    	this.xOffset += xOff;
+        this.yOffset += yOff;
+    	int tileWidth = GameMain.getRenderer().getTileWidth();
+        int tileHeight = GameMain.getRenderer().getTileHeight();
+        
+        // only continue on to update positions if the threshold has been reached
+        if(Math.abs(this.xOffset) >= tileWidth) {
+        	GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
+        	GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,xPos, yPos);
+        	xPos += (this.xOffset / tileWidth);
+        	this.xOffset = 0;
+        } else if(Math.abs(this.yOffset) >= tileHeight) {
+        	GameMain.getRenderer().getGameGrid().setObjectGrid(null, xPos, yPos);
+        	GameMain.getRenderer().getGameGrid().setCollisionGrid(GameGrid.GridValue.FREE,xPos, yPos);
+        	yPos += (this.yOffset / tileHeight);
+        	this.yOffset = 0;
         }
+        if(xOffset == 0 && yOffset == 0)
+        	isMoving = false;
+        // update grids with new data
+        GameMain.getRenderer().getGameGrid().setObjectGrid(this, xPos, yPos);
+        rotateView(orientation, isMoving);
+	}
+	
+	/** Setter for running
+    	@param value true if running, false otherwise
+    */
+    public void setRunning(boolean value) {
+    	running = value;
+    }
+    
+    /** Getter for running
+    	@return true if running, false otherwise
+    */
+    public boolean isRunning() {
+    	return running;
+    }
 }
 

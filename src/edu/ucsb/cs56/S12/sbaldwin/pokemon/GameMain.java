@@ -6,9 +6,15 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
     @author Samuel Baldwin
     @author Marcus Liou
     @author Alec Harrell
+    @author William Eiers
 */
+
+
+
 public class GameMain
 {
+	public static final int SIZE = 25 * 32;
+
 	public static Renderer renderer;
 	private static MainWindow mw;
 	public static GameLogic gameLogic;
