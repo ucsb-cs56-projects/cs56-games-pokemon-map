@@ -36,7 +36,7 @@ public class MainWindow
 		
 		// Account for size of Border
 		Insets insets = frame.getInsets();
-		frame.setSize((width + insets.left + insets.right)-176, (height + insets.top + insets.bottom)-176);
+		frame.setSize((width + insets.left + insets.right)+176, (height + insets.top + insets.bottom)+176);
 		//window is -176 so that it renders the entire game space
 		
 		//Start the game panel

@@ -63,7 +63,7 @@ public class Renderer
 		this.bufferHeight = height + (7 * tileHeight);
 		
 		// Create the new Game Grid
-		gg = new GameGrid(100, 100);
+		gg = new GameGrid(300, 100);
 		
 		// Create the buffer
 		bufferImage = new BufferedImage(this.bufferWidth, this.bufferHeight, BufferedImage.TYPE_4BYTE_ABGR);
@@ -125,6 +125,8 @@ public class Renderer
 	{
 		Texture grass_Default = new Texture("GRASS_DEFAULT", "TileSet_Main", 16, 0, 32, 16);
 		Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
+		Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
+        
 	        
 		for(int wCounter = 0; wCounter < gg.getWidth(); wCounter ++)
 		{
@@ -135,7 +137,8 @@ public class Renderer
 				gg.setTextureGrid(grass_Default, wCounter, hCounter, 0);
 			}
 		}
-		
+		    
+		    		
 		// Load the Wild Grass
 		for(int counter1 = 43; counter1 < 49; counter1 ++)
 		{
@@ -144,8 +147,32 @@ public class Renderer
 				if((counter1 != 45 && counter1 != 46) || (counter2 != 36 && counter2 != 37))
 					if((counter1 != 43 || counter2 != 34) && (counter1 != 48 || counter2 != 39))
 						if((counter1 != 43 || counter2 != 39) && (counter1 != 48 || counter2 != 34))
-							gg.setTextureGrid(grass_Wild, counter1, counter2, 0);
+						    gg.setTextureGrid(grass_Wild, counter1, counter2, 0);
+				                       
 			}
+		}
+
+		// Load flowers
+		for(int counter1 = 0; counter1 < 28; counter1 ++)
+		{
+			for(int counter2 = 0; counter2 < 28; counter2 ++)
+			{
+				if(counter1 == 1 || counter2 == 1 || counter1 == 27 || counter2 == 27)
+				{
+				    int x = 37 + counter1;  
+				    int y = 26 + counter2;
+				    if(!(x==64 && y<38 && y>31)) {
+					gg.setTextureGrid(flower, x, y, 0);
+				    }
+				}
+			}
+		}
+		for(int x = 55; x < 65; x ++) {
+		    for(int y = 27; y < 35; y ++) {
+			if(!(x==64 && y==34)){
+			    gg.setTextureGrid(flower, x, y, 0);
+			}
+		    }
 		}
 		
 		
@@ -159,17 +186,23 @@ public class Renderer
 		
 		// Create Trees
 		Building tree;
+		for(int i=0; i<2; i++) {
 		for(int counter1 = 0; counter1 < 30; counter1 ++)
 		{
 			for(int counter2 = 0; counter2 < 30; counter2 ++)
 			{
 				if(counter1 == 0 || counter1 == 29 || counter2 == 0 || counter2 == 29)
 				{
-					tree = new Building(37 + counter1, 25 + counter2, "BASE_TREE_1");
+				    int x = 37 + counter1 + i*28;  
+				    int y = 25 + counter2;		  
+				    tree = new Building(x, y , "BASE_TREE_1");				    
 				}
 			}
 		}
+		}
 		tree = new Building(45, 36, "NICE_TREE_1");
+
+		
         
 		//create Pikachu
 		Player pkmn = new Player(44, 45, Character.Direction.EAST, "PIKACHU", "PIKACHU");

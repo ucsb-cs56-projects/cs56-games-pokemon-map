@@ -68,7 +68,7 @@ class Building extends GameObject
 		{
 			for(int hCounter = 0; hCounter < this.height; hCounter ++)
 			{
-				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+				collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
 			}
 		}
 		

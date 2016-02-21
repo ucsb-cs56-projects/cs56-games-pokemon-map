@@ -34,6 +34,9 @@ public class GameLogic
     private long startTime = 0;
     private long elapsedTime = 0;
     private long framerate;
+
+    // points to open the secret path
+    private int point = 0;
 	
     Renderer renderer;
 	
@@ -242,7 +245,17 @@ public class GameLogic
 			playerYPos = player.getYPos();
 			playerXOffset = player.getXOffset();
 			playerYOffset = player.getYOffset();
-            
+
+			int x1 = 37 + 1;
+			int x2 = 37 + 27; 
+			int y1 = 26 + 1;
+			int y2 = 26 + 27;
+			if(playerXPos == x1 || playerYPos == y1 || playerXPos == x2 || playerYPos == y2) {
+			    point ++;
+			    if(point >= 350 && playerXPos == 64 && playerYPos == 33) {
+				openSecretPath();
+			    }							    		
+			}
 		    }
 		//Update Pikachu's position
 		if(pkmn != null)
@@ -330,6 +343,8 @@ public class GameLogic
 		{
 			rightPressed = true;
 		}
+		
+
 	}
 
         /** Indicates when a key has been released
@@ -343,8 +358,7 @@ public class GameLogic
 		}
 	
 		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
-
-	{
+		    {
 			downPressed = false;
 		}
 		
@@ -357,5 +371,45 @@ public class GameLogic
 		{
 			rightPressed = false;
 		}
+
 	}
+
+    public void openSecretPath() {
+	
+	GameGrid g = GameMain.getRenderer().getGameGrid();	
+	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
+
+	// set collision value to FREE so that we can go through
+	g.setCollisionGrid(GameGrid.GridValue.FREE,65,33);
+	g.setCollisionGrid(GameGrid.GridValue.FREE,65,34);
+	g.setCollisionGrid(GameGrid.GridValue.FREE,65,35);
+	g.setCollisionGrid(GameGrid.GridValue.FREE,65,36);
+	g.setCollisionGrid(GameGrid.GridValue.FREE,66,35);
+	g.setCollisionGrid(GameGrid.GridValue.FREE,66,36);
+
+	// delete the previous trees in order to creat the secret path
+	g.setObjectGrid(null,65,33);
+	g.setObjectGrid(null,65,34);
+	g.setObjectGrid(null,65,35);
+	g.setObjectGrid(null,65,36);
+	g.setObjectGrid(null,66,35);
+	g.setObjectGrid(null,66,36);
+
+	// creat new flowers
+	for(int i=32; i<36; i++) {
+	    g.setTextureGrid(flower, 64, i, 0);
+	}
+	g.setTextureGrid(flower, 65, 33, 0);
+	g.setTextureGrid(flower, 65, 34, 0);
+	g.setTextureGrid(flower, 65, 35, 0);
+	g.setTextureGrid(flower, 65, 36, 0);
+	g.setTextureGrid(flower, 66, 35, 0);
+	g.setTextureGrid(flower, 66, 36, 0);
+
+	/*
+	try{
+	    Thread.sleep(500);
+	} catch(Exception ex) {}
+	*/
+    }
 }
