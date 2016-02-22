@@ -253,10 +253,16 @@ public class GameLogic
 
 			if(GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() == "flower") {
 			    point ++;
-			    if(point >= 50 && playerXPos == 64 && playerYPos == 33) {
+			    if(playerXPos == 64 && playerYPos == 33 && point >= 50 ) {
 				openSecretPath();
 			    }							    		
 			}
+
+			if(((playerXPos == 95 && playerYPos == 40) || (playerXPos == 95 && playerYPos == 39))
+			    && (GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() != "flower2")) {
+			    creatFlowers();
+			}					    		
+			
 		    }
 		//Update Pikachu's position
 		if(pkmn != null)
@@ -376,10 +382,8 @@ public class GameLogic
 	}
 
     public void openSecretPath() {
-	
-	GameGrid g = GameMain.getRenderer().getGameGrid();	
+	GameGrid g = GameMain.getRenderer().getGameGrid();
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
-	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
 
 	// set collision value to FREE so that we can go through
 	g.setCollisionGrid(GameGrid.GridValue.FREE,65,33);
@@ -426,24 +430,29 @@ public class GameLogic
 	    g.setTextureGrid(flower, x, 39, 0);
 	    g.setTextureGrid(flower, x, 41, 0);
 	}
-
-	int y_start = 25;
-	int y_end = 56;
-	int y = 26;
-	for(int x=95; x<105; x++) {
-	    while(y > y_start && y < y_end) {
-		g.setTextureGrid(flower2, x, y, 0);
-		y++;
-	    }
-	    y_start += 2;
-	    y_end -= 2;
-	    y = y_start+1;
-	}
 	
 	/*
 	try{
 	    Thread.sleep(500);
 	} catch(Exception ex) {}
 	*/
+    }
+
+    public void creatFlowers() {
+	GameGrid g = GameMain.getRenderer().getGameGrid();
+	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
+	
+	int y_start = 26;
+	int y_end = 56;
+	int y = 27;
+	for(int x=95; x<115; x++) {
+	    while(y > y_start && y < y_end) {
+		g.setTextureGrid(flower, x, y, 0);
+		y++;
+	    }
+	    y_start ++;
+	    y_end --;
+	    y = y_start+1;
+	}
     }
 }

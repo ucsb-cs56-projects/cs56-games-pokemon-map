@@ -59,6 +59,10 @@ class Building extends GameObject
 		{
 			this.createRock1(x, y);
 		}
+		else if(type.equals("BIGPOKEMON"))
+		{
+		    this.creatBigPokeMon(x, y);
+		}
 	}
 
         /** Creates a Pokecenter (5x5) at (x,y)
@@ -311,7 +315,7 @@ class Building extends GameObject
 		
 		// Set Textures, see Renderer
 		this.texture = new Texture("DOOR", "TileSet_Main", 16*8, 16*401, 16*13, 16*406);
-    }
+	}
 
            private void createRock1(int x, int y){
 		// Set Position and width
@@ -329,6 +333,30 @@ class Building extends GameObject
 		
 		// Set Textures, see Renderer
 		this.texture = new Texture("ROCK1", "TileSet_Main", 16*3, 16*1, 16*4, 16*2);
+	   }
+
+    private void creatBigPokeMon(int x, int y){
+	// Set Position and width
+	this.width = 4;
+	this.height = 3;
+		
+	this.interactable = false;
+	
+	// Create Collision Values and Initialize to BLOCKED
+	this.collisionValue = new GameGrid.GridValue[width][height];
+
+	for(int wCounter = 0; wCounter < this.width; wCounter ++)
+	    {
+		for(int hCounter = 0; hCounter < this.height; hCounter ++)
+		    {
+			collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+		    }
+	    }
+  
+	this.setPos(x, y);
+	
+	// Set Textures, see Renderer
+	this.texture = new Texture("BIGPOKEMON", "TileSet_Pkmn", 16*31, 16*17, 16*35, 16*20);
     }
 
 }

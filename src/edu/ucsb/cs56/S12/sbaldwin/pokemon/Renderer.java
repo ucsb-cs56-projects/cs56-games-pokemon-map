@@ -126,14 +126,14 @@ public class Renderer
 		Texture grass_Default = new Texture("GRASS_DEFAULT", "TileSet_Main", 16, 0, 32, 16);
 		Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
 		Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
-        
+		Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
+		//	Texture niceFlower = new Texture("niceFlower", "TileSet_Main", 16*14, 16*189, 16*15, 16*190);        
 	        
 		for(int wCounter = 0; wCounter < gg.getWidth(); wCounter ++)
 		{
 			for(int hCounter = 0; hCounter < gg.getHeight(); hCounter ++)
 			{			
-				gg.setCollisionGrid(GameGrid.GridValue.FREE, wCounter, hCounter);
-				
+				gg.setCollisionGrid(GameGrid.GridValue.FREE, wCounter, hCounter);				
 				gg.setTextureGrid(grass_Default, wCounter, hCounter, 0);
 			}
 		}
@@ -163,7 +163,7 @@ public class Renderer
 				    int y = 26 + counter2;
 				    if(!(x==64 && y<38 && y>31)) {
 					gg.setTextureGrid(flower, x, y, 0);
-				    }
+				    }				
 				}
 			}
 		}
@@ -174,7 +174,7 @@ public class Renderer
 			}
 		    }
 		}
-		
+
 		
 		// Load the Buildings
 		Building pokeCenter = new Building(40, 40, "POKECENTER");
@@ -206,14 +206,20 @@ public class Renderer
 				}
 			}
 		}
+		
 		tree = new Building(45, 36, "NICE_TREE_1");
+		
 		for(int i=67; i<95; i++) {
 		    for(int j=25; j<55; j++) {
-			if(!((i<80 && i>70) && (j>28 && j<38))) {
+			if(!((i<90 && i>70) && (j>28 && j<38))) {
 			    tree = new Building(i,j,"BASE_TREE_1");
+			}
+			else if (!((i<82 && i>77) && (j>32 && j<36))){
+			    gg.setTextureGrid(flower2, i, j, 0);  // fill the empty space with nice flowers
 			}
 		    }
 		}
+		Building big = new Building(78, 33, "BIGPOKEMON");
 
 		for(int x=37; x<151; x++) {
 		    for(int y=25; y<101; y++) {
