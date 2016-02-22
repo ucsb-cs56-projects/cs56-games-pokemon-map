@@ -219,7 +219,10 @@ public class Renderer
 			}
 		    }
 		}
-		Building big = new Building(78, 33, "BIGPOKEMON");
+		Building bigPokemon = new Building(78, 33, "BIGPOKEMON");
+
+		Building bigBuildingLeft = new Building(120, 55, "BIG_BUILDING_LEFT");
+		Building bigBuildingRight = new Building(120 + 8, 55, "BIG_BUILDING_RIGHT");
 
 		for(int x=37; x<151; x++) {
 		    for(int y=25; y<101; y++) {

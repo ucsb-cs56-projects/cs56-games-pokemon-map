@@ -63,6 +63,14 @@ class Building extends GameObject
 		{
 		    this.creatBigPokeMon(x, y);
 		}
+		else if(type.equals("BIG_BUILDING_LEFT"))
+		{        
+		    this.createBigBuildingLeft(x, y);
+		}
+		else if(type.equals("BIG_BUILDING_RIGHT"))
+		{        
+		    this.createBigBuildingRight(x, y);
+		}
 	}
 
         /** Creates a Pokecenter (5x5) at (x,y)
@@ -357,6 +365,58 @@ class Building extends GameObject
 	
 	// Set Textures, see Renderer
 	this.texture = new Texture("BIGPOKEMON", "TileSet_Pkmn", 16*31, 16*17, 16*35, 16*20);
+    }
+
+    private void createBigBuildingLeft(int x, int y){
+		// Set Position and width
+		this.width = 8;
+		this.height = 14;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    if(!(wCounter == 3 && hCounter > 10)){
+				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			    }
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("BIG_BUILDING_LEFT", "TileSet_Main", 16*8, 16*373, 16*15, 16*387);
+    }
+
+        private void createBigBuildingRight(int x, int y){
+		// Set Position and width
+		this.width = 7;
+		this.height = 14;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    if(!(wCounter == 3 && hCounter > 10)){
+				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			    }
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("BIG_BUILDING_RIGHT", "TileSet_Main", 16*8, 16*387, 16*14, 16*401);
     }
 
 }
