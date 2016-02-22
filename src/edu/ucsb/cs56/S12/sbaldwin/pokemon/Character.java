@@ -67,7 +67,7 @@ public class Character extends GameObject
 		this.xOffset = 0;
 		this.yOffset = 0;
 		
-		this.speed =  15;      // Default speed - measured in tiles per second
+		this.speed =  35;      // Default speed - measured in tiles per second
 		
 		this.rotation = r;
 		this.setCharacter(cm);

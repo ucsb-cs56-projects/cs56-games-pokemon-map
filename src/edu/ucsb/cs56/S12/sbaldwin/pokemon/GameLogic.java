@@ -250,9 +250,10 @@ public class GameLogic
 			int x2 = 37 + 27; 
 			int y1 = 26 + 1;
 			int y2 = 26 + 27;
-			if(playerXPos == x1 || playerYPos == y1 || playerXPos == x2 || playerYPos == y2) {
+
+			if(GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() == "flower") {
 			    point ++;
-			    if(point >= 350 && playerXPos == 64 && playerYPos == 33) {
+			    if(point >= 50 && playerXPos == 64 && playerYPos == 33) {
 				openSecretPath();
 			    }							    		
 			}
@@ -378,6 +379,7 @@ public class GameLogic
 	
 	GameGrid g = GameMain.getRenderer().getGameGrid();	
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
+	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
 
 	// set collision value to FREE so that we can go through
 	g.setCollisionGrid(GameGrid.GridValue.FREE,65,33);
@@ -405,7 +407,39 @@ public class GameLogic
 	g.setTextureGrid(flower, 65, 36, 0);
 	g.setTextureGrid(flower, 66, 35, 0);
 	g.setTextureGrid(flower, 66, 36, 0);
+	
+	// continue the path...
+	for(int y=36; y<41; y++) {
+	    g.setCollisionGrid(GameGrid.GridValue.FREE,66,y);
+	    g.setObjectGrid(null,66,y);
+	    g.setTextureGrid(flower, 66, y, 0);
+	}
 
+	for(int x=66; x<95; x++) {
+	    g.setCollisionGrid(GameGrid.GridValue.FREE,x,40);
+	    g.setCollisionGrid(GameGrid.GridValue.FREE,x,39);
+	    g.setCollisionGrid(GameGrid.GridValue.FREE,x,41);
+	    g.setObjectGrid(null,x,40);
+	    g.setObjectGrid(null,x,39);
+	    g.setObjectGrid(null,x,41);
+	    g.setTextureGrid(flower, x, 40, 0);	    
+	    g.setTextureGrid(flower, x, 39, 0);
+	    g.setTextureGrid(flower, x, 41, 0);
+	}
+
+	int y_start = 25;
+	int y_end = 56;
+	int y = 26;
+	for(int x=95; x<105; x++) {
+	    while(y > y_start && y < y_end) {
+		g.setTextureGrid(flower2, x, y, 0);
+		y++;
+	    }
+	    y_start += 2;
+	    y_end -= 2;
+	    y = y_start+1;
+	}
+	
 	/*
 	try{
 	    Thread.sleep(500);

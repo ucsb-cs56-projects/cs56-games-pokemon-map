@@ -63,7 +63,7 @@ public class Renderer
 		this.bufferHeight = height + (7 * tileHeight);
 		
 		// Create the new Game Grid
-		gg = new GameGrid(300, 100);
+		gg = new GameGrid(200, 200);
 		
 		// Create the buffer
 		bufferImage = new BufferedImage(this.bufferWidth, this.bufferHeight, BufferedImage.TYPE_4BYTE_ABGR);
@@ -183,33 +183,55 @@ public class Renderer
 		smallHouse = new Building(60, 35, "HOUSE_SMALL_1");
 		Building mediumHouse = new Building(57, 45, "HOUSE_MEDIUM_1");
 		Building largeHouse = new Building(41, 28, "HOUSE_LARGE_1");
+		Building bigFish = new Building(144, 19, "BIG_FISH");
+		Building door = new Building(38, 55, "DOOR");
+
+		for(int y=56; y<101; y++) {
+		    Building rock1 = new Building(45, y, "ROCK1");
+		}
 		
 		// Create Trees
 		Building tree;
 		for(int i=0; i<2; i++) {
-		for(int counter1 = 0; counter1 < 30; counter1 ++)
-		{
-			for(int counter2 = 0; counter2 < 30; counter2 ++)
+		    for(int counter1 = 0; counter1 < 30; counter1 ++)
 			{
-				if(counter1 == 0 || counter1 == 29 || counter2 == 0 || counter2 == 29)
+			    for(int counter2 = 0; counter2 < 30; counter2 ++)
 				{
-				    int x = 37 + counter1 + i*28;  
-				    int y = 25 + counter2;		  
-				    tree = new Building(x, y , "BASE_TREE_1");				    
+				if(counter1 == 0 || counter1 == 29 || counter2 == 0 || counter2 == 29)
+				    {
+					int x = 37 + counter1 + i*28;  
+					int y = 25 + counter2;		  
+					tree = new Building(x, y , "BASE_TREE_1");				    
+				    }
 				}
 			}
 		}
-		}
 		tree = new Building(45, 36, "NICE_TREE_1");
+		for(int i=67; i<95; i++) {
+		    for(int j=25; j<55; j++) {
+			if(!((i<80 && i>70) && (j>28 && j<38))) {
+			    tree = new Building(i,j,"BASE_TREE_1");
+			}
+		    }
+		}
 
-		
+		for(int x=37; x<151; x++) {
+		    for(int y=25; y<101; y++) {
+			if((x==150 || y==100 || (y==25 && x>64) || (x==37 && y>50))
+			   && (!(y==25 && x > 143) && !(x==150 && y < 32))) {
+				tree = new Building(x,y,"BASE_TREE_1");
+			    }
+		    }
+		}		
         
 		//create Pikachu
 		Player pkmn = new Player(44, 45, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		//Player pkmn = new Player(96, 40, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
 		Player player = new Player(45, 45, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		//Player player = new Player(97, 40, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
         
        

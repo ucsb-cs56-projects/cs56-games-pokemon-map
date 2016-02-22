@@ -47,6 +47,18 @@ class Building extends GameObject
 		{
 			this.createLargeHouse1(x, y);
 		}
+		else if(type.equals("BIG_FISH"))
+		{
+			this.createBigFish(x, y);
+		}
+		else if(type.equals("DOOR"))
+		{
+			this.createDoor(x, y);
+		}
+		else if(type.equals("ROCK1"))
+		{
+			this.createRock1(x, y);
+		}
 	}
 
         /** Creates a Pokecenter (5x5) at (x,y)
@@ -68,7 +80,7 @@ class Building extends GameObject
 		{
 			for(int hCounter = 0; hCounter < this.height; hCounter ++)
 			{
-				collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
+				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
 			}
 		}
 		
@@ -252,5 +264,71 @@ class Building extends GameObject
 		// Set Textures, see Renderer
 		this.texture = new Texture("LargeHouse", "TileSet_Main", 16, 1968, 128, 2048);
 	}
+
+    
+    private void createBigFish(int x, int y){
+		// Set Position and width
+		this.width = 7;
+		this.height = 14;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    if(!(wCounter == 3 && hCounter > 10)){
+				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			    }
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("BIG_FISH", "TileSet_Main", 16*8, 16*359, 16*14, 16*373);
+    }
+
+        private void createDoor(int x, int y){
+		// Set Position and width
+		this.width = 7;
+		this.height = 7;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+
+		for(int i=1; i<7; i++) {
+		    collisionValue[0][i] = GameGrid.GridValue.BLOCKED;
+		    collisionValue[6][i] = GameGrid.GridValue.BLOCKED;
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("DOOR", "TileSet_Main", 16*8, 16*401, 16*13, 16*406);
+    }
+
+           private void createRock1(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+
+		collisionValue[0][0] = GameGrid.GridValue.BLOCKED;	        
+        		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("ROCK1", "TileSet_Main", 16*3, 16*1, 16*4, 16*2);
+    }
 
 }
