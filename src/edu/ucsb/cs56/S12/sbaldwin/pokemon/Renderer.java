@@ -178,34 +178,7 @@ public class Renderer
 		    }
 		}
 
-		
-		// Load the Buildings	
-		creatPokeCenter(40, 40);
-		creatPokeMart(45, 41);
-		creatSmallHouse(55, 35);
-		creatSmallHouse(60, 35);
-		creatMediumHouse(57,45);
-		creatlargeHouse(41,28);
-		creatbigFish(144,19);
-		creatdoor(38,55);
-		creatBigBuilding(110, 55);
-		creatBigBuilding2(130,55);
-		creatPokeball(41,99);
-		createWater(115, 33, 20, 10);
-
-		for(int y=63; y<98; y+=2) {
-		    creatBigRock(38, y);
-		    creatBigRock(42,y);		    
-		}
-
-		// set the ground to rockground
-		for(int x=10; x<85; x++) {
-		    for(int y=56; y<120; y++) {
-			gg.setTextureGrid(rockGround, x, y, 0);
-		    }
-		}
-		
-		// Create Trees
+			// Create Trees
 		for(int i=0; i<2; i++) {
 		    for(int counter1 = 0; counter1 < 30; counter1 ++)
 			{
@@ -228,39 +201,52 @@ public class Renderer
 		    for(int j=25; j<41; j++) {
 			if(!((i<92 && i>68) && (j>28 && j<38))) {
 			    creatTree(i,j);
-			    // tree = new Building(i,j,"BASE_TREE_1");
 			}
 			else if (!((i<82 && i>77) && (j>32 && j<36))){
 			    gg.setTextureGrid(flower2, i, j, 0);  // fill the empty space with nice flowers
 			}
 		    }
-		}
-
-		// creat the lake accross the forest and the desert
-		/*
-		for(int x=67; x<95; x++) {
-		    for(int y=50; y<56; y++) {
-		      	deleteTree(x, y);
-		    }
-		}
-		
-		*/
-		createWater(67, 42, 27, 25);
-		
-
-		// create big pokemon in the forest
-		Building bigPokemon = new Building(78, 33, "BIGPOKEMON");
+		}		
 
 		for(int x=37; x<151; x++) {
 		    for(int y=25; y<101; y++) {
 			if((x==150 || y==100 || (y==25 && x>64) || (x==37 && y>50))
 			   && (!(y==25 && x > 143) && !(x==150 && y < 32))) {
 			    creatTree(x, y);
-			    //	tree = new Building(x,y,"BASE_TREE_1");
 			    }
 		    }
 		}
 		
+		// Load the Buildings	
+		creatPokeCenter(40, 40);
+		creatPokeMart(45, 41);
+		creatSmallHouse(55, 35);
+		creatSmallHouse(60, 35);
+		creatMediumHouse(57,45);
+		creatlargeHouse(41,28);
+		creatbigFish(144,19);
+		creatBigBuilding(110, 55);
+		creatBigBuilding2(130,55);
+		creatPokeball(41,99);
+		createWater(115, 33, 20, 10);
+		createWater(67, 42, 27, 25);
+		creatdoor(77,68);
+	       
+		// create big pokemon in the forest
+		Building bigPokemon = new Building(78, 33, "BIGPOKEMON");
+
+		for(int y=63; y<98; y+=2) {
+		    creatBigRock(38, y);
+		    creatBigRock(42,y);		    
+		}
+
+		// set the ground to rockground
+		for(int x=10; x<80; x++) {
+		    for(int y=56; y<120; y++) {
+			gg.setTextureGrid(rockGround, x, y, 0);
+		    }
+		}
+					
 		//create little rockes
 		for(int y=55; y<102; y++) {
 		    // change to trees to rocks
@@ -280,13 +266,11 @@ public class Renderer
 		
         
 		//create Pikachu
-		Player pkmn = new Player(44, 45, Character.Direction.EAST, "PIKACHU", "PIKACHU");
-		//Player pkmn = new Player(96, 40, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		Player pkmn = new Player(97, 65, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
-		Player player = new Player(45, 45, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
-		//Player player = new Player(97, 40, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		Player player = new Player(98, 65, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
         
        
