@@ -87,9 +87,41 @@ class Building extends GameObject
 		{        
 		    this.createBigRock(x, y);
 		}
-		else if(type.equals("WATER"))
+		else if(type.equals("WATER1"))
+		    {        
+			this.createWater1(x, y);
+		    }
+		else if(type.equals("WATER2"))
+		    {        
+			this.createWater2(x, y);
+		    }
+		else if(type.equals("WATER3"))
+		    {        
+			this.createWater3(x, y);
+		    }
+		else if(type.equals("WATER4"))
+		    {        
+			this.createWater4(x, y);
+		    }
+		else if(type.equals("WATER5"))
+		    {        
+			this.createWater5(x, y);
+		    }
+		else if(type.equals("WATER6"))
+		    {        
+			this.createWater6(x, y);
+		    }
+		else if(type.equals("WATER7"))
+		    {        
+			this.createWater7(x, y);
+		    }
+		else if(type.equals("WATER8"))
+		    {        
+			this.createWater8(x, y);
+		    }
+		else if(type.equals("WATER9"))
 		{        
-		    this.createWater(x, y);
+		    this.createWater9(x, y);
 		}
 		
 	}
@@ -534,10 +566,10 @@ class Building extends GameObject
 		this.texture = new Texture("BIG_ROCK", "TileSet_Main", 16*10, 16*21, 16*13, 16*24);
     }
 
-                    private void createWater(int x, int y){
+                    private void createWater1(int x, int y){
 		// Set Position and width
-		this.width = 3;
-		this.height = 3;
+		this.width = 1;
+		this.height = 1;
 		
 		this.interactable = false;
 		
@@ -555,7 +587,209 @@ class Building extends GameObject
 		this.setPos(x, y);
 		
 		// Set Textures, see Renderer
-		this.texture = new Texture("WATER", "TileSet_Main", 16*5, 16*26, 16*8, 16*29);
+		this.texture = new Texture("WATER", "TileSet_Main", 16*5, 16*26, 16*6, 16*27);
+
     }
 
+                       private void createWater2(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*6, 16*26, 16*7, 16*27);
+
+    }
+
+                       private void createWater3(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*7, 16*26, 16*8, 16*27);
+
+    }
+
+                       private void createWater4(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*5, 16*27, 16*6, 16*28);
+
+    }
+
+                       private void createWater5(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*6, 16*27, 16*7, 16*28);
+
+    }
+
+                       private void createWater6(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*7, 16*27, 16*8, 16*28);
+
+    }
+
+                       private void createWater7(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*5, 16*28, 16*6, 16*29);
+
+    }
+
+                       private void createWater8(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*6, 16*28, 16*7, 16*29);
+
+    }
+
+                       private void createWater9(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*7, 16*28, 16*8, 16*29);
+
+    }
+
+      
 }
