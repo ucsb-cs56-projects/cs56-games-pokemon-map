@@ -127,6 +127,7 @@ public class Renderer
 		Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
 		Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 		Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
+		Texture rockGround = new Texture("rockGround", "TileSet_Main", 16*6, 16*10, 16*7, 16*11);
 		//	Texture niceFlower = new Texture("niceFlower", "TileSet_Main", 16*14, 16*189, 16*15, 16*190);        
 	        
 		for(int wCounter = 0; wCounter < gg.getWidth(); wCounter ++)
@@ -185,9 +186,30 @@ public class Renderer
 		Building largeHouse = new Building(41, 28, "HOUSE_LARGE_1");
 		Building bigFish = new Building(144, 19, "BIG_FISH");
 		Building door = new Building(38, 55, "DOOR");
+		
+		Building bigBuildingLeft = new Building(110, 55, "BIG_BUILDING_LEFT");
+		Building bigBuildingRight = new Building(110 + 8, 55, "BIG_BUILDING_RIGHT");
+		
+		Building bigBuilding2Left = new Building(130, 55, "BIG_BUILDING_2_LEFT");
+		Building bigBuilding2Right = new Building(130 + 8, 55, "BIG_BUILDING_2_RIGHT");
 
-		for(int y=56; y<101; y++) {
-		    Building rock1 = new Building(45, y, "ROCK1");
+		Building pokeball = new Building(41, 99, "POKEBALL");
+
+		for(int x = 100; x<110; x++) {
+		    for(int y = 50; y<60; y++) {
+			Building water = new Building(x, y, "WATER");
+		    }
+		}
+
+		for(int y=63; y<98; y+=2) {
+		    Building bigRock = new Building(38, y, "BIG_ROCK");
+		    Building bigRock2 = new Building(42, y, "BIG_ROCK");		    
+		}
+
+		for(int x=37; x<65; x++) {
+		    for(int y=56; y<102; y++) {
+			gg.setTextureGrid(rockGround, x, y, 0);
+		    }
 		}
 		
 		// Create Trees
@@ -221,9 +243,6 @@ public class Renderer
 		}
 		Building bigPokemon = new Building(78, 33, "BIGPOKEMON");
 
-		Building bigBuildingLeft = new Building(120, 55, "BIG_BUILDING_LEFT");
-		Building bigBuildingRight = new Building(120 + 8, 55, "BIG_BUILDING_RIGHT");
-
 		for(int x=37; x<151; x++) {
 		    for(int y=25; y<101; y++) {
 			if((x==150 || y==100 || (y==25 && x>64) || (x==37 && y>50))
@@ -231,15 +250,35 @@ public class Renderer
 				tree = new Building(x,y,"BASE_TREE_1");
 			    }
 		    }
-		}		
+		}
+
+		//create little rockes
+		for(int y=55; y<102; y++) {
+		    GameGrid g = GameMain.getRenderer().getGameGrid();
+		    // change to trees to rocks
+		    g.setObjectGrid(null,37 ,y);
+		    if(y!=55) {
+			Building rock1 = new Building(37, y, "ROCK1");
+			Building rock2 = new Building(45, y, "ROCK1");
+		    }
+		}
+		for(int x=38; x<65; x++) {
+		    GameGrid g = GameMain.getRenderer().getGameGrid();
+		    // change to trees to rocks
+		    g.setObjectGrid(null,x ,100);
+		    if(x != 41) {
+			Building rock1 = new Building(x, 100, "ROCK1");		    
+			Building rock2 = new Building(x, 101, "ROCK1");
+		    }
+		}
         
 		//create Pikachu
-		Player pkmn = new Player(44, 45, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		Player pkmn = new Player(98, 45, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		//Player pkmn = new Player(96, 40, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
-		Player player = new Player(45, 45, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		Player player = new Player(97, 45, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		//Player player = new Player(97, 40, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
         
