@@ -225,7 +225,7 @@ public class Renderer
 		creatMediumHouse(57,45);
 		creatlargeHouse(41,28);
 		creatbigFish(144,19);
-		creatBigBuilding(110, 55);
+		creatBigBuilding(100, 55);
 		creatBigBuilding2(130,55);
 		creatPokeball(41,99);
 		createWater(115, 33, 20, 10);
@@ -266,11 +266,11 @@ public class Renderer
 		
         
 		//create Pikachu
-		Player pkmn = new Player(97, 65, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		Player pkmn = new Player(44, 44, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
-		Player player = new Player(98, 65, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		Player player = new Player(45, 44, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
         
        

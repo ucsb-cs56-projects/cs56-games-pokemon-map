@@ -253,7 +253,7 @@ public class GameLogic
 
 			if(GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() == "flower") {
 			    point ++;
-			    if(playerXPos == 64 && playerYPos == 33 && point >= 50 ) {
+			    if(playerXPos == 64 && playerYPos == 33 && point >= 500 ) {
 				openSecretPath();
 			    }							    		
 			}
