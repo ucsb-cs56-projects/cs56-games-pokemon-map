@@ -221,7 +221,10 @@ public class Renderer
 		creatPokeCenter(40, 40);
 		creatPokeMart(45, 41);
 		creatSmallHouse(55, 35);
-		creatSmallHouse(60, 35);
+		creatPokeMart(72, 69);
+		creatSmallHouse(67, 68);
+		creatPokeCenter(85, 68);
+		creatSmallHouse(90, 68);
 		creatMediumHouse(57,45);
 		creatlargeHouse(41,28);
 		creatbigFish(144,19);
@@ -252,25 +255,33 @@ public class Renderer
 		    // change to trees to rocks
 		    deleteTree(37, y);
 		    if(y!=55) {
-			Building rock1 = new Building(37, y, "ROCK1");
-			Building rock2 = new Building(45, y, "ROCK1");
+			creatRock(37,y);
+			creatRock(45,y);
 		    }
-		}
+		}		
 		for(int x=38; x<85; x++) {
 		    deleteTree(x, 100);
 		    if(x != 41) {
-			Building rock1 = new Building(x, 100, "ROCK1");		    
-			Building rock2 = new Building(x, 101, "ROCK1");
+			creatRock(x,100);
+			creatRock(x,101);
 		    }
 		}
+		for(int y=68; y<75; y++) {
+		    creatRock(76,y);
+		    creatRock(84,y);
+		}
+		for(int x=76; x<83; x+=3) {
+		    creatBigRock(x,79);
+		}
+		createWater(76, 75, 8, 3);
 		
         
 		//create Pikachu
-		Player pkmn = new Player(44, 44, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		Player pkmn = new Player(85, 80, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
-		Player player = new Player(45, 44, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		Player player = new Player(86, 80, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
         
        
@@ -653,8 +664,11 @@ public class Renderer
 	    for(int j=y+1; j< y+height; j++) {
 		Building water5 = new Building(i, j, "WATER5");
 	    }
-	}
-	
+	}	
+    }
+    
+    public void creatRock(int x, int y) {
+	Building rock = new Building(x, y, "ROCK1");
     }
         
 
