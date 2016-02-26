@@ -39,6 +39,8 @@ public class GameLogic
     private int point = 0;
 	
     Renderer renderer;
+    GameGrid g = GameMain.getRenderer().getGameGrid();
+    Renderer r = GameMain.getRenderer();
 	
     /** No arg constructor
      */	
@@ -253,7 +255,7 @@ public class GameLogic
 
 			if(GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() == "flower") {
 			    point ++;
-			    if(playerXPos == 64 && playerYPos == 33 && point >= 500 ) {
+			    if(playerXPos == 64 && playerYPos == 33 && point >= 50 ) {
 				openSecretPath();
 			    }							    		
 			}
@@ -349,8 +351,7 @@ public class GameLogic
 		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			rightPressed = true;
-		}
-		
+		}		
 
 	}
 
@@ -378,6 +379,24 @@ public class GameLogic
 		{
 			rightPressed = false;
 		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_J) {
+		    openSecretPath2();
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_H) {
+		    if(playerXPos == 41 && playerYPos == 97) {
+			openSecretPath3();
+		    }
+
+		     if(playerXPos == 58 && playerYPos == 34) {
+			 // get ready to open last secret path
+		    }
+		}
+
+		if(e.getKeyCode() == KeyEvent.VK_L) {
+		    openSecretPath4();
+		}
 
 	}
 
@@ -385,21 +404,13 @@ public class GameLogic
 	GameGrid g = GameMain.getRenderer().getGameGrid();
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 
-	// set collision value to FREE so that we can go through
-	g.setCollisionGrid(GameGrid.GridValue.FREE,65,33);
-	g.setCollisionGrid(GameGrid.GridValue.FREE,65,34);
-	g.setCollisionGrid(GameGrid.GridValue.FREE,65,35);
-	g.setCollisionGrid(GameGrid.GridValue.FREE,65,36);
-	g.setCollisionGrid(GameGrid.GridValue.FREE,66,35);
-	g.setCollisionGrid(GameGrid.GridValue.FREE,66,36);
-
 	// delete the previous trees in order to creat the secret path
-	g.setObjectGrid(null,65,33);
-	g.setObjectGrid(null,65,34);
-	g.setObjectGrid(null,65,35);
-	g.setObjectGrid(null,65,36);
-	g.setObjectGrid(null,66,35);
-	g.setObjectGrid(null,66,36);
+	Renderer.deleteTree(65,33);
+	Renderer.deleteTree(65,34);
+	Renderer.deleteTree(65,35);
+	Renderer.deleteTree(65,36);
+	Renderer.deleteTree(66,35);
+	Renderer.deleteTree(66,36);
 
 	// creat new flowers
 	for(int i=32; i<36; i++) {
@@ -414,20 +425,16 @@ public class GameLogic
 	
 	// continue the path...
 	for(int y=36; y<41; y++) {
-	    g.setCollisionGrid(GameGrid.GridValue.FREE,66,y);
-	    g.setObjectGrid(null,66,y);
+	    Renderer.deleteTree(66,y);
 	    g.setTextureGrid(flower, 66, y, 0);
 	}
 
 	for(int x=66; x<95; x++) {
-	    g.setCollisionGrid(GameGrid.GridValue.FREE,x,40);
-	    g.setCollisionGrid(GameGrid.GridValue.FREE,x,39);
-	    g.setCollisionGrid(GameGrid.GridValue.FREE,x,41);
-	    g.setObjectGrid(null,x,40);
-	    g.setObjectGrid(null,x,39);
-	    g.setObjectGrid(null,x,41);
-	    g.setTextureGrid(flower, x, 40, 0);	    
-	    g.setTextureGrid(flower, x, 39, 0);
+	    Renderer.deleteTree(x,39);
+	    Renderer.deleteTree(x,40);
+	    Renderer.deleteTree(x,41);
+	    g.setTextureGrid(flower, x, 39, 0);	    
+	    g.setTextureGrid(flower, x, 40, 0);
 	    g.setTextureGrid(flower, x, 41, 0);
 	}
 	
@@ -439,7 +446,6 @@ public class GameLogic
     }
 
     public void creatFlowers() {
-	GameGrid g = GameMain.getRenderer().getGameGrid();
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 	
 	int y_start = 26;
@@ -454,5 +460,59 @@ public class GameLogic
 	    y_end --;
 	    y = y_start+1;
 	}
+    }
+
+    public void openSecretPath2() {
+	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
+	for(int x=38; x<45; x++) {
+	    Renderer.deleteTree(x,54);
+	    for(int y=53; y<100; y++) {
+	        g.setTextureGrid(flower, x, y, 0);
+	    }
+	}
+	
+    }
+
+      public void openSecretPath3() {
+	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
+	for(int x=25; x<69; x++) {
+	    for(int y=10; y<130; y++) {
+		if(g.getTextureGrid(x, y, 0).getName() != "GRASS_WILD") {
+		    g.setTextureGrid(flower, x, y, 0);
+		}
+	    }
+	}
+	r.createNiceTree(53, 27);
+	r.createNiceTree(53, 29);
+	r.createNiceTree(53, 31);
+	r.createNiceTree(53, 33);
+	r.createKabi(57,29);
+	
+	Renderer.deleteTree(64,54);
+    }
+
+    public void openSecretPath4() {
+	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
+	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
+	for(int x=77; x<84; x++) {
+	    for(int y=37; y<75; y+=2) {
+	        Renderer.deleteTree(x,y);
+		Renderer.deleteTree(x,y+1);
+		g.setTextureGrid(flower2, x, y, 0);
+		g.setTextureGrid(flower, x, y+1, 0);
+	    }
+	}
+
+	for(int x=79; x<82; x++) {
+	    for(int y=75; y<120; y+=2) {
+		if(y < 90) {
+		    Renderer.deleteTree(x,y);
+		    Renderer.deleteTree(x,y+1);
+		}
+		g.setTextureGrid(flower2, x, y, 0);
+		g.setTextureGrid(flower, x, y+1, 0);
+	    }
+	}
+
     }
 }

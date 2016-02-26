@@ -128,7 +128,8 @@ public class Renderer
 		Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 		Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
 		Texture rockGround = new Texture("rockGround", "TileSet_Main", 16*6, 16*10, 16*7, 16*11);
-		Texture flower3 = new Texture("flower3", "TileSet_Main", 16*14, 16*189, 16*15, 16*190);        
+		Texture flower3 = new Texture("flower3", "TileSet_Main", 16*14, 16*189, 16*15, 16*190);
+		Texture snow = new Texture("snow", "TileSet_Main", 16*1, 16*351, 16*2, 16*352);
 	        
 		// first set all the map to collision free
 		for(int wCounter = 0; wCounter < gg.getWidth(); wCounter ++)
@@ -178,7 +179,14 @@ public class Renderer
 		    }
 		}
 
-			// Create Trees
+		// Load the snow land
+		for(int x=130; x<150; x++) {
+		    for(int y=70; y<100; y++) {
+			 gg.setTextureGrid(snow, x, y, 0);
+		    }
+		}
+
+		// Create Trees
 		for(int i=0; i<2; i++) {
 		    for(int counter1 = 0; counter1 < 30; counter1 ++)
 			{
@@ -194,8 +202,7 @@ public class Renderer
 				}
 			}
 		}	
-		
-		Building tree = new Building(45, 36, "NICE_TREE_1");
+		createNiceTree(45,36);
 		
 		for(int i=67; i<95; i++) {
 		    for(int j=25; j<41; j++) {
@@ -219,11 +226,12 @@ public class Renderer
 		
 		// Load the Buildings	
 		creatPokeCenter(40, 40);
-		creatPokeMart(45, 41);
-		creatSmallHouse(55, 35);
-		creatPokeMart(72, 69);
-		creatSmallHouse(67, 68);
 		creatPokeCenter(85, 68);
+		creatPokeMart(45, 41);
+		creatPokeMart(72, 69);
+		creatSmallHouse(55, 35);
+		creatSmallHouse(60, 35);
+		creatSmallHouse(67, 68);
 		creatSmallHouse(90, 68);
 		creatMediumHouse(57,45);
 		creatlargeHouse(41,28);
@@ -238,11 +246,6 @@ public class Renderer
 		// create big pokemon in the forest
 		Building bigPokemon = new Building(78, 33, "BIGPOKEMON");
 
-		for(int y=63; y<98; y+=2) {
-		    creatBigRock(38, y);
-		    creatBigRock(42,y);		    
-		}
-
 		// set the ground to rockground
 		for(int x=10; x<80; x++) {
 		    for(int y=56; y<120; y++) {
@@ -250,7 +253,7 @@ public class Renderer
 		    }
 		}
 					
-		//create little rockes
+		//create rockes
 		for(int y=55; y<102; y++) {
 		    // change to trees to rocks
 		    deleteTree(37, y);
@@ -270,18 +273,27 @@ public class Renderer
 		    creatRock(76,y);
 		    creatRock(84,y);
 		}
-		for(int x=76; x<83; x+=3) {
+		for(int x=70; x<89; x+=3) {
 		    creatBigRock(x,79);
 		}
+
+		for(int y=61; y<98; y+=2) {
+		    creatBigRock(38, y);
+		    creatBigRock(42,y);		    
+		}
+
+		// Create the lake
 		createWater(76, 75, 8, 3);
 		
         
 		//create Pikachu
-		Player pkmn = new Player(85, 80, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		//	Player pkmn = new Player(85, 80, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		Player pkmn = new Player(44, 44, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
-		Player player = new Player(86, 80, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		//	Player player = new Player(86, 80, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		Player player = new Player(45, 44, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
         
        
@@ -324,7 +336,8 @@ public class Renderer
 				
 				// Draw texture				
 				Texture tex = gg.getTextureGrid(tileX, tileY, 0);
-				
+
+				//buffer.drawImage(makeColorTransparent(tex.getImage(), Color.BLACK),
 				buffer.drawImage(tex.getImage(), 
 					   ((tileX - tileXStart) * tileWidth), 
 					   ((tileY - tileYStart) * tileHeight), 
@@ -584,6 +597,7 @@ public class Renderer
     public static void deleteTree(int x, int y) {
 	GameGrid g = GameMain.getRenderer().getGameGrid();
 	g.setCollisionGrid(GameGrid.GridValue.FREE, x, y);
+	g.setCollisionGrid(GameGrid.GridValue.FREE, x, y+1);
 	g.setObjectGrid(null, x, y);	        
     }
     
@@ -670,7 +684,22 @@ public class Renderer
     public void creatRock(int x, int y) {
 	Building rock = new Building(x, y, "ROCK1");
     }
-        
 
+     public void createFlower(int x, int y) {
+	Building flower = new Building(x, y, "FLOWER");
+    }
 
+      public void createFlower2(int x, int y) {
+	Building flower2 = new Building(x, y, "FLOWER2");
+    }
+
+    public void createNiceTree(int x, int y) {
+	Building tree = new Building(x, y, "NICE_TREE_1");
+    }
+
+    public void createKabi(int x, int y) {
+	Building tree = new Building(x, y, "KABI");
+    }
+
+    
 }

@@ -123,7 +123,18 @@ class Building extends GameObject
 		{        
 		    this.createWater9(x, y);
 		}
-		
+		else if(type.equals("FLOWER"))
+		{        
+		    this.createFlower(x, y);
+		}
+		else if(type.equals("FLOWER2"))
+		{        
+		    this.createFlower2(x, y);
+		}
+		else if(type.equals("KABI"))
+		{        
+		    this.createKabi(x, y);
+		}
 	}
 
         /** Creates a Pokecenter (5x5) at (x,y)
@@ -418,6 +429,30 @@ class Building extends GameObject
 	
 	// Set Textures, see Renderer
 	this.texture = new Texture("BIGPOKEMON", "TileSet_Pkmn", 16*31, 16*17, 16*35, 16*20);
+    }
+
+    private void createKabi(int x, int y){
+	// Set Position and width
+	this.width = 3;
+	this.height = 4;
+		
+	this.interactable = false;
+	
+	// Create Collision Values and Initialize to BLOCKED
+	this.collisionValue = new GameGrid.GridValue[width][height];
+
+	for(int wCounter = 0; wCounter < this.width; wCounter ++)
+	    {
+		for(int hCounter = 0; hCounter < this.height; hCounter ++)
+		    {
+			collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+		    }
+	    }
+  
+	this.setPos(x, y);
+	
+	// Set Textures, see Renderer
+	this.texture = new Texture("KABI", "TileSet_Pkmn", 16*22, 16*24, 16*25, 16*28);
     }
 
     private void createBigBuildingLeft(int x, int y){
@@ -766,7 +801,7 @@ class Building extends GameObject
 
     }
 
-                       private void createWater9(int x, int y){
+    private void createWater9(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -788,6 +823,56 @@ class Building extends GameObject
 		
 		// Set Textures, see Renderer
 		this.texture = new Texture("WATER", "TileSet_Main", 16*7, 16*28, 16*8, 16*29);
+
+    }
+
+       private void createFlower(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*14, 16*189, 16*15, 16*190);
+
+    }
+
+     private void createFlower2(int x, int y){
+		// Set Position and width
+		this.width = 1;
+		this.height = 1;
+		
+		this.interactable = false;
+		
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
+			
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		{
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			{
+			    collisionValue[wCounter][hCounter] = GameGrid.GridValue.FREE;
+			}
+		}
+		
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("WATER", "TileSet_Main", 16*14, 16*182, 16*15, 16*183);
 
     }
 
