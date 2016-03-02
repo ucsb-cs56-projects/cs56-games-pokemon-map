@@ -405,6 +405,11 @@ public class GameLogic
 		    if(playerXPos == 71 && playerYPos == 81 && ableToOpenLastPath) {
 			 openSecretPath5();
 		    }
+
+		    if((playerXPos > 77 && playerXPos < 82)&& playerYPos == 35) {
+			// talking to the big pokemon in the forest is the last event in the story
+			openSecretPath6();
+		    }
 		}
 
 		if(e.getKeyCode() == KeyEvent.VK_L) {
@@ -519,15 +524,22 @@ public class GameLogic
     }
 
     public void openSecretPath4() {
+	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
+	
 	 // delete the big pokemon there
 	 for(int x=57; x<60; x++) {
 	     for(int y=29; y<32; y++) {
 		 Renderer.deleteTree(x,y);
 	     }
 	 }
-
-	 // change his position in the desert
+	 
+	 // change his position in the desert and make more flowers
 	 r.createGod(70,78);
+	 for(int x=57; x<60; x++) {
+	     for(int y=30; y<33; y++) {
+		 g.setTextureGrid(flower2, x, y, 0);
+	     }
+	 }
 
 	 ableToOpenLastPath = true;
 
@@ -555,8 +567,54 @@ public class GameLogic
 		g.setTextureGrid(flower, x, y+1, 0);
 	    }
 	}
-
+	// recreate the door 
+	r.creatdoor(77,68);
     }
 
-    
+    public void openSecretPath6() {  // last event of the story
+	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
+	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
+	Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
+
+	// delete everything
+	for(int x=10; x<190; x++) {
+	    for(int y=10; y<190; y++) {
+		if(!((x>76 && x<83) && (y>31 && y<38))) {
+		    Renderer.deleteTree(x,y);
+		    g.setTextureGrid(flower, x, y, 0);
+		}
+	    }
+	}
+
+	// create trees as the border
+	for(int x=56; x<104; x++) {
+	    for(int y=10; y<59; y++) {
+		if(x==56 || x==103 || y==10 || y==58) {
+		    r.creatTree(x,y);
+		}
+	    }
+	}
+
+	// a complex way to draw all the flowers
+	int count = 0;
+	for(int k=0; k<150; k++) {
+	    for(int x=1; x<199; x++) {
+		for(int y=1; y<199; y++) {
+		    if(!((x>76-k && x<83+k) && (y>31-k && y<38+k))) {
+			if(count % 3 == 0) {
+			    g.setTextureGrid(flower, x, y, 0);
+			}
+			else if(count % 3 == 1) {
+			    g.setTextureGrid(flower2, x, y, 0);
+			}
+			else {
+			    g.setTextureGrid(grass_Wild, x, y, 0);
+			}
+		    }
+		}
+	    }
+	    count++;	   	
+	}
+    }
+   
 }

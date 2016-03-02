@@ -302,12 +302,12 @@ public class Renderer
 		
         
 		//create Pikachu
-		//	Player pkmn = new Player(110, 30, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		//	Player pkmn = new Player(80, 35, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		Player pkmn = new Player(44, 44, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
-		//	Player player = new Player(111, 30, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		//	Player player = new Player(81, 35, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		Player player = new Player(45, 44, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
         
