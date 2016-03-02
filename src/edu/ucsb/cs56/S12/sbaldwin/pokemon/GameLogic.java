@@ -39,7 +39,15 @@ public class GameLogic
     private int point = 0;
 
     // indication of the game stage
-    private boolean ableToOpenLastPath = false;
+    private boolean ableToOpenLastPath;
+    private boolean long1AlreadyPlayed;
+    private boolean long2AlreadyPlayed;
+    private boolean long3AlreadyPlayed;
+    private boolean long4AlreadyPlayed;
+    private boolean long5AlreadyPlayed;
+    private boolean long6AlreadyPlayed;
+    private boolean long7AlreadyPlayed;
+    private boolean short3AlreadyPlayed;
 	
     Renderer renderer;
     GameGrid g = GameMain.getRenderer().getGameGrid();
@@ -258,7 +266,7 @@ public class GameLogic
 
 			if(GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() == "flower") {
 			    point ++;
-			    if(playerXPos == 64 && playerYPos == 33 && point >= 50 ) {
+			    if(playerXPos == 64 && playerYPos == 33 && point >= 500 ) {
 				openSecretPath();
 			    }							    		
 			}
@@ -358,7 +366,39 @@ public class GameLogic
 		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			rightPressed = true;
-		}		
+		}
+
+				if(e.getKeyCode() == KeyEvent.VK_H) {
+		    if(playerXPos == 41 && playerYPos == 97) {
+			openSecretPath3();
+		    }
+
+		    if((playerXPos == 57 && playerYPos == 32) ||
+		       (playerXPos == 58 && playerYPos == 32) ||
+		       (playerXPos == 59 && playerYPos == 32) ){
+			 openSecretPath4();
+		    }
+
+		    if(playerXPos == 71 && playerYPos == 81 && ableToOpenLastPath) {
+			 openSecretPath5();
+		    }
+
+		    if((playerXPos > 77 && playerXPos < 82)&& playerYPos == 35) {
+			// talking to the big pokemon in the forest is the last event in the story
+			openSecretPath6();
+		    }
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_M) {
+		    printPosition();
+		}
+
+		// this has some bugs
+		/*
+		if(e.getKeyCode() == KeyEvent.VK_J) {
+		    changeSpeed();
+		}
+		*/
 
 	}
 
@@ -385,41 +425,7 @@ public class GameLogic
 		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			rightPressed = false;
-		}
-		
-		if(e.getKeyCode() == KeyEvent.VK_J) {
-		    openSecretPath2();
-		}
-		
-		if(e.getKeyCode() == KeyEvent.VK_H) {
-		    if(playerXPos == 41 && playerYPos == 97) {
-			openSecretPath3();
-		    }
-
-		    if((playerXPos == 57 && playerYPos == 32) ||
-		       (playerXPos == 58 && playerYPos == 32) ||
-		       (playerXPos == 59 && playerYPos == 32) ){
-			 openSecretPath4();
-		    }
-
-		    if(playerXPos == 71 && playerYPos == 81 && ableToOpenLastPath) {
-			 openSecretPath5();
-		    }
-
-		    if((playerXPos > 77 && playerXPos < 82)&& playerYPos == 35) {
-			// talking to the big pokemon in the forest is the last event in the story
-			openSecretPath6();
-		    }
-		}
-
-		if(e.getKeyCode() == KeyEvent.VK_L) {
-		    openSecretPath4();
-		}
-
-		if(e.getKeyCode() == KeyEvent.VK_M) {
-		    printPosition();
-		}
-
+		}		
 	}
 
     public void printPosition() {
@@ -427,6 +433,13 @@ public class GameLogic
     }
 
     public void openSecretPath() {
+	// change background music
+	if(long2AlreadyPlayed == false) {
+	    Renderer.long1.stop();
+	    Renderer.long2.play();
+	    long2AlreadyPlayed = true;
+	}
+	
 	GameGrid g = GameMain.getRenderer().getGameGrid();
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 
@@ -438,7 +451,7 @@ public class GameLogic
 	Renderer.deleteTree(66,35);
 	Renderer.deleteTree(66,36);
 
-	// creat new flowers
+	// create new flowers
 	for(int i=32; i<36; i++) {
 	    g.setTextureGrid(flower, 64, i, 0);
 	}
@@ -489,6 +502,13 @@ public class GameLogic
     }
 
     public void openSecretPath2() {
+	// change background music
+	if(long3AlreadyPlayed == false) {
+	    Renderer.long2.stop();
+	    Renderer.long3.play();
+	    long3AlreadyPlayed = true;
+	}
+	
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 	for(int x=38; x<45; x++) {
 	    Renderer.deleteTree(x,54);
@@ -501,6 +521,13 @@ public class GameLogic
     }
 
     public void openSecretPath3() {
+	// change background music
+	if(long5AlreadyPlayed == false) {
+	    Renderer.long3.stop();
+	    Renderer.long5.play();
+	    long5AlreadyPlayed = true;
+	}
+	
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
 	for(int x=25; x<67; x++) {
@@ -524,6 +551,13 @@ public class GameLogic
     }
 
     public void openSecretPath4() {
+	// change background music	
+	if(long6AlreadyPlayed == false) {
+	    Renderer.long5.stop();
+	    Renderer.long6.play();
+	    long6AlreadyPlayed = true;
+	}
+		
 	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
 	
 	 // delete the big pokemon there
@@ -546,6 +580,13 @@ public class GameLogic
      }
 
     public void openSecretPath5() {
+	// change background music
+	if(short3AlreadyPlayed == false) {
+	    Renderer.long6.stop();
+	    Renderer.short3.play();
+	    short3AlreadyPlayed = true;
+	}
+	
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
 	for(int x=77; x<84; x++) {
@@ -572,6 +613,13 @@ public class GameLogic
     }
 
     public void openSecretPath6() {  // last event of the story
+	// change background music
+	if(long7AlreadyPlayed == false) {
+	    Renderer.short3.stop();
+	    Renderer.long7.play();
+	    long7AlreadyPlayed = true;
+	}
+	
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
 	Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
@@ -616,5 +664,11 @@ public class GameLogic
 	    count++;	   	
 	}
     }
+
+    /* will have bug, Pikachu will move slower 
+    public void changeSpeed() {
+	player.speed = 30;
+    }
+    */
    
 }

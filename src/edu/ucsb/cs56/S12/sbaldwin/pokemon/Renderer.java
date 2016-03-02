@@ -1,6 +1,5 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
-
 import javax.swing.*;
 import javax.imageio.*;
 import java.awt.*;
@@ -11,6 +10,10 @@ import java.awt.image.ImageFilter;
 import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
 import java.io.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
+import javax.imageio.ImageIO;
 
 /** The class responsible for deciding what to display to the GamePanel, and loading the buffers.
     @author Samuel Baldwin
@@ -45,12 +48,15 @@ public class Renderer
 	private int tileWidth;
 	private int tileHeight;
 
+    
+    public static AudioClip long1, long2, long3, long4, long5, long6, long7, short3;
+    
         /** Two arg constructor
 	    @param width width of game screen
 	    @param height height of game screen
 	*/
 	public Renderer(int width, int height)
-	{
+	{   
 		// Set Tile size
 		this.tileWidth = 32;
 		this.tileHeight = 32; 
@@ -74,6 +80,7 @@ public class Renderer
 		finalBuffer = finalImage.getGraphics();
     		
     		ClassLoader cl = getClass().getClassLoader();
+		
 		// Load in TileSets
 
 		//load in buildings and textures
@@ -83,7 +90,7 @@ public class Renderer
 		} 
 		catch(IOException ie){
 			System.out.println("Error loading in Images");
-		}
+		}		
 	
 		//load in Professor Oak sprite	
 		try
@@ -108,6 +115,21 @@ public class Renderer
 		{
 			System.out.println("Error loading in Images");
 		}
+
+		// Load sounds
+		long1 = loadSound("long1.wav");
+		long2 = loadSound("long2.wav");
+		long3 = loadSound("long3.wav");
+		long4 = loadSound("long4.wav");
+		long5 = loadSound("long5.wav");
+		long6 = loadSound("long6.wav");
+		long7 = loadSound("long7.wav");
+		short3 = loadSound("short3.wav");
+		/*
+		short1 = loadSound("short1.wav");
+		short2 = loadSound("short2.wav");
+		short4 = loadSound("short4.wav");
+		*/
 		
 		// Make Black areas transparent
 		TileSet_Main = imageToBufferedImage(makeColorTransparent(TileSet_Main, Color.black));
@@ -123,6 +145,8 @@ public class Renderer
 	 */	
 	public void loadMap()
 	{
+	    // play first background music
+	    long1.play();
 		Texture grass_Default = new Texture("GRASS_DEFAULT", "TileSet_Main", 16, 0, 32, 16);
 		Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
 		Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
@@ -303,12 +327,12 @@ public class Renderer
         
 		//create Pikachu
 		//	Player pkmn = new Player(80, 35, Character.Direction.EAST, "PIKACHU", "PIKACHU");
-		Player pkmn = new Player(44, 44, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		Player pkmn = new Player(44, 46, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
 		//	Player player = new Player(81, 35, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
-		Player player = new Player(45, 44, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		Player player = new Player(45, 46, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
         
        
@@ -614,6 +638,14 @@ public class Renderer
 	g.setCollisionGrid(GameGrid.GridValue.FREE, x, y);
 	g.setCollisionGrid(GameGrid.GridValue.FREE, x, y+1);
 	g.setObjectGrid(null, x, y);	        
+    }
+
+    private static AudioClip loadSound(String filename) {
+	URL fileURL = Renderer.class.getClassLoader().getResource("music/" + filename);
+	if(fileURL == null) {
+	    System.out.println("!!!!!!!!!!!");
+	}
+	return Applet.newAudioClip(fileURL);	
     }
     
     //************************** methods for creating all kinds of buildings ************************************\\
