@@ -127,8 +127,8 @@ public class Renderer
 		Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
 		Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 		Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
-		Texture rockGround = new Texture("rockGround", "TileSet_Main", 16*6, 16*10, 16*7, 16*11);
 		Texture flower3 = new Texture("flower3", "TileSet_Main", 16*14, 16*189, 16*15, 16*190);
+		Texture rockGround = new Texture("rockGround", "TileSet_Main", 16*6, 16*10, 16*7, 16*11);		
 		Texture snow = new Texture("snow", "TileSet_Main", 16*1, 16*351, 16*2, 16*352);
 	        
 		// first set all the map to collision free
@@ -252,6 +252,21 @@ public class Renderer
 			gg.setTextureGrid(rockGround, x, y, 0);
 		    }
 		}
+
+		// creat some flowers in the rockground
+		for(int x=70; x<73; x++) {
+		    for(int y=82; y<85; y++) {
+			if(!(x==71 && y==82)) {
+			    gg.setTextureGrid(flower2, x, y, 0);
+			}
+		    }
+		}
+
+		for(int x=70; x<73; x++) {
+		    for(int y=79; y<82; y++) {
+			gg.setTextureGrid(flower, x, y, 0);
+		    }
+		}
 					
 		//create rockes
 		for(int y=55; y<102; y++) {
@@ -273,7 +288,7 @@ public class Renderer
 		    creatRock(76,y);
 		    creatRock(84,y);
 		}
-		for(int x=70; x<89; x+=3) {
+		for(int x=73; x<89; x+=3) {
 		    creatBigRock(x,79);
 		}
 
@@ -287,12 +302,12 @@ public class Renderer
 		
         
 		//create Pikachu
-		//	Player pkmn = new Player(85, 80, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		//	Player pkmn = new Player(110, 30, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		Player pkmn = new Player(44, 44, Character.Direction.EAST, "PIKACHU", "PIKACHU");
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
-		//	Player player = new Player(86, 80, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		//	Player player = new Player(111, 30, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		Player player = new Player(45, 44, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
 		GameMain.gameLogic.registerPlayer(player);
         
@@ -697,8 +712,8 @@ public class Renderer
 	Building tree = new Building(x, y, "NICE_TREE_1");
     }
 
-    public void createKabi(int x, int y) {
-	Building tree = new Building(x, y, "KABI");
+    public void createGod(int x, int y) {
+	Building godPokemon = new Building(x, y, "GOD");
     }
 
     

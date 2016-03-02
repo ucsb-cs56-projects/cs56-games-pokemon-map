@@ -37,6 +37,9 @@ public class GameLogic
 
     // points to open the secret path
     private int point = 0;
+
+    // indication of the game stage
+    private boolean ableToOpenLastPath = false;
 	
     Renderer renderer;
     GameGrid g = GameMain.getRenderer().getGameGrid();
@@ -263,7 +266,12 @@ public class GameLogic
 			if(((playerXPos == 95 && playerYPos == 40) || (playerXPos == 95 && playerYPos == 39))
 			    && (GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() != "flower2")) {
 			    creatFlowers();
-			}					    		
+			}
+
+			if(playerXPos == 147 && playerYPos == 28) {
+			   // when go into the big fish mouse, open secret path 2
+			   openSecretPath2();
+			}
 			
 		    }
 		//Update Pikachu's position
@@ -345,7 +353,6 @@ public class GameLogic
 		if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			leftPressed = true;
-
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
@@ -389,8 +396,14 @@ public class GameLogic
 			openSecretPath3();
 		    }
 
-		     if(playerXPos == 58 && playerYPos == 34) {
-			 // get ready to open last secret path
+		    if((playerXPos == 57 && playerYPos == 32) ||
+		       (playerXPos == 58 && playerYPos == 32) ||
+		       (playerXPos == 59 && playerYPos == 32) ){
+			 openSecretPath4();
+		    }
+
+		    if(playerXPos == 71 && playerYPos == 81 && ableToOpenLastPath) {
+			 openSecretPath5();
 		    }
 		}
 
@@ -398,7 +411,15 @@ public class GameLogic
 		    openSecretPath4();
 		}
 
+		if(e.getKeyCode() == KeyEvent.VK_M) {
+		    printPosition();
+		}
+
 	}
+
+    public void printPosition() {
+	System.out.print("(" + playerXPos + "," + playerYPos + ")");
+    }
 
     public void openSecretPath() {
 	GameGrid g = GameMain.getRenderer().getGameGrid();
@@ -470,12 +491,14 @@ public class GameLogic
 	        g.setTextureGrid(flower, x, y, 0);
 	    }
 	}
-	
+	r.createWater(1, 10, 142, 14);
+	r.createWater(151, 1, 30, 150);
     }
 
-      public void openSecretPath3() {
+    public void openSecretPath3() {
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
-	for(int x=25; x<69; x++) {
+	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
+	for(int x=25; x<67; x++) {
 	    for(int y=10; y<130; y++) {
 		if(g.getTextureGrid(x, y, 0).getName() != "GRASS_WILD") {
 		    g.setTextureGrid(flower, x, y, 0);
@@ -486,12 +509,31 @@ public class GameLogic
 	r.createNiceTree(53, 29);
 	r.createNiceTree(53, 31);
 	r.createNiceTree(53, 33);
-	r.createKabi(57,29);
+	r.createGod(57,29);
+
+	for(int x=57; x<60; x++) {
+	    g.setTextureGrid(flower2, x, 33, 0);
+	}
 	
 	Renderer.deleteTree(64,54);
     }
 
     public void openSecretPath4() {
+	 // delete the big pokemon there
+	 for(int x=57; x<60; x++) {
+	     for(int y=29; y<32; y++) {
+		 Renderer.deleteTree(x,y);
+	     }
+	 }
+
+	 // change his position in the desert
+	 r.createGod(70,78);
+
+	 ableToOpenLastPath = true;
+
+     }
+
+    public void openSecretPath5() {
 	Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
 	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
 	for(int x=77; x<84; x++) {
@@ -515,4 +557,6 @@ public class GameLogic
 	}
 
     }
+
+    
 }

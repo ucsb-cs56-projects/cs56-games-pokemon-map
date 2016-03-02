@@ -131,9 +131,9 @@ class Building extends GameObject
 		{        
 		    this.createFlower2(x, y);
 		}
-		else if(type.equals("KABI"))
+		else if(type.equals("GOD"))
 		{        
-		    this.createKabi(x, y);
+		    this.createGod(x, y);
 		}
 	}
 
@@ -356,7 +356,7 @@ class Building extends GameObject
 		{
 			for(int hCounter = 0; hCounter < this.height; hCounter ++)
 			{
-			    if(!(wCounter == 3 && hCounter > 10)){
+			    if(!(wCounter == 3 && hCounter > 9)){
 				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
 			    }
 			}
@@ -431,7 +431,7 @@ class Building extends GameObject
 	this.texture = new Texture("BIGPOKEMON", "TileSet_Pkmn", 16*31, 16*17, 16*35, 16*20);
     }
 
-    private void createKabi(int x, int y){
+    private void createGod(int x, int y){
 	// Set Position and width
 	this.width = 3;
 	this.height = 4;
@@ -452,7 +452,7 @@ class Building extends GameObject
 	this.setPos(x, y);
 	
 	// Set Textures, see Renderer
-	this.texture = new Texture("KABI", "TileSet_Pkmn", 16*22, 16*24, 16*25, 16*28);
+	this.texture = new Texture("GOD", "TileSet_Pkmn", 16*22, 16*24, 16*25, 16*28);
     }
 
     private void createBigBuildingLeft(int x, int y){
@@ -676,8 +676,8 @@ class Building extends GameObject
 
     }
 
-                       private void createWater4(int x, int y){
-		// Set Position and width
+    private void createWater4(int x, int y){
+	// Set Position and width
 		this.width = 1;
 		this.height = 1;
 		
