@@ -35,3 +35,14 @@ In order to get the tileset from the actual games, you need to get the images of
 
 ## How to Run
 To start the game, use ant run. It will compile automatically for you.
+
+## How to Play
+--to interact with something, press "h"
+There are six events in total in the game
+1, after we walked in the flowers for some steps (around 20) then go to the grid behind the blue house, there will open a secret path through which we can go through the forest to a new map.
+2, if we go into the big fish's mouth, the fish will create some lakes around the map, and there will be another secret path open (in the first map)
+3, we need to go through the forest again and will find a secret path opened in the left down corner, we can go inside and when we reach the Pokemon ball, press "h" to interact.
+4, then we will find many flowers were created, and another big Pokemon appeared in the town. We need to go around the map, reach that Pokemon, and interact with it, we will see it disappeared and left some red flowers.
+5, go to the desert, where there were originally a big door and many big rocks, we will find the big Pokemon has came here. Interact with it, there will be another secret path opened, right beside us.
+6, go with a secret path, through the lake and forest, we can finally interact with the big robot in the forest! after we interact with it, the map will become very beautiful, and that is the last event. 
+
