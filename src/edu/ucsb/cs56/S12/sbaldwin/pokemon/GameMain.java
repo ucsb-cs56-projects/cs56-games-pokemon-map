@@ -17,11 +17,11 @@ public class GameMain
 	 */
 	public static void main(String args[])
 	{
-		renderer = new Renderer(25 * 32, 25 * 32);
+		renderer = new Renderer(25*32, 25*32);
 		gameLogic = new GameLogic();
 		renderer.loadMap();
 		
-		mw = new MainWindow(25 * 32, 25 * 32);
+		mw = new MainWindow(25*32, 25*32);
 	}
 
         /** Getter for MainWindow

@@ -21,7 +21,7 @@ public class GameObject
 	protected int width;  // Measured in Tiles
 	protected int height; // Measured in Tiles
 	
-	protected GameGrid.GridValue[][] collisionValue;
+        protected GameGrid.GridValue[][] collisionValue;
 	
 	protected Texture texture;
 	

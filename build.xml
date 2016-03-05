@@ -37,6 +37,9 @@
     <copy todir="build/images">
 	<fileset dir="src/edu/ucsb/cs56/S12/sbaldwin/pokemon/images"/>
     </copy>
+    <copy todir="build/music">
+	<fileset dir="src/edu/ucsb/cs56/S12/sbaldwin/pokemon/music"/>
+    </copy>
   </target>
 
   <target name="run" depends="compile">
