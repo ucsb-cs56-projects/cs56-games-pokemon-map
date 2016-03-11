@@ -16,7 +16,7 @@ class Building extends GameObject
 	    @param x xPos of building
 	    @param y yPos of building
 	    @param type the type of building, i.e. PokeCenter, House, tree
-	*/
+		*/
 	public Building(int x, int y, String type)
 	{
 		if(type.equals("POKECENTER"))
@@ -88,37 +88,37 @@ class Building extends GameObject
 		    this.createBigRock(x, y);
 		}
 		else if(type.equals("WATER1"))
-		    {        
+		{        
 			this.createWater1(x, y);
-		    }
+	    }
 		else if(type.equals("WATER2"))
-		    {        
+	    {        
 			this.createWater2(x, y);
-		    }
+		}
 		else if(type.equals("WATER3"))
-		    {        
+	    {        
 			this.createWater3(x, y);
-		    }
+		}
 		else if(type.equals("WATER4"))
-		    {        
+		{        
 			this.createWater4(x, y);
-		    }
+		}
 		else if(type.equals("WATER5"))
-		    {        
+		{        
 			this.createWater5(x, y);
-		    }
+	    }
 		else if(type.equals("WATER6"))
-		    {        
+	    {        
 			this.createWater6(x, y);
-		    }
+	    }
 		else if(type.equals("WATER7"))
-		    {        
+	    {        
 			this.createWater7(x, y);
-		    }
+	    }
 		else if(type.equals("WATER8"))
-		    {        
+	    {        
 			this.createWater8(x, y);
-		    }
+	    }
 		else if(type.equals("WATER9"))
 		{        
 		    this.createWater9(x, y);
@@ -140,7 +140,7 @@ class Building extends GameObject
         /** Creates a Pokecenter (5x5) at (x,y)
 	    @param x xPos of PokeCenter
 	    @param y yPos of PokeCenter
-	*/
+		*/
 	private void createPokeCenter(int x, int y)
 	{
 		// Set Position and width
@@ -169,7 +169,7 @@ class Building extends GameObject
         /** Creates a Pokemart (4x4) at (x,y)
 	    @param x xPos of PokeMart
 	    @param y yPos of PokeMart
-	*/
+		*/
 	private void createPokeMart(int x, int y)
 	{
 		// Set Position and width
@@ -198,7 +198,7 @@ class Building extends GameObject
         /** Creates a base tree, 1x2, (the ones that outline the map) at (x,y)
 	    @param x xPos of base tree
 	    @param y yPos of base tree
-	*/
+		*/
 	private void createBaseTree1(int x, int y)
 	{
 		// Set Position and width
@@ -227,7 +227,7 @@ class Building extends GameObject
         /** Creates a nice tree ,2x2, (the one that is surrounded by grass in this map; they are plentiful in Mossdeep city in R/S/E) at (x,y)
 	    @param x xPos of nice tree
 	    @param y yPos of nice tree
-	*/
+		*/
 	private void createNiceTree1(int x, int y)
 	{
 		// Set Position and width
@@ -256,7 +256,7 @@ class Building extends GameObject
         /** Creates a small house (5x3) at (x,y)
 	    @param x, xPos of small house
 	    @param y, yPos of small house
-	*/
+		*/
         private void createSmallHouse1(int x, int y)
 	{
 		// Set Position and width
@@ -285,7 +285,7 @@ class Building extends GameObject
         /** Creates a medium house (5x5) at (x,y)
 	    @param x xPos of medium house
 	    @param y yPos of meduium house
-	*/	
+		*/	
 	private void createMediumHouse1(int x, int y)
 	{
 		// Set Position and width
@@ -314,7 +314,7 @@ class Building extends GameObject
         /** Creates a large house (7x5) at (x,y)
 	    @param x xPos of large house
 	    @param y yPos of large house
-	*/	
+		*/	
 	private void createLargeHouse1(int x, int y)
 	{
 		// Set Position and width
@@ -341,7 +341,10 @@ class Building extends GameObject
 		this.texture = new Texture("LargeHouse", "TileSet_Main", 16, 1968, 128, 2048);
 	}
 
-    
+    	/** Creates a large house (7x14) at (x,y)
+	    @param x xPos of big fish
+	    @param y yPos of big fish
+		*/	
     private void createBigFish(int x, int y){
 		// Set Position and width
 		this.width = 7;
@@ -368,7 +371,12 @@ class Building extends GameObject
 		this.texture = new Texture("BIG_FISH", "TileSet_Main", 16*8, 16*359, 16*14, 16*373);
     }
 
-        private void createDoor(int x, int y){
+    	/** Creates a door (7xy) at (x,y)
+	    @param x xPos of door
+	    @param y yPos of door
+		*/	
+    
+    private void createDoor(int x, int y){
 		// Set Position and width
 		this.width = 7;
 		this.height = 7;
@@ -378,7 +386,8 @@ class Building extends GameObject
 		// Create Collision Values and Initialize to BLOCKED
 		this.collisionValue = new GameGrid.GridValue[width][height];
 
-		for(int i=1; i<7; i++) {
+		for(int i = 1; i < 7; i++) 
+		{
 		    collisionValue[0][i] = GameGrid.GridValue.BLOCKED;
 		    collisionValue[6][i] = GameGrid.GridValue.BLOCKED;
 		}
@@ -389,7 +398,11 @@ class Building extends GameObject
 		this.texture = new Texture("DOOR", "TileSet_Main", 16*8, 16*401, 16*13, 16*406);
 	}
 
-           private void createRock1(int x, int y){
+    	/** Creates a rock (1x1) at (x,y)
+	    @param x xPos of rock
+	    @param y yPos of rock
+		*/	
+    private void createRock1(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -405,54 +418,58 @@ class Building extends GameObject
 		
 		// Set Textures, see Renderer
 		this.texture = new Texture("ROCK1", "TileSet_Main", 16*3, 16*1, 16*4, 16*2);
-	   }
+	}
 
+    /** Creates a big pokemon (4x3) at (x,y)
+	    @param x xPos of big pokemon
+	    @param y yPos of big pokemon
+		*/	
     private void creatBigPokeMon(int x, int y){
-	// Set Position and width
-	this.width = 4;
-	this.height = 3;
+		// Set Position and width
+		this.width = 4;
+		this.height = 3;
 		
-	this.interactable = false;
+		this.interactable = false;
 	
-	// Create Collision Values and Initialize to BLOCKED
-	this.collisionValue = new GameGrid.GridValue[width][height];
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
 
-	for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
 	    {
-		for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
 		    {
-			collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
 		    }
 	    }
   
-	this.setPos(x, y);
-	
-	// Set Textures, see Renderer
-	this.texture = new Texture("BIGPOKEMON", "TileSet_Pkmn", 16*31, 16*17, 16*35, 16*20);
+		this.setPos(x, y);
+		
+		// Set Textures, see Renderer
+		this.texture = new Texture("BIGPOKEMON", "TileSet_Pkmn", 16*31, 16*17, 16*35, 16*20);
     }
 
     private void createGod(int x, int y){
-	// Set Position and width
-	this.width = 3;
-	this.height = 4;
+		// Set Position and width
+		this.width = 3;
+		this.height = 4;
 		
-	this.interactable = false;
+		this.interactable = false;
 	
-	// Create Collision Values and Initialize to BLOCKED
-	this.collisionValue = new GameGrid.GridValue[width][height];
+		// Create Collision Values and Initialize to BLOCKED
+		this.collisionValue = new GameGrid.GridValue[width][height];
 
-	for(int wCounter = 0; wCounter < this.width; wCounter ++)
+		for(int wCounter = 0; wCounter < this.width; wCounter ++)
 	    {
-		for(int hCounter = 0; hCounter < this.height; hCounter ++)
+			for(int hCounter = 0; hCounter < this.height; hCounter ++)
 		    {
-			collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
+				collisionValue[wCounter][hCounter] = GameGrid.GridValue.BLOCKED;
 		    }
 	    }
   
-	this.setPos(x, y);
+		this.setPos(x, y);
 	
-	// Set Textures, see Renderer
-	this.texture = new Texture("GOD", "TileSet_Pkmn", 16*22, 16*24, 16*25, 16*28);
+		// Set Textures, see Renderer
+		this.texture = new Texture("GOD", "TileSet_Pkmn", 16*22, 16*24, 16*25, 16*28);
     }
 
     private void createBigBuildingLeft(int x, int y){
@@ -479,7 +496,7 @@ class Building extends GameObject
 		this.texture = new Texture("BIG_BUILDING_LEFT", "TileSet_Main", 16*8, 16*373, 16*15, 16*387);
     }
 
-        private void createBigBuildingRight(int x, int y){
+    private void createBigBuildingRight(int x, int y){
 		// Set Position and width
 		this.width = 7;
 		this.height = 14;
@@ -503,7 +520,7 @@ class Building extends GameObject
 		this.texture = new Texture("BIG_BUILDING_RIGHT", "TileSet_Main", 16*8, 16*387, 16*14, 16*401);
     }
 
-     private void createBigBuilding2Left(int x, int y){
+    private void createBigBuilding2Left(int x, int y){
 		// Set Position and width
 		this.width = 8;
 		this.height = 13;
@@ -529,7 +546,7 @@ class Building extends GameObject
 		this.texture = new Texture("BIG_BUILDING_2_LEFT", "TileSet_Main", 16*0, 16*469, 16*8, 16*482);
     }
 
-         private void createBigBuilding2Right(int x, int y){
+    private void createBigBuilding2Right(int x, int y){
 		// Set Position and width
 		this.width = 7;
 		this.height = 13;
@@ -553,7 +570,7 @@ class Building extends GameObject
 		this.texture = new Texture("BIG_BUILDING_2_RIGHT", "TileSet_Main", 16*1, 16*482, 16*8, 16*495);
     }
 
-            private void createPokeball(int x, int y){
+    private void createPokeball(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -577,7 +594,7 @@ class Building extends GameObject
 		this.texture = new Texture("POKEBALL", "TileSet_Main", 16*5, 16*3, 16*6, 16*4);
     }
 
-                private void createBigRock(int x, int y){
+    private void createBigRock(int x, int y){
 		// Set Position and width
 		this.width = 3;
 		this.height = 3;
@@ -601,7 +618,7 @@ class Building extends GameObject
 		this.texture = new Texture("BIG_ROCK", "TileSet_Main", 16*10, 16*21, 16*13, 16*24);
     }
 
-                    private void createWater1(int x, int y){
+    private void createWater1(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -626,7 +643,7 @@ class Building extends GameObject
 
     }
 
-                       private void createWater2(int x, int y){
+    private void createWater2(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -651,7 +668,7 @@ class Building extends GameObject
 
     }
 
-                       private void createWater3(int x, int y){
+    private void createWater3(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -677,7 +694,7 @@ class Building extends GameObject
     }
 
     private void createWater4(int x, int y){
-	// Set Position and width
+		// Set Position and width
 		this.width = 1;
 		this.height = 1;
 		
@@ -701,7 +718,7 @@ class Building extends GameObject
 
     }
 
-                       private void createWater5(int x, int y){
+    private void createWater5(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -726,7 +743,7 @@ class Building extends GameObject
 
     }
 
-                       private void createWater6(int x, int y){
+    private void createWater6(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -751,7 +768,7 @@ class Building extends GameObject
 
     }
 
-                       private void createWater7(int x, int y){
+    private void createWater7(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -776,7 +793,7 @@ class Building extends GameObject
 
     }
 
-                       private void createWater8(int x, int y){
+	private void createWater8(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -826,7 +843,7 @@ class Building extends GameObject
 
     }
 
-       private void createFlower(int x, int y){
+    private void createFlower(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;
@@ -851,7 +868,7 @@ class Building extends GameObject
 
     }
 
-     private void createFlower2(int x, int y){
+    private void createFlower2(int x, int y){
 		// Set Position and width
 		this.width = 1;
 		this.height = 1;

@@ -38,7 +38,7 @@ public class Renderer
 	
 	private BufferedImage TileSet_Main;
 	private BufferedImage TileSet_Characters;
-        private BufferedImage TileSet_Pkmn;
+    private BufferedImage TileSet_Pkmn;
 	
 	private int cameraX;
 	private int cameraY;
@@ -54,7 +54,7 @@ public class Renderer
         /** Two arg constructor
 	    @param width width of game screen
 	    @param height height of game screen
-	*/
+		*/
 	public Renderer(int width, int height)
 	{   
 		// Set Tile size
@@ -79,7 +79,7 @@ public class Renderer
 		finalImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_4BYTE_ABGR);
 		finalBuffer = finalImage.getGraphics();
     		
-    		ClassLoader cl = getClass().getClassLoader();
+    	ClassLoader cl = getClass().getClassLoader();
 		
 		// Load in TileSets
 
@@ -142,7 +142,7 @@ public class Renderer
 	}
 
         /** Loads the map, sets all the buildings and textures, and registers the player
-	 */	
+	 	*/	
 	public void loadMap()
 	{
 	    // play first background music
@@ -195,55 +195,68 @@ public class Renderer
 			}
 		}
 		
-		for(int x = 55; x < 65; x ++) {
-		    for(int y = 27; y < 35; y ++) {
-			if(!(x==64 && y==34)){
-			    gg.setTextureGrid(flower, x, y, 0);
-			}
+		for(int x = 55; x < 65; x ++) 
+		{
+		    for(int y = 27; y < 35; y ++) 
+		    {
+				if(!(x == 64 && y == 34))
+				{
+			    	gg.setTextureGrid(flower, x, y, 0);
+				}
 		    }
 		}
 
 		// Load the snow land
-		for(int x=130; x<150; x++) {
-		    for(int y=70; y<100; y++) {
-			 gg.setTextureGrid(snow, x, y, 0);
+		for(int x = 130; x < 150; x++) 
+		{
+		    for(int y = 70; y < 100; y++) 
+		    {
+			 	gg.setTextureGrid(snow, x, y, 0);
 		    }
 		}
 
 		// Create Trees
-		for(int i=0; i<2; i++) {
+		for(int i = 0; i < 2; i++) 
+		{
 		    for(int counter1 = 0; counter1 < 30; counter1 ++)
 			{
 			    for(int counter2 = 0; counter2 < 30; counter2 ++)
 				{
-				if(counter1 == 0 || counter1 == 29 || counter2 == 0 || counter2 == 29)
+					if(counter1 == 0 || counter1 == 29 || counter2 == 0 || counter2 == 29)
 				    {
-					int x = 37 + counter1 + i*28;  
-					int y = 25 + counter2;
-					creatTree(x, y);
-					//tree = new Building(x, y , "BASE_TREE_1");				    
+						int x = 37 + counter1 + i*28;  
+						int y = 25 + counter2;
+						creatTree(x, y);
+						//tree = new Building(x, y , "BASE_TREE_1");				    
 				    }
 				}
 			}
 		}	
 		createNiceTree(45,36);
 		
-		for(int i=67; i<95; i++) {
-		    for(int j=25; j<41; j++) {
-			if(!((i<92 && i>68) && (j>28 && j<38))) {
-			    creatTree(i,j);
-			}
-			else if (!((i<82 && i>77) && (j>32 && j<36))){
-			    gg.setTextureGrid(flower2, i, j, 0);  // fill the empty space with nice flowers
-			}
+		for(int i = 67; i < 95; i++) 
+		{
+		    for(int j = 25; j < 41; j++) 
+		    {
+				if(!((i < 92 && i > 68) && (j > 28 && j < 38))) 
+				{
+			    	creatTree(i,j);
+				}
+				else if (!((i < 82 && i > 77) && (j > 32 && j < 36)))
+				{
+			    	gg.setTextureGrid(flower2, i, j, 0);  // fill the empty space with nice flowers
+				}
 		    }
 		}		
 
-		for(int x=37; x<151; x++) {
-		    for(int y=25; y<101; y++) {
-			if((x==150 || y==100 || (y==25 && x>64) || (x==37 && y>50))
-			   && (!(y==25 && x > 143) && !(x==150 && y < 32))) {
-			    creatTree(x, y);
+		for(int x = 37; x < 151; x++) 
+		{
+		    for(int y = 25; y < 101; y++) 
+		    {
+				if((x==150 || y==100 || (y==25 && x>64) || (x==37 && y>50))
+			   		&& (!(y==25 && x > 143) && !(x==150 && y < 32))) 
+				{
+			    	creatTree(x, y);
 			    }
 		    }
 		}
@@ -271,52 +284,67 @@ public class Renderer
 		Building bigPokemon = new Building(78, 33, "BIGPOKEMON");
 
 		// set the ground to rockground
-		for(int x=10; x<80; x++) {
-		    for(int y=56; y<120; y++) {
-			gg.setTextureGrid(rockGround, x, y, 0);
+		for(int x=10; x<80; x++) 
+		{
+		    for(int y=56; y<120; y++) 
+		    {
+				gg.setTextureGrid(rockGround, x, y, 0);
 		    }
 		}
 
 		// creat some flowers in the rockground
-		for(int x=70; x<73; x++) {
-		    for(int y=82; y<85; y++) {
-			if(!(x==71 && y==82)) {
-			    gg.setTextureGrid(flower2, x, y, 0);
-			}
+		for(int x=70; x<73; x++) 
+		{
+		    for(int y=82; y<85; y++) 
+		    {
+				if(!(x==71 && y==82)) {
+			    	gg.setTextureGrid(flower2, x, y, 0);
+				}
 		    }
 		}
 
-		for(int x=70; x<73; x++) {
-		    for(int y=79; y<82; y++) {
-			gg.setTextureGrid(flower, x, y, 0);
+		for(int x=70; x<73; x++) 
+		{
+		    for(int y=79; y<82; y++) 
+		    {
+				gg.setTextureGrid(flower, x, y, 0);
 		    }
 		}
 					
 		//create rockes
-		for(int y=55; y<102; y++) {
+		for(int y=55; y<102; y++) 
+		{
 		    // change to trees to rocks
 		    deleteTree(37, y);
-		    if(y!=55) {
-			creatRock(37,y);
-			creatRock(45,y);
-		    }
-		}		
-		for(int x=38; x<85; x++) {
-		    deleteTree(x, 100);
-		    if(x != 41) {
-			creatRock(x,100);
-			creatRock(x,101);
+		    if(y!=55) 
+		    {
+				creatRock(37,y);
+				creatRock(45,y);
 		    }
 		}
-		for(int y=68; y<75; y++) {
+
+		for(int x=38; x<85; x++) {
+		    deleteTree(x, 100);
+		    if(x != 41) 
+		    {
+				creatRock(x,100);
+				creatRock(x,101);
+		    }
+		}
+
+		for(int y=68; y<75; y++) 
+		{
 		    creatRock(76,y);
 		    creatRock(84,y);
 		}
-		for(int x=73; x<89; x+=3) {
+		
+		for(int x=73; x<89; x+=3) 
+		{
 		    creatBigRock(x,79);
 		}
 
-		for(int y=61; y<98; y+=2) {
+		for(int y=61; y<98; y+=2) 
+		{
 		    creatBigRock(38, y);
 		    creatBigRock(42,y);		    
 		}
@@ -633,119 +661,142 @@ public class Renderer
 		return tileHeight;
 	}
 
-    public static void deleteTree(int x, int y) {
-	GameGrid g = GameMain.getRenderer().getGameGrid();
-	g.setCollisionGrid(GameGrid.GridValue.FREE, x, y);
-	g.setCollisionGrid(GameGrid.GridValue.FREE, x, y+1);
-	g.setObjectGrid(null, x, y);	        
+    public static void deleteTree(int x, int y) 
+    {
+		GameGrid g = GameMain.getRenderer().getGameGrid();
+		g.setCollisionGrid(GameGrid.GridValue.FREE, x, y);
+		g.setCollisionGrid(GameGrid.GridValue.FREE, x, y+1);
+		g.setObjectGrid(null, x, y);	        
     }
 
     private static AudioClip loadSound(String filename) {
-	URL fileURL = Renderer.class.getClassLoader().getResource("music/" + filename);
-	if(fileURL == null) {
-	    System.out.println("!!!!!!!!!!!");
-	}
-	return Applet.newAudioClip(fileURL);	
+		URL fileURL = Renderer.class.getClassLoader().getResource("music/" + filename);
+		if(fileURL == null) {
+	    	System.out.println("!!!!!!!!!!!");
+		}
+		return Applet.newAudioClip(fileURL);	
     }
     
     //************************** methods for creating all kinds of buildings ************************************\\
 
-    public void creatPokeball(int x, int y) {
-	Building pokeball = new Building(x, y, "POKEBALL");
+    public void creatPokeball(int x, int y) 
+    {
+		Building pokeball = new Building(x, y, "POKEBALL");
     }
 
-    public void creatPokeCenter(int x, int y) {
-	Building pokeCenter = new Building(x, y, "POKECENTER");creatSmallHouse(55, 35);
+    public void creatPokeCenter(int x, int y) 
+    {
+		Building pokeCenter = new Building(x, y, "POKECENTER");creatSmallHouse(55, 35);
     }
     
-    public void creatPokeMart(int x, int y) {
-	Building pokeMart = new Building(x, y, "POKEMART");
+    public void creatPokeMart(int x, int y) 
+    {
+		Building pokeMart = new Building(x, y, "POKEMART");
     }
     
-    public void creatSmallHouse(int x, int y) {
-	Building smallHouse = new Building(x, y, "HOUSE_SMALL_1");
+    public void creatSmallHouse(int x, int y) 
+    {
+		Building smallHouse = new Building(x, y, "HOUSE_SMALL_1");
     }
 
-    public void creatTree(int x, int y) {
-	Building tree = new Building(x, y, "BASE_TREE_1");
+    public void creatTree(int x, int y) 
+    {
+		Building tree = new Building(x, y, "BASE_TREE_1");
     }
     
-    public void creatMediumHouse(int x, int y) {
-	Building mediumHouse = new Building(x, y, "HOUSE_MEDIUM_1");
+    public void creatMediumHouse(int x, int y) 
+    {
+		Building mediumHouse = new Building(x, y, "HOUSE_MEDIUM_1");
     }
     
-    public void creatlargeHouse(int x, int y) {
-	Building largeHouse = new Building(x, y, "HOUSE_LARGE_1");
+    public void creatlargeHouse(int x, int y) 
+    {
+		Building largeHouse = new Building(x, y, "HOUSE_LARGE_1");
     }
     
-    public void creatbigFish(int x, int y) {
-	Building bigFish = new Building(x, y, "BIG_FISH");
+    public void creatbigFish(int x, int y) 
+    {
+		Building bigFish = new Building(x, y, "BIG_FISH");
     }
     
-    public void creatdoor(int x, int y) {
-	Building door = new Building(x, y, "DOOR");
+    public void creatdoor(int x, int y) 
+    {
+		Building door = new Building(x, y, "DOOR");
     }
     
-    public void creatBigBuilding(int x, int y) {
-	Building bigBuildingLeft = new Building(x, y, "BIG_BUILDING_LEFT");
-	Building bigBuildingRight = new Building(x + 8, y, "BIG_BUILDING_RIGHT");
+    public void creatBigBuilding(int x, int y) 
+    {
+		Building bigBuildingLeft = new Building(x, y, "BIG_BUILDING_LEFT");
+		Building bigBuildingRight = new Building(x + 8, y, "BIG_BUILDING_RIGHT");
     }
     
-    public void creatBigBuilding2(int x, int y) {
-	Building bigBuilding2Left = new Building(x, y, "BIG_BUILDING_2_LEFT");
-	Building bigBuilding2Right = new Building(x + 8, y, "BIG_BUILDING_2_RIGHT");
+    public void creatBigBuilding2(int x, int y) 
+    {
+		Building bigBuilding2Left = new Building(x, y, "BIG_BUILDING_2_LEFT");
+		Building bigBuilding2Right = new Building(x + 8, y, "BIG_BUILDING_2_RIGHT");
     }
 
-    public void creatBigRock(int x, int y) {
-	Building bigRock = new Building(x, y, "BIG_ROCK");
-    }
-    
-    public void createWater(int x, int y, int width, int height) {
-
-	// four vertices
-	Building water1 = new Building(x, y, "WATER1");
-	Building water3 = new Building(x+width, y, "WATER3");
-	Building water7 = new Building(x, y+height, "WATER7");
-	Building water9 = new Building(x+width, y+height, "WATER9");
-
-	// upper edge and lower edge
-	for(int i=x+1; i< x+width; i++) {           
-	    Building water2 = new Building(i, y, "WATER2");
-	    Building water8 = new Building(i, y+height, "WATER8");
-	}
-
-	// left edge and right edge
-	for(int j=y+1; j< y+height; j++) {           
-	    Building water4 = new Building(x, j, "WATER4");
-	    Building water6 = new Building(x+width, j, "WATER6");
-	}
-
-	// fill the middle
-	for(int i=x+1; i< x+width; i++) {
-	    for(int j=y+1; j< y+height; j++) {
-		Building water5 = new Building(i, j, "WATER5");
-	    }
-	}	
+    public void creatBigRock(int x, int y) 
+    {
+		Building bigRock = new Building(x, y, "BIG_ROCK");
     }
     
-    public void creatRock(int x, int y) {
-	Building rock = new Building(x, y, "ROCK1");
+    public void createWater(int x, int y, int width, int height) 
+    {
+
+		// four vertices
+		Building water1 = new Building(x, y, "WATER1");
+		Building water3 = new Building(x+width, y, "WATER3");
+		Building water7 = new Building(x, y+height, "WATER7");
+		Building water9 = new Building(x+width, y+height, "WATER9");
+
+		// upper edge and lower edge
+		for(int i=x+1; i< x+width; i++) 
+		{           
+	    	Building water2 = new Building(i, y, "WATER2");
+	    	Building water8 = new Building(i, y+height, "WATER8");
+		}
+
+		// left edge and right edge
+		for(int j=y+1; j< y+height; j++) 
+		{           
+	    	Building water4 = new Building(x, j, "WATER4");
+	    	Building water6 = new Building(x+width, j, "WATER6");
+		}
+
+		// fill the middle
+		for(int i=x+1; i< x+width; i++) 
+		{
+	    	for(int j=y+1; j< y+height; j++) 
+	    	{
+				Building water5 = new Building(i, j, "WATER5");
+	    	}
+		}	
+    }
+    
+    public void creatRock(int x, int y) 
+    {
+		Building rock = new Building(x, y, "ROCK1");
     }
 
-     public void createFlower(int x, int y) {
-	Building flower = new Building(x, y, "FLOWER");
+    public void createFlower(int x, int y) 
+    {
+		Building flower = new Building(x, y, "FLOWER");
     }
 
-      public void createFlower2(int x, int y) {
-	Building flower2 = new Building(x, y, "FLOWER2");
+    public void createFlower2(int x, int y) 
+    {
+		Building flower2 = new Building(x, y, "FLOWER2");
     }
 
-    public void createNiceTree(int x, int y) {
-	Building tree = new Building(x, y, "NICE_TREE_1");
+    public void createNiceTree(int x, int y) 
+    {
+		Building tree = new Building(x, y, "NICE_TREE_1");
     }
 
-    public void createGod(int x, int y) {
-	Building godPokemon = new Building(x, y, "GOD");
+    public void createGod(int x, int y) 
+    {
+		Building godPokemon = new Building(x, y, "GOD");
     }
 
     
