@@ -68,7 +68,7 @@ public class Vector2 {
     }
 	
     public float cross(Vector2 v) {
-	return v.getX() * y - v.getY() * x;
+	return v.x * y - v.y * x;
     }
 	
     public float cross(float x, float y) {
