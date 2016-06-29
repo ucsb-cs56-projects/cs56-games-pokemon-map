@@ -1,4 +1,4 @@
-package com.GameProjectStuff.Util;
+package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
 public class Vector2 {
 	
@@ -56,19 +56,19 @@ public class Vector2 {
     }
 	
     public double distance(Vector2 v) {
-	fload xd = v.x - x;
+	float xd = v.x - x;
 	float yd = v.y - y;
 	return Math.sqrt(xd * xd + yd * yd);
     }
 	
-    public double distance(double x, double y) {
+    public double distance(float x, float y) {
 	float xd = x - this.x;
 	float yd = y - this.y;
 	return Math.sqrt(xd * xd + yd * yd);
     }
 	
     public float cross(Vector2 v) {
-	return v.getX() * y - v.getY() * x;
+	return v.x * y - v.y * x;
     }
 	
     public float cross(float x, float y) {
