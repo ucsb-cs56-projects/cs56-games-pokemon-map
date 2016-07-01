@@ -23,11 +23,7 @@ import javax.imageio.ImageIO;
 
 public class Renderer
 {
-	private Graphics buffer;
-	private BufferedImage bufferImage;
-	
-	private Graphics finalBuffer;
-	private BufferedImage finalImage;
+	public SpriteBatch spriteBatch;
 	
 	private GameGrid gg;
 	
@@ -55,11 +51,12 @@ public class Renderer
 	    @param width width of game screen
 	    @param height height of game screen
 	*/
-	public Renderer(int width, int height)
-	{   
+	public Renderer(int width, int height, SpriteBatch spriteBatch)
+	{
+        this.spriteBatch = spriteBatch;
 		// Set Tile size
-		this.tileWidth = 32;
-		this.tileHeight = 32; 
+		this.tileWidth = 16;
+		this.tileHeight = 16;
 		
 		// Set width and height
 		this.width = width;
@@ -70,15 +67,6 @@ public class Renderer
 		
 		// Create the new Game Grid
 		gg = new GameGrid(200, 200);
-		
-		// Create the buffer
-		bufferImage = new BufferedImage(this.bufferWidth, this.bufferHeight, BufferedImage.TYPE_4BYTE_ABGR);
-		buffer = bufferImage.getGraphics();
-		
-		// Create the finalBuffer
-		finalImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_4BYTE_ABGR);
-		finalBuffer = finalImage.getGraphics();
-    		
     		ClassLoader cl = getClass().getClassLoader();
 		
 		// Load in TileSets
@@ -86,7 +74,7 @@ public class Renderer
 		//load in buildings and textures
 		try
 		{
-			TileSet_Main = ImageIO.read(cl.getResource("images/TilesetMain.bmp"));
+			TileSet_Main = ImageIO.read(new File("assets/images/TileSet.bmp"));
 		} 
 		catch(IOException ie){
 			System.out.println("Error loading in Images");
@@ -95,7 +83,7 @@ public class Renderer
 		//load in Professor Oak sprite	
 		try
 		{
-			TileSet_Characters = ImageIO.read(cl.getResource("images/NPC_frlg.bmp"));
+			TileSet_Characters = ImageIO.read(new File("assets/images/NPC_frlg.bmp"));
 		} 
 		catch(IOException ie){
 			System.out.println("Error loading in Images");
@@ -104,7 +92,7 @@ public class Renderer
 		//Added in a pikachu sprite
 		try
 		{
-		    TileSet_Pkmn = ImageIO.read(cl.getResource("images/pkmn.bmp"));
+		    TileSet_Pkmn = ImageIO.read(new File("assets/images/pkmn.bmp"));
 		}
 		catch(IOException ie){
 		    System.out.println("Error loading in Images");
@@ -117,14 +105,14 @@ public class Renderer
 		}
 
 		// Load sounds
-		long1 = loadSound("long1.wav");
-		long2 = loadSound("long2.wav");
-		long3 = loadSound("long3.wav");
-		long4 = loadSound("long4.wav");
-		long5 = loadSound("long5.wav");
-		long6 = loadSound("long6.wav");
-		long7 = loadSound("long7.wav");
-		short3 = loadSound("short3.wav");
+		//long1 = loadSound("long1.wav");
+		//long2 = loadSound("long2.wav");
+		//long3 = loadSound("long3.wav");
+		//long4 = loadSound("long4.wav");
+		//long5 = loadSound("long5.wav");
+		//long6 = loadSound("long6.wav");
+		//long7 = loadSound("long7.wav");
+		//short3 = loadSound("short3.wav");
 		/*
 		short1 = loadSound("short1.wav");
 		short2 = loadSound("short2.wav");
@@ -146,14 +134,14 @@ public class Renderer
 	public void loadMap()
 	{
 	    // play first background music
-	    long1.play();
-		Texture grass_Default = new Texture("GRASS_DEFAULT", "TileSet_Main", 16, 0, 32, 16);
-		Texture grass_Wild = new Texture("GRASS_WILD", "TileSet_Main", 0, 16, 16, 32);
-		Texture flower = new Texture("flower", "TileSet_Main", 16*0, 16*36, 16*1, 16*37);
-		Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
-		Texture flower3 = new Texture("flower3", "TileSet_Main", 16*14, 16*189, 16*15, 16*190);
-		Texture rockGround = new Texture("rockGround", "TileSet_Main", 16*6, 16*10, 16*7, 16*11);		
-		Texture snow = new Texture("snow", "TileSet_Main", 16*1, 16*351, 16*2, 16*352);
+	    //long1.play();
+		Texture grass_Default = new Texture(TileSet_Main, 16, 0, 16, 16);
+		Texture grass_Wild = new Texture(TileSet_Main, 0, 16, 16, 16);
+		Texture flower = new Texture(TileSet_Main, 16*0, 16*36, 16, 16);
+		Texture flower2 = new Texture(TileSet_Main, 16*13, 16*39, 16, 16);
+		Texture flower3 = new Texture(TileSet_Main, 16*14, 16*189, 16, 16);
+		Texture rockGround = new Texture(TileSet_Main, 16*6, 16*10, 16, 16);
+		Texture snow = new Texture(TileSet_Main, 16*1, 16*351, 16, 16);
 	        
 		// first set all the map to collision free
 		for(int wCounter = 0; wCounter < gg.getWidth(); wCounter ++)
@@ -268,7 +256,7 @@ public class Renderer
 		creatdoor(77,68);
 	       
 		// create big pokemon in the forest
-		Building bigPokemon = new Building(78, 33, "BIGPOKEMON");
+		Building bigPokemon = new Building(78, 33, "BIGPOKEMON", new Texture(TileSet_Main, 16*31, 16*17, 16*35, 16*20));
 
 		// set the ground to rockground
 		for(int x=10; x<80; x++) {
@@ -327,24 +315,19 @@ public class Renderer
         
 		//create Pikachu
 		//	Player pkmn = new Player(80, 35, Character.Direction.EAST, "PIKACHU", "PIKACHU");
-		Player pkmn = new Player(44, 46, Character.Direction.EAST, "PIKACHU", "PIKACHU");
+		Player pkmn = new Player(44, 46, Character.Direction.EAST, "PIKACHU", "PIKACHU", TileSet_Pkmn);
 		GameMain.gameLogic.registerPkmn(pkmn);
         
 		// Create the player
 		//	Player player = new Player(81, 35, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
-		Player player = new Player(45, 46, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK");
+		Player player = new Player(45, 46, Character.Direction.SOUTH, "PROFESSOR_OAK", "PROFESSOR_OAK", TileSet_Characters);
 		GameMain.gameLogic.registerPlayer(player);
         
        
 	}
 
         /** Clears the buffer
-	 */	
-	public void startRender()
-	{
-		// Reset the buffer
-		clearBuffer();
-	}
+	 */
 
         /** Renders the TextureGrid to the buffer
 	    @param tileXStart initial x point
@@ -353,7 +336,7 @@ public class Renderer
 	    @param tileYEnd terminal Y point
 	*/	
 	// Takes in parameters for starting tile positions and finishing tile positions
-	public void renderTextureGrid(int tileXStart, int tileYStart, int tileXEnd, int tileYEnd)
+	public void renderTextureGrid(int tileXStart, int tileYStart, int tileXEnd, int tileYEnd, SpriteBatch spriteBatch)
 	{
 		
 		// Loop and render
@@ -377,16 +360,7 @@ public class Renderer
 				Texture tex = gg.getTextureGrid(tileX, tileY, 0);
 
 				//buffer.drawImage(makeColorTransparent(tex.getImage(), Color.BLACK),
-				buffer.drawImage(tex.getImage(), 
-					   ((tileX - tileXStart) * tileWidth), 
-					   ((tileY - tileYStart) * tileHeight), 
-					   ((tileX - tileXStart) * tileWidth) + tileWidth, 
-					   ((tileY - tileYStart) * tileHeight) + tileHeight,
-					   0,
-					   0,
-					   16,
-					   16,
-					   null);
+                spriteBatch.draw(tex, new Point((tileX - tileXStart) * tileWidth, (tileY - tileYStart) * tileHeight));
 			}
 		}
 	
@@ -398,7 +372,7 @@ public class Renderer
 	    @param tileXEnd
 	    @param tileYEnd
 	*/
-	public void renderObjectGrid(int tileXStart, int tileYStart, int tileXEnd, int tileYEnd)
+	public void renderObjectGrid(int tileXStart, int tileYStart, int tileXEnd, int tileYEnd, SpriteBatch spriteBatch)
 	{		
 		// Loop and render
 		for(int tileX = tileXStart; tileX <= tileXEnd; tileX++)
@@ -450,14 +424,8 @@ public class Renderer
 		}
 		
 		// Render object
-		
-		buffer.drawImage(gObject.getTexture().getImage(),
-				 tileX * tileWidth + gObject.getXOffset(),
-				 tileY * tileHeight + gObject.getYOffset(),
-				 gObject.getWidth() * tileWidth,
-				 gObject.getHeight() * tileHeight,
-				 null);
-	
+		spriteBatch.draw(gObject.texture, new Point(tileX * tileWidth + gObject.getXOffset(),
+                tileY * tileHeight + gObject.getYOffset()));
 	}
 
         /** Moves the buffer to the final buffer
@@ -469,47 +437,11 @@ public class Renderer
 	    @param height
 	*/
 	// Measured in tiles except offsets(measured in pixels)
-	public void drawFinalImage(int xpos, int ypos, int xOff, int yOff, int width, int height)
-	{
-		finalBuffer.drawImage(bufferImage, 0, 0, this.width, this.height,
-					      (xpos * tileWidth) + xOff, 
-					      (ypos * tileHeight) + yOff, 
-					      (xpos * tileWidth) + xOff + (width * tileWidth), 
-					      (ypos * tileHeight) + yOff + (height * tileHeight), 
-					      null);
-		
-	}
     
         /** Fills the Buffer with all black
 	 */	
 	public void clearBuffer()
 	{
-		buffer.setColor(Color.black);
-		buffer.fillRect(0, 0, bufferWidth, bufferHeight);
-	}
-    
-        /** Getter for buffer
-	    @return buffer
-	*/
-	public Graphics getBufferGraphics()
-	{
-		return buffer;
-	}
-
-        /** Getter for bufferImage
-	    @return bufferImage
-	*/
-	public BufferedImage getBufferImage()
-	{
-		return bufferImage;
-	}
-    
-        /** Getter for finalImage
-	    @return finalImage
-	*/
-	public BufferedImage getFinalImage()
-	{
-		return finalImage;
 	}
 
         /** Getter for GameGrid
@@ -641,111 +573,124 @@ public class Renderer
     }
 
     private static AudioClip loadSound(String filename) {
+        return null;
+        /*
 	URL fileURL = Renderer.class.getClassLoader().getResource("music/" + filename);
 	if(fileURL == null) {
 	    System.out.println("!!!!!!!!!!!");
 	}
-	return Applet.newAudioClip(fileURL);	
+	return Applet.newAudioClip(fileURL);	*/
     }
     
     //************************** methods for creating all kinds of buildings ************************************\\
 
     public void creatPokeball(int x, int y) {
-	Building pokeball = new Building(x, y, "POKEBALL");
+	Building pokeball = new Building(x, y, "POKEBALL", new Texture(TileSet_Main, 16*5, 16*3, 16*6, 16*4));
     }
 
     public void creatPokeCenter(int x, int y) {
-	Building pokeCenter = new Building(x, y, "POKECENTER");creatSmallHouse(55, 35);
+	Building pokeCenter = new Building(x, y, "POKECENTER", new Texture(TileSet_Main, new Rectangle(0, 720, 80, 800)));
+        creatSmallHouse(55, 35);
     }
     
     public void creatPokeMart(int x, int y) {
-	Building pokeMart = new Building(x, y, "POKEMART");
+	Building pokeMart = new Building(x, y, "POKEMART",
+            new Texture(TileSet_Main, new Rectangle(0, 656, 64, 720)));
     }
     
     public void creatSmallHouse(int x, int y) {
-	Building smallHouse = new Building(x, y, "HOUSE_SMALL_1");
+	Building smallHouse = new Building(x, y, "HOUSE_SMALL_1",
+            new Texture(TileSet_Main, 0, 1840, 80, 1888));
     }
 
     public void creatTree(int x, int y) {
-	Building tree = new Building(x, y, "BASE_TREE_1");
+	Building tree = new Building(x, y, "BASE_TREE_1",
+            new Texture(TileSet_Main, 240, 3632, 256, 3664));
     }
     
     public void creatMediumHouse(int x, int y) {
-	Building mediumHouse = new Building(x, y, "HOUSE_MEDIUM_1");
+	Building mediumHouse = new Building(x, y, "HOUSE_MEDIUM_1",
+            new Texture(TileSet_Main, 0, 1888, 80, 1968));
     }
     
     public void creatlargeHouse(int x, int y) {
-	Building largeHouse = new Building(x, y, "HOUSE_LARGE_1");
+	Building largeHouse = new Building(x, y, "HOUSE_LARGE_1",
+            new Texture(TileSet_Main, 16, 1968, 128, 2048));
     }
     
     public void creatbigFish(int x, int y) {
-	Building bigFish = new Building(x, y, "BIG_FISH");
+	Building bigFish = new Building(x, y, "BIG_FISH",
+            new Texture(TileSet_Main, 16*8, 16*359, 16*14, 16*373));
     }
     
     public void creatdoor(int x, int y) {
-	Building door = new Building(x, y, "DOOR");
+	Building door = new Building(x, y, "DOOR",
+            new Texture(TileSet_Main, 16*8, 16*401, 16*13, 16*406));
     }
     
     public void creatBigBuilding(int x, int y) {
-	Building bigBuildingLeft = new Building(x, y, "BIG_BUILDING_LEFT");
-	Building bigBuildingRight = new Building(x + 8, y, "BIG_BUILDING_RIGHT");
+	Building bigBuildingLeft = new Building(x, y, "BIG_BUILDING_LEFT", new Texture(TileSet_Main, 16*8, 16*373, 16, 16));
+	Building bigBuildingRight = new Building(x + 8, y, "BIG_BUILDING_RIGHT", new Texture(TileSet_Main, 16*8, 16*387, 16, 16));
     }
     
     public void creatBigBuilding2(int x, int y) {
-	Building bigBuilding2Left = new Building(x, y, "BIG_BUILDING_2_LEFT");
-	Building bigBuilding2Right = new Building(x + 8, y, "BIG_BUILDING_2_RIGHT");
+	Building bigBuilding2Left = new Building(x, y, "BIG_BUILDING_2_LEFT", new Texture(TileSet_Main, 16*0, 16*469, 16, 16));
+	Building bigBuilding2Right = new Building(x + 8, y, "BIG_BUILDING_2_RIGHT", new Texture(TileSet_Main, 16*1, 16*482, 16, 16));
     }
 
     public void creatBigRock(int x, int y) {
-	Building bigRock = new Building(x, y, "BIG_ROCK");
+	Building bigRock = new Building(x, y, "BIG_ROCK", new Texture(TileSet_Main, 16*10, 16*21, 16, 16));
     }
     
     public void createWater(int x, int y, int width, int height) {
 
 	// four vertices
-	Building water1 = new Building(x, y, "WATER1");
-	Building water3 = new Building(x+width, y, "WATER3");
-	Building water7 = new Building(x, y+height, "WATER7");
-	Building water9 = new Building(x+width, y+height, "WATER9");
+	Building water1 = new Building(x, y, "WATER1", new Texture(TileSet_Main, 16*5, 16*26, 16, 16));
+	Building water3 = new Building(x+width, y, "WATER3", new Texture(TileSet_Main, 16*7, 16*26, 16, 16));
+	Building water7 = new Building(x, y+height, "WATER7", new Texture(TileSet_Main, 16*5, 16*28, 16, 16));
+	Building water9 = new Building(x+width, y+height, "WATER9", new Texture(TileSet_Main, 16*7, 16*28, 16, 16));
 
 	// upper edge and lower edge
 	for(int i=x+1; i< x+width; i++) {           
-	    Building water2 = new Building(i, y, "WATER2");
-	    Building water8 = new Building(i, y+height, "WATER8");
+	    Building water2 = new Building(i, y, "WATER2", new Texture(TileSet_Main,  16*6, 16*26, 16, 16));
+	    Building water8 = new Building(i, y+height, "WATER8", new Texture(TileSet_Main, 16*6, 16*28, 16, 16));
 	}
 
 	// left edge and right edge
 	for(int j=y+1; j< y+height; j++) {           
-	    Building water4 = new Building(x, j, "WATER4");
-	    Building water6 = new Building(x+width, j, "WATER6");
+	    Building water4 = new Building(x, j, "WATER4", new Texture(TileSet_Main, 16*5, 16*27, 16, 16));
+	    Building water6 = new Building(x+width, j, "WATER6", new Texture(TileSet_Main, 16*7, 16*27, 16, 16));
 	}
 
 	// fill the middle
 	for(int i=x+1; i< x+width; i++) {
 	    for(int j=y+1; j< y+height; j++) {
-		Building water5 = new Building(i, j, "WATER5");
+		Building water5 = new Building(i, j, "WATER5", new Texture(TileSet_Main, 16*6, 16*27, 16, 16));
 	    }
 	}	
     }
     
     public void creatRock(int x, int y) {
-	Building rock = new Building(x, y, "ROCK1");
+	Building rock = new Building(x, y, "ROCK1",
+            new Texture(TileSet_Main, 16*3, 16*1, 16, 16));
     }
 
      public void createFlower(int x, int y) {
-	Building flower = new Building(x, y, "FLOWER");
+	Building flower = new Building(x, y, "FLOWER", new Texture(TileSet_Main, 16*14, 16*189, 16, 16));
     }
 
       public void createFlower2(int x, int y) {
-	Building flower2 = new Building(x, y, "FLOWER2");
+	Building flower2 = new Building(x, y, "FLOWER2", new Texture(TileSet_Main, 16*14, 16*182, 16, 16));
     }
 
     public void createNiceTree(int x, int y) {
-	Building tree = new Building(x, y, "NICE_TREE_1");
+	Building tree = new Building(x, y, "NICE_TREE_1",
+            new Texture(TileSet_Main, 192, 3696, 16, 16));
     }
 
     public void createGod(int x, int y) {
-	Building godPokemon = new Building(x, y, "GOD");
+	Building godPokemon = new Building(x, y, "GOD",
+            new Texture(TileSet_Pkmn, 16*22, 16*24, 16, 16));
     }
 
     
