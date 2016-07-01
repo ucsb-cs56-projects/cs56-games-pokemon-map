@@ -33,7 +33,7 @@ public class MainWindow extends JPanel
         super.paintComponent(g);
         g.setColor(Color.black);
         g.drawRect(0, 0, width, height);
-        draw(g);
+        this.draw(new SpriteBatch(g));
     }
 
     public void run() {
@@ -73,7 +73,7 @@ public class MainWindow extends JPanel
 
     }
 
-    private void draw(Graphics g) {
-        g.drawImage(image, 0, 0, null);
+    private void draw(SpriteBatch spriteBatch) {
+        spriteBatch.draw(new Texture(image, 0, 0, 16, 16), new Point(0, 0));
     }
 }
