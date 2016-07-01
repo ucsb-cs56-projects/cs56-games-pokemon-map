@@ -13,11 +13,13 @@ import java.awt.event.KeyEvent;
     @author Marcus Liou
     @author Alec Harrell
 */
-class GamePanel extends JPanel implements KeyListener
+class GamePanel extends JPanel
 {
 	private int width;
 	private int height;
 	Renderer renderer;
+	private boolean[] keys;
+	private GameLogic gameLogic;
 
         /** Two arg Constructor
 	    @param width width of the panel
@@ -28,10 +30,17 @@ class GamePanel extends JPanel implements KeyListener
 		this.width = width;
 		this.height = height;
 		
-		renderer = GameMain.getRenderer();
+		renderer = new Renderer(width, height);
+		gameLogic = new GameLogic();
 		
-		this.addKeyListener(this);
+		this.addKeyListener(gameLogic.ip);
 		this.setFocusable(true);
+	}
+
+	public void update() {
+		gameLogic.updateInput();
+		gameLogic.updatePhysics();
+
 	}
 
         /** Overriding paintComponent
@@ -41,7 +50,6 @@ class GamePanel extends JPanel implements KeyListener
 	{
 	        
 	    // render the texture grid
-	    GameMain.gameLogic.renderNextFrame();
 	    
 	    // Draws the back buffer
 	    g.drawImage(renderer.getFinalImage(), 0, 0, this);
@@ -74,30 +82,9 @@ class GamePanel extends JPanel implements KeyListener
 		}
 	}
 	
-	
-	////////////////////////////INPUT///////////////////////////////	
-	
-        /** Notifies GameLogic that a key has been pressed
-	    @param e the KeyEvent
-	*/
-	public void keyPressed(KeyEvent e)
-	{
-		GameMain.gameLogic.sendKeyPressed(e);	
-	}
 
-        /** Notifies GameLogic that a key has been released
-	    @param e the KeyEvent
-	*/
-	public void keyReleased(KeyEvent e)
-	{
-		GameMain.gameLogic.sendKeyReleased(e);
+	public boolean[] getKeys() {
+		return keys;
 	}
-    	
-	public void keyTyped(KeyEvent e)
-	{
-	
-	
-	}
-    
 
 }//end braces for GamePanel

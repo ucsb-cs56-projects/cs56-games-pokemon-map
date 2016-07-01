@@ -21,11 +21,11 @@ public class GameObject
 	protected int width;  // Measured in Tiles
 	protected int height; // Measured in Tiles
 	
-        protected GameGrid.GridValue[][] collisionValue;
+	protected GameGrid.GridValue[][] collisionValue;
 	
 	protected Texture texture;
 	
-        protected boolean pkmn;
+	protected boolean pkmn;
 	protected boolean interactable;
 	
         /** No arg constructor
@@ -59,7 +59,7 @@ public class GameObject
             }
 		// Set the position (Has to be after the Initialization of collisionValues
 		this.setPos(x, y);
-		
+
 		
 	}
 
@@ -86,7 +86,7 @@ public class GameObject
 	{
 		return yPos;
 	}
-    
+
         /** Getter for xPos
 	    @return xPos horizontal position of object
 	*/

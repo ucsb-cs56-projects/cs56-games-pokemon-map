@@ -2,6 +2,9 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
 ///// Starting point for game
 
+import javax.swing.*;
+import java.awt.*;
+
 /** Starting point for the game. Creates a Renderer, GameLogic, and MainWindow Object.
     @author Samuel Baldwin
     @author Marcus Liou
@@ -9,42 +12,31 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 */
 public class GameMain
 {
-	public static Renderer renderer;
-	private static MainWindow mw;
-	public static GameLogic gameLogic;
 
         /** The starting point for the pokemon map game
 	 */
 	public static void main(String args[])
 	{
-		renderer = new Renderer(25*32, 25*32);
-		gameLogic = new GameLogic();
-		renderer.loadMap();
-		
-		mw = new MainWindow(25*32, 25*32);
-	}
+		int width = 25*32;
+		int height = 25*32;
 
-        /** Getter for MainWindow
-	    @return mw 
-	*/
-	public static MainWindow getMainWindow()
-	{
-		return mw;
-	}
+		//Create a new JFrame, with the GamePanel located in the center region
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        /** Getter for Renderer
-	    @return renderer
-	*/
-	public static Renderer getRenderer()
-	{
-		return renderer;
-	}
+		GamePanel gp = new GamePanel(width, height);
 
-        /** Getter for GameLogic
-	    @return gameLogic
-	*/
-	public static GameLogic getGameLogic()
-	{
-		return gameLogic;
+		frame.setSize(width, height);
+		frame.getContentPane().add(BorderLayout.CENTER, gp);
+		frame.setLocation(50, 50);
+		frame.setVisible(true);
+
+		// Account for size of Border
+		Insets insets = frame.getInsets();
+		frame.setSize((width + insets.left + insets.right)+176, (height + insets.top + insets.bottom)+176);
+		//window is -176 so that it renders the entire game space
+
+		//Start the game panel
+		gp.startLoop();
 	}
 }

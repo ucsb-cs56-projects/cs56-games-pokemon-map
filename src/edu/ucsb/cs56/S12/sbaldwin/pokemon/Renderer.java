@@ -420,7 +420,7 @@ public class Renderer
 				if(gObject.getCollisionValue(wCounter, hCounter) != GameGrid.GridValue.FREE)
 				{
 					gg.setCollisionGrid(gObject.getCollisionValue(wCounter, hCounter),
-										     (gObject.getXPos() + wCounter), 
+										     (gObject.getXPos() + wCounter),
 										     (gObject.getYPos() + hCounter));
 				}
 			}
