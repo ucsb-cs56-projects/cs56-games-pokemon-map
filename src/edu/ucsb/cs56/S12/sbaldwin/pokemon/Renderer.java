@@ -120,12 +120,15 @@ public class Renderer
 		*/
 		
 		// Make Black areas transparent
+		TileSet_Main = addImage("images/TilesetMain.bmp");
 		TileSet_Main = imageToBufferedImage(makeColorTransparent(TileSet_Main, Color.black));
 		
-		// Make Pink areas transparent
+		// Make Pink areas transparen
+		TileSet_Characters = addImage("images/NPC_frlg.bmp");
 		TileSet_Characters = imageToBufferedImage(makeColorTransparent(TileSet_Characters, new Color(255, 0, 255)));
         
 		//Make White areas transparent
+		TileSet_Pkmn = addImage("images/pkmn.bmp");
 		TileSet_Pkmn = imageToBufferedImage(makeColorTransparent(TileSet_Pkmn, Color.white));
 	}
 
@@ -692,6 +695,16 @@ public class Renderer
 	Building godPokemon = new Building(x, y, "GOD",
             new Texture(TileSet_Pkmn, 16*22, 16*24, 16, 16));
     }
-
-    
+ 
+    private BufferedImage addImage(String name) {
+	BufferedImage img = null;
+        try {
+	    File f = new File("build/" + name);
+	    System.out.println(f.getAbsolutePath());
+	    img = ImageIO.read(f);
+	} catch (IOException e) {
+	    System.out.println(e);
+	}
+	return img;
+    }
 }
