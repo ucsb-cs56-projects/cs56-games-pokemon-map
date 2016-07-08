@@ -18,8 +18,6 @@
   <property name="projectPath" value="${course}/${quarter}/issues/${issueNum}" />
   <property name="javadocDest" value="${webRoot}/${projectPath}/javadoc" /> 
   <property name="javadocURL" value="${webBaseUrl}/${projectPath}/javadoc" /> 
-  <property name="jwsDest" value="${webRoot}/${projectPath}/jws" /> 
-  <property name="jwsURL" value="${webBaseUrl}/${projectPath}/jws" /> 
 
 
   <path id="project.class.path">
@@ -152,7 +150,7 @@
 </target> 
  
  
- <target name="publish" depends="jar,javadoc,download,jws,linenumbers">
+ <target name="publish" depends="jar,javadoc,download,linenumbers">
    <mkdir dir="${webRoot}/${projectPath}" />
   
    <delete dir="${webRoot}/${projectPath}/browse" />
