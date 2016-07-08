@@ -23,6 +23,8 @@ public class MainWindow extends JPanel
     int height;
     static final long maxTime = 16666;
     BufferedImage image;
+    GameLogic gameLogic;
+    Renderer renderer; // Move gameLogic and renderer out of GameMain so they don't have to be static
     public MainWindow(int width, int height) {
         this.width = width;
         this.height = height;
