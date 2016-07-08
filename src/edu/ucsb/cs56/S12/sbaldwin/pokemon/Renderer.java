@@ -79,42 +79,11 @@ public class Renderer
 		finalImage = new BufferedImage(this.width, this.height, BufferedImage.TYPE_4BYTE_ABGR);
 		finalBuffer = finalImage.getGraphics();
     		
-    		ClassLoader cl = getClass().getClassLoader();
 		
 		// Load in TileSets
 
 		//load in buildings and textures
-		try
-		{
-			TileSet_Main = ImageIO.read(cl.getResource("images/TilesetMain.bmp"));
-		} 
-		catch(IOException ie){
-			System.out.println("Error loading in Images");
-		}		
-	
-		//load in Professor Oak sprite	
-		try
-		{
-			TileSet_Characters = ImageIO.read(cl.getResource("images/NPC_frlg.bmp"));
-		} 
-		catch(IOException ie){
-			System.out.println("Error loading in Images");
-		}
-        
-		//Added in a pikachu sprite
-		try
-		{
-		    TileSet_Pkmn = ImageIO.read(cl.getResource("images/pkmn.bmp"));
-		}
-		catch(IOException ie){
-		    System.out.println("Error loading in Images");
-		}
-        
-		
-		if(TileSet_Characters == null)
-		{
-			System.out.println("Error loading in Images");
-		}
+  
 
 		// Load sounds
 		long1 = loadSound("long1.wav");
@@ -132,12 +101,15 @@ public class Renderer
 		*/
 		
 		// Make Black areas transparent
+		TileSet_Main = addImage("images/TilesetMain.bmp");
 		TileSet_Main = imageToBufferedImage(makeColorTransparent(TileSet_Main, Color.black));
 		
-		// Make Pink areas transparent
+		// Make Pink areas transparen
+		TileSet_Characters = addImage("images/NPC_frlg.bmp");
 		TileSet_Characters = imageToBufferedImage(makeColorTransparent(TileSet_Characters, new Color(255, 0, 255)));
         
 		//Make White areas transparent
+		TileSet_Pkmn = addImage("images/pkmn.bmp");
 		TileSet_Pkmn = imageToBufferedImage(makeColorTransparent(TileSet_Pkmn, Color.white));
 	}
 
@@ -747,6 +719,16 @@ public class Renderer
     public void createGod(int x, int y) {
 	Building godPokemon = new Building(x, y, "GOD");
     }
-
-    
+ 
+    private BufferedImage addImage(String name) {
+	BufferedImage img = null;
+        try {
+	    File f = new File("build/" + name);
+	    System.out.println(f.getAbsolutePath());
+	    img = ImageIO.read(f);
+	} catch (IOException e) {
+	    System.out.println(e);
+	}
+	return img;
+    }
 }
