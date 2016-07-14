@@ -11,7 +11,7 @@
   <property name="course" value="cs56" />
   <property name="quarter" value="S12" />
   <property name="issueNum" value="0000748" />
-  <property name="mainClass" value="edu.ucsb.cs56.S12.sbaldwin.pokemon.GameMain" />
+  <property name="mainClass" value="edu.ucsb.cs56.S12.sbaldwin.pokemon.framework.Main" />
 
 
   <property name="projectName" value="${course}_${quarter}_${issueNum}" />
@@ -152,7 +152,7 @@
 </target> 
  
  
- <target name="publish" depends="jar,javadoc,download,jws,linenumbers">
+ <target name="publish" depends="jar,javadoc,download,linenumbers">
    <mkdir dir="${webRoot}/${projectPath}" />
   
    <delete dir="${webRoot}/${projectPath}/browse" />
