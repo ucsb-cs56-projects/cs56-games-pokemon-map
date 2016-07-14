@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
     @author Alec Harrell
 */
 
-class Texture
+public class Texture
 {
 	BufferedImage tileSheet;
     Rectangle bounds;
