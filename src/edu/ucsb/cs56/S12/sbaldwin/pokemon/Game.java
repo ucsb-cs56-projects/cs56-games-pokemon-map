@@ -1,6 +1,7 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.framework.MainWindow;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.SpriteBatch;
 
 /**
  * Created by William Bennett on 7/14/2016.

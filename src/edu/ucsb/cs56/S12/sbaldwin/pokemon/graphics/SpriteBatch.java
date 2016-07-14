@@ -1,6 +1,5 @@
-package edu.ucsb.cs56.S12.sbaldwin.pokemon;
+package edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -9,6 +8,7 @@ import java.awt.image.BufferedImage;
  */
 public class SpriteBatch {
     Graphics graphicsDevice;
+
     public SpriteBatch(Graphics graphicsDevice) {
         this.graphicsDevice = graphicsDevice;
     }

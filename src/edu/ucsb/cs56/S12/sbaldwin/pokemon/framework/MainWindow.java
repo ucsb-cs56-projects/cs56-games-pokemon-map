@@ -1,17 +1,9 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.framework;
 
-import edu.ucsb.cs56.S12.sbaldwin.pokemon.SpriteBatch;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.SpriteBatch;
 
-import javax.imageio.ImageIO;
-import javax.management.timer.Timer;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.sql.Time;
-import java.util.*;
 
 /** The window frame for the Pokemon map game
     @author William Bennett
