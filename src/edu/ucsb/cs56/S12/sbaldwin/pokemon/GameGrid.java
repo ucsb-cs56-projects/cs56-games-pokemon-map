@@ -1,5 +1,7 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.Texture;
+
 /** The class to hold and interact with the Collison, Texture and Object values at each point in the grid
     @author Samuel Baldwin
     @author Marcus Liou
