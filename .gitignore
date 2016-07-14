@@ -8,3 +8,4 @@ jws/
 # Intellij files #
 *.iml
 .idea/*
+out/*
