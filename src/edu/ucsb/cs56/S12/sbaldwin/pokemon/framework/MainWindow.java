@@ -5,16 +5,18 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.SpriteBatch;
 import javax.swing.*;
 import java.awt.*;
 
-/** The window frame for the Pokemon map game
-    @author William Bennett
-*/
-public class MainWindow extends JPanel
-{
+/**
+ * The window frame for the Pokemon map game
+ *
+ * @author William Bennett
+ */
+public class MainWindow extends JPanel {
     boolean running = true;
     int width = 640;
     int height = 480;
     static final long maxTime = 16666;
     static final float gameFrameTime = 16.666f;
+
     private JFrame containerWindow;
     private boolean initialized = false;
 
@@ -49,8 +51,7 @@ public class MainWindow extends JPanel
             deltaT = System.nanoTime() - currentTime;
             try {
                 Thread.sleep(Math.max((maxTime - deltaT) / 1000, 0));
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 System.err.println("Thread interrupted");
             }
             currentTime = System.nanoTime();

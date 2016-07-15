@@ -20,7 +20,7 @@ public class AnimationFrame {
 
     public boolean equals(Object o) {
         if (o instanceof AnimationFrame) {
-            AnimationFrame a = (AnimationFrame)o;
+            AnimationFrame a = (AnimationFrame) o;
             return (this.texture == a.texture && this.frameLength == a.frameLength);
         }
         return false;

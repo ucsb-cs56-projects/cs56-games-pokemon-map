@@ -1,5 +1,11 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.Command;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.InteractCommand;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.MoveCommand;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.PositionComponent;
+
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -8,65 +14,92 @@ import java.awt.event.KeyListener;
  */
 public class InputHandler implements KeyListener {
 
-    boolean[] keys;
-    
+    public static boolean[] keys;
+    public MoveCommand moveCommand;
+
     public void InputHandler() {
         keys = new boolean[5];
     }
 
-    public void update() {
+    public void updateMovement(PositionComponent positionComponent) {
+        Point moveTo = (Point) positionComponent.position.clone();
         if (keys[0]) {
-            // move up
+            moveTo.move(0, -16); // Assuming each tile is 16 x 16, so you move 16 pixels over
         } else if (keys[1]) {
-            // move down
+            moveTo.move(0, 16);
         } else if (keys[2]) {
-            // move left
+            moveTo.move(-16, 0);
         } else if (keys[3]) {
-            // move right
+            moveTo.move(16, 0);
         } else {
-            // don't move
+            return;
         }
-        if(keys[4]) {
-            // interact
-        }
+        moveCommand = new MoveCommand(positionComponent, moveTo);
     }
 
-    /** Checks if a key is pressed, then set that in the boolean array
-     @param e the KeyEvent
+    public Command updateInteract(PositionComponent positionComponent, World world) {
+        if (keys[4]) {
+            return new InteractCommand(positionComponent, world);
+        }
+        return null;
+    }
+
+    /**
+     * Checks if a key is pressed, then set that in the boolean array
+     *
+     * @param e the KeyEvent
      */
-    public void keyPressed(KeyEvent e)
-    {
-        switch(e.getKeyCode())
-        {
-            case KeyEvent.VK_W : keys[0] = true; break;
-            case KeyEvent.VK_S : keys[1] = true; break;
-            case KeyEvent.VK_A : keys[2] = true; break;
-            case KeyEvent.VK_D : keys[3] = true; break;
-            case KeyEvent.VK_H : keys[4] = true; break;
-            default: break;
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:
+                keys[0] = true;
+                break;
+            case KeyEvent.VK_S:
+                keys[1] = true;
+                break;
+            case KeyEvent.VK_A:
+                keys[2] = true;
+                break;
+            case KeyEvent.VK_D:
+                keys[3] = true;
+                break;
+            case KeyEvent.VK_H:
+                keys[4] = true;
+                break;
+            default:
+                break;
         }
     }
 
-    /** Checks if a key is released, then set that in the boolean array
-     @param e the KeyEvent
+    /**
+     * Checks if a key is released, then set that in the boolean array
+     *
+     * @param e the KeyEvent
      */
-    public void keyReleased(KeyEvent e)
-    {
-        switch(e.getKeyCode())
-        {
-            case KeyEvent.VK_W : keys[0] = false; break;
-            case KeyEvent.VK_S : keys[1] = false; break;
-            case KeyEvent.VK_A : keys[2] = false; break;
-            case KeyEvent.VK_D : keys[3] = false; break;
-            case KeyEvent.VK_H : keys[4] = false; break;
-            default: break;
+    public void keyReleased(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:
+                keys[0] = false;
+                break;
+            case KeyEvent.VK_S:
+                keys[1] = false;
+                break;
+            case KeyEvent.VK_A:
+                keys[2] = false;
+                break;
+            case KeyEvent.VK_D:
+                keys[3] = false;
+                break;
+            case KeyEvent.VK_H:
+                keys[4] = false;
+                break;
+            default:
+                break;
         }
     }
 
 
-
-    public void keyTyped(KeyEvent e)
-    {
+    public void keyTyped(KeyEvent e) {
 
 
     }
