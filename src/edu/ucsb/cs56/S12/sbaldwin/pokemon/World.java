@@ -9,13 +9,21 @@ import java.util.HashSet;
 public class World {
 
     private int[][] tiles; // Change this to tile class later when merge occurs
-    private HashSet<GameObject> entities; // Change to our storage of ecs later
+    private HashSet<Entity> entities; // Change to our storage of ecs later
 
     // Basic skeleton for world class
-    public World(int[][] tiles, HashSet<GameObject> entites) {
+    public World(int[][] tiles, HashSet<Entity> entites) {
         this.tiles = tiles;
         this.entities = entities;
     }
 
+    public World(int[][] tiles) {
+	this.tiles = tiles;
+	entites = new HashSet<Entity>();
+    }
+
+    public void addEntity(Entity e) {
+	entities.add(e);
+    }
 
 }
