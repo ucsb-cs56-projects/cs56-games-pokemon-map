@@ -15,11 +15,22 @@ public class Entity {
     }
 
     public ArrayList<Component> getComponents() {
-	return components;
+        return components;
     }
 
-    public void addComponent(Component comp) {
+   public Component getComponent(Class type) {
+       for (Component c : components) {
+           if (c.getClass().equals(type))
+               return c;
+       }
+       return null;
+   }
+
+
+    // Returns itself to allow for call chaining
+    public Entity addComponent(Component comp) {
         components.add(comp);
+        return this;
     }
     
     

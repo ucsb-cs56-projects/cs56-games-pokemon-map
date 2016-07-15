@@ -1,5 +1,7 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.components;
 
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.World;
+
 public class PlayerController extends Controller {
 
     Entity entity;
