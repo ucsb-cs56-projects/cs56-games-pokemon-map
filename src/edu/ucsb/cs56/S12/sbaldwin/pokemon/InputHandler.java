@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 public class InputHandler implements KeyListener {
 
     boolean[] keys;
-
+    
     public void InputHandler() {
         keys = new boolean[5];
     }
