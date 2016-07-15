@@ -16,7 +16,6 @@ public class World {
     public World(int[][] tiles, HashSet<Entity> entites) {
         this.tiles = tiles;
         this.entities = entities;
-	gg = new GameGrid(200, 200);
     }
 
     public World(int[][] tiles) {
