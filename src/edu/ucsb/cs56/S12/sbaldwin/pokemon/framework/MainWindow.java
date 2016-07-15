@@ -18,7 +18,7 @@ public class MainWindow extends JPanel {
     static final float gameFrameTime = 16.666f;
 
     private JFrame containerWindow;
-    private boolean initialized = false;
+    volatile private boolean initialized = false;
 
     public MainWindow() {
         containerWindow = new JFrame();
@@ -44,7 +44,7 @@ public class MainWindow extends JPanel {
         long deltaT = 0;
         load();
         init();
-
+        initialized = true;
         while (running) {
             update(gameFrameTime);
             repaint();
@@ -59,7 +59,6 @@ public class MainWindow extends JPanel {
     }
 
     protected void init() {
-        initialized = true;
     }
 
     protected void load() {
