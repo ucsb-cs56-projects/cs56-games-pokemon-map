@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.S12.sbaldwin.pokemon;
+package edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
     @author Alec Harrell
 */
 
-class Texture
+public class Texture
 {
 	BufferedImage tileSheet;
     Rectangle bounds;

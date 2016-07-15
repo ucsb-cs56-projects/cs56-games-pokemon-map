@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.S12.sbaldwin.pokemon;
+package edu.ucsb.cs56.S12.sbaldwin.pokemon.components;
 
 import java.util.ArrayList;
 
