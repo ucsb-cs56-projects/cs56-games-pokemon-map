@@ -10,14 +10,26 @@ import java.awt.geom.Point2D;
 
 // Component for the position of the owner entity
 public class PositionComponent extends Component {
-    public Point2D position;
 
-    public PositionComponent(float x, float y) {
-	position = new Point2D.Float(x, y);
+    public Point position;
+    public Vector2 offset;
+    
+    public PositionComponent(int x, int y, Vector2 offset) {
+	position = new Point(x, y);
     }
 
-    public PositionComponent(Point2D position) {
+    public PositionComponent(Point position, Vector2 offset) {
 	this.position = position;
     }
 
+    public PositionComponent(int x, int y) {
+	this(x, y, new Vector2(0,0));
+    }
+
+    public PositionComponent(Point position) {
+	this(position, new Vector2(0,0));
+    }
+
+    
+    
 }
