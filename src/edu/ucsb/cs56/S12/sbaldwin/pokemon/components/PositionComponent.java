@@ -14,23 +14,22 @@ public class PositionComponent extends Component {
 
     public Point position;
     public Vector2 offset;
-    
+
     public PositionComponent(int x, int y, Vector2 offset) {
-	position = new Point(x, y);
+        position = new Point(x, y);
     }
 
     public PositionComponent(Point position, Vector2 offset) {
-	this.position = position;
+        this.position = position;
     }
 
     public PositionComponent(int x, int y) {
-	this(x, y, new Vector2(0,0));
+        this(x, y, new Vector2(0, 0));
     }
 
     public PositionComponent(Point position) {
-	this(position, new Vector2(0,0));
+        this(position, new Vector2(0, 0));
     }
 
-    
-    
+
 }

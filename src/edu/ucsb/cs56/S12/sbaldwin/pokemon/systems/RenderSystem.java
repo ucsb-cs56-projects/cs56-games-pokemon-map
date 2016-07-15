@@ -28,8 +28,7 @@ public class RenderSystem {
         for (String name : imageNames) {
             try {
                 spriteSheets.put(name, ImageIO.read(new File(name)));
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 System.err.println("Image " + name + " not found");
                 System.err.println("At stacktrace:");
                 e.printStackTrace(System.err);

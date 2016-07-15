@@ -24,7 +24,7 @@ public class InputHandler implements KeyListener {
     public void updateMovement(PositionComponent positionComponent) {
         Point moveTo = (Point) positionComponent.position.clone();
         if (keys[0]) {
-            moveTo.move(0, -16);
+            moveTo.move(0, -16); // Assuming each tile is 16 x 16, so you move 16 pixels over
         } else if (keys[1]) {
             moveTo.move(0, 16);
         } else if (keys[2]) {

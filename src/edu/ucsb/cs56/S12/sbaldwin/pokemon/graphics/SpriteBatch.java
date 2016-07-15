@@ -18,14 +18,14 @@ public class SpriteBatch {
     }
 
     public void draw(Texture texture, Point position) {
-            graphicsDevice.drawImage(texture.getTileSheet(),
+        graphicsDevice.drawImage(texture.getTileSheet(),
                 texture.srcX1(), texture.srcY1(), texture.srcX2(), texture.srcY2(),
                 position.x, position.y, position.x + texture.width(), position.y + texture.height(), null);
     }
 
     public void draw(Texture texture, Rectangle destRect) {
-            graphicsDevice.drawImage(texture.getTileSheet(),
-                    texture.srcX1(), texture.srcY1(), texture.srcX2(), texture.srcY2(),
-                    destRect.x, destRect.y, destRect.x + destRect.width, destRect.y + destRect.height, null);
+        graphicsDevice.drawImage(texture.getTileSheet(),
+                texture.srcX1(), texture.srcY1(), texture.srcX2(), texture.srcY2(),
+                destRect.x, destRect.y, destRect.x + destRect.width, destRect.y + destRect.height, null);
     }
 }

@@ -10,6 +10,6 @@ public class ControllableComponent extends Component{
         this.controller = controller;
     }
 
-    
+
 
 }
