@@ -17,5 +17,8 @@ public class Entity {
     public ArrayList<Component> getComponents() {
 	return components;
     }
+
+    
     
 }
+

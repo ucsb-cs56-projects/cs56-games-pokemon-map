@@ -24,12 +24,6 @@ public class GameLogic
     private int pkmnXOffset;
     private int pkmnYOffset;
 	
-    // Input
-    private boolean upPressed;
-    private boolean downPressed;
-    private boolean leftPressed;
-    private boolean rightPressed;
-	
     // Time management
     private long startTime = 0;
     private long elapsedTime = 0;
@@ -48,17 +42,20 @@ public class GameLogic
     private boolean long6AlreadyPlayed;
     private boolean long7AlreadyPlayed;
     private boolean short3AlreadyPlayed;
-	
-    Renderer renderer;
-    GameGrid g = GameMain.getRenderer().getGameGrid();
-    Renderer r = GameMain.getRenderer();
+       
+    GameGrid g; // This needs to be factored out of Renderer
+    World w; // Use this to create world
+
+    private InputHandler ip;
 	
     /** No arg constructor
      */	
     public GameLogic()
     {
-	renderer = GameMain.getRenderer();
-		
+	ip = new InputHandler();
+
+	g = renderer.getRenderer().getGameGrid();
+	
 	playerXPos = 0;
 	playerYPos = 0;
 	playerXOffset = 0;
@@ -68,271 +65,271 @@ public class GameLogic
         pkmnYPos = 0;
         pkmnXOffset = 0;
         pkmnYOffset = 0;
-	}
+    }
 
-        /** If the player isMoving, update game moves the character and renders the next frame. Otherwise, updateGame listens for a key to be pressed, and indicates the character to move	
-	 */	
-        public void updateGame()
-	{
-		// Move player
-		if(player.isMoving())
+    /** If the player isMoving, update game moves the character and renders the next frame. Otherwise, updateGame listens for a key to be pressed, and indicates the character to move	
+     */	
+    public void updateGame()
+    {
+	// Move player
+	if(player.isMoving())
+	    {
+		if(player.getXOffset() > 0)
 		    {
-			if(player.getXOffset() > 0)
+			player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
+			//For each case when Player.isMoving, have Pikachu continue to walk the way he is facing
+			if(pkmn.getXOffset() > 0)
 			    {
-				player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
-				//For each case when Player.isMoving, have Pikachu continue to walk the way he is facing
-				if(pkmn.getXOffset() > 0)
-				    {
-					pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
-				    }
-				else if(pkmn.getXOffset() < 0)
-				    {
-					pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", true);
-				    }
-				else if(pkmn.getYOffset() > 0)
+				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
+			    }
+			else if(pkmn.getXOffset() < 0)
+			    {
+				pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", true);
+			    }
+			else if(pkmn.getYOffset() > 0)
+			    {
+				pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
+			    }
+			else if(pkmn.getYOffset() < 0)
+			    {
+				pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
+			    }
+		    }
+		else if(player.getXOffset() < 0)
+		    {
+			player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
+			if(pkmn.getXOffset() > 0)
+			    {
+				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", true);
+			    }
+			else if(pkmn.getXOffset() < 0)
+			    {
+				pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
+			    }
+			else if(pkmn.getYOffset() > 0)
+			    {
+				pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
+			    }
+			else if(pkmn.getYOffset() < 0)
+			    {
+				pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
+			    }
+		    }
+		else if(player.getYOffset() > 0)
+		    {
+			player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK", false);
+			if(pkmn.getXOffset() > 0)
+			    {
+				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
+			    }
+			else if(pkmn.getXOffset() < 0)
+			    {
+				pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
+			    }
+			else if(pkmn.getYOffset() > 0)
+			    {
+				pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
+			    }
+			else if(pkmn.getYOffset() < 0)
+			    {
+				pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", true);
+			    }				
+		    }
+		else if (player.getYOffset() < 0)
+		    {
+			player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK", false);
+			if(pkmn.getXOffset() > 0)
+			    {
+				pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
+			    }
+			else if(pkmn.getXOffset() < 0)
+			    {
+				pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
+			    }
+			else if(pkmn.getYOffset() > 0)
+			    {
+				pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", true);
+			    }
+			else if(pkmn.getYOffset() < 0)
+			    {
+				pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
+			    }
+		    }
+	    }//end of if player is moving
+
+	else 
+	    {
+		if(rightPressed)
+		    {
+			player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
+			//If player successfully moves, make Pikachu walk into the place that Professor Oak just was
+			if(player.isMoving())
+			    {
+				if(player.getYPos() > pkmn.getYPos())
 				    {
 					pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
-				    }
-				else if(pkmn.getYOffset() < 0)
+				    }				    
+				else if(player.getYPos() < pkmn.getYPos())
 				    {
 					pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
 				    }
+				else if(player.getXPos()-pkmn.getXPos() >= 1)
+				    {
+					pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);					
+				    }
+				else 
+				    pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", true);
 			    }
-			else if(player.getXOffset() < 0)
+		    }
+		else if(leftPressed)
+		    {
+			player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
+			if(player.isMoving())
 			    {
-				player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
-				if(pkmn.getXOffset() > 0)
-				    {
-					pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", true);
-				    }
-				else if(pkmn.getXOffset() < 0)
-				    {
-					pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
-				    }
-				 else if(pkmn.getYOffset() > 0)
-				     {
-					 pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
-				     }
-				 else if(pkmn.getYOffset() < 0)
-				     {
-					 pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
-				     }
-			    }
-			else if(player.getYOffset() > 0)
-			    {
-				player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK", false);
-				if(pkmn.getXOffset() > 0)
-				    {
-					pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
-				    }
-				else if(pkmn.getXOffset() < 0)
-				    {
-					pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
-				    }
-				else if(pkmn.getYOffset() > 0)
+				if(player.getYPos() > pkmn.getYPos())
 				    {
 					pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
-				    }
-				else if(pkmn.getYOffset() < 0)
-				    {
-					pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", true);
-				    }				
-			    }
-			else if (player.getYOffset() < 0)
-			    {
-				player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK", false);
-				if(pkmn.getXOffset() > 0)
-				    {
-					pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
-				    }
-				else if(pkmn.getXOffset() < 0)
-				    {
-					pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);
-				    }
-				else if(pkmn.getYOffset() > 0)
-				    {
-					pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", true);
-				    }
-				else if(pkmn.getYOffset() < 0)
+				    }				    
+				else if(player.getYPos() < pkmn.getYPos())
 				    {
 					pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
 				    }
-			    }
-		    }//end of if player is moving
-
-		else 
-		    {
-			if(rightPressed)
-			    {
-				player.move((int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
-				//If player successfully moves, make Pikachu walk into the place that Professor Oak just was
-				if(player.isMoving())
+				else if(player.getXPos()-pkmn.getXPos() <= -1)
 				    {
-					if(player.getYPos() > pkmn.getYPos())
-					    {
-						pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
-					    }				    
-					else if(player.getYPos() < pkmn.getYPos())
-					    {
-						pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
-					    }
-					else if(player.getXPos()-pkmn.getXPos() >= 1)
-					    {
-						pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);					
-					    }
-					else 
-					    pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", true);
+					pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);					
 				    }
-			    }
-			else if(leftPressed)
+				else 
+				    pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", true);
+			    }				
+		    }
+		else if(upPressed)
+		    {
+			player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK", false);
+			if(player.isMoving())
 			    {
-				player.move((int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PROFESSOR_OAK", false);
-				if(player.isMoving())
+				if(player.getXPos() > pkmn.getXPos())
 				    {
-					if(player.getYPos() > pkmn.getYPos())
-					    {
-						pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
-					    }				    
-					else if(player.getYPos() < pkmn.getYPos())
-					    {
-						pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PIKACHU", false);
-					    }
-					else if(player.getXPos()-pkmn.getXPos() <= -1)
-					    {
-						pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", false);					
-					    }
-					else 
-					    pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), 0, "PIKACHU", true);
-				    }				
-			    }
-			else if(upPressed)
+					pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU", false);
+				    }				    
+				else if(player.getXPos() < pkmn.getXPos())
+				    {
+					pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU", false);
+				    }
+				else if(player.getYPos()-pkmn.getYPos() <= -1)
+				    {
+					pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU", false);					
+				    }
+				else 
+				    pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU", true);
+			    }				
+		    }
+		else if (downPressed)
+		    {
+			player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK", false);
+			if(player.isMoving())
 			    {
-				player.move(0, (int)(-1 * player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK", false);
-				if(player.isMoving())
+				if(player.getXPos() > pkmn.getXPos())
 				    {
-					if(player.getXPos() > pkmn.getXPos())
-					    {
-						pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU", false);
-					    }				    
-					else if(player.getXPos() < pkmn.getXPos())
-					    {
-						pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU", false);
-					    }
-					else if(player.getYPos()-pkmn.getYPos() <= -1)
-					    {
-						pkmn.move(0, (int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU", false);					
-					    }
-					else 
-					    pkmn.move(0, (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU", true);
-				    }				
-			    }
-			else if (downPressed)
-			    {
-				player.move(0, (int)(player.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), "PROFESSOR_OAK", false);
-				if(player.isMoving())
+					pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU", false);
+				    }				    
+				else if(player.getXPos() < pkmn.getXPos())
 				    {
-					if(player.getXPos() > pkmn.getXPos())
-					    {
-						pkmn.move((int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU", false);
-					    }				    
-					else if(player.getXPos() < pkmn.getXPos())
-					    {
-						pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU", false);
-					    }
-					else if(player.getYPos()-pkmn.getYPos() >= 1)
-					    {
-						pkmn.move(0, (int)(1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU", false);					
-					    }
-					else 
-					    pkmn.move(0, -1 * (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU", true);
-				    }           
-			    }
-		    }//ends the else, meaning if the player is not moving
+					pkmn.move((int)(-1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileHeight() * 1.0/framerate)), 0, "PIKACHU", false);
+				    }
+				else if(player.getYPos()-pkmn.getYPos() >= 1)
+				    {
+					pkmn.move(0, (int)(1 * pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU", false);					
+				    }
+				else 
+				    pkmn.move(0, -1 * (int)(pkmn.getSpeed() * ((float)GameMain.getRenderer().getTileWidth() * 1.0/framerate)), "PIKACHU", true);
+			    }           
+		    }
+	    }//ends the else, meaning if the player is not moving
         
 
 	
-		// Update position
-		if(player != null)
-		    {
-			playerXPos = player.getXPos();
-			playerYPos = player.getYPos();
-			playerXOffset = player.getXOffset();
-			playerYOffset = player.getYOffset();
-
-			int x1 = 37 + 1;
-			int x2 = 37 + 27; 
-			int y1 = 26 + 1;
-			int y2 = 26 + 27;
-
-			if(GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() == "flower") {
-			    point ++;
-			    if(playerXPos == 64 && playerYPos == 33 && point >= 500 ) {
-				openSecretPath();
-			    }							    		
-			}
-
-			if(((playerXPos == 95 && playerYPos == 40) || (playerXPos == 95 && playerYPos == 39))
-			    && (GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() != "flower2")) {
-			    creatFlowers();
-			}
-
-			if(playerXPos == 147 && playerYPos == 28) {
-			   // when go into the big fish mouse, open secret path 2
-			   openSecretPath2();
-			}
-			
-		    }
-		//Update Pikachu's position
-		if(pkmn != null)
-		    {
-			pkmnXPos = pkmn.getXPos();
-			pkmnYPos = pkmn.getYPos();
-			pkmnXOffset = pkmn.getXOffset();
-			pkmnYOffset = pkmn.getYOffset();
-		    }
-        
-	}//end of update game
-
-        /** Prepares the next frame	
-	 */
-	public void renderNextFrame()
-	{
-		// Update the clock
-		elapsedTime = System.nanoTime() - startTime;
-		if(elapsedTime < 0)
-			elapsedTime = 0;
-			
-		// Compute framerate
-		framerate = (1000000000/elapsedTime);
-		// System.out.println("Framerate = " + framerate);
-		
-		startTime = System.nanoTime();
-		
-		// Update the game data
-		this.updateGame();
-		
-		// Reset the buffer
-		renderer.clearBuffer();
-		
-		// Render the Grids to Buffer Image
-		renderer.renderTextureGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15); 
-		renderer.renderObjectGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15);        
-
-		// Draw actual Image from Buffer Image
-		renderer.drawFinalImage(5, 5, playerXOffset+56, playerYOffset+56, 25, 25);
-                //original values are 3,3,25,25
-		//<<MOVED THE OFFSET
-	}
-        /** Registers the player into the game
-	    @param player
-	*/
-	public void registerPlayer(Player player)
-	{
-		this.player = player;
-		
+	// Update position
+	if(player != null)
+	    {
 		playerXPos = player.getXPos();
 		playerYPos = player.getYPos();
-	}
+		playerXOffset = player.getXOffset();
+		playerYOffset = player.getYOffset();
+
+		int x1 = 37 + 1;
+		int x2 = 37 + 27; 
+		int y1 = 26 + 1;
+		int y2 = 26 + 27;
+
+		if(GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() == "flower") {
+		    point ++;
+		    if(playerXPos == 64 && playerYPos == 33 && point >= 500 ) {
+			openSecretPath();
+		    }							    		
+		}
+
+		if(((playerXPos == 95 && playerYPos == 40) || (playerXPos == 95 && playerYPos == 39))
+		   && (GameMain.getRenderer().getGameGrid().getTextureGrid(playerXPos, playerYPos, 0).getName() != "flower2")) {
+		    creatFlowers();
+		}
+
+		if(playerXPos == 147 && playerYPos == 28) {
+		    // when go into the big fish mouse, open secret path 2
+		    openSecretPath2();
+		}
+			
+	    }
+	//Update Pikachu's position
+	if(pkmn != null)
+	    {
+		pkmnXPos = pkmn.getXPos();
+		pkmnYPos = pkmn.getYPos();
+		pkmnXOffset = pkmn.getXOffset();
+		pkmnYOffset = pkmn.getYOffset();
+	    }
+        
+    }//end of update game
+
+    /** Prepares the next frame	
+     */
+    public void renderNextFrame()
+    {
+	// Update the clock
+	elapsedTime = System.nanoTime() - startTime;
+	if(elapsedTime < 0)
+	    elapsedTime = 0;
+			
+	// Compute framerate
+	framerate = (1000000000/elapsedTime);
+	// System.out.println("Framerate = " + framerate);
+		
+	startTime = System.nanoTime();
+		
+	// Update the game data
+	this.updateGame();
+		
+	// Reset the buffer
+	renderer.clearBuffer();
+		
+	// Render the Grids to Buffer Image
+	renderer.renderTextureGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15); 
+	renderer.renderObjectGrid(playerXPos - 15, playerYPos - 15, playerXPos + 15, playerYPos + 15);        
+
+	// Draw actual Image from Buffer Image
+	renderer.drawFinalImage(5, 5, playerXOffset+56, playerYOffset+56, 25, 25);
+	//original values are 3,3,25,25
+	//<<MOVED THE OFFSET
+    }
+    /** Registers the player into the game
+	@param player
+    */
+    public void registerPlayer(Player player)
+    {
+	this.player = player;
+		
+	playerXPos = player.getXPos();
+	playerYPos = player.getYPos();
+    }
     
     public void registerPkmn(Player pkmn)
     {
@@ -343,90 +340,90 @@ public class GameLogic
         
     }
 
-        /** Indicates when a key has been pressed
-	    @param e KeyEvent
-	*/
-	public void sendKeyPressed(KeyEvent e)
-	{
-		if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
-		{
-			upPressed = true;
-		}
+    /** Indicates when a key has been pressed
+	@param e KeyEvent
+    */
+    public void sendKeyPressed(KeyEvent e)
+    {
+	if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
+	    {
+		upPressed = true;
+	    }
 		
-		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
-		{
-			downPressed = true;
-		}
+	if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
+	    {
+		downPressed = true;
+	    }
 		
-		if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
-		{
-			leftPressed = true;
-		}
+	if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
+	    {
+		leftPressed = true;
+	    }
 		
-		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
-		{
-			rightPressed = true;
-		}
+	if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
+	    {
+		rightPressed = true;
+	    }
 
-				if(e.getKeyCode() == KeyEvent.VK_H) {
-		    if(playerXPos == 41 && playerYPos == 97) {
-			openSecretPath3();
-		    }
+	if(e.getKeyCode() == KeyEvent.VK_H) {
+	    if(playerXPos == 41 && playerYPos == 97) {
+		openSecretPath3();
+	    }
 
-		    if((playerXPos == 57 && playerYPos == 32) ||
-		       (playerXPos == 58 && playerYPos == 32) ||
-		       (playerXPos == 59 && playerYPos == 32) ){
-			 openSecretPath4();
-		    }
+	    if((playerXPos == 57 && playerYPos == 32) ||
+	       (playerXPos == 58 && playerYPos == 32) ||
+	       (playerXPos == 59 && playerYPos == 32) ){
+		openSecretPath4();
+	    }
 
-		    if(playerXPos == 71 && playerYPos == 81 && ableToOpenLastPath) {
-			 openSecretPath5();
-		    }
+	    if(playerXPos == 71 && playerYPos == 81 && ableToOpenLastPath) {
+		openSecretPath5();
+	    }
 
-		    if((playerXPos > 77 && playerXPos < 82)&& playerYPos == 35) {
-			// talking to the big pokemon in the forest is the last event in the story
-			openSecretPath6();
-		    }
-		}
+	    if((playerXPos > 77 && playerXPos < 82)&& playerYPos == 35) {
+		// talking to the big pokemon in the forest is the last event in the story
+		openSecretPath6();
+	    }
+	}
 		
-		if(e.getKeyCode() == KeyEvent.VK_M) {
-		    printPosition();
-		}
-
-		// this has some bugs
-		/*
-		if(e.getKeyCode() == KeyEvent.VK_J) {
-		    changeSpeed();
-		}
-		*/
-
+	if(e.getKeyCode() == KeyEvent.VK_M) {
+	    printPosition();
 	}
 
-        /** Indicates when a key has been released
-	    @param e KeyEvent
+	// this has some bugs
+	/*
+	  if(e.getKeyCode() == KeyEvent.VK_J) {
+	  changeSpeed();
+	  }
 	*/
-	public void sendKeyReleased(KeyEvent e)
-	{
-		if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
-		{
-			upPressed = false;
-		}
+
+    }
+
+    /** Indicates when a key has been released
+	@param e KeyEvent
+    */
+    public void sendKeyReleased(KeyEvent e)
+    {
+	if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)
+	    {
+		upPressed = false;
+	    }
 	
-		if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
-		    {
-			downPressed = false;
-		}
+	if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN)
+	    {
+		downPressed = false;
+	    }
 		
-		if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
-		{
-			leftPressed = false;
-		}
+	if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT)
+	    {
+		leftPressed = false;
+	    }
 		
-		if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
-		{
-			rightPressed = false;
-		}		
-	}
+	if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT)
+	    {
+		rightPressed = false;
+	    }		
+    }
 
     public void printPosition() {
 	System.out.print("(" + playerXPos + "," + playerYPos + ")");
@@ -478,9 +475,9 @@ public class GameLogic
 	}
 	
 	/*
-	try{
-	    Thread.sleep(500);
-	} catch(Exception ex) {}
+	  try{
+	  Thread.sleep(500);
+	  } catch(Exception ex) {}
 	*/
     }
 
@@ -560,24 +557,24 @@ public class GameLogic
 		
 	Texture flower2 = new Texture("flower2", "TileSet_Main", 16*13, 16*39, 16*14, 16*40);
 	
-	 // delete the big pokemon there
-	 for(int x=57; x<60; x++) {
-	     for(int y=29; y<32; y++) {
-		 Renderer.deleteTree(x,y);
-	     }
-	 }
+	// delete the big pokemon there
+	for(int x=57; x<60; x++) {
+	    for(int y=29; y<32; y++) {
+		Renderer.deleteTree(x,y);
+	    }
+	}
 	 
-	 // change his position in the desert and make more flowers
-	 r.createGod(70,78);
-	 for(int x=57; x<60; x++) {
-	     for(int y=30; y<33; y++) {
-		 g.setTextureGrid(flower2, x, y, 0);
-	     }
-	 }
+	// change his position in the desert and make more flowers
+	r.createGod(70,78);
+	for(int x=57; x<60; x++) {
+	    for(int y=30; y<33; y++) {
+		g.setTextureGrid(flower2, x, y, 0);
+	    }
+	}
 
-	 ableToOpenLastPath = true;
+	ableToOpenLastPath = true;
 
-     }
+    }
 
     public void openSecretPath5() {
 	// change background music
@@ -666,9 +663,13 @@ public class GameLogic
     }
 
     /* will have bug, Pikachu will move slower 
-    public void changeSpeed() {
-	player.speed = 30;
-    }
+       public void changeSpeed() {
+       player.speed = 30;
+       }
     */
+
+    public InputHandler getInputHandler() {
+	return ip;
+    }
    
 }
