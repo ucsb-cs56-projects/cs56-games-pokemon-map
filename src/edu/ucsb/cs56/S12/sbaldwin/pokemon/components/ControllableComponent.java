@@ -2,17 +2,14 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon.components;
 
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.*;
 
-public class ControllableComponent {
+public class ControllableComponent extends Component{
 
-    InputHandler inputHandler;
-    Entity entity;
-    Controller controller;
+    public Controller controller;
 
-    public ControllableComponent(InputHandler inputHandler, Entity entity, Controller controller) {
-        this.inputHandler = inputHandler;
-        this.entity = entity;
+    public ControllableComponent(Controller controller) {
         this.controller = controller;
     }
 
+    
 
 }
