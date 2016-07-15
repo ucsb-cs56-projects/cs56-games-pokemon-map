@@ -8,6 +8,6 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.TileData;
 public class TileDataLoader {
 
     private TileData loadTileData() {
-        return null;
+        return new TileData(0, null, false);
     }
 }
