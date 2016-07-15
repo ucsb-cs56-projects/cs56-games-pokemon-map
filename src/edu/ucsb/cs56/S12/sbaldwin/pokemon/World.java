@@ -2,6 +2,7 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.Entity;
 
 /**
  * Created by steven on 6/30/16.
@@ -19,7 +20,7 @@ public class World {
 
     public World(int[][] tiles) {
 	this.tiles = tiles;
-	entites = new HashSet<Entity>();
+	entities = new HashSet<Entity>();
     }
 
     public void addEntity(Entity e) {
