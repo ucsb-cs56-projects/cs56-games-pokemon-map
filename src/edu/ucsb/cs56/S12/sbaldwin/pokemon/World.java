@@ -10,8 +10,8 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.Entity;
 public class World {
 
     public Entity[][] tiles; // Change this to tile class later when merge occurs
-    private HashSet<Entity> entities; 
-    
+    private HashSet<Entity> entities;
+
     // Basic skeleton for world class
     public World(Entity[][] tiles, HashSet<Entity> entites) {
         this.tiles = tiles;
@@ -21,6 +21,10 @@ public class World {
     public World(Entity[][] tiles) {
 	this.tiles = tiles;
 	entities = new HashSet<Entity>();
+    }
+
+    public World() {
+        entities = new HashSet<>();
     }
 
     public void addEntity(Entity e) {
