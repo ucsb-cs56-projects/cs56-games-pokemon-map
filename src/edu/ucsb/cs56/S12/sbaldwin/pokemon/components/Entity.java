@@ -18,6 +18,9 @@ public class Entity {
 	return components;
     }
 
+    public void addComponent(Component comp) {
+        components.add(comp);
+    }
     
     
 }
