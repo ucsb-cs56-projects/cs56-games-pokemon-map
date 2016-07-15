@@ -31,7 +31,7 @@ public class InputHandler implements KeyListener {
         }
     }
 
-    /** Notifies GameLogic that a key has been pressed
+    /** Checks if a key is pressed, then set that in the boolean array
      @param e the KeyEvent
      */
     public void keyPressed(KeyEvent e)
@@ -47,7 +47,7 @@ public class InputHandler implements KeyListener {
         }
     }
 
-    /** Notifies GameLogic that a key has been released
+    /** Checks if a key is released, then set that in the boolean array
      @param e the KeyEvent
      */
     public void keyReleased(KeyEvent e)
