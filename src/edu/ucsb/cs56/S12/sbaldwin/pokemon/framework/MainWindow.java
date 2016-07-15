@@ -15,8 +15,9 @@ public class MainWindow extends JPanel
     int height = 480;
     static final long maxTime = 16666;
     static final float gameFrameTime = 16.666f;
-
     private JFrame containerWindow;
+    private boolean initialized = false;
+
     public MainWindow() {
         containerWindow = new JFrame();
         containerWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -32,14 +33,15 @@ public class MainWindow extends JPanel
         super.paintComponent(g);
         g.setColor(Color.black);
         g.drawRect(0, 0, width, height);
-        this.draw(new SpriteBatch(g), gameFrameTime);
+        if (initialized)
+            draw(new SpriteBatch(g), gameFrameTime);
     }
 
     public void run() {
         long currentTime = System.nanoTime();
         long deltaT = 0;
-        init();
         load();
+        init();
 
         while (running) {
             update(gameFrameTime);
@@ -56,6 +58,7 @@ public class MainWindow extends JPanel
     }
 
     protected void init() {
+        initialized = true;
     }
 
     protected void load() {
@@ -66,5 +69,7 @@ public class MainWindow extends JPanel
     }
 
     protected void draw(SpriteBatch spriteBatch, float gameTime) {
+        if (!initialized)
+            return;
     }
 }
