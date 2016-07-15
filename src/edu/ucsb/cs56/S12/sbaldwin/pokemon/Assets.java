@@ -1,8 +1,15 @@
-package edu.ucsb.cs56.sbaldwin.pokemon;
+package edu.ucsb.cs56.S12.sbaldwin.pokemon;
+
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.Texture;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Assets {
-
-    public static Texture 
+    public static Texture
 	grass_Default,
 	grass_Wild,
 	flower,
@@ -10,7 +17,7 @@ public class Assets {
 	flower3,
 	rockGround,
 	snow,
-	bigPokemon
+	bigPokemon,
 	pikachu, // TODO
 	player,  // TODO
 	pokeball,
@@ -34,9 +41,9 @@ public class Assets {
 	textBox;
 
 
-    public static initAssets() {
+    public static void initAssets() {
 	BufferedImage TileSet_Main = addImage("images/TilesetMain.bmp");
-	BufferedIamge TileSet_Characters = addImage("images/NPC_frlg.bmp");
+	BufferedImage TileSet_Characters = addImage("images/NPC_frlg.bmp");
 	BufferedImage TileSet_Pkmn = addImage("images/pkmn.bmp");
 	TileSet_Main = imageToBufferedImage(makeColorTransparent(TileSet_Main, Color.black));
 	TileSet_Characters = imageToBufferedImage(makeColorTransparent(TileSet_Characters, new Color(255, 0, 255)));
@@ -68,14 +75,14 @@ public class Assets {
 	bigRock = new Texture(TileSet_Main, 160, 16*21, 16, 16);
 	god = new Texture(TileSet_Pkmn, 16*22, 16*24, 16, 16);
 
-	textBox = new Texture(imageToBufferedImage(addImage("images/textbox.bmp")), 0, 0, 252, 47);
+	//textBox = new Texture(imageToBufferedImage(addImage("images/textbox.bmp")), 0, 0, 252, 47);
 	
 	
 				
 	
     }
 
-    private BufferedImage addImage(String name) {
+    private static BufferedImage addImage(String name) {
 	BufferedImage img = null;
         try {
 	    File f = new File("assets/" + name);
