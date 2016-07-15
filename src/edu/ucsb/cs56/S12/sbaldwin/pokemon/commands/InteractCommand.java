@@ -1,5 +1,8 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.commands;
 
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.World;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.PositionComponent;
+
 public class InteractCommand implements Command {
 
     public PositionComponent pc;

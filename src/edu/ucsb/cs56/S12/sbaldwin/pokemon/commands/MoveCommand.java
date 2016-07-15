@@ -1,5 +1,9 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.commands;
 
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.PositionComponent;
+
+import java.awt.*;
+
 public class MoveCommand implements Command {
 
     
