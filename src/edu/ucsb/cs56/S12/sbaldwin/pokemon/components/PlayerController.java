@@ -6,6 +6,8 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.Command;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.InteractCommand;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.MoveCommand;
 
+import javax.swing.text.Position;
+
 public class PlayerController extends Controller {
 
     Entity entity;
@@ -23,11 +25,12 @@ public class PlayerController extends Controller {
     @Override
     public void update() {
         Command moveCommand = inputHandler.moveCommand;
+        inputHandler.updateMovement((PositionComponent)(entity.getComponent(PositionComponent.class)));
         Command interactCommand = inputHandler.updateInteract(positionComponent, world);
-        moveCommand.execute();
-        if (interactCommand != null) {
+        if (moveCommand != null)
+            moveCommand.execute();
+        if (interactCommand != null)
             interactCommand.execute();
-        }
     }
 
 }

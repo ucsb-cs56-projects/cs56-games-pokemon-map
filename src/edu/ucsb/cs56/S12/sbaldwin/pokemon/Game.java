@@ -22,26 +22,29 @@ public class Game extends MainWindow {
     RenderSystem renderSystem;
     public Game() {
         super();
-        world = new World();
-        renderSystem = new RenderSystem(this.getBounds());
     }
 
     public void init() {
 	// create world
 	//
+        super.init();
+        InputHandler inputHandler = new InputHandler();
+        this.addKeyListener(inputHandler);
+        world = new World(inputHandler);
+        renderSystem = new RenderSystem(this.getBounds());
         MapLoader ml = new MapLoader();
         ml.loadMap(testMap, world);
-        super.init();
     }
 
     public void load() {
 	// load assets
-        super.init();
+        super.load();
         Assets.initAssets();
     }
 
     public void update(float gameTime) {
         super.update(gameTime);
+        world.update();
     }
 
     public void draw(SpriteBatch spriteBatch, float gameTime) {

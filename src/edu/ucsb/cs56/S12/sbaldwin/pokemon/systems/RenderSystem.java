@@ -33,11 +33,11 @@ public class RenderSystem {
     }
 
     public void draw(SpriteBatch spriteBatch, World world) {
-        /*for (int i = 0; i < world.tiles.length; i++) {
+        for (int i = 0; i < world.tiles.length; i++) {
             for (int j = 0; j < world.tiles[i].length; j++) {
                 drawEntity(spriteBatch, world.tiles[i][j]);
             }
-        }*/
+        }
         Entity[]  entities = world.getEntities();
         Arrays.sort(entities, (o1, o2) -> {
             PositionComponent pc1 = (PositionComponent)o1.getComponent(PositionComponent.class);
@@ -60,6 +60,7 @@ public class RenderSystem {
         PositionComponent positionComponent = (PositionComponent)e.getComponent(PositionComponent.class);
         if (positionComponent == null)
             return;
+
 
         spriteBatch.draw(graphicsComponent.animation.currentFrame(), scale(positionComponent.position, spriteResolution));
     }

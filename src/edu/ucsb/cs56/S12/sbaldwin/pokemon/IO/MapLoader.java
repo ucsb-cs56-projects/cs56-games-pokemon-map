@@ -31,7 +31,7 @@ public class MapLoader {
                         addComponent(new TileComponent(tileGrid[x][y])).
                         addComponent(new PositionComponent(x, y)).
                         addComponent(new GraphicsComponent(Assets.grass_Default));
-                world.addEntity(entities[x][y]);
+                //world.addEntity(entities[x][y]);
             }
         }
         world.tiles = entities;

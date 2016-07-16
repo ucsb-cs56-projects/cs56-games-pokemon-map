@@ -1,5 +1,7 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.Animation;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.AnimationFrame;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.Texture;
 
 import javax.imageio.ImageIO;
@@ -17,8 +19,6 @@ public class Assets {
             flower3,
             snow,
             bigPokemon,
-            pikachu, // TODO
-            player,  // TODO
             pokeball,
             pokecenter,
             pokemart,
@@ -33,7 +33,7 @@ public class Assets {
             bigBuilding2Left,
             bigBuilding2Right,
             bigRock,
-            water1, 
+            water1,
             water2,
             water3,
             water4,
@@ -45,7 +45,8 @@ public class Assets {
             rock,
             niceTree,
             god,
-            textBox;
+            textBox,
+            player;
 
 
     public static void initAssets() {
@@ -83,7 +84,7 @@ public class Assets {
         god = new Texture(TileSet_Pkmn, 16 * 22, 16 * 24, 16*3, 16*4);
         niceTree = new Texture(TileSet_Main, 192, 3696, 224 - 192, 3728 - 3696);
         rock = new Texture(TileSet_Main, 48, 16, 16, 16);
-        textBox = new Texture(imageToBufferedImage(addImage("images/textbox.bmp")), 0, 0, 252, 47);
+        //textBox = new Texture(imageToBufferedImage(addImage("images/textbox.bmp")), 0, 0, 252, 47);
         water1 = new Texture(TileSet_Main, 16*5, 16*26, 16, 16);
         water2 = new Texture(TileSet_Main, 16*6, 16*26, 16, 16);
         water3 = new Texture(TileSet_Main, 16*7, 16*26, 16, 16);
@@ -93,8 +94,7 @@ public class Assets {
         water7 = new Texture(TileSet_Main, 16*5, 16*28, 16, 16);
         water8 = new Texture(TileSet_Main, 16*6, 16*28, 16, 16);
         water9 = new Texture(TileSet_Main, 16*7, 16*28, 16, 16);
-
-
+        player = new Texture(TileSet_Characters, 509, 194, 525-509, 215-194);
 
     }
 
