@@ -14,11 +14,15 @@ public class Animation {
 
     // Creates a static texture animation
     public Animation(Texture texture) {
+        if (texture == null)
+            throw new IllegalArgumentException("texture argument cannot be null");
         animationFrames = new AnimationFrame[1];
         animationFrames[0] = new AnimationFrame(texture);
     }
 
     public Animation(AnimationFrame[] animationList) {
+        if (animationList == null)
+            throw new IllegalArgumentException("Animation list argument cannot be null");
         animationFrames = animationList;
     }
 
