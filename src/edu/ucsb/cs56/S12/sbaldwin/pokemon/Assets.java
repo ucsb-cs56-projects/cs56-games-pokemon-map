@@ -86,7 +86,7 @@ public class Assets {
     private static BufferedImage addImage(String name) {
 	BufferedImage img = null;
         try {
-            File f = new File("assets/" + name);
+            File f = new File("src/edu/ucsb/cs56/S12/sbaldwin/pokemon/" + name);
             System.out.println(f.getAbsolutePath());
             img = ImageIO.read(f);
         } catch (IOException e) {

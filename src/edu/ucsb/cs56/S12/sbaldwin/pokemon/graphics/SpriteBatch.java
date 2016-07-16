@@ -7,25 +7,21 @@ import java.awt.image.BufferedImage;
  * Created by William Bennett on 6/30/2016.
  */
 public class SpriteBatch {
-    Graphics graphicsDevice;
+    Graphics2D graphics2D;
 
     public SpriteBatch(Graphics graphicsDevice) {
-        this.graphicsDevice = graphicsDevice;
+        this.graphics2D = (Graphics2D) graphicsDevice;
     }
 
     void draw(BufferedImage image) {
-        graphicsDevice.drawImage(image, 0, 0, null);
+        graphics2D.drawImage(image, 0, 0, null);
     }
 
     public void draw(Texture texture, Point position) {
-        graphicsDevice.drawImage(texture.getTileSheet(),
-                texture.srcX1(), texture.srcY1(), texture.srcX2(), texture.srcY2(),
-                position.x, position.y, position.x + texture.width(), position.y + texture.height(), null);
+        graphics2D.drawImage(texture.getTileSheet().getSubimage(texture.srcX1(), texture.srcY1(), texture.width(), texture.height()), null, position.x, position.y);
     }
 
     public void draw(Texture texture, Rectangle destRect) {
-        graphicsDevice.drawImage(texture.getTileSheet(),
-                texture.srcX1(), texture.srcY1(), texture.srcX2(), texture.srcY2(),
-                destRect.x, destRect.y, destRect.x + destRect.width, destRect.y + destRect.height, null);
+        graphics2D.drawImage(texture.getTileSheet().getSubimage(texture.srcX1(), texture.srcY1(), texture.width(), texture.height()), null, destRect.x, destRect.y);
     }
 }

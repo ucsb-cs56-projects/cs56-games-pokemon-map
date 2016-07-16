@@ -1,5 +1,6 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.systems;
 
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.Assets;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.Vector2;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.World;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.Entity;
