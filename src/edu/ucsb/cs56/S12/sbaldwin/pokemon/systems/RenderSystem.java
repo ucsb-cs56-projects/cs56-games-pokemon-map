@@ -16,6 +16,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 
 
@@ -35,6 +38,15 @@ public class RenderSystem {
                 drawEntity(spriteBatch, world.tiles[i][j]);
             }
         }*/
+        Entity[]  entities = world.getEntities();
+        Arrays.sort(entities, (o1, o2) -> {
+            PositionComponent pc1 = (PositionComponent)o1.getComponent(PositionComponent.class);
+            PositionComponent pc2 = (PositionComponent)o2.getComponent(PositionComponent.class);
+            if (pc1 != null && pc2 != null)
+                return (pc1.position.y - pc2.position.y);
+            return 0;
+        });
+
         for (Entity e : world.getEntities()) {
             drawEntity(spriteBatch, e);
         }
