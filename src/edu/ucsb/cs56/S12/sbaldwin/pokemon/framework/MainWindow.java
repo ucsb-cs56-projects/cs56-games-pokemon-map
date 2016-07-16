@@ -4,6 +4,7 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.SpriteBatch;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 /**
  * The window frame for the Pokemon map game
@@ -71,5 +72,9 @@ public class MainWindow extends JPanel {
     protected void draw(SpriteBatch spriteBatch, float gameTime) {
         if (!initialized)
             return;
+    }
+
+    public void addKeyListener(KeyListener kl) {
+        this.containerWindow.addKeyListener(kl);
     }
 }

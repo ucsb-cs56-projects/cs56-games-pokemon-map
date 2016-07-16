@@ -9,23 +9,21 @@ public class MoveCommand implements Command {
 
     public Point moveTo;
     public Point beforeMove;
-    public PositionComponent pc;
+    public PositionComponent positionComponent;
 
-    public MoveCommand(PositionComponent pc, Point moveTo) {
-        this.pc = pc;
+    public MoveCommand(PositionComponent positionComponent, Point moveTo) {
+        this.positionComponent = positionComponent;
         this.moveTo = moveTo;
         beforeMove = new Point(0, 0);
     }
 
     public void execute() {
-        beforeMove = pc.position;
+        beforeMove = positionComponent.position;
 
-        pc.position = moveTo;
+        positionComponent.position = moveTo;
     }
 
     public void undo() {
-        pc.position = beforeMove;
+        positionComponent.position = beforeMove;
     }
-
-
 }

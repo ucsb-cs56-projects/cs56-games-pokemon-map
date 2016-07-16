@@ -19,19 +19,18 @@ public class InputHandler implements KeyListener {
 
     public InputHandler() {
         keys = new boolean[5];
-
     }
 
     public void updateMovement(PositionComponent positionComponent) {
         Point moveTo = (Point) positionComponent.position.clone();
         if (keys[0]) {
-            moveTo.move(0, -16);
+            moveTo.move(0, -1);
         } else if (keys[1]) {
-            moveTo.move(0, 16);
+            moveTo.move(0, 1);
         } else if (keys[2]) {
-            moveTo.move(-16, 0);
+            moveTo.move(-1, 0);
         } else if (keys[3]) {
-            moveTo.move(16, 0);
+            moveTo.move(1, 0);
         } else {
             return;
         }
@@ -54,6 +53,7 @@ public class InputHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
+                System.err.println("Key W hit");
                 keys[0] = true;
                 break;
             case KeyEvent.VK_S:
