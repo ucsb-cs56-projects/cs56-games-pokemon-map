@@ -32,4 +32,12 @@ public class World {
         entities.add(e);
     }
 
+    public Entity[] getEntities() {
+        Entity[] array = new Entity[entities.size()];
+        int pos = 0;
+        for (Entity e : entities) {
+            array[pos++] = e;
+        }
+        return array;
+    }
 }

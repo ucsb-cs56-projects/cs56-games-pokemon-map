@@ -5,6 +5,8 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.framework.MainWindow;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.SpriteBatch;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.systems.RenderSystem;
 
+import java.awt.*;
+
 /**
  * Created by William Bennett on 7/14/2016.
  * Put ALL game logic in this class, or in objects rooted in this class
@@ -45,6 +47,5 @@ public class Game extends MainWindow {
     public void draw(SpriteBatch spriteBatch, float gameTime) {
         super.draw(spriteBatch, gameTime);
 	    renderSystem.draw(spriteBatch, world);
-	
     }
 }

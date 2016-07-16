@@ -9,6 +9,7 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.PositionComponent;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.*;
 import javafx.geometry.Pos;
 import org.w3c.dom.css.Rect;
+import sun.management.snmp.jvmmib.EnumJvmThreadCpuTimeMonitoring;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -29,20 +30,28 @@ public class RenderSystem {
     }
 
     public void draw(SpriteBatch spriteBatch, World world) {
-        for (int i = 0; i < world.tiles.length; i++) {
+        /*for (int i = 0; i < world.tiles.length; i++) {
             for (int j = 0; j < world.tiles[i].length; j++) {
-                Entity e = world.tiles[i][j];
-                GraphicsComponent graphicsComponent = (GraphicsComponent)e.getComponent(GraphicsComponent.class);
-                if (graphicsComponent == null)
-                    continue;
-                PositionComponent positionComponent = (PositionComponent)e.getComponent(PositionComponent.class);
-                if (positionComponent == null)
-                    continue;
-
-                spriteBatch.draw(graphicsComponent.animation.currentFrame(), scale(positionComponent.position, spriteResolution));
+                drawEntity(spriteBatch, world.tiles[i][j]);
             }
+        }*/
+        for (Entity e : world.getEntities()) {
+            drawEntity(spriteBatch, e);
         }
     }
+
+    private void drawEntity(SpriteBatch spriteBatch, Entity entity) {
+        Entity e = entity;
+        GraphicsComponent graphicsComponent = (GraphicsComponent)e.getComponent(GraphicsComponent.class);
+        if (graphicsComponent == null)
+            return;
+        PositionComponent positionComponent = (PositionComponent)e.getComponent(PositionComponent.class);
+        if (positionComponent == null)
+            return;
+
+        spriteBatch.draw(graphicsComponent.animation.currentFrame(), scale(positionComponent.position, spriteResolution));
+    }
+
 
     private static Rectangle scale(Rectangle rect, int amount) {
         return new Rectangle(rect.x * amount, rect.y * amount, rect.width * amount, rect.height * amount);
