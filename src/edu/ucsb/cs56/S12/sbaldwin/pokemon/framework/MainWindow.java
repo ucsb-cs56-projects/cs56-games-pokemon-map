@@ -5,6 +5,7 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.SpriteBatch;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
 
 /**
  * The window frame for the Pokemon map game
@@ -21,6 +22,8 @@ public class MainWindow extends JPanel {
     private JFrame containerWindow;
     volatile private boolean initialized = false;
 
+    protected SpriteBatch spriteBatch;
+    Toolkit toolkit;
     public MainWindow() {
         containerWindow = new JFrame();
         containerWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -29,15 +32,13 @@ public class MainWindow extends JPanel {
         containerWindow.getContentPane().add(BorderLayout.CENTER, this);
 
         containerWindow.setVisible(true);
-    }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.black);
-        g.drawRect(0, 0, width, height);
-        if (initialized)
-            draw(new SpriteBatch(g), gameFrameTime);
+        //setFocusable(true);
+
+        toolkit = Toolkit.getDefaultToolkit();
+        width = toolkit.getScreenSize().width;
+        height = toolkit.getScreenSize().height;
+        spriteBatch = new SpriteBatch(this.createImage(width, height));
     }
 
     public void run() {
@@ -48,7 +49,8 @@ public class MainWindow extends JPanel {
         initialized = true;
         while (running) {
             update(gameFrameTime);
-            repaint();
+            draw(spriteBatch, gameFrameTime);
+            paintScreen(spriteBatch.getBackBuffer());
             deltaT = System.nanoTime() - currentTime;
             try {
                 Thread.sleep(Math.max((maxTime - deltaT) / 1000, 0));
@@ -72,6 +74,19 @@ public class MainWindow extends JPanel {
     protected void draw(SpriteBatch spriteBatch, float gameTime) {
         if (!initialized)
             return;
+    }
+
+    private void paintScreen(Image backBuffer) {
+        Graphics g;
+        try {
+            g = this.getGraphics();
+            g.drawImage(backBuffer, 0, 0, null);
+            Toolkit.getDefaultToolkit().sync();
+            g.dispose();
+        }
+        catch (Exception e) {
+            System.err.println("Error getting graphics device");
+        }
     }
 
     public void addKeyListener(KeyListener kl) {

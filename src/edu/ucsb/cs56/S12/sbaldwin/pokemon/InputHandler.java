@@ -53,7 +53,6 @@ public class InputHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
-                System.err.println("Key W hit");
                 keys[0] = true;
                 break;
             case KeyEvent.VK_S:
