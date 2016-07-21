@@ -25,7 +25,7 @@ import java.util.HashMap;
 /**
  * Created by William Bennett on 6/30/2016.
  */
-public class RenderSystem {
+public class RenderSystem extends SystemBase {
     Rectangle cameraBounds;
     private static int spriteResolution = 16;
     public RenderSystem(Rectangle cameraBounds) {
