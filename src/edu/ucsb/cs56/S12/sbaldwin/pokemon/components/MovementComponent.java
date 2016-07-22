@@ -12,6 +12,10 @@ public class MovementComponent extends Component {
 
     public Vector2 velocity;
 
+    public MovementComponent(Vector2 velocity) {
+        this.velocity = velocity;
+    }
+
     public Direction getDirection() {
         // Hacky solution to get the direction the component is moving
         float angle = velocity.angle();

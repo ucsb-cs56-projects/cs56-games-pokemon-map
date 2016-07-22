@@ -25,7 +25,7 @@ public class PlayerController extends Controller {
     @Override
     public void update() {
         Command moveCommand = inputHandler.moveCommand;
-        inputHandler.updateMovement((PositionComponent)(entity.getComponent(PositionComponent.class)));
+        inputHandler.updateMovement((MovementComponent)(entity.getComponent(MovementComponent.class)));
         Command interactCommand = inputHandler.updateInteract(positionComponent, world);
         if (moveCommand != null)
             moveCommand.execute();
