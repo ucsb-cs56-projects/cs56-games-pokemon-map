@@ -4,7 +4,9 @@ jws/
 *.class
 *~
 .ant-targets-build.xml
+\#*
 
 # Intellij files #
 *.iml
 .idea/*
+out/*
