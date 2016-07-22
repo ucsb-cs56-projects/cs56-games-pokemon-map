@@ -75,11 +75,11 @@ public class Vector2 {
         return x * this.y - y * this.x;
     }
 
-    public double angle() {
+    public float angle() {
         double angle = Math.atan2(y, x);
         if (angle < 0)
-            angle += 360;
-        return angle;
+            angle += Math.PI * 2;
+        return (float)angle;
     }
 
     public String toString() {

@@ -11,6 +11,8 @@ public class Animation {
     AnimationFrame[] animationFrames;
     float currentTime;
     int arrayPos;
+    boolean active = false;
+    boolean looping = false;
 
     // Creates a static texture animation
     public Animation(Texture texture) {
@@ -33,15 +35,38 @@ public class Animation {
     }
 
     public void advance(float timeDelta) {
-        AnimationFrame currentFrame = animationFrames[arrayPos];
-        currentTime += timeDelta;
-        if (currentTime > currentFrame.frameLength) {
-            arrayPos++;
-            if (arrayPos >= animationFrames.length)
-                arrayPos = 0;
-            currentTime -= currentFrame.frameLength;
-            advance(0f);
+        if (active) {
+            AnimationFrame currentFrame = animationFrames[arrayPos];
+            currentTime += timeDelta;
+            if (currentTime > currentFrame.frameLength) {
+                arrayPos++;
+                if (arrayPos >= animationFrames.length) {
+                    arrayPos = 0;
+                    if (!looping)
+                        active = false;
+                }
+                if (looping || arrayPos != 0) {
+                    currentTime -= currentFrame.frameLength;
+                    advance(0f);
+                }
+            }
         }
+    }
+
+    public void runOnce() {
+        active = true;
+    }
+
+    public void run() {
+        active = looping = true;
+    }
+
+    public void freeze() {
+        active = looping = false;
+    }
+
+    public void halt() {
+        looping = false;
     }
 
 
