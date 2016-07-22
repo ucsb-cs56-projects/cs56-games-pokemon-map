@@ -7,19 +7,10 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.Entity;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.GraphicsComponent;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.PositionComponent;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.*;
-import javafx.geometry.Pos;
-import org.w3c.dom.css.Rect;
-import sun.management.snmp.jvmmib.EnumJvmThreadCpuTimeMonitoring;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
+
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
 
 
 /**
