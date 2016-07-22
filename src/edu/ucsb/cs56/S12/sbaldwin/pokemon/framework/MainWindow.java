@@ -17,7 +17,7 @@ public class MainWindow extends JPanel {
     int width = 640;
     int height = 480;
     static final long maxTime = 16666;
-    static final float gameFrameTime = 16.666f;
+    static final float gameFrameTime = .016666f;
 
     private JFrame containerWindow;
     volatile private boolean initialized = false;
@@ -53,7 +53,7 @@ public class MainWindow extends JPanel {
             paintScreen(spriteBatch.getBackBuffer());
             deltaT = System.nanoTime() - currentTime;
             try {
-                Thread.sleep(Math.max((maxTime - deltaT) / 1000, 0));
+                Thread.sleep(Math.max((maxTime - deltaT) / 1000000, 0));
             } catch (InterruptedException e) {
                 System.err.println("Thread interrupted");
             }
@@ -80,10 +80,12 @@ public class MainWindow extends JPanel {
         Graphics g;
         try {
             g = this.getGraphics();
-            g.drawRect(-1, -1, width, height);
             g.drawImage(backBuffer, 0, 0, null);
             Toolkit.getDefaultToolkit().sync();
             g.dispose();
+            Graphics clearGraphics = backBuffer.getGraphics();
+            clearGraphics.setColor(Color.black);
+            clearGraphics.drawRect(-1, -1, width, height);
         }
         catch (Exception e) {
             System.err.println("Error getting graphics device");

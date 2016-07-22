@@ -3,7 +3,12 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.Command;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.InteractCommand;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.MoveCommand;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.Entity;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.MovementComponent;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.PositionComponent;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.systems.SystemBase;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.systems.SystemMessage;
+import javafx.util.Pair;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -16,7 +21,7 @@ public class InputHandler extends SystemBase implements KeyListener {
 
     public boolean[] keys;
     public MoveCommand moveCommand;
-    private final int tileSpeed = 1;
+    private final float tileSpeed = 1f;
 
     public InputHandler() {
         keys = new boolean[5];
@@ -24,16 +29,17 @@ public class InputHandler extends SystemBase implements KeyListener {
 
     public void updateMovement(Entity entity) {
         if (keys[0]) {
-            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(0, -tileSpeed))));
+            messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(0, -tileSpeed))));
         } else if (keys[1]) {
-            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(0, tileSpeed))));
+            messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(0, tileSpeed))));
         } else if (keys[2]) {
-            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(-tileSpeed, 0))));
+            messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(-tileSpeed, 0))));
         } else if (keys[3]) {
-            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(tileSpeed, 0))));movementComponent.velocity.set(tileSpeed, 0);
+            messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(tileSpeed, 0))));
         } else {
-            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(0, 0))))m;ovementComponent.velocity.set(0, 0);
+            messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(0, 0))));
         }
+        messenger.merge();
     }
 
     public Command updateInteract(PositionComponent positionComponent, World world) {
@@ -106,4 +112,8 @@ public class InputHandler extends SystemBase implements KeyListener {
     }
 
 
+    @Override
+    protected void handleMessages() {
+
+    }
 }

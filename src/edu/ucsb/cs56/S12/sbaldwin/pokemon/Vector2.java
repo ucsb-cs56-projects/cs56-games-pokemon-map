@@ -49,6 +49,10 @@ public class Vector2 {
         this.y -= y;
     }
 
+    public Vector2 mult(float value) {
+        return new Vector2(x * value, y * value);
+    }
+
     public float dot(Vector2 v) {
         return this.x * v.x + this.y * v.y;
     }

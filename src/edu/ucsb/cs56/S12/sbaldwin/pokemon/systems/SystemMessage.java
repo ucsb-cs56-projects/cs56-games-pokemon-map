@@ -11,7 +11,7 @@ import java.util.HashMap;
 /**
  * Created by William Bennett on 7/21/2016.
  */
-public abstract class SystemMessage {
+public class SystemMessage {
     Pair<String, Object> message;
     public Entity subject;
 
@@ -21,7 +21,7 @@ public abstract class SystemMessage {
     }
 
     public boolean getMessage(String message, Ref<Object> reference) {
-        if (message.equals(this.message)) {
+        if (message.equals(this.message.getKey())) {
             reference.reference = this.message.getValue();
             return true;
         }

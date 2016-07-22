@@ -66,6 +66,6 @@ public class World {
     }
 
     public void update() {
-        ((ControllableComponent)(player.getComponent(ControllableComponent.class))).controller.update();
+        inputHandler.updateMovement(player);
     }
 }

@@ -29,6 +29,7 @@ public class RenderSystem extends SystemBase {
                 drawEntity(spriteBatch, world.tiles[i][j]);
             }
         }
+
         Entity[]  entities = world.getEntities();
         Arrays.sort(entities, (o1, o2) -> {
             PositionComponent pc1 = (PositionComponent)o1.getComponent(PositionComponent.class);

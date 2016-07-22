@@ -3,7 +3,9 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.IO.MapLoader;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.framework.MainWindow;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.SpriteBatch;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.systems.MovementSystem;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.systems.RenderSystem;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.systems.SystemMessenger;
 
 import java.awt.*;
 
@@ -21,6 +23,7 @@ public class Game extends MainWindow {
     World world;
     RenderSystem renderSystem;
     SystemMessenger systemMessenger;
+    MovementSystem movementSystem;
     public Game() {
         super();
     }
@@ -31,8 +34,10 @@ public class Game extends MainWindow {
         super.init();
         InputHandler inputHandler = new InputHandler();
         this.addKeyListener(inputHandler);
-	systemMessenger = new SystemMessenger();
-	inputHandler.registerMessenger(systemMessenger);
+	    systemMessenger = new SystemMessenger();
+	    inputHandler.registerMessenger(systemMessenger);
+        movementSystem = new MovementSystem();
+        movementSystem.registerMessenger(systemMessenger);
         world = new World(inputHandler);
         renderSystem = new RenderSystem(this.getBounds());
         MapLoader ml = new MapLoader();
@@ -48,6 +53,7 @@ public class Game extends MainWindow {
     public void update(float gameTime) {
         super.update(gameTime);
         world.update();
+        movementSystem.applyMovement(gameTime, world);
     }
 
     public void draw(SpriteBatch spriteBatch, float gameTime) {

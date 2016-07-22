@@ -23,7 +23,7 @@ public class MovementSystem extends SystemBase {
             if (PC == null || MC == null)
                 continue;
 
-            PC.offset.add(MC.velocity);
+            PC.offset.add(MC.velocity.mult(deltaT));
 
             if (PC.offset.x > 1) {
                 PC.offset.x -= 1;
@@ -53,6 +53,9 @@ public class MovementSystem extends SystemBase {
                 MovementComponent MC = (MovementComponent)msg.subject.getComponent(MovementComponent.class);
                 Vector2 vel = (Vector2) value.reference;
                 MC.velocity = vel;
+            }
+            else {
+                messenger.enqueue(msg);
             }
         }
     }

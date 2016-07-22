@@ -34,6 +34,9 @@ public class SystemMessenger {
                 frontBuffer.offer(backBuffer.poll());
             }
         }
+        Queue<SystemMessage> tmp = frontBuffer;
+        frontBuffer = backBuffer;
+        backBuffer = tmp;
     }
 
     public boolean isEmpty() {
