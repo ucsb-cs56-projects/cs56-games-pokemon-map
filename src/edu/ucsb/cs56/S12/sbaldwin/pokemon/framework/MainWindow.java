@@ -80,6 +80,7 @@ public class MainWindow extends JPanel {
         Graphics g;
         try {
             g = this.getGraphics();
+            g.drawRect(-1, -1, width, height);
             g.drawImage(backBuffer, 0, 0, null);
             Toolkit.getDefaultToolkit().sync();
             g.dispose();
