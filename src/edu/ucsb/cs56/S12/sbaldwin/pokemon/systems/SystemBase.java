@@ -9,4 +9,6 @@ public abstract class SystemBase {
     public void registerMessenger(SystemMessenger messenger) {
         this.messenger = messenger;
     }
+
+    protected abstract void handleMessages();
 }

@@ -6,6 +6,7 @@ import java.util.Queue;
 /**
  * Created by William Bennett on 7/21/2016.
  */
+// Every system has a shared reference to a SystemMessenger
 public class SystemMessenger {
     Queue<SystemMessage> frontBuffer;
     Queue<SystemMessage> backBuffer;

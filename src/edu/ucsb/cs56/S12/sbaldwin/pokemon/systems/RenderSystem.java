@@ -68,4 +68,9 @@ public class RenderSystem extends SystemBase {
     private static Vector2 scale(Vector2 vector, int amount) {
         return new Vector2(vector.x * amount, vector.y * amount);
     }
+
+    @Override
+    protected void handleMessages() {
+        return; // STUB
+    }
 }
