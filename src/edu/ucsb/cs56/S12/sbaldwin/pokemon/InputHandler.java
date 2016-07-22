@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
 /**
  * Created by steven on 6/30/16.
  */
-public class InputHandler implements KeyListener {
+public class InputHandler extends SystemBase implements KeyListener {
 
     public boolean[] keys;
     public MoveCommand moveCommand;
@@ -20,22 +20,20 @@ public class InputHandler implements KeyListener {
 
     public InputHandler() {
         keys = new boolean[5];
-	lastMove = 0;
     }
 
-    public void updateMovement(MovementComponent movementComponent) {
+    public void updateMovement(Entity entity) {
         if (keys[0]) {
-            movementComponent.velocity.set(0, -tileSpeed);
+            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(0, -tileSpeed))));
         } else if (keys[1]) {
-            movementComponent.velocity.set(0, tileSpeed);
+            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(0, tileSpeed))));
         } else if (keys[2]) {
-            movementComponent.velocity.set(-tileSpeed, 0);
+            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(-tileSpeed, 0))));
         } else if (keys[3]) {
-            movementComponent.velocity.set(tileSpeed, 0);
+            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(tileSpeed, 0))));movementComponent.velocity.set(tileSpeed, 0);
         } else {
-            movementComponent.velocity.set(0, 0);
+            messenger.enqueue(new SystemMessenge(entity, new Pair<String, Object>("movement-changed", new Vector2(0, 0))))m;ovementComponent.velocity.set(0, 0);
         }
-        moveCommand = new MoveCommand(positionComponent, moveTo);
     }
 
     public Command updateInteract(PositionComponent positionComponent, World world) {

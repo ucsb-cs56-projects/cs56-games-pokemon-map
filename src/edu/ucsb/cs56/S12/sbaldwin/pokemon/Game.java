@@ -20,6 +20,7 @@ public class Game extends MainWindow {
 
     World world;
     RenderSystem renderSystem;
+    SystemMessenger systemMessenger;
     public Game() {
         super();
     }
@@ -30,6 +31,8 @@ public class Game extends MainWindow {
         super.init();
         InputHandler inputHandler = new InputHandler();
         this.addKeyListener(inputHandler);
+	systemMessenger = new SystemMessenger();
+	inputHandler.registerMessenger(systemMessenger);
         world = new World(inputHandler);
         renderSystem = new RenderSystem(this.getBounds());
         MapLoader ml = new MapLoader();
