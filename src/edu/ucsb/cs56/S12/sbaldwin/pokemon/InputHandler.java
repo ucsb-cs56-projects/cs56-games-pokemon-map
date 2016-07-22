@@ -16,23 +16,24 @@ public class InputHandler implements KeyListener {
 
     public boolean[] keys;
     public MoveCommand moveCommand;
+    private final int tileSpeed = 1;
 
     public InputHandler() {
         keys = new boolean[5];
+	lastMove = 0;
     }
 
-    public void updateMovement(PositionComponent positionComponent) {
-        Point moveTo = (Point) positionComponent.position.clone();
+    public void updateMovement(MovementComponent movementComponent) {
         if (keys[0]) {
-            moveTo.move(0, -1);
+            movementComponent.velocity.set(0, -tileSpeed);
         } else if (keys[1]) {
-            moveTo.move(0, 1);
+            movementComponent.velocity.set(0, tileSpeed);
         } else if (keys[2]) {
-            moveTo.move(-1, 0);
+            movementComponent.velocity.set(-tileSpeed, 0);
         } else if (keys[3]) {
-            moveTo.move(1, 0);
+            movementComponent.velocity.set(tileSpeed, 0);
         } else {
-            return;
+            movementComponent.velocity.set(0, 0);
         }
         moveCommand = new MoveCommand(positionComponent, moveTo);
     }
