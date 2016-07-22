@@ -48,7 +48,8 @@ public class World {
         player.addComponent(new PositionComponent(new Point(0,0)));
         player.addComponent(new GraphicsComponent(Assets.player));
         player.addComponent(new ControllableComponent(new PlayerController(player, this, inputHandler)));
-        addEntity(player);
+        player.addComponent(new MovementComponent(Vector2.zero));
+                addEntity(player);
     }
 
     public void addEntity(Entity e) {
