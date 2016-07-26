@@ -6,9 +6,9 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.MoveCommand;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.Entity;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.MovementComponent;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.PositionComponent;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.framework.Pair;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.systems.SystemBase;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.systems.SystemMessage;
-import javafx.util.Pair;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;

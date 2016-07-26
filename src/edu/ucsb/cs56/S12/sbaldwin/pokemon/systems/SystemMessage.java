@@ -1,8 +1,8 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.systems;
 
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.Entity;
+import edu.ucsb.cs56.S12.sbaldwin.pokemon.framework.Pair;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.framework.Ref;
-import javafx.util.Pair;
 
 import java.lang.ref.Reference;
 import java.util.Enumeration;
@@ -21,8 +21,8 @@ public class SystemMessage {
     }
 
     public boolean getMessage(String message, Ref<Object> reference) {
-        if (message.equals(this.message.getKey())) {
-            reference.reference = this.message.getValue();
+        if (message.equals(this.message.first)) {
+            reference.reference = this.message.second;
             return true;
         }
         else {
