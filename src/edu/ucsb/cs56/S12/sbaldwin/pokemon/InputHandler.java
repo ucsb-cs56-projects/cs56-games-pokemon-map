@@ -27,6 +27,11 @@ public class InputHandler extends SystemBase implements KeyListener {
         keys = new boolean[5];
     }
 
+    /**
+     * Check which keys have been pressed and enqueue a move message in the system messenger
+     *
+     * @param entity the entity to be moved
+     */
     public void updateMovement(Entity entity) {
         if (keys[0]) {
             messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(0, -tileSpeed))));
@@ -42,6 +47,12 @@ public class InputHandler extends SystemBase implements KeyListener {
         messenger.merge();
     }
 
+    /**
+     * Stub class to update a command to interact with the world
+     *
+     * @param positionComponent the position component of the entity
+     * @param world the world where the entity resides
+     */
     public Command updateInteract(PositionComponent positionComponent, World world) {
         if (keys[4]) {
             return new InteractCommand(positionComponent, world);
@@ -105,13 +116,20 @@ public class InputHandler extends SystemBase implements KeyListener {
         }
     }
 
+    /**
+     * Checks if a key is typed, but currently only added to satisfy the key listener interface
+     * 
+     * @param e the KeyEvent
+     */
     @Override
     public void keyTyped(KeyEvent e) {
 
 
     }
 
-
+    /**
+     * Satisfies the SystemBase extension, currently does nothing
+     */
     @Override
     protected void handleMessages() {
 

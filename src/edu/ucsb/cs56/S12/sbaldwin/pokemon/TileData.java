@@ -13,17 +13,32 @@ public class TileData {
     Texture sprite;
     boolean collision; // Should be changed to an enum eventually
 
+    /**
+     * Main constructor for tile data
+     *
+     * @param tileID the id number for the tile
+     * @param sprite the texture for the tile
+     * @param collision whether the tile is walkable on or not
+     */
     public TileData(int tileID, Texture sprite, boolean collision) {
         this.tileID = tileID;
         this.sprite = sprite;
         this.collision = collision;
     }
-
+    
+    /**
+     * Overrides the hashCode method of Object to return the hashCode of the tileID
+     */
     @Override
     public int hashCode() {
         return Integer.hashCode(tileID);
     }
 
+    /**
+     * Overrides the equal method of Object to check if the tileID is the same
+     * 
+     * @param o the Object to compare
+     */
     @Override
     public boolean equals(Object o) {
         if (o instanceof TileData) {
