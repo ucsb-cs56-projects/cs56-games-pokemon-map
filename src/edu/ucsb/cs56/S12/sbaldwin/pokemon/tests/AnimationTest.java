@@ -79,6 +79,7 @@ public class AnimationTest {
     @Test public void test2FrameAnimation() {
         Texture[] textures = dummyTexArray(2);
         Animation testAnimation = nFrameAnimation(textures, 1);
+        testAnimation.run();
         testAnimation.advance(1.5f);
         Assert.assertEquals(textures[1], testAnimation.currentFrame());
     }
@@ -86,6 +87,7 @@ public class AnimationTest {
     @Test public void test3FrameAnimation() {
         Texture[] textures = dummyTexArray(3);
         Animation testAnimation = nFrameAnimation(textures, 1);
+        testAnimation.run();
         testAnimation.advance(1.5f);
         testAnimation.advance(1f);
         Assert.assertEquals(textures[2], testAnimation.currentFrame());
@@ -95,6 +97,7 @@ public class AnimationTest {
         Texture[] textures = dummyTexArray(3);
         Animation testAnimation = nFrameAnimation(textures, 1);
         // Advance 4.5 seconds
+        testAnimation.run();
         testAnimation.advance(1.5f);
         testAnimation.advance(1f);
         testAnimation.advance(1f);
@@ -102,9 +105,11 @@ public class AnimationTest {
         Assert.assertEquals(textures[1], testAnimation.currentFrame());
     }
 
+
     @Test public void testFrameSkipping() {
         Texture[] textures = dummyTexArray(3);
         Animation testAnimation = nFrameAnimation(textures, 1);
+        testAnimation.run();
         testAnimation.advance(2.5f);
         Assert.assertEquals(textures[2], testAnimation.currentFrame());
     }
