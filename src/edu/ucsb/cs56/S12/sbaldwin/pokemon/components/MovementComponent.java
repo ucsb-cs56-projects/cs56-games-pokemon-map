@@ -12,10 +12,20 @@ public class MovementComponent extends Component {
 
     public Vector2 velocity;
 
+    /**
+     * Constructs a movement component from a Vector2
+     *
+     * @param velocity the Vector2
+     */
     public MovementComponent(Vector2 velocity) {
         this.velocity = velocity;
     }
 
+    /**
+     * Returns one of four Directions that the Entity is facing
+     *
+     * @return the Direction the entity is facing
+     */
     public Direction getDirection() {
         // Hacky solution to get the direction the component is moving
         float angle = velocity.angle();

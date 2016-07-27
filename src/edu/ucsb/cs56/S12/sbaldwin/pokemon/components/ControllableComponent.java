@@ -6,6 +6,11 @@ public class ControllableComponent extends Component{
 
     public Controller controller;
 
+    /**
+     * Construcst a controllable component from a controller
+     *
+     * @param controller the Controller
+     */
     public ControllableComponent(Controller controller) {
         this.controller = controller;
     }
