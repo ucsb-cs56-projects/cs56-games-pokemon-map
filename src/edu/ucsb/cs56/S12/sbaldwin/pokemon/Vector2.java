@@ -1,5 +1,10 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 
+/**
+ * Stores an x and y value to do vector operations
+ *
+ * @author Steven Fields
+ */
 public class Vector2 {
 
     public float x, y;

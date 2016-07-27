@@ -1,19 +1,31 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.framework;
 
 /**
- * Created by William Bennett on 7/24/2016.
+ * A data structure for a pair
+ *
+ * @author William Bennett
  */
-
-
 public class Pair<T, U> {
     public T first;
     public U second;
 
+    /**
+     * Takes two references and stores them as pairs
+     *
+     * @param first the first object
+     * @param second the second object
+     */
     public Pair(T first, U second) {
         this.first = first;
         this.second = second;
     }
 
+    /**
+     * Checks if the two pairs are equal by seeing if the corresponding first and second pairs are the same
+     *
+     * @param o the second pair
+     * @return if they are equal
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -27,6 +39,11 @@ public class Pair<T, U> {
 
     }
 
+    /**
+     * Gives a unique hash code
+     *
+     * @return a hash code
+     */
     @Override
     public int hashCode() {
         int result = first != null ? first.hashCode() : 0;

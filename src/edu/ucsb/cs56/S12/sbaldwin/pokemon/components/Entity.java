@@ -2,6 +2,12 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon.components;
 
 import java.util.ArrayList;
 
+/**
+ * A class to hold components that make up an entity
+ *
+ * @author Steven Fields
+ * @author William Bennett
+ */
 public class Entity {
 
     private ArrayList<Component> components;

@@ -3,7 +3,9 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon.IO;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.TileData;
 
 /**
- * Created by William Bennett on 7/14/2016.
+ * Loads Tile Data. Currently not in use
+ *
+ * @author William Bennett
  */
 public class TileDataLoader {
 

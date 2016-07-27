@@ -10,6 +10,11 @@ import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Contains all Assets and initializes them
+ *
+ * @author Steven Fields
+ */
 public class Assets {
     public static Texture
             grass_Default,

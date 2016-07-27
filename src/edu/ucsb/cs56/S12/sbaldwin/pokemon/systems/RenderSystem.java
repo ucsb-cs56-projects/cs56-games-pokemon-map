@@ -14,15 +14,29 @@ import java.util.Arrays;
 
 
 /**
- * Created by William Bennett on 6/30/2016.
+ * Handles all rendering
+ *
+ * @author William Bennett
  */
 public class RenderSystem extends SystemBase {
     Rectangle cameraBounds;
     private static int spriteResolution = 16;
+
+    /**
+     * Creates a render system with camera bounds
+     *
+     * @param cameraBounds the camera bounds
+     */
     public RenderSystem(Rectangle cameraBounds) {
         this.cameraBounds = cameraBounds;
     }
 
+    /**
+     * Draws the elements to the screen with a SpriteBatch
+     *
+     * @param spriteBatch the SpriteBatch
+     * @param world the world
+     */
     public void draw(SpriteBatch spriteBatch, World world) {
         for (int i = 0; i < world.tiles.length; i++) {
             for (int j = 0; j < world.tiles[i].length; j++) {
@@ -44,6 +58,12 @@ public class RenderSystem extends SystemBase {
         }
     }
 
+    /**
+     * Draws an entity to the screen with a SpriteBatch
+     *
+     * @param spriteBatch the SpriteBatch
+     * @param entity the Entity
+     */
     private void drawEntity(SpriteBatch spriteBatch, Entity entity) {
         Entity e = entity;
         GraphicsComponent graphicsComponent = (GraphicsComponent)e.getComponent(GraphicsComponent.class);
@@ -58,18 +78,42 @@ public class RenderSystem extends SystemBase {
     }
 
 
+    /**
+     * Scales a rectangle by an amount
+     *
+     * @param rect the rectangle
+     * @param amount the scalar
+     * @return the scaled rectangle
+     */
     private static Rectangle scale(Rectangle rect, int amount) {
         return new Rectangle(rect.x * amount, rect.y * amount, rect.width * amount, rect.height * amount);
     }
 
+    /**
+     * Scales a point by an amount
+     *
+     * @param point the point
+     * @param amount the scalar
+     * @return the scaled point
+     */
     private static Point scale(Point point, int amount) {
         return new Point(point.x * amount, point.y * amount);
     }
 
+    /**
+     * Scales a Vector2 by an amount
+     *
+     * @param vector the Vector2
+     * @param amount the scalar
+     * @return the scaled vector
+     */
     private static Vector2 scale(Vector2 vector, int amount) {
         return new Vector2(vector.x * amount, vector.y * amount);
     }
 
+    /**
+     * Handles messages for the render system
+     */
     @Override
     protected void handleMessages() {
         return; // STUB

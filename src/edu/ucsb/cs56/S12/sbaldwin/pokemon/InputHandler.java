@@ -15,7 +15,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * Created by steven on 6/30/16.
+ * Handles the input
+ *
+ * @author Steven Fields
  */
 public class InputHandler extends SystemBase implements KeyListener {
 
@@ -52,6 +54,7 @@ public class InputHandler extends SystemBase implements KeyListener {
      *
      * @param positionComponent the position component of the entity
      * @param world the world where the entity resides
+     * @return returns the command to interact
      */
     public Command updateInteract(PositionComponent positionComponent, World world) {
         if (keys[4]) {

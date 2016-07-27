@@ -3,7 +3,9 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics;
 import java.util.ArrayList;
 
 /**
- * Created by William Bennett on 7/15/2016.
+ * A class to store and handle animation
+ *
+ * @author William Bennett
  */
 public class Animation {
     AnimationFrame[] animationFrames;
@@ -12,7 +14,11 @@ public class Animation {
     boolean active = false;
     boolean looping = false;
 
-    // Creates a static texture animation
+    /**
+     * Creates an animation with a single texture
+     *
+     * @param texture the texture
+     */
     public Animation(Texture texture) {
         if (texture == null)
             throw new IllegalArgumentException("texture argument cannot be null");
@@ -21,6 +27,11 @@ public class Animation {
         arrayPos = 0;
     }
 
+    /**
+     * Creates an animation from an array of frames
+     *
+     * @param animationList the array of frames
+     */
     public Animation(AnimationFrame[] animationList) {
         if (animationList == null)
             throw new IllegalArgumentException("Animation list argument cannot be null");
@@ -28,10 +39,20 @@ public class Animation {
         arrayPos = 0;
     }
 
+    /**
+     * Gives the current frame
+     *
+     * @return the current frame
+     */
     public Texture currentFrame() {
         return animationFrames[arrayPos].texture;
     }
 
+    /**
+     * Moves the animation forward by a delta time
+     *
+     * @param timeDelta the delta time
+     */
     public void advance(float timeDelta) {
         if (active) {
             AnimationFrame currentFrame = animationFrames[arrayPos];

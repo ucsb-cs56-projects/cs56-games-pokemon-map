@@ -6,10 +6,10 @@ import java.awt.*;
 
 
 /**
- * Created by William Bennett on 6/29/2016.
+ * A component for the position of the entity
+ *
+ * @author Steven Fields
  */
-
-// Component for the position of the owner entity
 public class PositionComponent extends Component {
 
     public Point position;

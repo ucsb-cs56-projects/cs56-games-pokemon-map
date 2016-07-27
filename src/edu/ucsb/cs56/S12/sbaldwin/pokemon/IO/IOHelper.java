@@ -1,7 +1,9 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.IO;
 
 /**
- * Created by William Bennett on 7/15/2016.
+ * Reads characters from a string one at a time
+ *
+ * @author William Bennett
  */
 public class IOHelper {
     private String stream;
@@ -19,7 +21,7 @@ public class IOHelper {
     /**
      * Gets the position of the next char c in the stream
      *
-     * @parma c the char
+     * @param c the char
      * @return the next position of c
      */
     public int seekNext(char c) {

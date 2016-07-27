@@ -9,7 +9,9 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.Animation;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.AnimationFrame;
 
 /**
- * Created by steven on 6/30/16.
+ * Contains tiles and NPCs as entities
+ *
+ * @author Steven Fields
  */
 public class World {
 

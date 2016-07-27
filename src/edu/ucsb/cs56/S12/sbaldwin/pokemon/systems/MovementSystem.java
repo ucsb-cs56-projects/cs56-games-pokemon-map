@@ -8,11 +8,18 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.PositionComponent;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.framework.Ref;
 
 /**
- * Created by William Bennett on 7/22/2016.
+ * Handles all movement
+ *
+ * @author William Bennett
  */
 public class MovementSystem extends SystemBase {
 
-    // Two things: Handles movement changed messages, and applies movement
+    /**
+     * Handles movement and applies it a delta time forward
+     *
+     * @param deltaT the delta time
+     * @param world the world
+     */
     public void applyMovement(float deltaT, World world) {
         Entity[] entities = world.getEntities();
         handleMessages();
@@ -43,6 +50,9 @@ public class MovementSystem extends SystemBase {
         }
     }
 
+    /**
+     * Handles the message for a movement change
+     */
     @Override
     protected void handleMessages() {
         while (!messenger.isEmpty()) {

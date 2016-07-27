@@ -3,7 +3,9 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.Texture;
 
 /**
- * Created by William Bennett on 7/14/2016.
+ * Class to contain TileData
+ *
+ * @author William Bennett
  */
 
 // This class contains information about a tile, based on its ID

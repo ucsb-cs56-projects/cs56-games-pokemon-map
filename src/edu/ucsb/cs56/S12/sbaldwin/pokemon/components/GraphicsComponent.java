@@ -3,6 +3,12 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon.components;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.Animation;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.Texture;
 
+/**
+ * A component to handle graphics of the entity
+ *
+ * @author Steven Fields
+ * @author William Bennett
+ */
 public class GraphicsComponent extends Component {
 
     public Animation animation;

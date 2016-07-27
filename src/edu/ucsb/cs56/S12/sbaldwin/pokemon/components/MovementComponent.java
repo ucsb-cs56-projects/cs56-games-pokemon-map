@@ -3,9 +3,10 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon.components;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.Vector2;
 
 /**
- * Created by William Bennett on 7/22/2016.
+ * A component to handle movement of the entity
+ *
+ * @author William Bennett
  */
-
 public class MovementComponent extends Component {
     private static float PIOverFour = (float)Math.PI / 4f;
     public enum Direction {None, North, South, East, West}

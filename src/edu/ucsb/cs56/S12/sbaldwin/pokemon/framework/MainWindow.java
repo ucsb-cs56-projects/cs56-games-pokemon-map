@@ -24,6 +24,10 @@ public class MainWindow extends JPanel {
 
     protected SpriteBatch spriteBatch;
     Toolkit toolkit;
+
+    /**
+     * Constructs the main window
+     */
     public MainWindow() {
         containerWindow = new JFrame();
         containerWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -41,6 +45,9 @@ public class MainWindow extends JPanel {
         spriteBatch = new SpriteBatch(this.createImage(width, height));
     }
 
+    /**
+     * Starts running the program
+     */
     public void run() {
         long currentTime = System.nanoTime();
         long deltaT = 0;
@@ -61,21 +68,43 @@ public class MainWindow extends JPanel {
         }
     }
 
+    /**
+     * Initializes game logic code
+     */
     protected void init() {
     }
 
+    /**
+     * Loads game assets
+     */
     protected void load() {
     }
 
+    /**
+     * Moves the game forward a delta time and updates it
+     *
+     * @param gameTime the delta time
+     */
     protected void update(float gameTime) {
 
     }
 
+    /**
+     * Moves the rendeering forward a delta time and draws to the screen
+     *
+     * @param spriteBatch the SpriteBatch that draws to the screen
+     * @param gameTime the delta time
+     */
     protected void draw(SpriteBatch spriteBatch, float gameTime) {
         if (!initialized)
             return;
     }
 
+    /**
+     * Paints the screen with a graphics object from a back buffer
+     *
+     * @param backBuffer the back buffer
+     */
     private void paintScreen(Image backBuffer) {
         Graphics g;
         try {
