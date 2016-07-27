@@ -6,7 +6,6 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.Entity;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.MovementComponent;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.components.PositionComponent;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.framework.Ref;
-import javafx.geometry.Pos;
 
 /**
  * Created by William Bennett on 7/22/2016.

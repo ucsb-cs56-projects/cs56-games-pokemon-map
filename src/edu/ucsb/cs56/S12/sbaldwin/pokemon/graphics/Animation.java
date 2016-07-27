@@ -1,7 +1,5 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics;
 
-import javafx.util.Pair;
-
 import java.util.ArrayList;
 
 /**
