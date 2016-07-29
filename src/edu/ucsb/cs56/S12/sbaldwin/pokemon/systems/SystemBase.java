@@ -1,11 +1,18 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.systems;
 
 /**
- * Created by William Bennett on 7/21/2016.
+ * Abstract class for all classes that use System messages
+ *
+ * @author William Bennett
  */
 public abstract class SystemBase {
     protected SystemMessenger messenger;
 
+    /**
+     * Registers a messenger
+     *
+     * @param messenger the messenger
+     */
     public void registerMessenger(SystemMessenger messenger) {
         this.messenger = messenger;
     }

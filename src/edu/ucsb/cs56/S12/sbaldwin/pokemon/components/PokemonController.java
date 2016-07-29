@@ -5,11 +5,22 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.MoveCommand;
 
 import java.awt.*;
 
+/**
+ * A class to control a specific pokemon entity
+ *
+ * @author Steven Fields
+ */
 public class PokemonController extends Controller {
 
     Entity entity;
     InputHandler inputHandler;
 
+    /**
+     * Creates a pokemon controller
+     *
+     * @param entity the pokemon to control
+     * @param inputHandler the input handler
+     */
     public PokemonController(Entity entity, InputHandler inputHandler) {
         this.entity = entity;
         this.inputHandler = inputHandler;

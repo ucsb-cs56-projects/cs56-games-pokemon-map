@@ -10,8 +10,9 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.systems.SystemMessenger;
 import java.awt.*;
 
 /**
- * Created by William Bennett on 7/14/2016.
  * Put ALL game logic in this class, or in objects rooted in this class
+ *
+ * @author William Bennett
  */
 public class Game extends MainWindow {
     private static String testMap = "map_name {" +
@@ -24,10 +25,18 @@ public class Game extends MainWindow {
     RenderSystem renderSystem;
     SystemMessenger systemMessenger;
     MovementSystem movementSystem;
+
+    /**
+     * Game constructor that simply calls the constructor of its super class, MainWindow
+     */
     public Game() {
         super();
     }
 
+    
+    /**
+     * Initialize all non-asset resources such as the world, the system manager, the maploader, etc.
+     */
     public void init() {
 	// create world
 	//
@@ -44,18 +53,30 @@ public class Game extends MainWindow {
         ml.loadMap(testMap, world);
     }
 
+    /**
+     * Load all asset resources such as textures and sound
+     */
     public void load() {
 	// load assets
         super.load();
         Assets.initAssets();
     }
 
+    /**
+     * Update the game and move it forward by a delta time
+     * @param gameTime is the delta time to move the game forward
+     */
     public void update(float gameTime) {
         super.update(gameTime);
         world.update();
         movementSystem.applyMovement(gameTime, world);
     }
 
+    /**
+     * Draw to the screen using a sprite batch and a delta time
+     * @param spriteBatch is the sprite batch that draws to the screen
+     * @param gameTime is the delta time to move the drawing forward
+     */
     public void draw(SpriteBatch spriteBatch, float gameTime) {
         super.draw(spriteBatch, gameTime);
 	    renderSystem.draw(spriteBatch, world);

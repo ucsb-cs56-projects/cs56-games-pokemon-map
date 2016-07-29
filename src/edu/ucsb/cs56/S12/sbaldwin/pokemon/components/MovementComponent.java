@@ -3,19 +3,30 @@ package edu.ucsb.cs56.S12.sbaldwin.pokemon.components;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.Vector2;
 
 /**
- * Created by William Bennett on 7/22/2016.
+ * A component to handle movement of the entity
+ *
+ * @author William Bennett
  */
-
 public class MovementComponent extends Component {
     private static float PIOverFour = (float)Math.PI / 4f;
     public enum Direction {None, North, South, East, West}
 
     public Vector2 velocity;
 
+    /**
+     * Constructs a movement component from a Vector2
+     *
+     * @param velocity the Vector2
+     */
     public MovementComponent(Vector2 velocity) {
         this.velocity = velocity;
     }
 
+    /**
+     * Returns one of four Directions that the Entity is facing
+     *
+     * @return the Direction the entity is facing
+     */
     public Direction getDirection() {
         // Hacky solution to get the direction the component is moving
         float angle = velocity.angle();

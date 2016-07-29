@@ -12,7 +12,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by William Bennett on 7/15/2016.
+ * Loads the Map
+ *
+ * @author William Bennett
  */
 
 /* TODO litter this class with comments
@@ -22,6 +24,13 @@ public class MapLoader {
     int[][] tileGrid;
     // Ultimately this class will read the formatting information encoded in the map itself
     // Because of deadlines, I'm hardcoding it right now
+
+    /**
+     * Loads the map from a String and puts it into a world object
+     *
+     * @param inputStream the string to read from
+     * @param world the world to load
+     */
     public void loadMap(String inputStream, World world) {
         loadMap(inputStream);
         Entity[][] entities = new Entity[tileGrid.length][tileGrid[0].length];

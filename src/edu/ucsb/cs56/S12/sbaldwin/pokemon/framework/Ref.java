@@ -1,7 +1,9 @@
 package edu.ucsb.cs56.S12.sbaldwin.pokemon.framework;
 
 /**
- * Created by William Bennett on 7/22/2016.
+ * A data structure for a reference
+ *
+ * @author William Bennett
  */
 public class Ref<T> {
     public T reference;

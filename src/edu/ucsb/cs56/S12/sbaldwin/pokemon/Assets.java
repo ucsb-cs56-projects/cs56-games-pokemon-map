@@ -10,6 +10,11 @@ import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Contains all Assets and initializes them
+ *
+ * @author Steven Fields
+ */
 public class Assets {
     public static Texture
             grass_Default,
@@ -48,7 +53,9 @@ public class Assets {
             textBox,
             player;
 
-
+    /**
+     * Initializes the assets
+     */
     public static void initAssets() {
         BufferedImage TileSet_Main = addImage("images/TilesetMain.bmp");
         BufferedImage TileSet_Characters = addImage("images/NPC_frlg.bmp");
@@ -98,6 +105,12 @@ public class Assets {
 
     }
 
+    /**
+     * Creates a BufferedImage from a file in the src/edu/ucsb/cs56/S12/sbaldwin/pokemon directory
+     *
+     * @param name the name of the file
+     * @return a BufferedImage of said image file
+     */
     private static BufferedImage addImage(String name) {
         BufferedImage img = null;
         try {
@@ -110,6 +123,12 @@ public class Assets {
         return img;
     }
 
+    /**
+     * Creates a BufferedImage from a Image object
+     *
+     * @param image the Image
+     * @return the BufferedImage
+     */
     private static BufferedImage imageToBufferedImage(Image image) {
 
         BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
@@ -119,6 +138,13 @@ public class Assets {
         return bufferedImage;
     }
 
+    /**
+     * Makes a specific color transparent
+     * 
+     * @param im the BufferedImage
+     * @param color the Color
+     * @return an Image where color is made transparent
+     */
     private static Image makeColorTransparent(BufferedImage im, final Color color) {
         ImageFilter filter = new RGBImageFilter() {
 

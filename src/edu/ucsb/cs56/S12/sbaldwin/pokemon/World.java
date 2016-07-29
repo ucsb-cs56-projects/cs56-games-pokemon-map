@@ -9,7 +9,9 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.Animation;
 import edu.ucsb.cs56.S12.sbaldwin.pokemon.graphics.AnimationFrame;
 
 /**
- * Created by steven on 6/30/16.
+ * Contains tiles and NPCs as entities
+ *
+ * @author Steven Fields
  */
 public class World {
 
@@ -18,7 +20,13 @@ public class World {
     InputHandler inputHandler;
     Entity player;
 
-    // Basic skeleton for world class
+    /**
+     * Main world constructor to define tiles, entities, and the input handler
+     *
+     * @param tiles the tile entities
+     * @param entities the entity characters
+     * @param inputHandler the main input handler
+     */
     public World(Entity[][] tiles, HashSet<Entity> entities, InputHandler inputHandler) {
         this.tiles = tiles;
         this.entities = entities;
@@ -30,6 +38,12 @@ public class World {
         addEntity(player);
     }
 
+    /**
+     * World constructor that assumes an empty container of entity characters
+     *
+     * @param tiles the tile entities
+     * @param inputHandler the main input handler
+     */
     public World(Entity[][] tiles, InputHandler inputHandler) {
         this.tiles = tiles;
         entities = new HashSet<>();
@@ -40,7 +54,12 @@ public class World {
         player.addComponent(new ControllableComponent(new PlayerController(player, this, inputHandler)));
         addEntity(player);
     }
-
+    
+    /**
+     * World constructor that make empty tiles and container of entity characters
+     *
+     * @param inputHandler the main input handler
+     */
     public World(InputHandler inputHandler) {
         entities = new HashSet<>();
         this.inputHandler = inputHandler;
@@ -51,11 +70,21 @@ public class World {
         player.addComponent(new MovementComponent(Vector2.zero));
                 addEntity(player);
     }
-
+    
+    /**
+     * Adds entity to the hash set
+     *
+     * @param e the Entity
+     */
     public void addEntity(Entity e) {
         entities.add(e);
     }
 
+    /**
+     * Returns an array of the entities
+     *
+     * @return array of entities
+     */
     public Entity[] getEntities() {
         Entity[] array = new Entity[entities.size()];
         int pos = 0;
@@ -65,6 +94,9 @@ public class World {
         return array;
     }
 
+    /**
+     * Updates the world
+     */
     public void update() {
         inputHandler.updateMovement(player);
     }

@@ -8,6 +8,11 @@ import edu.ucsb.cs56.S12.sbaldwin.pokemon.commands.MoveCommand;
 
 import javax.swing.text.Position;
 
+/**
+ * A class to control a Player
+ *
+ * @author Steven Fields
+ */
 public class PlayerController extends Controller {
 
     Entity entity;
@@ -15,6 +20,13 @@ public class PlayerController extends Controller {
     InputHandler inputHandler;
     PositionComponent positionComponent;
 
+    /**
+     * Creates a player controller
+     *
+     * @param entity the entity to control
+     * @param world the world the entity resides in
+     * @param inputHandler the input handler
+     */
     public PlayerController(Entity entity, World world, InputHandler inputHandler) {
         this.entity = entity;
         this.world = world;
