@@ -116,7 +116,7 @@ public class Assets {
         water7 = new Texture(TileSet_Main, 16*5, 16*28, 16, 16);
         water8 = new Texture(TileSet_Main, 16*6, 16*28, 16, 16);
         water9 = new Texture(TileSet_Main, 16*7, 16*28, 16, 16);
-        
+
         player3 = new Texture(TileSet_Characters, 510, 194, 14, 20);
         player0 = new Texture(TileSet_Characters, 525, 194, 14, 20);
         player9 = new Texture(TileSet_Characters, 539, 194, 14, 20);
