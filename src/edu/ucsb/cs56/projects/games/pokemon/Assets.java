@@ -116,7 +116,7 @@ public class Assets {
         water7 = new Texture(TileSet_Main, 16*5, 16*28, 16, 16);
         water8 = new Texture(TileSet_Main, 16*6, 16*28, 16, 16);
         water9 = new Texture(TileSet_Main, 16*7, 16*28, 16, 16);
-        // old player = new Texture(TileSet_Characters, 509, 194, 525-509, 215-194);
+        
         player3 = new Texture(TileSet_Characters, 510, 194, 14, 20);
         player0 = new Texture(TileSet_Characters, 525, 194, 14, 20);
         player9 = new Texture(TileSet_Characters, 539, 194, 14, 20);
@@ -132,19 +132,19 @@ public class Assets {
         player5 = new Texture(TileSet_Characters_Flipped, 71, 194, 15, 20);
         player2 = new Texture(TileSet_Characters_Flipped, 55, 194, 14, 20);
 
-        player0f = new AnimationFrame(player0);         // should be 3
-        player1f = new AnimationFrame(player1);         // should be 0
-        player2f = new AnimationFrame(player2);         // should be 9
-        player3f = new AnimationFrame(player3);         // should be 4
-        player4f = new AnimationFrame(player4);         // should be 1
-        player5f = new AnimationFrame(player5);         // should be 10
-        player6f = new AnimationFrame(player6);         // should be 11
+        player0f = new AnimationFrame(player0);
+        player1f = new AnimationFrame(player1);
+        player2f = new AnimationFrame(player2);
+        player3f = new AnimationFrame(player3);
+        player4f = new AnimationFrame(player4);
+        player5f = new AnimationFrame(player5);
+        player6f = new AnimationFrame(player6);
 
-        player7f = new AnimationFrame(player7);         // should be 7
-        player8f = new AnimationFrame(player8);         // should be 8
-        player9f = new AnimationFrame(player9);         // should be 6
-        player10f = new AnimationFrame(player10);       // should be 5
-        player11f = new AnimationFrame(player11);       // should be 2
+        player7f = new AnimationFrame(player7);
+        player8f = new AnimationFrame(player8);
+        player9f = new AnimationFrame(player9);
+        player10f = new AnimationFrame(player10);
+        player11f = new AnimationFrame(player11);
 
         playerAnimation = new AnimationFrame[12];
         playerAnimation[0] = player0f;
