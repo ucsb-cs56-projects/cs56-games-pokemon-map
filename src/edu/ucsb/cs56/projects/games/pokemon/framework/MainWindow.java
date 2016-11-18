@@ -82,6 +82,8 @@ public class MainWindow extends JPanel {
 
     /**
      * Sets the map
+     * @param map the loaded map's string data to be converted
+     *            into the visual map
      */
     protected static void setMap(String map) {
 

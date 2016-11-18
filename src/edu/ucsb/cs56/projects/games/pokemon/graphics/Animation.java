@@ -1,5 +1,7 @@
 package edu.ucsb.cs56.projects.games.pokemon.graphics;
 
+import edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
+
 import java.util.ArrayList;
 
 /**
@@ -11,8 +13,8 @@ public class Animation {
     AnimationFrame[] animationFrames;
     float currentTime;
     int arrayPos;
-    boolean active = false;
-    boolean looping = false;
+    boolean active;
+    boolean looping;
 
     /**
      * Creates an animation with a single texture
@@ -36,6 +38,9 @@ public class Animation {
         if (animationList == null)
             throw new IllegalArgumentException("Animation list argument cannot be null");
         animationFrames = animationList;
+        active = true;
+        looping = true;
+        currentTime = 0;
         arrayPos = 0;
     }
 
@@ -52,13 +57,72 @@ public class Animation {
      * Moves the animation forward by a delta time
      *
      * @param timeDelta the delta time
+     * @param direction the direction the character is moving
      */
-    public void advance(float timeDelta) {
+    public void advance(float timeDelta, MovementComponent direction) {
         if (active) {
             AnimationFrame currentFrame = animationFrames[arrayPos];
             currentTime += timeDelta;
             if (currentTime > currentFrame.frameLength) {
-                arrayPos++;
+                if (direction.getDirection() == MovementComponent.Direction.South) {
+                    if (arrayPos == 0) {
+                        arrayPos = 1;
+                    }
+
+                    else if (arrayPos == 1) {
+                        arrayPos = 2;
+                    }
+                    else if (arrayPos == 2) {
+                        arrayPos = 0;
+                    }
+                    else {
+                        arrayPos = 0;
+                    }
+
+                }
+
+                else if (direction.getDirection() == MovementComponent.Direction.North) {
+                    if (arrayPos == 3) {
+                        arrayPos = 4;
+                    }
+                    else if (arrayPos == 4) {
+                        arrayPos = 5;
+                    }
+                    else if (arrayPos == 5) {
+                        arrayPos = 3;
+                    }
+                    else {
+                        arrayPos = 3;
+                    }
+                }
+                else if (direction.getDirection() == MovementComponent.Direction.East) {
+                    if (arrayPos == 6) {
+                        arrayPos = 7;
+                    }
+                    else if (arrayPos == 7) {
+                        arrayPos = 8;
+                    }
+                    else if (arrayPos == 8) {
+                        arrayPos = 6;
+                    }
+                    else {
+                        arrayPos = 6;
+                    }
+                }
+                else if (direction.getDirection() == MovementComponent.Direction.West) {
+                    if (arrayPos == 9) {
+                        arrayPos = 10;
+                    }
+                    else if (arrayPos == 10) {
+                        arrayPos = 11;
+                    }
+                    else if (arrayPos == 11) {
+                        arrayPos = 9;
+                    }
+                    else {
+                        arrayPos = 9;
+                    }
+                }
                 if (arrayPos >= animationFrames.length) {
                     arrayPos = 0;
                     if (!looping)
@@ -66,7 +130,7 @@ public class Animation {
                 }
                 if (looping || arrayPos != 0) {
                     currentTime -= currentFrame.frameLength;
-                    advance(0f);
+                    advance(0.00f, direction);
                 }
             }
         }

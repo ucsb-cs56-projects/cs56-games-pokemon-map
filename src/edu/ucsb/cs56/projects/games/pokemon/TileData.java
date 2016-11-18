@@ -62,8 +62,8 @@ public class TileData {
      *  waterN: N+2
      *  (Water9 is the final water type)
      *
-     * @param tileID
-     * @return
+     * @param tileID the tile's ID value
+     * @return the proper Asset texture
      */
     public static Texture IDToTexture(int tileID) {
         switch (tileID) {
@@ -80,6 +80,24 @@ public class TileData {
             case 10: return Assets.water8;
             case 11: return Assets.water9;
             default: return Assets.grass_Default;
+        }
+    }
+
+    public static boolean IDToCollision(int tileID) {
+        switch (tileID) {
+            case 0: return false;
+            case 1: return false;
+            case 2: return false;
+            case 3: return true;
+            case 4: return true;
+            case 5: return true;
+            case 6: return true;
+            case 7: return true;
+            case 8: return true;
+            case 9: return true;
+            case 10: return true;
+            case 11: return true;
+            default: return false;
         }
     }
 }

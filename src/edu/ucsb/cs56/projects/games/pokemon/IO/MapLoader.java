@@ -2,10 +2,7 @@ package edu.ucsb.cs56.projects.games.pokemon.IO;
 
 import edu.ucsb.cs56.projects.games.pokemon.Assets;
 import edu.ucsb.cs56.projects.games.pokemon.World;
-import edu.ucsb.cs56.projects.games.pokemon.components.Entity;
-import edu.ucsb.cs56.projects.games.pokemon.components.GraphicsComponent;
-import edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
-import edu.ucsb.cs56.projects.games.pokemon.components.TileComponent;
+import edu.ucsb.cs56.projects.games.pokemon.components.*;
 import edu.ucsb.cs56.projects.games.pokemon.TileData;
 
 
@@ -41,7 +38,9 @@ public class MapLoader {
                 entities[x][y] = new Entity().
                         addComponent(new TileComponent(tileGrid[x][y])).
                         addComponent(new PositionComponent(x, y)).
-                        addComponent(new GraphicsComponent(TileData.IDToTexture(tileGrid[x][y])));
+                        addComponent(new GraphicsComponent(TileData.IDToTexture(tileGrid[x][y]))).
+                        addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),
+                                TileData.IDToTexture(tileGrid[x][y]).height()));
                 //world.addEntity(entities[x][y]);
             }
         }
