@@ -64,45 +64,48 @@
        
    </junit>
   </target>
-  
- <target name="javadoc" depends="compile" description="Creates the javadoc--NONFUNCTIONING">
- 
-   <delete dir="javadoc" quiet="true" /> 
-   <javadoc  destdir="javadoc" author="true" version="true" use="true" >  
-      <fileset dir="src" includes="**/*.java"/>  
-      <classpath refid="project.class.path" />
 
-   </javadoc>
+  <property name="javadoc_absolute_path" location="javadoc"/>
+  <property name="public_javadoc_absolute_path" location="../cs56-games-pokemon-map-javadoc/javadoc"/>
 
-   <!-- delete the old javadoc -->
-   <delete quiet="true" dir="${javadocDest}" /> 
+  <target name="javadoc" depends="compile" description="generate javadoc">
+        <delete quiet="true">
+            <fileset dir="javadoc" />
+        </delete>
+        <javadoc destdir="javadoc" packagenames="edu.ucsb.cs56.projects.games.pokemon.*" sourcepath="src">
 
-   <!-- copy everything you just made to the javadoc destination, and then make it readable --> 
- 
-   <copy todir="${javadocDest}" > 
-     <fileset dir="javadoc"/> 
-   </copy> 
- 
-   <!-- Note: this only does the chmod command on the 
-        javadoc subdirectory and its contents.  You MIGHT have to
-	MANUALLY do the chmod on the parent directories.  However,
-	you should only need to do that once. --> 
- 
-   <chmod dir="${javadocDest}" perm="755"  type="dir" includes="**" /> 
-   <chmod dir="${javadocDest}" perm="755"  type="file" includes="**/*" /> 
-   <echo>Javadoc deployed to ${javadocURL}</echo> 
+            <classpath refid="project.class.path" />
+            <link href="https://docs.oracle.com/javase/8/docs/api/" />
+        </javadoc>
+        <echo>
+            javadoc written to file://${javadoc_absolute_path}/index.html
+            copying to ${public_javadoc_absolute_path}/index.html
+        </echo>
+        <delete quiet="true">
+            <fileset dir="${public_javadoc_absolute_path}" />
+        </delete>
+        <mkdir dir="${public_javadoc_absolute_path}" />
+        <copy todir="${public_javadoc_absolute_path}">
+            <fileset dir="javadoc" />
+        </copy>
+        <echo>
+            javadoc copied to ${public_javadoc_absolute_path}/index.html
+            TO PUBLISH: cd into that repo, then git add javadoc;
+            git commit -m "update javadoc"; git push origin gh-pages
+        </echo>
+    </target>
 
- </target>
 
- <target name="jar" depends="compile" description="Creates the jar file--NONFUNCTIONING">
-   <mkdir dir="dist" />
-   <jar destfile="dist/${projectName}.jar" basedir="build" >
-       <manifest>
-         <attribute name="Main-Class" value="${mainClass}"/>
-       </manifest>
-   </jar>
- </target>
 
+
+    <target name="jar" depends="compile" description="create a jar file">
+        <jar destfile="build/pokemon_map.jar">
+            <fileset dir="build" includes="*.class"/>
+            <manifest>
+                <attribute name="Main-Class" value="${mainClass}"/>
+            </manifest>
+        </jar>
+    </target>
 
 
 </project>

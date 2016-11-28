@@ -84,8 +84,8 @@ public class Game extends MainWindow {
 
     /**
      *
-     * @param map
-     * @return
+     * @param map file destination in folders
+     * @return String data to be loaded into parser for map creation
      */
 
     public static String setTestMap(String map) {

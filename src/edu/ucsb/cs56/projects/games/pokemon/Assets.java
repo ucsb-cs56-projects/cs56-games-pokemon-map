@@ -6,6 +6,7 @@ import edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +52,13 @@ public class Assets {
             niceTree,
             god,
             textBox,
-            player;
+            player0, player1, player2, player3, player4, player5,
+            player6, player7, player8, player9, player10, player11;
+    public static AnimationFrame
+            player0f, player1f, player2f, player3f, player4f, player5f,
+            player6f, player7f, player8f, player9f, player10f, player11f;
+    public static AnimationFrame[] playerAnimation;
+
 
 
     /**
@@ -61,11 +68,18 @@ public class Assets {
         BufferedImage TileSet_Main = addImage("images/TilesetMain.bmp");
         BufferedImage TileSet_Characters = addImage("images/NPC_frlg.bmp");
         BufferedImage TileSet_Pkmn = addImage("images/pkmn.bmp");
+        BufferedImage TileSet_Characters_Flipped = addImage("images/NPC_frlg.bmp");
         TileSet_Main = imageToBufferedImage(makeColorTransparent(TileSet_Main, Color.black));
         TileSet_Characters = imageToBufferedImage(makeColorTransparent(TileSet_Characters, new Color(255, 0, 255)));
+        TileSet_Characters_Flipped = imageToBufferedImage(makeColorTransparent(TileSet_Characters_Flipped,
+                                                                                new Color(255, 0, 255)));
         TileSet_Pkmn = imageToBufferedImage(makeColorTransparent(TileSet_Pkmn, Color.white));
 
-
+        AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+        tx.translate(-TileSet_Characters_Flipped.getWidth(null), 0);
+        AffineTransformOp op = new AffineTransformOp(tx,
+                AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        TileSet_Characters_Flipped = op.filter(TileSet_Characters_Flipped, null);
 
         grass_Default = new Texture(TileSet_Main, 16, 0, 16, 16);
         grass_Wild = new Texture(TileSet_Main, 0, 16, 16, 16);
@@ -102,8 +116,49 @@ public class Assets {
         water7 = new Texture(TileSet_Main, 16*5, 16*28, 16, 16);
         water8 = new Texture(TileSet_Main, 16*6, 16*28, 16, 16);
         water9 = new Texture(TileSet_Main, 16*7, 16*28, 16, 16);
-        player = new Texture(TileSet_Characters, 509, 194, 525-509, 215-194);
 
+        player3 = new Texture(TileSet_Characters, 510, 194, 14, 20);
+        player0 = new Texture(TileSet_Characters, 525, 194, 14, 20);
+        player9 = new Texture(TileSet_Characters, 539, 194, 14, 20);
+        player4 = new Texture(TileSet_Characters, 553, 194, 15, 20);
+        player1 = new Texture(TileSet_Characters, 569, 194, 14, 20);
+        player10 = new Texture(TileSet_Characters, 584, 194, 14, 20);
+        player11 = new Texture(TileSet_Characters, 598, 194, 14, 20);
+
+        player7 = new Texture(TileSet_Characters_Flipped, 27, 194, 14, 20);
+        player8 = new Texture(TileSet_Characters_Flipped, 41, 194, 14, 20);
+        player6 = new Texture(TileSet_Characters_Flipped, 85, 194, 14, 20);
+
+        player5 = new Texture(TileSet_Characters_Flipped, 71, 194, 15, 20);
+        player2 = new Texture(TileSet_Characters_Flipped, 55, 194, 14, 20);
+
+        player0f = new AnimationFrame(player0);
+        player1f = new AnimationFrame(player1);
+        player2f = new AnimationFrame(player2);
+        player3f = new AnimationFrame(player3);
+        player4f = new AnimationFrame(player4);
+        player5f = new AnimationFrame(player5);
+        player6f = new AnimationFrame(player6);
+
+        player7f = new AnimationFrame(player7);
+        player8f = new AnimationFrame(player8);
+        player9f = new AnimationFrame(player9);
+        player10f = new AnimationFrame(player10);
+        player11f = new AnimationFrame(player11);
+
+        playerAnimation = new AnimationFrame[12];
+        playerAnimation[0] = player0f;
+        playerAnimation[1] = player1f;
+        playerAnimation[2] = player2f;
+        playerAnimation[3] = player3f;
+        playerAnimation[4] = player4f;
+        playerAnimation[5] = player5f;
+        playerAnimation[6] = player6f;
+        playerAnimation[7] = player7f;
+        playerAnimation[8] = player8f;
+        playerAnimation[9] = player9f;
+        playerAnimation[10] = player10f;
+        playerAnimation[11] = player11f;
     }
 
     /**

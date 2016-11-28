@@ -30,7 +30,7 @@ public class MovementComponent extends Component {
     public Direction getDirection() {
         // Hacky solution to get the direction the component is moving
         float angle = velocity.angle();
-        if (angle > PIOverFour * 7 && angle < PIOverFour)
+        if (angle > PIOverFour * 7 && angle < PIOverFour || ((angle == 0) && velocity.x !=0))
             return Direction.East;
         else if (angle  > PIOverFour && angle < PIOverFour * 3)
             return Direction.North;

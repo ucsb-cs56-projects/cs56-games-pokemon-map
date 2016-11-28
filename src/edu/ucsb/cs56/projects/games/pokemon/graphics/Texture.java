@@ -57,6 +57,7 @@ public class Texture {
         return bounds;
     }
 
+
     /**
      * Returns the width
      *
@@ -110,4 +111,6 @@ public class Texture {
     public int srcY2() {
         return bounds.y + bounds.height;
     }
+
+
 }

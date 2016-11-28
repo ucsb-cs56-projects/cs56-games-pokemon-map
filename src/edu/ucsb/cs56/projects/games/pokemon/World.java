@@ -34,7 +34,7 @@ public class World {
         this.inputHandler = inputHandler;
         player = new Entity();
         player.addComponent(new PositionComponent(new Point(0,0)));
-        player.addComponent(new GraphicsComponent(Assets.player));
+        player.addComponent(new GraphicsComponent(Assets.player0));
         player.addComponent(new ControllableComponent(new PlayerController(player, this, inputHandler)));
         addEntity(player);
         addEntity(BuildingFactory.constructBuildingEntity("pokecenter",0,0));
@@ -53,7 +53,7 @@ public class World {
         this.inputHandler = inputHandler;
         player = new Entity();
         player.addComponent(new PositionComponent(new Point(0,0)));
-        player.addComponent(new GraphicsComponent(Assets.player));
+        player.addComponent(new GraphicsComponent(Assets.player0));
         player.addComponent(new ControllableComponent(new PlayerController(player, this, inputHandler)));
         addEntity(player);
         addEntity(BuildingFactory.constructBuildingEntity("pokecenter",0,0));
@@ -69,9 +69,10 @@ public class World {
         this.inputHandler = inputHandler;
         player = new Entity();
         player.addComponent(new PositionComponent(new Point(0,0)));
-        player.addComponent(new GraphicsComponent(Assets.player));
+        player.addComponent(new GraphicsComponent(new Animation(Assets.playerAnimation)));
         player.addComponent(new ControllableComponent(new PlayerController(player, this, inputHandler)));
         player.addComponent(new MovementComponent(Vector2.zero));
+        player.addComponent(new CollisionComponent(false, 1, 2));
         addEntity(player);
         addEntity(BuildingFactory.constructBuildingEntity("pokecenter",10,10));
         addEntity(BuildingFactory.constructBuildingEntity("pokemart",0,10));
@@ -107,5 +108,7 @@ public class World {
      */
     public void update() {
         inputHandler.updateMovement(player);
+       ((GraphicsComponent)player.getComponent(GraphicsComponent.class)).animation.advance(0.03f,
+               (MovementComponent)player.getComponent(MovementComponent.class));
     }
 }
