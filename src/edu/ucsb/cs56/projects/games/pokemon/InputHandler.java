@@ -86,6 +86,18 @@ public class InputHandler extends SystemBase implements KeyListener {
             case KeyEvent.VK_H:
                 keys[4] = true;
                 break;
+	    case KeyEvent.VK_UP:
+                keys[0] = true;
+                break;
+            case KeyEvent.VK_DOWN:
+                keys[1] = true;
+                break;
+            case KeyEvent.VK_LEFT:
+                keys[2] = true;
+                break;
+            case KeyEvent.VK_RIGHT:
+                keys[3] = true;
+                break;
             default:
                 break;
         }
@@ -113,6 +125,18 @@ public class InputHandler extends SystemBase implements KeyListener {
                 break;
             case KeyEvent.VK_H:
                 keys[4] = false;
+                break;
+	    case KeyEvent.VK_UP:
+                keys[0] = false;
+                break;
+            case KeyEvent.VK_DOWN:
+                keys[1] = false;
+                break;
+            case KeyEvent.VK_LEFT:
+                keys[2] = false;
+                break;
+            case KeyEvent.VK_RIGHT:
+                keys[3] = false;
                 break;
             default:
                 break;
