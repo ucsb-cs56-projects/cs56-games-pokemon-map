@@ -78,6 +78,7 @@ public class World {
         addEntity(BuildingFactory.constructBuildingEntity("pokemart",0,10));
         addEntity(BuildingFactory.constructBuildingEntity("smallHouse", 5, 2));
         addEntity(BuildingFactory.constructBuildingEntity("largeHouse", 12, 0));
+   	addEntity(BuildingFactory.constructBuildingEntity("mediumHouse", 15, 10));
     }
     
     /**
