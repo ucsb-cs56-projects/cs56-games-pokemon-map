@@ -115,10 +115,10 @@ public class MovementSystem extends SystemBase {
                 CollisionComponent CC2 = (CollisionComponent) object2.getComponent(CollisionComponent.class);
 
                 //checks if moving entity's next position is inside the hitbox of the tile
-                if (((PC1.position.x + PC1.offset.x) <= ((PC2.position.x) + CC2.width)) &&
-                        ((PC1.position.x + PC1.offset.x) >= ((PC2.position.x))) &&
-                        ((PC1.position.y + PC1.offset.y) >= ((PC2.position.y))) &&
-                        ((PC1.position.y + PC1.offset.y) <= ((PC2.position.y + CC2.height))) && CC2.hasCollision) {
+                if (((PC1.position.x + PC1.offset.x) < ((PC2.position.x) + CC2.width)) &&
+                        ((PC1.position.x + PC1.offset.x) > ((PC2.position.x))) &&
+                        ((PC1.position.y + PC1.offset.y) > ((PC2.position.y))) &&
+                        ((PC1.position.y + PC1.offset.y) < ((PC2.position.y + CC2.height))) && CC2.hasCollision) {
                     return true;
 
                 } else {
