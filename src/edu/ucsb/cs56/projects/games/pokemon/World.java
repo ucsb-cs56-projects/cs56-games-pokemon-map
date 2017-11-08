@@ -108,7 +108,7 @@ public class World {
      */
     public void update() {
         inputHandler.updateMovement(player);
-       ((GraphicsComponent)player.getComponent(GraphicsComponent.class)).animation.advance(0.03f,
+       ((GraphicsComponent)player.getComponent(GraphicsComponent.class)).animation.advance(0.27f,
                (MovementComponent)player.getComponent(MovementComponent.class));
     }
 }

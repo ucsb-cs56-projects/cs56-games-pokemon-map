@@ -17,7 +17,7 @@ public class MainWindow extends JPanel {
     int width = 640;
     int height = 480;
     static final long maxTime = 16666;
-    static final float gameFrameTime = .016666f;
+    static final float gameFrameTime = .15f;
 
     private JFrame containerWindow;
     volatile private boolean initialized = false;
