@@ -1,6 +1,10 @@
 cs56-games-pokemon-map
 ======================
 
+Javadoc:
+* <https://brandontran24.github.io/cs56-games-pokemon-map/>
+* <https://ucsb-cs56-projects.github.io/cs56-games-pokemon-map/>
+
 The goal of the program is to create a 2D Rendering engine in the style of the Pokemon games for Gameboy Advance. The engine will render the exact tileset from the actual games.
 
 Currently, after a massive architectural rewrite, the player can control Professor Oak walking around on a map. It should be relatively easy to add new features in a non-coupling way.

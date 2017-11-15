@@ -13,7 +13,7 @@
 
 
   <property name="mainClass" value="edu.ucsb.cs56.projects.games.pokemon.framework.Main" />
-
+  <property name="javadoc_absolute_path" location="docs"/>
 
 
   <path id="project.class.path">
@@ -42,7 +42,7 @@
 
   <target name="clean" description="Cleans old compiled files">
     <delete dir="build" quiet="true" />
-    <delete dir="javadoc" quiet="true" />
+    <delete dir="${javadoc_absolute_path}" quiet="true" />
     <delete dir="dist" quiet="true" />
     <delete dir="download" quiet="true" />
     <delete dir="temp" quiet="true" />
@@ -65,36 +65,17 @@
    </junit>
   </target>
 
-  <property name="javadoc_absolute_path" location="javadoc"/>
-  <property name="public_javadoc_absolute_path" location="../cs56-games-pokemon-map-javadoc/javadoc"/>
 
   <target name="javadoc" depends="compile" description="generate javadoc">
         <delete quiet="true">
-            <fileset dir="javadoc" />
+		<fileset dir="${javadoc_absolute_path}" />
         </delete>
-        <javadoc destdir="javadoc" packagenames="edu.ucsb.cs56.projects.games.pokemon.*" sourcepath="src">
+	<javadoc destdir="${javadoc_absolute_path}" packagenames="edu.ucsb.cs56.projects.games.pokemon.*" sourcepath="src">
 
             <classpath refid="project.class.path" />
             <link href="https://docs.oracle.com/javase/8/docs/api/" />
         </javadoc>
-        <echo>
-            javadoc written to file://${javadoc_absolute_path}/index.html
-            copying to ${public_javadoc_absolute_path}/index.html
-        </echo>
-        <delete quiet="true">
-            <fileset dir="${public_javadoc_absolute_path}" />
-        </delete>
-        <mkdir dir="${public_javadoc_absolute_path}" />
-        <copy todir="${public_javadoc_absolute_path}">
-            <fileset dir="javadoc" />
-        </copy>
-        <echo>
-            javadoc copied to ${public_javadoc_absolute_path}/index.html
-            TO PUBLISH: cd into that repo, then git add javadoc;
-            git commit -m "update javadoc"; git push origin gh-pages
-        </echo>
     </target>
-
 
 
 
