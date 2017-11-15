@@ -101,7 +101,6 @@ public class MovementSystem extends SystemBase {
                     ((PC1.position.y + PC1.offset.y) >= ((PC2.position.y))) &&
                     ((PC1.position.y + PC1.offset.y) <= ((PC2.position.y + CC2.height))) && CC2.hasCollision)) {
                 return true;
-
             }
     */      
             //blue building
@@ -140,7 +139,6 @@ public class MovementSystem extends SystemBase {
                         ((PC1.position.y + PC1.offset.y) > ((PC2.position.y))) &&
                         ((PC1.position.y + PC1.offset.y) < ((PC2.position.y + CC2.height))) && CC2.hasCollision) {
                     return true;
-
                 }
 */                
               //blue building
