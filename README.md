@@ -1,9 +1,10 @@
 cs56-games-pokemon-map
 ======================
 
-Javadoc:
-* <https://brandontran24.github.io/cs56-games-pokemon-map/>
+Website:
+* <https://brandontran24.github.io/Pokemon-Project/>
 * <https://ucsb-cs56-projects.github.io/cs56-games-pokemon-map/>
+Javadoc: <docs>
 
 The goal of the program is to create a 2D Rendering engine in the style of the Pokemon games for Gameboy Advance. The engine will render the exact tileset from the actual games.
 
