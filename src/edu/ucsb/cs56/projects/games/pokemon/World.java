@@ -78,6 +78,7 @@ public class World {
         addEntity(BuildingFactory.constructBuildingEntity("pokemart",0,10));
         addEntity(BuildingFactory.constructBuildingEntity("smallHouse", 5, 2));
         addEntity(BuildingFactory.constructBuildingEntity("largeHouse", 12, 0));
+   	addEntity(BuildingFactory.constructBuildingEntity("mediumHouse", 15, 10));
     }
     
     /**
@@ -108,7 +109,7 @@ public class World {
      */
     public void update() {
         inputHandler.updateMovement(player);
-       ((GraphicsComponent)player.getComponent(GraphicsComponent.class)).animation.advance(0.03f,
+       ((GraphicsComponent)player.getComponent(GraphicsComponent.class)).animation.advance(.27f,
                (MovementComponent)player.getComponent(MovementComponent.class));
     }
 }

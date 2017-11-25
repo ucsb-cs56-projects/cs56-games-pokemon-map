@@ -1,0 +1,9 @@
+edu.ucsb.cs56.projects.games.pokemon
+edu.ucsb.cs56.projects.games.pokemon.IO
+edu.ucsb.cs56.projects.games.pokemon.commands
+edu.ucsb.cs56.projects.games.pokemon.components
+edu.ucsb.cs56.projects.games.pokemon.factories
+edu.ucsb.cs56.projects.games.pokemon.framework
+edu.ucsb.cs56.projects.games.pokemon.graphics
+edu.ucsb.cs56.projects.games.pokemon.systems
+edu.ucsb.cs56.projects.games.pokemon.tests

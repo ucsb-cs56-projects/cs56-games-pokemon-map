@@ -69,7 +69,7 @@ public class TileData {
         switch (tileID) {
             case 0: return Assets.grass_Default;
             case 1: return Assets.grass_Wild;
-            case 2: return Assets.snow;
+            case 2: return Assets.pokeball;
             case 3: return Assets.water1;
             case 4: return Assets.water2;
             case 5: return Assets.water3;
@@ -79,7 +79,9 @@ public class TileData {
             case 9: return Assets.water7;
             case 10: return Assets.water8;
             case 11: return Assets.water9;
-            default: return Assets.grass_Default;
+	    case 12: return Assets.flower;
+	    case 13: return Assets.flower2;
+	    default: return Assets.grass_Default;
         }
     }
 
@@ -97,7 +99,9 @@ public class TileData {
             case 9: return true;
             case 10: return true;
             case 11: return true;
-            default: return false;
+	    case 12: return true;
+            case 13: return true;
+	    default: return false;
         }
     }
 }

@@ -14,10 +14,10 @@ import java.awt.image.BufferStrategy;
  */
 public class MainWindow extends JPanel {
     boolean running = true;
-    int width = 640;
-    int height = 480;
+    int width = 320;
+    int height = 357;
     static final long maxTime = 16666;
-    static final float gameFrameTime = .016666f;
+    static final float gameFrameTime = .15f;
 
     private JFrame containerWindow;
     volatile private boolean initialized = false;

@@ -10,3 +10,5 @@ jws/
 *.iml
 .idea/*
 out/*
+*.metadata
+*.project
