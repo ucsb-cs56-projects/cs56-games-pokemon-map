@@ -29,54 +29,50 @@ public class MovementSystem extends SystemBase {
         for (Entity E : entities) {
             PositionComponent PC = (PositionComponent)E.getComponent(PositionComponent.class);
             MovementComponent MC = (MovementComponent)E.getComponent(MovementComponent.class);
-            if (PC == null || MC == null)
-                continue;
+            
+            if (PC == null || MC == null) 
+            	continue;
+           
+            PositionComponent NextPosition = PC;
+            
+            //checks direction and then location player is headed and if no collision issues, moves the player
+            if(MC.getDirection() == MovementComponent.Direction.West) {
+            	NextPosition.position.x = PC.position.x - 1;
+            	if(overLaps(NextPosition, entities, tiles)) {
+            		PC.position.x++;
+            	}
+            }
+	
+            if(MC.getDirection() == MovementComponent.Direction.East) {
+            	NextPosition.position.x = PC.position.x + 1;
+            	if(overLaps(NextPosition, entities, tiles)) {
+            		PC.position.x--;
+            	}
+            }
+	
+            if(MC.getDirection() == MovementComponent.Direction.North) {
+            	NextPosition.position.y = PC.position.y + 1;
+            	if(overLaps(NextPosition, entities, tiles)) {
+            		PC.position.y--;
+            	}
+            }
+	
+            if(MC.getDirection() == MovementComponent.Direction.South) {
+            	NextPosition.position.y = PC.position.y - 1;
+            	if(overLaps(NextPosition, entities, tiles)) {
+            		PC.position.y++;
+            	}
+            }
 
-            PC.offset.add(MC.velocity.mult(deltaT));
-
-            if (PC.offset.x > 1) {
-                if (overLaps(PC, MC, entities, tiles) ) {
-                    PC.offset.x = 0;
-                }
-                else {
-                    PC.offset.x -= 1;
-                    PC.position.x++;
-                }
-            }
-            if (PC.offset.x < -1) {
-                if (overLaps(PC, MC, entities, tiles)) {
-                    PC.offset.x = 0;
-                }
-                else {
-                    PC.offset.x += 1;
-                    PC.position.x--;
-                }
-            }
-            if (PC.offset.y > 1) {
-                if (overLaps(PC, MC, entities, tiles)) {
-                    PC.offset.y = 0;
-                }
-                else {
-                    PC.offset.y -= 1;
-                    PC.position.y++;
-                }
-            }
-            if (PC.offset.y < -1) {
-                if (overLaps(PC, MC, entities, tiles)) {
-                    PC.offset.y = 0;
-                }
-                else {
-                    PC.offset.y += 1;
-                    PC.position.y--;
-                }
-            }
-        PC = null;
-        MC = null;
+            PC = null;
+            MC = null;
+            NextPosition = null;
         }
         entities = null;
         tiles = null;
-    }
-
+           
+    }    
+	
     /**
      * A method to check to see if one entity overlaps another
      *
@@ -86,38 +82,29 @@ public class MovementSystem extends SystemBase {
      * @param tiles the array of tiles in the world
      * @return a boolean that determines whether an entity overlaps another entity with collision
      */
-    public boolean overLaps(PositionComponent PC1, MovementComponent MC1, Entity[] entities, Entity[][] tiles) {
+    public boolean overLaps(PositionComponent PC1, Entity[] entities, Entity[][] tiles) {
 
 
         //checks all the entities in the world
         for (Entity object : entities) {
             PositionComponent PC2 = (PositionComponent)object.getComponent(PositionComponent.class);
             CollisionComponent CC2 = (CollisionComponent)object.getComponent(CollisionComponent.class);
-        //    PositionComponent CC2 = (CollisionComponent)object.getComponent(CollisionComponent.class);
 
-            //checks if moving entity's next position is inside the hitbox of the other entity
-      /*      if (( ((PC1.position.x + PC1.offset.x) <= ((PC2.position.x) + CC2.width)) &&
-                    ((PC1.position.x + PC1.offset.x) >= ((PC2.position.x))) &&
-                    ((PC1.position.y + PC1.offset.y) >= ((PC2.position.y))) &&
-                    ((PC1.position.y + PC1.offset.y) <= ((PC2.position.y + CC2.height))) && CC2.hasCollision)) {
+         
+     	//checks if moving entity's next position is inside the hitbox of the other entity
+           if (( ((PC1.position.x) <= ((PC2.position.x) + CC2.width)) &&
+                    ((PC1.position.x) >= ((PC2.position.x))) &&
+                    ((PC1.position.y) >= ((PC2.position.y))) &&
+                    ((PC1.position.y) <= ((PC2.position.y + CC2.height))) && CC2.hasCollision)) {
                 return true;
             }
-    */      
-            //blue building
-            if (  (PC1.position.x + PC1.offset.x <= 3) &&  (PC1.position.y + PC1.offset.y >= 10 && PC1.position.y + PC1.offset.y <= 13)   ) {
-            	return true;
-            }
-            
-            if (  (PC1.position.x + PC1.offset.x >= 5 && PC1.position.x + PC1.offset.x <= 9) &&  (PC1.position.y + PC1.offset.y >= 2 && PC1.position.y + PC1.offset.y <= 4)   ) {
-            	return true;
-            }
-            
+          
             //checks if moving entity's next position is outside the bounds of the map
-            if (  (PC1.position.x + PC1.offset.x >= 20) ||  (PC1.position.y + PC1.offset.y >= 20)   ) {
+            if (  (PC1.position.x >= 38) ||  (PC1.position.y >= 39)   ) {
             	return true;
             }
             
-            if (  (PC1.position.x + PC1.offset.x <= -1) ||  (PC1.position.y + PC1.offset.y <= -1)   ) {
+            if (  (PC1.position.x <= 1) ||  (PC1.position.y <= -1)   ) {
             	return true;
             }
             
@@ -133,32 +120,25 @@ public class MovementSystem extends SystemBase {
                 PositionComponent PC2 = (PositionComponent) object2.getComponent(PositionComponent.class);
                 CollisionComponent CC2 = (CollisionComponent) object2.getComponent(CollisionComponent.class);
 
+		
                 //checks if moving entity's next position is inside the hitbox of the tile
-    /*            if (((PC1.position.x + PC1.offset.x) < ((PC2.position.x) + CC2.width)) &&
-                        ((PC1.position.x + PC1.offset.x) > ((PC2.position.x))) &&
-                        ((PC1.position.y + PC1.offset.y) > ((PC2.position.y))) &&
-                        ((PC1.position.y + PC1.offset.y) < ((PC2.position.y + CC2.height))) && CC2.hasCollision) {
+                if (((PC1.position.x) < ((PC2.position.x) + CC2.width)) &&
+                        ((PC1.position.x) > ((PC2.position.x))) &&
+                        ((PC1.position.y) > ((PC2.position.y))) &&
+                        ((PC1.position.y) < ((PC2.position.y + CC2.height))) && CC2.hasCollision) {
                     return true;
                 }
-*/                
-              //blue building
-                if (  (PC1.position.x + PC1.offset.x <= 3) &&   (PC1.position.y + PC1.offset.y >= 10 && PC1.position.y + PC1.offset.y <= 13)   ) {
-                	return true;
-                }
                 
-                if (  (PC1.position.x + PC1.offset.x >= 5 && PC1.position.x + PC1.offset.x <= 9) &&  (PC1.position.y + PC1.offset.y >= 2 && PC1.position.y + PC1.offset.y <= 4)   ) {
-                	return true;
-                }
-                
+
                 //checks if moving entity's next position is outside the bounds of the map
-                if (  (PC1.position.x + PC1.offset.x >= 20) ||  (PC1.position.y + PC1.offset.y >= 20)   ) {
-                	return true;
+                if (  (PC1.position.x >= 38) ||  (PC1.position.y >= 39)   ) {
+                    return true;
                 }
-                
-                if (  (PC1.position.x + PC1.offset.x <= -1) ||  (PC1.position.y + PC1.offset.y <= -1)   ) {
-                	return true;
+
+                if (  (PC1.position.x <= 1) ||  (PC1.position.y <= -1)   ) {
+                    return true;
                 }
-                
+
                 else {
                     continue;
                 }

@@ -14,8 +14,8 @@ import java.awt.image.BufferStrategy;
  */
 public class MainWindow extends JPanel {
     boolean running = true;
-    int width = 320;
-    int height = 357;
+    int width = 16 * 40;
+    int height = (16 * 40) + 37;
     static final long maxTime = 16666;
     static final float gameFrameTime = .15f;
 
@@ -32,12 +32,11 @@ public class MainWindow extends JPanel {
         containerWindow = new JFrame();
         containerWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         containerWindow.setSize(width, height);
-
         containerWindow.getContentPane().add(BorderLayout.CENTER, this);
 
         containerWindow.setVisible(true);
 
-        //setFocusable(true);
+       // setFocusable(true);
 
         toolkit = Toolkit.getDefaultToolkit();
         width = toolkit.getScreenSize().width;
