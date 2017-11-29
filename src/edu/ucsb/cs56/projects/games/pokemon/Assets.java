@@ -18,6 +18,9 @@ import java.io.IOException;
  */
 public class Assets {
     public static Texture
+	    workingTree,
+	    workingTree2,
+	    workingTree3,
             grass_Default,
             grass_Wild,
             flower,
@@ -87,6 +90,10 @@ public class Assets {
         flower2 = new Texture(TileSet_Main, 16 * 13, 16 * 39, 16, 16);
         flower3 = new Texture(TileSet_Main, 16 * 14, 16 * 189, 16, 16);
         snow = new Texture(TileSet_Main, 16 * 1, 16 * 351, 16, 16);
+//	workingTree = new Texture(TileSet_Main, 65, 0, 30, 50);
+	workingTree = new Texture(TileSet_Main, 64, 0, 32, 32);
+	workingTree2 = new Texture(TileSet_Main, 64, 32, 32, 16);
+	workingTree3 = new Texture(TileSet_Main, 96, 0, 32, 48);
 
         bigPokemon = new Texture(TileSet_Pkmn, 16 * 31, 16 * 17, 16*4, 16 * 3);
         pokeball = new Texture(TileSet_Main, 16 * 5, 16 * 3, 16, 16);
@@ -229,7 +236,10 @@ public class Assets {
             case "smallHouse": return Assets.smallHouse;
             case "mediumHouse": return Assets.mediumHouse;
             case "largeHouse": return Assets.largeHouse;
-            default: return null;
+	    case "workingTree": return Assets.workingTree;
+	    case "workingTree2": return Assets.workingTree2;
+	    case "workingTree3": return Assets.workingTree3;
+	    default: return null;
         }
     }
 }
