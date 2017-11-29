@@ -37,13 +37,17 @@ public class InputHandler extends SystemBase implements KeyListener {
     public void updateMovement(Entity entity) {
         if (keys[0]) {
             messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(0, -tileSpeed))));
-        } else if (keys[1]) {
+        	keys[0] = false;
+	} else if (keys[1]) {
             messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(0, tileSpeed))));
-        } else if (keys[2]) {
+        	keys[1] = false;
+	} else if (keys[2]) {
             messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(-tileSpeed, 0))));
-        } else if (keys[3]) {
+        	keys[2] = false;
+	} else if (keys[3]) {
             messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(tileSpeed, 0))));
-        } else {
+        	keys[3] = false;
+	} else {
             messenger.enqueue(new SystemMessage(entity, new Pair<String, Object>("movement-changed", new Vector2(0, 0))));
         }
         messenger.merge();
