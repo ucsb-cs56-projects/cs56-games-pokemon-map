@@ -63,6 +63,7 @@ public class World {
     
     /**
      * World constructor that make empty tiles and container of entity characters
+
      *
      * @param inputHandler the main input handler
      */
@@ -81,66 +82,75 @@ public class World {
         addEntity(BuildingFactory.constructBuildingEntity("pokemart",10,30));
         addEntity(BuildingFactory.constructBuildingEntity("smallHouse", 20, 5));
         addEntity(BuildingFactory.constructBuildingEntity("largeHouse", 12, 5));
-   	addEntity(BuildingFactory.constructBuildingEntity("mediumHouse", 15, 10));
-    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 2));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 4));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 6));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 8));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 10));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 12));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 14));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 16));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 18));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 20));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 22));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 24));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 26));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 28));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 30));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 32));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 34));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 36));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 38));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 2, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 4, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 6, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 8, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 10, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 12, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 14, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 16, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 18, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 20, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 22, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 24, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 26, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 28, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 30, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 32, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 34, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 36, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 0));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 2));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 4));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 6));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 8));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 10));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 12));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 14));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 16));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 18));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 20));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 22));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 24));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 26));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 28));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 30));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 32));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 34));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 36));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 38));
-	addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 2, 38));
+        addEntity(BuildingFactory.constructBuildingEntity("mediumHouse", 15, 10));
+    	
+        
+        //left border of trees
+        addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 2));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 4));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 6));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 8));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 10));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 12));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 14));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 16));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 18));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 20));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 22));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 24));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 26));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 28));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 30));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 32));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 34));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 36));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 0, 38));
+    	
+    	//top border
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 2, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 4, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 6, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 8, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 10, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 12, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 14, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 16, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 18, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 20, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 22, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 24, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 26, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 28, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 30, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 32, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 34, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 36, 0));
+    	
+    	//right border
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 0));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 2));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 4));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 6));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 8));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 10));
+    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 12));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 14));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 16));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 18));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 20));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 22));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 24));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 26));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 28));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 30));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 32));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 34));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 36));
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 38));
+		
+		//bottom border
+		addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 2, 38));
         addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 4, 38));
         addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 6, 38));
         addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 8, 38));
@@ -158,10 +168,6 @@ public class World {
         addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 32, 38));
         addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 34, 38));
         addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 36, 38));
-    //    addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 38, 38));
-
-
-
     }
     
     /**

@@ -39,7 +39,6 @@ public class Game extends MainWindow {
      */
     public void init() {
 	// create world
-	//
         super.init();
         InputHandler inputHandler = new InputHandler();
         this.addKeyListener(inputHandler);

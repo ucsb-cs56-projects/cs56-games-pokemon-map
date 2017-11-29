@@ -90,10 +90,11 @@ public class Assets {
         flower2 = new Texture(TileSet_Main, 16 * 13, 16 * 39, 16, 16);
         flower3 = new Texture(TileSet_Main, 16 * 14, 16 * 189, 16, 16);
         snow = new Texture(TileSet_Main, 16 * 1, 16 * 351, 16, 16);
-//	workingTree = new Texture(TileSet_Main, 65, 0, 30, 50);
-	workingTree = new Texture(TileSet_Main, 64, 0, 32, 32);
-	workingTree2 = new Texture(TileSet_Main, 64, 32, 32, 16);
-	workingTree3 = new Texture(TileSet_Main, 96, 0, 32, 48);
+        
+        //tree borders
+        workingTree = new Texture(TileSet_Main, 64, 0, 32, 32);
+        workingTree2 = new Texture(TileSet_Main, 64, 32, 32, 16);
+        workingTree3 = new Texture(TileSet_Main, 96, 0, 32, 48);
 
         bigPokemon = new Texture(TileSet_Pkmn, 16 * 31, 16 * 17, 16*4, 16 * 3);
         pokeball = new Texture(TileSet_Main, 16 * 5, 16 * 3, 16, 16);

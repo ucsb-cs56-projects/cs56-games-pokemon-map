@@ -33,16 +33,9 @@ public class MovementSystem extends SystemBase {
             if (PC == null || MC == null) 
             	continue;
            
-	 //new
             PositionComponent NextPosition = PC;
-            MC.velocity.mult(deltaT);
-            /*System.out.println("RegPositionX" + PC.position.x);
-            System.out.println("RegPositionY" + PC.position.y); */
-	
-            if(MC.getDirection() == MovementComponent.Direction.None) {
-		
-            }
-	
+            
+            //checks direction and then location player is headed and if no collision issues, moves the player
             if(MC.getDirection() == MovementComponent.Direction.West) {
             	NextPosition.position.x = PC.position.x - 1;
             	if(overLaps(NextPosition, entities, tiles)) {
@@ -70,8 +63,7 @@ public class MovementSystem extends SystemBase {
             		PC.position.y++;
             	}
             }
-            /*System.out.println("NextPositionX" + NextPosition.position.x);
-            System.out.println("NextPositionY" + NextPosition.position.y);*/
+
             PC = null;
             MC = null;
             NextPosition = null;
@@ -97,7 +89,6 @@ public class MovementSystem extends SystemBase {
         for (Entity object : entities) {
             PositionComponent PC2 = (PositionComponent)object.getComponent(PositionComponent.class);
             CollisionComponent CC2 = (CollisionComponent)object.getComponent(CollisionComponent.class);
-        //    PositionComponent CC2 = (CollisionComponent)object.getComponent(CollisionComponent.class);
 
          
      	//checks if moving entity's next position is inside the hitbox of the other entity
