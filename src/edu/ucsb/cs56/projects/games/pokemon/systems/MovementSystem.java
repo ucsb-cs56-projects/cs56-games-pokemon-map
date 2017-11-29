@@ -29,7 +29,59 @@ public class MovementSystem extends SystemBase {
         for (Entity E : entities) {
             PositionComponent PC = (PositionComponent)E.getComponent(PositionComponent.class);
             MovementComponent MC = (MovementComponent)E.getComponent(MovementComponent.class);
-            if (PC == null || MC == null)
+            
+            if (PC == null || MC == null) 
+            	continue;
+           
+	 //new
+            PositionComponent NextPosition = PC;
+            MC.velocity.mult(deltaT);
+            /*System.out.println("RegPositionX" + PC.position.x);
+            System.out.println("RegPositionY" + PC.position.y); */
+	
+            if(MC.getDirection() == MovementComponent.Direction.None) {
+		
+            }
+	
+            if(MC.getDirection() == MovementComponent.Direction.West) {
+            	NextPosition.position.x = PC.position.x - 1;
+            	if(overLaps(NextPosition, entities, tiles)) {
+            		PC.position.x--;
+            	}
+            }
+	
+            if(MC.getDirection() == MovementComponent.Direction.East) {
+            	NextPosition.position.x = PC.position.x + 1;
+            	if(overLaps(NextPosition, entities, tiles)) {
+            		PC.position.x++;
+            	}
+            }
+	
+            if(MC.getDirection() == MovementComponent.Direction.North) {
+            	NextPosition.position.y = PC.position.y + 1;
+            	if(overLaps(NextPosition, entities, tiles)) {
+            		PC.position.y--;
+            	}
+            }
+	
+            if(MC.getDirection() == MovementComponent.Direction.South) {
+            	NextPosition.position.y = PC.position.y - 1;
+            	if(overLaps(NextPosition, entities, tiles)) {
+            		PC.position.y++;
+            	}
+            }
+            /*System.out.println("NextPositionX" + NextPosition.position.x);
+            System.out.println("NextPositionY" + NextPosition.position.y);*/
+            PC = null;
+            MC = null;
+            NextPosition = null;
+        }
+        entities = null;
+        tiles = null;
+           
+    }    
+	
+		/*if (PC == null || MC == null)
                 continue;
 
             PC.offset.add(MC.velocity.mult(deltaT));
@@ -74,8 +126,7 @@ public class MovementSystem extends SystemBase {
         MC = null;
         }
         entities = null;
-        tiles = null;
-    }
+        tiles = null; */
 
     /**
      * A method to check to see if one entity overlaps another
@@ -86,7 +137,7 @@ public class MovementSystem extends SystemBase {
      * @param tiles the array of tiles in the world
      * @return a boolean that determines whether an entity overlaps another entity with collision
      */
-    public boolean overLaps(PositionComponent PC1, MovementComponent MC1, Entity[] entities, Entity[][] tiles) {
+    public boolean overLaps(PositionComponent PC1, Entity[] entities, Entity[][] tiles) {
 
 
         //checks all the entities in the world
@@ -96,28 +147,28 @@ public class MovementSystem extends SystemBase {
         //    PositionComponent CC2 = (CollisionComponent)object.getComponent(CollisionComponent.class);
 
             //checks if moving entity's next position is inside the hitbox of the other entity
-      /*      if (( ((PC1.position.x + PC1.offset.x) <= ((PC2.position.x) + CC2.width)) &&
-                    ((PC1.position.x + PC1.offset.x) >= ((PC2.position.x))) &&
-                    ((PC1.position.y + PC1.offset.y) >= ((PC2.position.y))) &&
-                    ((PC1.position.y + PC1.offset.y) <= ((PC2.position.y + CC2.height))) && CC2.hasCollision)) {
+           if (( ((PC1.position.x) <= ((PC2.position.x) + CC2.width)) &&
+                    ((PC1.position.x) >= ((PC2.position.x))) &&
+                    ((PC1.position.y) >= ((PC2.position.y))) &&
+                    ((PC1.position.y) <= ((PC2.position.y + CC2.height))) && CC2.hasCollision)) {
                 return true;
             }
-    */      
-            //blue building
+          
+       /*     //blue building
             if (  (PC1.position.x + PC1.offset.x <= 3) &&  (PC1.position.y + PC1.offset.y >= 10 && PC1.position.y + PC1.offset.y <= 13)   ) {
             	return true;
             }
             
             if (  (PC1.position.x + PC1.offset.x >= 5 && PC1.position.x + PC1.offset.x <= 9) &&  (PC1.position.y + PC1.offset.y >= 2 && PC1.position.y + PC1.offset.y <= 4)   ) {
             	return true;
-            }
+            } */
             
             //checks if moving entity's next position is outside the bounds of the map
-            if (  (PC1.position.x + PC1.offset.x >= 20) ||  (PC1.position.y + PC1.offset.y >= 20)   ) {
+            if (  (PC1.position.x >= 20) ||  (PC1.position.y >= 20)   ) {
             	return true;
             }
             
-            if (  (PC1.position.x + PC1.offset.x <= -1) ||  (PC1.position.y + PC1.offset.y <= -1)   ) {
+            if (  (PC1.position.x <= -1) ||  (PC1.position.y <= -1)   ) {
             	return true;
             }
             
@@ -134,28 +185,28 @@ public class MovementSystem extends SystemBase {
                 CollisionComponent CC2 = (CollisionComponent) object2.getComponent(CollisionComponent.class);
 
                 //checks if moving entity's next position is inside the hitbox of the tile
-    /*            if (((PC1.position.x + PC1.offset.x) < ((PC2.position.x) + CC2.width)) &&
-                        ((PC1.position.x + PC1.offset.x) > ((PC2.position.x))) &&
-                        ((PC1.position.y + PC1.offset.y) > ((PC2.position.y))) &&
-                        ((PC1.position.y + PC1.offset.y) < ((PC2.position.y + CC2.height))) && CC2.hasCollision) {
+                if (((PC1.position.x) < ((PC2.position.x) + CC2.width)) &&
+                        ((PC1.position.x) > ((PC2.position.x))) &&
+                        ((PC1.position.y) > ((PC2.position.y))) &&
+                        ((PC1.position.y) < ((PC2.position.y + CC2.height))) && CC2.hasCollision) {
                     return true;
                 }
-*/                
-              //blue building
+               
+             /* //blue building
                 if (  (PC1.position.x + PC1.offset.x <= 3) &&   (PC1.position.y + PC1.offset.y >= 10 && PC1.position.y + PC1.offset.y <= 13)   ) {
                 	return true;
                 }
                 
                 if (  (PC1.position.x + PC1.offset.x >= 5 && PC1.position.x + PC1.offset.x <= 9) &&  (PC1.position.y + PC1.offset.y >= 2 && PC1.position.y + PC1.offset.y <= 4)   ) {
                 	return true;
-                }
+                } */
                 
                 //checks if moving entity's next position is outside the bounds of the map
-                if (  (PC1.position.x + PC1.offset.x >= 20) ||  (PC1.position.y + PC1.offset.y >= 20)   ) {
+                if (  (PC1.position.x >= 20) ||  (PC1.position.y >= 20)   ) {
                 	return true;
                 }
                 
-                if (  (PC1.position.x + PC1.offset.x <= -1) ||  (PC1.position.y + PC1.offset.y <= -1)   ) {
+                if (  (PC1.position.x <= -1) ||  (PC1.position.y <= -1)   ) {
                 	return true;
                 }
                 
