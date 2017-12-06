@@ -42,22 +42,24 @@ To start the game, use ant run. It will compile automatically for you.
 ## How to Play
 To move, use the WASD keys. To interact with objects, press the H key (currently does nothing).
 
-## F16 Final Remarks
+## F17 Final Remarks
+
+Tell them exactly what you think would be helpful for them to know as they start the project: what the code does, what features could be added, what bugs exist, what opportunities for refactoring you see. Also add any advice you have on working with the code you have left them, for with legacy code in general.
+
 How the code currently constructs a map:
-The code first builds a map of tiles from a loaded text file. Each tile is an individual entity, made up of various components. These tiles are stored in an array of tile arrays in World.java. Next, the world builds up interactable entities--the player, and obstacles such as buildings and trees--which are stored in an arrayList of entities. In the code's current form, these entities must be hard-coded, rather than be loaded from files. 
+The code first builds a map of tiles from a loaded text file. Each tile is an individual entity, made up of various components. These tiles are stored in an array of tile arrays in World.java. Next, the world builds up interactable entities--the player, and obstacles such as buildings and trees--which are stored in an arrayList of entities. In the code's current form, these entities must be hard-coded, rather than be loaded from files.   
 
 Possible new features:
-Pokemon following the player-character could be re-implemented. Loading new maps upon reaching the edge of the current map could also be added. 
+Pokemon following the player-character could be re-implemented. Loading new maps upon reaching the edge of the current map could also be added or loading a new map when the player "enters" a building. Could also implement a map editor which is currently at 500 points in issues. I would reccommend doing this for the second half of the project or pushing for this being more points as it would probably require a complete refactoring of code and how the game is built up in World.java. You could also implement a movable camera. You might want to look in the game Alva (in CS56 projects category) and see how that game implements it. 
 
 Current Bugs:
-Collision is buggy. Currently, the player character can clip through certain zones of buildings and water tiles. Look in MovementSystem, where collision is currently handled, to start fixing the problem. 
-The player-character can leave the map at will.
+No major bugs. Player is able to move around the map at one tilemove per key stroke. Collision doesn't have any issues.
 
 Refactoring Opportunities:
-Map tile parser can be refactored to allow for simpler, easier-to-write map files that can also load buildings/other entities. 
-SystemMessenger could be refactored to allow the code to work better, solve the source of memory leaks. 
+Map tile parser can be refactored to allow for simpler, easier-to-write map files that can also load buildings/other entities. This also goes with possibly creating a map editor in the game. Definitely a lot of points here.
+SystemMessenger could be refactored to allow the code to work better, solve the source of memory leaks. (Unsure if memory leaks are still an issue as of F17.)
 
 Our Advice:
-This project is built from a lot of different packages that all work together to allow the game to function. To tackle the code, and get a decent understanding of it, I would start by looking at the entity/component classes. Once you understand the entities, understanding how the world loads becomes easier. After that, figuring out how the rendering and movement systems function becomes possible. Work outwards from there, until you have a good understanding of the whole picture, including how systemMessenger, animation, and I/O works. 
+This project is built from a lot of different packages that all work together to allow the game to function. To tackle the code, and get a decent understanding of it, I would start by looking at the entity/component classes. Once you understand the entities, understanding how the world loads becomes easier. After that, figuring out how the rendering and movement systems function becomes possible. Work outwards from there, until you have a good understanding of the whole picture, including how systemMessenger, animation, and I/O works. The main files in this game are World.java and Game.java. This is where everything comes together. This project has a lot to it so definitely familiarize yourself with the code early on. A good place to start might be with adding Pikachu back in. The first thing you implement will probably take the longest as this project has quite a bit of confusing code. Another great place to start would be reorganizing the map and making it "pretty". Pretty easy points but takes a bit of time to change values in Pond_map.txt. 
 
 
