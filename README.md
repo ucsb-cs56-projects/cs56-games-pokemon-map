@@ -40,11 +40,9 @@ In order to get the tileset from the actual games, you need to get the images of
 To start the game, use ant run. It will compile automatically for you.
 
 ## How to Play
-To move, use the WASD keys. To interact with objects, press the H key (currently does nothing).
+To move, use the WASD or Arrow keys. To interact with objects, press the H key (currently does nothing).
 
 ## F17 Final Remarks
-
-Tell them exactly what you think would be helpful for them to know as they start the project: what the code does, what features could be added, what bugs exist, what opportunities for refactoring you see. Also add any advice you have on working with the code you have left them, for with legacy code in general.
 
 How the code currently constructs a map:
 The code first builds a map of tiles from a loaded text file. Each tile is an individual entity, made up of various components. These tiles are stored in an array of tile arrays in World.java. Next, the world builds up interactable entities--the player, and obstacles such as buildings and trees--which are stored in an arrayList of entities. In the code's current form, these entities must be hard-coded, rather than be loaded from files.   
