@@ -14,7 +14,7 @@ import java.awt.image.BufferStrategy;
  */
 public class MainWindow extends JPanel {
     boolean running = true;
-    int width = 16 * 40;
+    int width = 16 * 50;
     int height = (16 * 40) + 37;
     static final long maxTime = 16666;
     static final float gameFrameTime = .15f;
@@ -31,7 +31,7 @@ public class MainWindow extends JPanel {
     public MainWindow() {
         containerWindow = new JFrame();
         containerWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        containerWindow.setSize(width, height);
+        containerWindow.setSize(width, height);//canvas
         containerWindow.getContentPane().add(BorderLayout.CENTER, this);
 
         containerWindow.setVisible(true);
@@ -41,7 +41,7 @@ public class MainWindow extends JPanel {
         toolkit = Toolkit.getDefaultToolkit();
         width = toolkit.getScreenSize().width;
         height = toolkit.getScreenSize().height;
-        spriteBatch = new SpriteBatch(this.createImage(width, height));
+        spriteBatch = new SpriteBatch(this.createImage(1500, height));//green land
     }
 
     /**

@@ -99,19 +99,19 @@ public class MovementSystem extends SystemBase {
                 return true;
             }
           
-            //checks if moving entity's next position is outside the bounds of the map
-            if (  (PC1.position.x >= 38) ||  (PC1.position.y >= 39)   ) {
-            	return true;
-            }
+            // //checks if moving entity's next position is outside the bounds of the map
+            // if (  (PC1.position.x >= 42) ||  (PC1.position.y >= 39)   ) {
+            // 	return true;
+            // }
             
-            if (  (PC1.position.x <= 1) ||  (PC1.position.y <= -1)   ) {
-            	return true;
-            }
+            // if (  (PC1.position.x <= 1) ||  (PC1.position.y <= -1)   ) {
+            // 	return true;
+            // }
             
             
-            else {
-                continue;
-            }
+            // else {
+            //     continue;
+            // }
         }
 
         //checks all the tiles in the world
@@ -131,7 +131,7 @@ public class MovementSystem extends SystemBase {
                 
 
                 //checks if moving entity's next position is outside the bounds of the map
-                if (  (PC1.position.x >= 38) ||  (PC1.position.y >= 39)   ) {
+                if (  (PC1.position.x >= 42) ||  (PC1.position.y >= 39)   ) {
                     return true;
                 }
 

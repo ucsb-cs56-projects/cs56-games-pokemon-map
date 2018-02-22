@@ -20,6 +20,9 @@ public class World {
     private HashSet<Entity> entities;
     InputHandler inputHandler;
     Entity player;
+    Entity player1;
+
+    //also seems to useless
 
     /**
      * Main world constructor to define tiles, entities, and the input handler
@@ -38,9 +41,20 @@ public class World {
         player.addComponent(new ControllableComponent(new PlayerController(player, this, inputHandler)));
         addEntity(player);
 
+    	//try to add another player player1
+    	player1 = new Entity();
+        player1.addComponent(new PositionComponent(new Point(30,30)));
+        player1.addComponent(new GraphicsComponent(Assets.player1));
+        player1.addComponent(new ControllableComponent(new PlayerController(player1, this, inputHandler)));
+        addEntity(player1);
+
+
+
         addEntity(BuildingFactory.constructBuildingEntity("pokecenter",0,0));
 
     }
+
+    //not useful in our case, we always set container
 
     /**
      * World constructor that assumes an empty container of entity characters
@@ -61,6 +75,10 @@ public class World {
         addEntity(BuildingFactory.constructBuildingEntity("pokecenter",0,0));
     }
     
+
+
+
+
     /**
      * World constructor that make empty tiles and container of entity characters
 
@@ -72,11 +90,30 @@ public class World {
         this.inputHandler = inputHandler;
         player = new Entity();
         player.addComponent(new PositionComponent(new Point(20,20)));
+	//determine the initial phase(which side should player face) when init
         player.addComponent(new GraphicsComponent(new Animation(Assets.playerAnimation)));
         player.addComponent(new ControllableComponent(new PlayerController(player, this, inputHandler)));
         player.addComponent(new MovementComponent(Vector2.zero));
         player.addComponent(new CollisionComponent(false, 1, 2));
         addEntity(player);
+
+
+
+
+	//truly add a static player1 that is idential image as old player
+	player1 = new Entity();
+        player1.addComponent(new PositionComponent(new Point(19,20)));
+        player1.addComponent(new GraphicsComponent(new Animation(Assets.pikachuAnimation)));
+        player1.addComponent(new ControllableComponent(new PlayerController(player1, this, inputHandler)));
+        player1.addComponent(new MovementComponent(Vector2.zero));
+        player1.addComponent(new CollisionComponent(false, 1, 2));
+        addEntity(player1);
+
+
+
+
+
+	
 
         addEntity(BuildingFactory.constructBuildingEntity("pokecenter",30,10));
         addEntity(BuildingFactory.constructBuildingEntity("pokemart",10,30));
@@ -128,26 +165,26 @@ public class World {
     	addEntity(ObstacleFactory.constructObstacleEntity("workingTree2", 36, 0));
     	
     	//right border
-    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 0));
-    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 2));
-    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 4));
-    	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 6));
+    	//addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 0));
+    	//addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 2));
+    	//addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 4));
+    	//addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 6));
     	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 8));
     	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 10));
     	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 12));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 14));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 16));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 18));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 20));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 22));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 24));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 26));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 28));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 30));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 32));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 34));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 36));
-		addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 38));
+	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 14));
+	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 16));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 18));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 20));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 22));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 24));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 26));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 28));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 30));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 32));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 34));
+       	addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 36));
+        addEntity(ObstacleFactory.constructObstacleEntity("workingTree", 38, 38));
 		
 		//bottom border
 		addEntity(ObstacleFactory.constructObstacleEntity("workingTree3", 2, 38));
@@ -200,6 +237,16 @@ public class World {
         inputHandler.updateMovement(player);
        ((GraphicsComponent)player.getComponent(GraphicsComponent.class)).animation.advance(.99f,
                (MovementComponent)player.getComponent(MovementComponent.class));
+
+       //can not just copy, o.w. two players can not move
+       //need to figure out how pair.java works
+       
+       // inputHandler.updateMovement(player1);
+       // ((GraphicsComponent)player1.getComponent(GraphicsComponent.class)).animation.advance(.99f,
+       //         (MovementComponent)player1.getComponent(MovementComponent.class));
+
+
+       
     
     }
 }
