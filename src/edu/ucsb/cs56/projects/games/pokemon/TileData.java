@@ -56,7 +56,7 @@ public class TileData {
      * List of tile ID types:
      *  grass_default: 0
      *  grass_wild: 1
-     *  snow: 2
+     *  incomplete tree that need changes: 2
      *  water1: 3
      *  water2: 4
      *  waterN: N+2
@@ -85,10 +85,12 @@ public class TileData {
         }
     }
 
+    
+    //does not work at all
     public static boolean IDToCollision(int tileID) {
         switch (tileID) {
             case 0: return false;
-            case 1: return false;
+            case 1: return true;
             case 2: return false;
             case 3: return true;
             case 4: return true;
@@ -102,6 +104,29 @@ public class TileData {
 	    case 12: return true;
             case 13: return true;
 	    default: return false;
+        }
+    }
+
+
+
+
+     public static String IDToString(int tileID) {
+        switch (tileID) {
+            //case 0: return "grass_Default";
+            case 0: return "grass_Wild";
+            // case 2: return Assets.workingTree;
+            // case 3: return Assets.water1;
+            // case 4: return Assets.water2;
+            // case 5: return Assets.water3;
+            // case 6: return Assets.water4;
+            // case 7: return Assets.water5;
+            // case 8: return Assets.water6;
+            // case 9: return Assets.water7;
+            // case 10: return Assets.water8;
+            // case 11: return Assets.water9;
+	    // case 12: return Assets.flower;
+	    // case 13: return Assets.flower2;
+	    default: return "grass_Wild";
         }
     }
 }

@@ -131,11 +131,11 @@ public class MovementSystem extends SystemBase {
                 
 
                 //checks if moving entity's next position is outside the bounds of the map
-                if (  (PC1.position.x >= 42) ||  (PC1.position.y >= 39)   ) {
+                if (  (PC1.position.x >= 42) ||  (PC1.position.y >= 40)   ) {
                     return true;
                 }
 
-                if (  (PC1.position.x <= 1) ||  (PC1.position.y <= -1)   ) {
+                if (  (PC1.position.x <= -1) ||  (PC1.position.y <= -1)   ) {
                     return true;
                 }
 

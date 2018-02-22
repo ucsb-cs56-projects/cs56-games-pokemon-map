@@ -15,7 +15,7 @@ import java.awt.image.BufferStrategy;
 public class MainWindow extends JPanel {
     boolean running = true;
     int width = 16 * 50;
-    int height = (16 * 40) + 37;
+    int height = (17 * 40) + 40;
     static final long maxTime = 16666;
     static final float gameFrameTime = .15f;
 

@@ -4,7 +4,7 @@ import edu.ucsb.cs56.projects.games.pokemon.Assets;
 import edu.ucsb.cs56.projects.games.pokemon.World;
 import edu.ucsb.cs56.projects.games.pokemon.components.*;
 import edu.ucsb.cs56.projects.games.pokemon.TileData;
-
+import edu.ucsb.cs56.projects.games.pokemon.factories.*;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -36,12 +36,12 @@ public class MapLoader {
         for (int x = 0; x < tileGrid.length; x++) {
             for (int y = 0; y < tileGrid[x].length; y++) {
                 entities[x][y] = new Entity().
-                        addComponent(new TileComponent(tileGrid[x][y])).
+		    addComponent(new TileComponent(tileGrid[x][y])).
                         addComponent(new PositionComponent(x, y)).
-                        addComponent(new GraphicsComponent(TileData.IDToTexture(tileGrid[x][y]))).
-                        addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),
-                                TileData.IDToTexture(tileGrid[x][y]).height()));
-                //world.addEntity(entities[x][y]);
+		    addComponent(new GraphicsComponent(TileData.IDToTexture(tileGrid[x][y]))).
+		    //addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),TileData.IDToTexture(tileGrid[x][y]).height()));
+		addComponent(new CollisionComponent(true, TileData.IDToTexture(tileGrid[x][y]).srcRect()));
+	
             }
         }
         world.tiles = entities;

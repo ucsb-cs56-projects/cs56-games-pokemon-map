@@ -301,6 +301,7 @@ public class Assets {
 	    case "workingTree": return Assets.workingTree;
 	    case "workingTree2": return Assets.workingTree2;
 	    case "workingTree3": return Assets.workingTree3;
+	    case "grass_Wild": return Assets.grass_Wild;
 	    default: return null;
         }
     }
