@@ -9,6 +9,7 @@ import edu.ucsb.cs56.projects.games.pokemon.factories.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.lang.System;
 
 /**
  * Loads the Map
@@ -36,19 +37,12 @@ public class MapLoader {
         for (int x = 0; x < tileGrid.length; x++) {
             for (int y = 0; y < tileGrid[x].length; y++) {
 
-		// addEntity(BuildingFactory.constructBuildingEntity("pokecenter",30,10));
-
-		// entities[x][y] = new Entity();
-		// entities[x][y] = BuildingFactory.constructBuildingEntity("grass_Wild",x,y);
-		
-                entities[x][y] = new Entity().
+                    entities[x][y] = new Entity().
 		    //addComponent(new TileComponent(tileGrid[x][y])).
                     addComponent(new PositionComponent(x, y)).
 		    addComponent(new GraphicsComponent(TileData.IDToTexture(tileGrid[x][y]))).
-		    addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),TileData.IDToTexture(tileGrid[x][y]).height()));
-		//addComponent(new CollisionComponent(true, TileData.IDToTexture(tileGrid[x][y]).srcRect()));
-		//addEntity(BuildingFactory.constructBuildingEntity("pokecenter",0,0));
-	
+		   //addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),TileData.IDToTexture(tileGrid[x][y]).height()));
+		    addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).srcRect()));
             }
         }
         //world.tiles = entities;
@@ -66,24 +60,28 @@ public class MapLoader {
         matcher.find();
         String[] allMaps = {matcher.group()};
 
+	
+	
         // This regex matches the tile specification for a map, as shown below
         // Parens denote match boundaries
         // map_name { // must be one word
         // ([0, 0, 0]), ([0, 1, 0])
         // }
-        Pattern mapRegex = Pattern.compile("\\[(\\d(,|\\s)*)+\\]");
+	// Pattern mapRegex = Pattern.compile("\\[(\\d(,|\\s)*)+\\]");
+        Pattern mapRegex = Pattern.compile("(\\d+(,|\\s))");
 
-        // This regex matches the metadata of a map, as shown below
+
+	// This regex matches the metadata of a map, as shown below
         // Parens denote match boundaries
         /*
-        map_name {
         (width:5)
-        (height:5) // must be one word
-        [0, 0, 0], [0, 1, 0]
-        }
-         */
+        (height:5)
+        */
         Pattern metadataRegex = Pattern.compile("\\w+:\\s*\\d+");
 
+	
+	//match and find the width and height of the map
+	//create array tileGrid according to the data matched
         for (String map : allMaps) {
             int width = 0, height = 0;
             Matcher metadataMatcher = metadataRegex.matcher(map);
@@ -102,23 +100,30 @@ public class MapLoader {
                 }
             }
             tileGrid = new int[width][height];
+
+
+	    
             Matcher tileMatcher = mapRegex.matcher(map);
             ArrayList<String> tileStrings = new ArrayList<>();
             while (tileMatcher.find()) {
                 tileStrings.add(tileMatcher.group());
             }
 
-            for (String tile : tileStrings) {
-                Pattern integers = Pattern.compile("\\d+");
-                Matcher intMatcher = integers.matcher(tile);
-                intMatcher.find();
-                int ID = Integer.parseInt(intMatcher.group());
-                intMatcher.find();
-                int x = Integer.parseInt(intMatcher.group());
-                intMatcher.find();
-                int y = Integer.parseInt(intMatcher.group());
-                tileGrid[x][y] = ID;
-            }
+	    
+	    
+	    for (int x = 0; x < height; x++ ) {
+		for (int y = 0; y < width; y++) {
+		    String tile = tileStrings.get(x*width + y + 2);
+		    Pattern integers = Pattern.compile ("\\d+");
+		    Matcher intMatcher = integers.matcher (tile);
+		    intMatcher.find();
+		    int ID = Integer.parseInt(intMatcher.group());
+		    tileGrid[y][x] = ID;
+		    //String s = "x"+ new Integer (y).toString() + " y" +new Integer(x).toString() + " ID"+ new Integer(ID).toString();
+		    //System.out.println(s);
+		}
+	    }
+	    
         }
     }
 }

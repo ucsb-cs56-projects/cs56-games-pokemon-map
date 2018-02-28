@@ -69,7 +69,8 @@ public class TileData {
         switch (tileID) {
             case 0: return Assets.grass_Default;
             case 1: return Assets.grass_Wild;
-            case 2: return Assets.workingTree;
+	    //case 2: return Assets.workingTree;
+	    case 2: return Assets.flower3;
             case 3: return Assets.water1;
             case 4: return Assets.water2;
             case 5: return Assets.water3;
@@ -91,7 +92,7 @@ public class TileData {
         switch (tileID) {
             case 0: return false;
             case 1: return true;
-            case 2: return false;
+            case 2: return true;
             case 3: return true;
             case 4: return true;
             case 5: return true;
