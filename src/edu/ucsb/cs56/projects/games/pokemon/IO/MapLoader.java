@@ -30,13 +30,19 @@ public class MapLoader {
      * @param inputStream the string to read from
      * @param world the world to load
      */
-    public void loadMap(String inputStream, World world) {
+    public Entity[][] loadMap(String inputStream, World world) {
         loadMap(inputStream);
         Entity[][] entities = new Entity[tileGrid.length][tileGrid[0].length];
         for (int x = 0; x < tileGrid.length; x++) {
             for (int y = 0; y < tileGrid[x].length; y++) {
+
+		// addEntity(BuildingFactory.constructBuildingEntity("pokecenter",30,10));
+
+		// entities[x][y] = new Entity();
+		// entities[x][y] = BuildingFactory.constructBuildingEntity("grass_Wild",x,y);
+		
                 entities[x][y] = new Entity().
-		    addComponent(new TileComponent(tileGrid[x][y])).
+		    //addComponent(new TileComponent(tileGrid[x][y])).
                         addComponent(new PositionComponent(x, y)).
 		    addComponent(new GraphicsComponent(TileData.IDToTexture(tileGrid[x][y]))).
 		    //addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),TileData.IDToTexture(tileGrid[x][y]).height()));
@@ -44,7 +50,8 @@ public class MapLoader {
 	
             }
         }
-        world.tiles = entities;
+        //world.tiles = entities;
+	return entities;
     }
 
     private void loadMap(String inputStream) {
@@ -52,7 +59,7 @@ public class MapLoader {
         // Parens denote match boundaries
         // (map_name { // must be one word
         // [0, 0, 0], [0, 1, 0]
-        // })
+        // // })
         Pattern allMapsRegex = Pattern.compile("([a-zA-Z_]+\\s*\\{(\\s|.)[^\\}]*\\})");
         Matcher matcher = allMapsRegex.matcher(inputStream);
         matcher.find();
