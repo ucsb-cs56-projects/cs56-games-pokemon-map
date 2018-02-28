@@ -43,10 +43,11 @@ public class MapLoader {
 		
                 entities[x][y] = new Entity().
 		    //addComponent(new TileComponent(tileGrid[x][y])).
-                        addComponent(new PositionComponent(x, y)).
+                    addComponent(new PositionComponent(x, y)).
 		    addComponent(new GraphicsComponent(TileData.IDToTexture(tileGrid[x][y]))).
-		    //addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),TileData.IDToTexture(tileGrid[x][y]).height()));
-		addComponent(new CollisionComponent(true, TileData.IDToTexture(tileGrid[x][y]).srcRect()));
+		    addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),TileData.IDToTexture(tileGrid[x][y]).height()));
+		//addComponent(new CollisionComponent(true, TileData.IDToTexture(tileGrid[x][y]).srcRect()));
+		//addEntity(BuildingFactory.constructBuildingEntity("pokecenter",0,0));
 	
             }
         }
