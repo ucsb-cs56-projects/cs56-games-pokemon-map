@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.lang.System;
+import java.lang.Math;
 
 /**
  * Loads the Map
@@ -31,10 +32,45 @@ public class MapLoader {
         Entity[][] entities = new Entity[tileGrid.length][tileGrid[0].length];
         for (int x = 0; x < tileGrid.length; x++) {
             for (int y = 0; y < tileGrid[x].length; y++) {
+		
+		if (TileData.IDToTexture(tileGrid[x][y]).width() > 16 && TileData.IDToCollision(tileGrid[x][y]) == true ){
+		    // if (TileData.IDToTexture(tileGrid[x][y]).width() % 16.0 != 0 ) {
+		    // 	int time = TileData.IDToTexture(tileGrid[x][y]).width() / 16 + 1;
+		    // }else {
+		    //    	int time = TileData.IDToTexture(tileGrid[x][y]).width() / 16 ;
+		    // }
+		    int times = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).width() / 16.0) ;
+		    // System.out.println(new Integer (times).toString());
+		    for (int i = 1 ; i <= times-1; i++ ){
+			if (tileGrid[x+i][y] != 0) {
+			    throw new ArithmeticException ("Map entities overlapped");
+			}
+		    }
+		}
+		if (TileData.IDToTexture(tileGrid[x][y]).height() > 16 && TileData.IDToCollision(tileGrid[x][y]) == true) {
+		    // if (TileData.IDToTexture(tileGrid[x][y]).height() % 16.0 != 0 ) {
+		    // 	int times = TileData.IDToTexture(tileGrid[x][y]).height() / 16 + 1;
+		    // }else {
+		    //    	int times = TileData.IDToTexture(tileGrid[x][y]).height() / 16 ;
+		    // }
+		    int times = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).height() / 16.0) ;
+		    //System.out.println(new Integer (times).toString());
+		    for (int j = 1 ; j <= times-1; j++ ){
+			if (tileGrid[x][y+j] != 0) {
+			    throw new ArithmeticException ("Map entities overlapped");
+			}
+		    }
+		}
+	    
 
-                    entities[x][y] = new Entity().
+		
+		 // CollisionComponent CC = (CollisionComponent)entities[x][y].getComponent(CollisionComponent.class);
+		// if (CC.hasCollision) {
+		//     throw new ArithmeticException ("Map entities overlapped");
+		// }
+		    entities[x][y] = new Entity().
 		    //addComponent(new TileComponent(tileGrid[x][y])).
-                    addComponent(new PositionComponent(x, y)).
+	            addComponent(new PositionComponent(x, y)).
 		    addComponent(new GraphicsComponent(TileData.IDToTexture(tileGrid[x][y]))).
 		   //addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),TileData.IDToTexture(tileGrid[x][y]).height()));
 		    addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).srcRect()));
@@ -120,8 +156,8 @@ public class MapLoader {
 	    	    intMatcher.find();
 	    	    int ID = Integer.parseInt(intMatcher.group());
 	    	    tileGrid[y][x] = ID;
-	    	    //String s = "x"+ new Integer (y).toString() + " y" +new Integer(x).toString() + " ID"+ new Integer(ID).toString();
-	    	    //System.out.println(s);
+	    	    // String s = "x"+ new Integer (y).toString() + " y" +new Integer(x).toString() + " ID"+ new Integer(ID).toString();
+	    	    // System.out.println(s);
 	    	}
 	    }
 	    
