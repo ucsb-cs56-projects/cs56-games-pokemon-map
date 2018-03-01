@@ -17,13 +17,8 @@ import java.lang.System;
  * @author William Bennett
  */
 
-/* TODO litter this class with comments
-Also it's totally jank right now and the only reason I'm doing this is because deadlines
-   */
 public class MapLoader {
     int[][] tileGrid;
-    // Ultimately this class will read the formatting information encoded in the map itself
-    // Because of deadlines, I'm hardcoding it right now
 
     /**
      * Loads the map from a String and puts it into a world object
@@ -68,7 +63,7 @@ public class MapLoader {
         // ([0, 0, 0]), ([0, 1, 0])
         // }
 	// Pattern mapRegex = Pattern.compile("\\[(\\d(,|\\s)*)+\\]");
-        Pattern mapRegex = Pattern.compile("(\\d+(,|\\s))");
+         Pattern mapRegex = Pattern.compile("(\\d+(,|\\s))");
 
 
 	// This regex matches the metadata of a map, as shown below
@@ -110,18 +105,24 @@ public class MapLoader {
             }
 
 	    
+	    //check whether the size of ID number equals to the size of map
+	    if (tileStrings.size() > width*height + 2) {
+		throw new ArithmeticException ("ID numbers outof map size");
+	    }
+	   
+	    
 	    
 	    for (int x = 0; x < height; x++ ) {
-		for (int y = 0; y < width; y++) {
-		    String tile = tileStrings.get(x*width + y + 2);
-		    Pattern integers = Pattern.compile ("\\d+");
-		    Matcher intMatcher = integers.matcher (tile);
-		    intMatcher.find();
-		    int ID = Integer.parseInt(intMatcher.group());
-		    tileGrid[y][x] = ID;
-		    //String s = "x"+ new Integer (y).toString() + " y" +new Integer(x).toString() + " ID"+ new Integer(ID).toString();
-		    //System.out.println(s);
-		}
+	    	for (int y = 0; y < width; y++) {
+	    	    String tile = tileStrings.get(x*width + y + 2);
+	    	    Pattern integers = Pattern.compile ("\\d+");
+	    	    Matcher intMatcher = integers.matcher (tile);
+	    	    intMatcher.find();
+	    	    int ID = Integer.parseInt(intMatcher.group());
+	    	    tileGrid[y][x] = ID;
+	    	    //String s = "x"+ new Integer (y).toString() + " y" +new Integer(x).toString() + " ID"+ new Integer(ID).toString();
+	    	    //System.out.println(s);
+	    	}
 	    }
 	    
         }

@@ -31,30 +31,30 @@ public class World {
      * @param entities the entity characters
      * @param inputHandler the main input handler
      */
-    public World(Entity[][] tiles, HashSet<Entity> entities, InputHandler inputHandler) {
-        this.tiles = tiles; 
-        this.entities = entities;
-        this.inputHandler = inputHandler;
-        player = new Entity();
-        player.addComponent(new PositionComponent(new Point(20,20)));
-        player.addComponent(new GraphicsComponent(new Animation(Assets.playerAnimation)));
-        player.addComponent(new ControllableComponent(new PlayerController(player, this, inputHandler)));
-	player.addComponent(new MovementComponent(Vector2.zero));
-        player.addComponent(new CollisionComponent(false, 1, 2));
-        addEntity(player);
+    // public World(Entity[][] tiles, HashSet<Entity> entities, InputHandler inputHandler) {
+    //     this.tiles = tiles; 
+    //     this.entities = entities;
+    //     this.inputHandler = inputHandler;
+    //     player = new Entity();
+    //     player.addComponent(new PositionComponent(new Point(20,20)));
+    //     player.addComponent(new GraphicsComponent(new Animation(Assets.playerAnimation)));
+    //     player.addComponent(new ControllableComponent(new PlayerController(player, this, inputHandler)));
+    // 	player.addComponent(new MovementComponent(Vector2.zero));
+    //     player.addComponent(new CollisionComponent(false, 1, 2));
+    //     addEntity(player);
 
-    	// //try to add another player player1
-    	// player1 = new Entity();
-        // player1.addComponent(new PositionComponent(new Point(30,30)));
-        // player1.addComponent(new GraphicsComponent(Assets.player1));
-        // player1.addComponent(new ControllableComponent(new PlayerController(player1, this, inputHandler)));
-        // addEntity(player1);
+    // 	// //try to add another player player1
+    // 	// player1 = new Entity();
+    //     // player1.addComponent(new PositionComponent(new Point(30,30)));
+    //     // player1.addComponent(new GraphicsComponent(Assets.player1));
+    //     // player1.addComponent(new ControllableComponent(new PlayerController(player1, this, inputHandler)));
+    //     // addEntity(player1);
 
 
 
-        addEntity(BuildingFactory.constructBuildingEntity("pokecenter",0,0));
+    //     addEntity(BuildingFactory.constructBuildingEntity("pokecenter",0,0));
 
-    }
+    // }
 
     // //not useful in our case, we always set container
 
@@ -84,7 +84,13 @@ public class World {
         player.addComponent(new CollisionComponent(false, 1, 2));
         addEntity(player);
 
-        //addEntity(BuildingFactory.constructBuildingEntity("pokecenter",0,0));
+       	player1 = new Entity();
+        player1.addComponent(new PositionComponent(new Point(19,20)));
+        player1.addComponent(new GraphicsComponent(new Animation(Assets.pikachuAnimation)));
+        player1.addComponent(new ControllableComponent(new PlayerController(player1, this, inputHandler)));
+        player1.addComponent(new MovementComponent(Vector2.zero));
+        player1.addComponent(new CollisionComponent(false, 1, 2));
+        addEntity(player1);
     }
     
 
