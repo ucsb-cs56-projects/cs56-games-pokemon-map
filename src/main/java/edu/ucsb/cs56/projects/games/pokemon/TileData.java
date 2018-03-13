@@ -82,6 +82,7 @@ public class TileData {
             case 11: return Assets.water9;
 	    case 12: return Assets.flower;
 	    case 13: return Assets.flower2;
+	    case 14: return Assets.pokecenter;
 	    default: return Assets.grass_Default;
         }
     }
@@ -104,6 +105,7 @@ public class TileData {
             case 11: return true;
 	    case 12: return true;
             case 13: return true;
+	    case 14: return true;
 	    default: return false;
         }
     }

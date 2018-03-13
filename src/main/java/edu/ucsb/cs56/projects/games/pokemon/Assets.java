@@ -54,17 +54,15 @@ public class Assets {
             rock,
             niceTree,
             god,
-            textBox,
-	    pikachu0,pikachu1,pikachu2,pikachu3,pikachu4,pikachu5,
-	    pikachu6,pikachu7,pikachu8,pikachu9,pikachu10,pikachu11,
-            player0, player1, player2, player3, player4, player5,
-            player6, player7, player8, player9, player10, player11;
+	    textBox;
+	   
+
+    public static Texture [] players  = new Texture [12];
+    public static Texture [] pikachus  = new Texture [12];
     
-    public static AnimationFrame
-	    pikachu0f,pikachu1f,pikachu2f,pikachu3f,pikachu4f,pikachu5f,
-	    pikachu6f,pikachu7f,pikachu8f,pikachu9f,pikachu10f,pikachu11f,
-            player0f, player1f, player2f, player3f, player4f, player5f,
-            player6f, player7f, player8f, player9f, player10f, player11f;
+
+   
+           
     public static AnimationFrame[] playerAnimation;
     public static AnimationFrame[] pikachuAnimation;
 
@@ -107,46 +105,25 @@ public class Assets {
 
 
 	// //try to add pikachu
-	pikachu0 = new Texture(TileSet_Pkmn, 151, 153, 17, 20);
-	pikachu1 = new Texture(TileSet_Pkmn, 130, 153, 17, 20);
-	pikachu2 = new Texture(TileSet_Pkmn, 174, 153, 17, 20);
-	pikachu3 = new Texture(TileSet_Pkmn, 151, 178, 17, 20);
-	pikachu4 = new Texture(TileSet_Pkmn, 172, 178, 17, 20);
-	pikachu5 = new Texture(TileSet_Pkmn, 130, 178, 17, 20);
-	pikachu6 = new Texture(TileSet_Pkmn, 149, 200, 18, 20);
-	pikachu7 = new Texture(TileSet_Pkmn, 171, 200, 19, 20);
-	pikachu8 = new Texture(TileSet_Pkmn, 126, 200, 19, 20);
-	pikachu9 = new Texture(TileSet_Pkmn, 150, 221, 19, 20);
-	pikachu10 = new Texture(TileSet_Pkmn, 173, 222, 19, 20);
-	pikachu11 = new Texture(TileSet_Pkmn, 128, 223, 19, 20);
+	pikachus[0] = new Texture(TileSet_Pkmn, 151, 153, 17, 20);
+	pikachus[1] = new Texture(TileSet_Pkmn, 130, 153, 17, 20);
+	pikachus[2] = new Texture(TileSet_Pkmn, 174, 153, 17, 20);
+	pikachus[3] = new Texture(TileSet_Pkmn, 151, 178, 17, 20);
+	pikachus[4] = new Texture(TileSet_Pkmn, 172, 178, 17, 20);
+	pikachus[5] = new Texture(TileSet_Pkmn, 130, 178, 17, 20);
+	pikachus[6] = new Texture(TileSet_Pkmn, 149, 200, 18, 20);
+	pikachus[7] = new Texture(TileSet_Pkmn, 171, 200, 19, 20);
+	pikachus[8] = new Texture(TileSet_Pkmn, 126, 200, 19, 20);
+	pikachus[9] = new Texture(TileSet_Pkmn, 150, 221, 19, 20);
+	pikachus[10] = new Texture(TileSet_Pkmn, 173, 222, 19, 20);
+	pikachus[11] = new Texture(TileSet_Pkmn, 128, 223, 19, 20);
 
-	pikachu0f = new AnimationFrame(pikachu0);
-	pikachu1f = new AnimationFrame(pikachu1);
-	pikachu2f = new AnimationFrame(pikachu2);
-	pikachu3f = new AnimationFrame(pikachu3);
-	pikachu4f = new AnimationFrame(pikachu4);
-	pikachu5f = new AnimationFrame(pikachu5);
-	pikachu6f = new AnimationFrame(pikachu6);
-	pikachu7f = new AnimationFrame(pikachu7);
-	pikachu8f = new AnimationFrame(pikachu8);
-	pikachu9f = new AnimationFrame(pikachu9);
-	pikachu10f = new AnimationFrame(pikachu10);
-	pikachu11f = new AnimationFrame(pikachu11);
-	
+
 	pikachuAnimation = new AnimationFrame[12];
-        pikachuAnimation[0] = pikachu0f;
-	pikachuAnimation[1] = pikachu1f;
-	pikachuAnimation[2] = pikachu2f;
-	pikachuAnimation[3] = pikachu3f;
-	pikachuAnimation[4] = pikachu4f;
-	pikachuAnimation[5] = pikachu5f;
-	pikachuAnimation[6] = pikachu6f;
-	pikachuAnimation[7] = pikachu7f;
-	pikachuAnimation[8] = pikachu8f;
-	pikachuAnimation[9] = pikachu9f;
-	pikachuAnimation[10] = pikachu10f;
-	pikachuAnimation[11] = pikachu11f;
-	
+
+	for (int i = 0; i < pikachuAnimation.length; i++ ) {
+	    pikachuAnimation[i] = new AnimationFrame(pikachus[i]);
+	}
 
 
 
@@ -186,48 +163,29 @@ public class Assets {
         water8 = new Texture(TileSet_Main, 16*6, 16*28, 16, 16);
         water9 = new Texture(TileSet_Main, 16*7, 16*28, 16, 16);
 
-        player3 = new Texture(TileSet_Characters, 510, 194, 14, 20);
-        player0 = new Texture(TileSet_Characters, 525, 194, 14, 20);
-        player9 = new Texture(TileSet_Characters, 539, 194, 14, 20);
-        player4 = new Texture(TileSet_Characters, 553, 194, 15, 20);
-        player1 = new Texture(TileSet_Characters, 569, 194, 14, 20);
-        player10 = new Texture(TileSet_Characters, 584, 194, 14, 20);
-        player11 = new Texture(TileSet_Characters, 598, 194, 14, 20);
+        players[3] = new Texture(TileSet_Characters, 510, 194, 14, 20);
+        players[0] = new Texture(TileSet_Characters, 525, 194, 14, 20);
+        players[9] = new Texture(TileSet_Characters, 539, 194, 14, 20);
+        players[4] = new Texture(TileSet_Characters, 553, 194, 15, 20);
+        players[1] = new Texture(TileSet_Characters, 569, 194, 14, 20);
+        players[10] = new Texture(TileSet_Characters, 584, 194, 14, 20);
+        players[11] = new Texture(TileSet_Characters, 598, 194, 14, 20);
 
-        player7 = new Texture(TileSet_Characters_Flipped, 27, 194, 14, 20);
-        player8 = new Texture(TileSet_Characters_Flipped, 41, 194, 14, 20);
-        player6 = new Texture(TileSet_Characters_Flipped, 85, 194, 14, 20);
+        players[7] = new Texture(TileSet_Characters_Flipped, 27, 194, 14, 20);
+        players[8] = new Texture(TileSet_Characters_Flipped, 41, 194, 14, 20);
+        players[6] = new Texture(TileSet_Characters_Flipped, 85, 194, 14, 20);
 
-        player5 = new Texture(TileSet_Characters_Flipped, 71, 194, 15, 20);
-        player2 = new Texture(TileSet_Characters_Flipped, 55, 194, 14, 20);
+        players[5] = new Texture(TileSet_Characters_Flipped, 71, 194, 15, 20);
+        players[2] = new Texture(TileSet_Characters_Flipped, 55, 194, 14, 20);
 
-        player0f = new AnimationFrame(player0);
-        player1f = new AnimationFrame(player1);
-        player2f = new AnimationFrame(player2);
-        player3f = new AnimationFrame(player3);
-        player4f = new AnimationFrame(player4);
-        player5f = new AnimationFrame(player5);
-        player6f = new AnimationFrame(player6);
-
-        player7f = new AnimationFrame(player7);
-        player8f = new AnimationFrame(player8);
-        player9f = new AnimationFrame(player9);
-        player10f = new AnimationFrame(player10);
-        player11f = new AnimationFrame(player11);
+       
 
         playerAnimation = new AnimationFrame[12];
-        playerAnimation[0] = player0f;
-        playerAnimation[1] = player1f;
-        playerAnimation[2] = player2f;
-        playerAnimation[3] = player3f;
-        playerAnimation[4] = player4f;
-        playerAnimation[5] = player5f;
-        playerAnimation[6] = player6f;
-        playerAnimation[7] = player7f;
-        playerAnimation[8] = player8f;
-        playerAnimation[9] = player9f;
-        playerAnimation[10] = player10f;
-        playerAnimation[11] = player11f;
+
+	for (int i = 0; i < playerAnimation.length; i++ ) {
+	    playerAnimation[i] = new AnimationFrame(players[i]);
+	}
+       
     }
 
     /**

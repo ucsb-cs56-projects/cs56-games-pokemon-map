@@ -30,37 +30,52 @@ public class MapLoader {
     public Entity[][] loadMap(String inputStream, World world) {
         loadMap(inputStream);
         Entity[][] entities = new Entity[tileGrid.length][tileGrid[0].length];
+	int widthTimes = 0;
+	int heightTimes = 0;
         for (int x = 0; x < tileGrid.length; x++) {
             for (int y = 0; y < tileGrid[x].length; y++) {
 		
 		if (TileData.IDToTexture(tileGrid[x][y]).width() > 16 && TileData.IDToCollision(tileGrid[x][y]) == true ){
-		    // if (TileData.IDToTexture(tileGrid[x][y]).width() % 16.0 != 0 ) {
-		    // 	int time = TileData.IDToTexture(tileGrid[x][y]).width() / 16 + 1;
-		    // }else {
-		    //    	int time = TileData.IDToTexture(tileGrid[x][y]).width() / 16 ;
-		    // }
-		    int times = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).width() / 16.0) ;
-		    // System.out.println(new Integer (times).toString());
-		    for (int i = 1 ; i <= times-1; i++ ){
-			if (tileGrid[x+i][y] != 0) {
+		     widthTimes = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).width() / 16.0) ;
+		     for (int i = 1 ; i <= widthTimes-1; i++ ){
+			 if (tileGrid[x+i][y] != 0) {
+			     //System.out.println ( new Integer (x+i).toString() + "  " + new Integer (y+j).toString() + "  " + new Integer (y).toString());
 			    throw new ArithmeticException ("Map entities overlapped");
 			}
-		    }
-		}
+		     }
+			 //System.out.println(new Integer (widthTimes).toString() + "  " + new Integer (y).toString());
+		 }
+		//System.out.println(new Integer (y).toString());
+		
 		if (TileData.IDToTexture(tileGrid[x][y]).height() > 16 && TileData.IDToCollision(tileGrid[x][y]) == true) {
-		    // if (TileData.IDToTexture(tileGrid[x][y]).height() % 16.0 != 0 ) {
-		    // 	int times = TileData.IDToTexture(tileGrid[x][y]).height() / 16 + 1;
-		    // }else {
-		    //    	int times = TileData.IDToTexture(tileGrid[x][y]).height() / 16 ;
-		    // }
-		    int times = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).height() / 16.0) ;
-		    //System.out.println(new Integer (times).toString());
-		    for (int j = 1 ; j <= times-1; j++ ){
+		    heightTimes = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).height() / 16.0) ;
+		    for ( int j = 1; j <= heightTimes-1 ; j++ ) {
 			if (tileGrid[x][y+j] != 0) {
-			    throw new ArithmeticException ("Map entities overlapped");
+			   throw new ArithmeticException ("Map entities overlapped");
 			}
 		    }
+		    //System.out.println(new Integer (heightTimes).toString() + "  " + new Integer (y).toString());
 		}
+
+		//System.out.println(new Integer (y).toString());
+		
+		// if ( heightTimes > 0 && widthTimes > 0 ) {
+		//     for (int a = 1 ; a < widthTimes; a++ ){
+		// 	for (int b = 1 ; b < widthTimes; b++ ){
+		// 	    if (tileGrid[x+a][y+b] != 0) {
+		// 		 System.out.println ( new Integer (x+a).toString() + "  " + new Integer (y+b).toString() + "  " + new Integer (x).toString() + "  " + new Integer (a).toString() + "  " + new Integer (y).toString() + "  " + new Integer (b).toString());
+		// 		throw new ArithmeticException ("Map entities overlapped");
+		// 	    }
+		// 	}
+		//     }
+		// }
+		
+	    
+		
+		    
+		
+       	       
+		
 	    
 
 		
