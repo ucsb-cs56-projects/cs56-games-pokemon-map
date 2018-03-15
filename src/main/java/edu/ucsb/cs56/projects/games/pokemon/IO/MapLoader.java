@@ -153,27 +153,25 @@ public class MapLoader {
 	    for (int i = 0; i < tileStrings.size(); i++) {
 		String parts[] = tileStrings.get(i).split(",");
 		
+		//skip if empty
+		if (parts[0].isEmpty()){
+		    continue;
+		}
+		
 		//check whether more lines than excepted 
-		if (yAxis >= height && !(parts[0].isEmpty())) {
+		if (yAxis >= height) {
 		    Error = new OutputError ("More lines than excepted in text file");
 		}
 
 		//check whether more ID than excepted in one line
-		if (parts.length > width && !(parts[0].isEmpty())){
+		if (parts.length > width){
 		    Error = new OutputError ("More ID than excepted in line " + new Integer (yAxis+1).toString() );
 		}
 		
 		for (int x = 0;x < parts.length; x++) {
-		    //skip empty element
-		    if (parts[x].isEmpty()){
-			continue;
-		    }
 		    tileGrid[x][yAxis] = Integer.parseInt(parts[x]);		    
 		}
-		
-		if (!parts[0].isEmpty()){
-		    yAxis++;
-		}
+		yAxis++;
 	    }
         }
     }

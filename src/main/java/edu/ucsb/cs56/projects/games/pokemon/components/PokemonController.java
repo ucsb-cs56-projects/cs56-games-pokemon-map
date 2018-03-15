@@ -21,6 +21,7 @@ public class PokemonController extends Controller {
      *
      * @param entity the pokemon to control
      * @param inputHandler the input handler
+     * @param world the world generated
      */
     public PokemonController(Entity entity,  World world, InputHandler inputHandler) {
         this.entity = entity;
