@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.games.pokemon.systems;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.systems;
 
 /**
  * Abstract class for all classes that use System messages

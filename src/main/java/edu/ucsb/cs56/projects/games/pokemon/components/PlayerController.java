@@ -1,10 +1,10 @@
-package edu.ucsb.cs56.projects.games.pokemon.components;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.components;
 
-import edu.ucsb.cs56.projects.games.pokemon.InputHandler;
-import edu.ucsb.cs56.projects.games.pokemon.World;
-import edu.ucsb.cs56.projects.games.pokemon.commands.Command;
-import edu.ucsb.cs56.projects.games.pokemon.commands.InteractCommand;
-import edu.ucsb.cs56.projects.games.pokemon.commands.MoveCommand;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.InputHandler;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.World;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.commands.Command;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.commands.InteractCommand;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.commands.MoveCommand;
 
 import javax.swing.text.Position;
 
@@ -36,14 +36,13 @@ public class PlayerController extends Controller {
 
     @Override
     public void update() {
-        /*Command moveCommand = inputHandler.moveCommand;
-        inputHandler.updateMovement((MovementComponent)(entity.getComponent(MovementComponent.class)));
-        Command interactCommand = inputHandler.updateInteract(positionComponent, world);
-        if (moveCommand != null)
-            moveCommand.execute();
-        if (interactCommand != null)
-            interactCommand.execute();
-            */
+    //     Command moveCommand = inputHandler.moveCommand;
+    //     inputHandler.updateMovement((MovementComponent)(entity.getComponent(MovementComponent.class)));
+    //     Command interactCommand = inputHandler.updateInteract(positionComponent, world);
+    //     if (moveCommand != null)
+    //         moveCommand.execute();
+    //     if (interactCommand != null)
+    //         interactCommand.execute();
     }
 
 }

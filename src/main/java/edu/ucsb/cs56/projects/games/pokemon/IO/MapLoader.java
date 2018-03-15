@@ -1,97 +1,88 @@
-package edu.ucsb.cs56.projects.games.pokemon.IO;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.IO;
 
-import edu.ucsb.cs56.projects.games.pokemon.Assets;
-import edu.ucsb.cs56.projects.games.pokemon.World;
-import edu.ucsb.cs56.projects.games.pokemon.components.*;
-import edu.ucsb.cs56.projects.games.pokemon.TileData;
-import edu.ucsb.cs56.projects.games.pokemon.factories.*;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.Assets;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.World;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.*;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.TileData;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.factories.*;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.IO.OutputError;
+
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.lang.System;
 import java.lang.Math;
+import javax.swing.*;
+
 
 /**
  * Loads the Map
  *
- * @author William Bennett
+ * @author William Bennett, modified by Lyric Luo
  */
 
 public class MapLoader {
     int[][] tileGrid;
-
+    OutputError Error;
+    
     /**
      * Loads the map from a String and puts it into a world object
      *
      * @param inputStream the string to read from
      * @param world the world to load
+     * @return return a Entity[][] with axis as indexs and Texture ID store inside
      */
+    
     public Entity[][] loadMap(String inputStream, World world) {
+	
         loadMap(inputStream);
         Entity[][] entities = new Entity[tileGrid.length][tileGrid[0].length];
 	int widthTimes = 0;
 	int heightTimes = 0;
+
         for (int x = 0; x < tileGrid.length; x++) {
             for (int y = 0; y < tileGrid[x].length; y++) {
-		
+
+		//check whether entity is larger than one grid
 		if (TileData.IDToTexture(tileGrid[x][y]).width() > 16 && TileData.IDToCollision(tileGrid[x][y]) == true ){
-		     widthTimes = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).width() / 16.0) ;
-		     for (int i = 1 ; i <= widthTimes-1; i++ ){
-			 if (tileGrid[x+i][y] != 0) {
-			     //System.out.println ( new Integer (x+i).toString() + "  " + new Integer (y+j).toString() + "  " + new Integer (y).toString());
-			    throw new ArithmeticException ("Map entities overlapped");
-			}
-		     }
-			 //System.out.println(new Integer (widthTimes).toString() + "  " + new Integer (y).toString());
+		     widthTimes = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).width() / 16.0 -1) ;
+		     System.out.println(new Integer (x).toString() + " " + new Integer (widthTimes).toString());
 		 }
-		//System.out.println(new Integer (y).toString());
+	
 		
 		if (TileData.IDToTexture(tileGrid[x][y]).height() > 16 && TileData.IDToCollision(tileGrid[x][y]) == true) {
-		    heightTimes = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).height() / 16.0) ;
-		    for ( int j = 1; j <= heightTimes-1 ; j++ ) {
-			if (tileGrid[x][y+j] != 0) {
-			   throw new ArithmeticException ("Map entities overlapped");
-			}
-		    }
-		    //System.out.println(new Integer (heightTimes).toString() + "  " + new Integer (y).toString());
+		    heightTimes = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).height() / 16.0 -1) ;
+		    System.out.println(new Integer (y).toString() + " " + new Integer (heightTimes).toString());
+
 		}
 
-		//System.out.println(new Integer (y).toString());
-		
-		// if ( heightTimes > 0 && widthTimes > 0 ) {
-		//     for (int a = 1 ; a < widthTimes; a++ ){
-		// 	for (int b = 1 ; b < widthTimes; b++ ){
-		// 	    if (tileGrid[x+a][y+b] != 0) {
-		// 		 System.out.println ( new Integer (x+a).toString() + "  " + new Integer (y+b).toString() + "  " + new Integer (x).toString() + "  " + new Integer (a).toString() + "  " + new Integer (y).toString() + "  " + new Integer (b).toString());
-		// 		throw new ArithmeticException ("Map entities overlapped");
-		// 	    }
-		// 	}
-		//     }
-		// }
-		
-	    
-		
-		    
-		
-       	       
-		
-	    
+		for(int i = widthTimes;i >= 0; i--) {
+		    for (int j = heightTimes; j >= 0; j--) {
 
-		
-		 // CollisionComponent CC = (CollisionComponent)entities[x][y].getComponent(CollisionComponent.class);
-		// if (CC.hasCollision) {
-		//     throw new ArithmeticException ("Map entities overlapped");
-		// }
-		    entities[x][y] = new Entity().
-		    //addComponent(new TileComponent(tileGrid[x][y])).
+			//check whether entity goes out of map if it is larger than one grid
+			if (((x+i) > tileGrid.length-1) || ((y+j) > tileGrid[x].length-1)) {
+			    Error = new OutputError ("ID out of map at [" + new Integer (x).toString() + "," + new Integer (y).toString() + "]");
+			}
+
+			//check whether entity overlaps with others if it is larger than one grid
+			if (tileGrid[x+i][y+j] != 0 && (i!=0 || j!=0)) {
+			     Error = new OutputError ("ID overlap at [" + new Integer (x).toString() + "," + new Integer (y).toString() + "]");
+			    }
+	  
+		    }
+		    widthTimes = 0;
+		    heightTimes = 0;
+		}
+			
+		//add valid entities to map
+		entities[x][y] = new Entity().
 	            addComponent(new PositionComponent(x, y)).
 		    addComponent(new GraphicsComponent(TileData.IDToTexture(tileGrid[x][y]))).
-		   //addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).width(),TileData.IDToTexture(tileGrid[x][y]).height()));
 		    addComponent(new CollisionComponent(TileData.IDToCollision(tileGrid[x][y]), TileData.IDToTexture(tileGrid[x][y]).srcRect()));
             }
         }
-        //world.tiles = entities;
+	
 	return entities;
     }
 
@@ -99,23 +90,18 @@ public class MapLoader {
         // This regex matches the map format, as detailed below
         // Parens denote match boundaries
         // (map_name { // must be one word
-        // [0, 0, 0], [0, 1, 0]
+        // 0,1,2,3,
         // // })
         Pattern allMapsRegex = Pattern.compile("([a-zA-Z_]+\\s*\\{(\\s|.)[^\\}]*\\})");
         Matcher matcher = allMapsRegex.matcher(inputStream);
         matcher.find();
         String[] allMaps = {matcher.group()};
-
-	
 	
         // This regex matches the tile specification for a map, as shown below
-        // Parens denote match boundaries
-        // map_name { // must be one word
-        // ([0, 0, 0]), ([0, 1, 0])
-        // }
-	// Pattern mapRegex = Pattern.compile("\\[(\\d(,|\\s)*)+\\]");
-         Pattern mapRegex = Pattern.compile("(\\d+(,|\\s))");
-
+        // Parens denote match lines
+        // 1,2,3,4,
+	// 0,0,0,0,
+	Pattern mapRegex = Pattern.compile("(\\d+(,|\\t))*");
 
 	// This regex matches the metadata of a map, as shown below
         // Parens denote match boundaries
@@ -148,34 +134,47 @@ public class MapLoader {
             tileGrid = new int[width][height];
 
 
-	    
+	    //create arraylist tileStrings with each line matched inside
             Matcher tileMatcher = mapRegex.matcher(map);
             ArrayList<String> tileStrings = new ArrayList<>();
             while (tileMatcher.find()) {
                 tileStrings.add(tileMatcher.group());
             }
+	    //remove empty string
+	    for (int i = 0; i < tileStrings.size(); i++) {
+		if (tileStrings.get(i).isEmpty()) {
+		    tileStrings.remove(i);
+		}
 
-	    
-	    //check whether the size of ID number equals to the size of map
-	    if (tileStrings.size() > width*height + 2) {
-		throw new ArithmeticException ("ID numbers outof map size");
 	    }
-	   
-	    
-	    
-	    for (int x = 0; x < height; x++ ) {
-	    	for (int y = 0; y < width; y++) {
-	    	    String tile = tileStrings.get(x*width + y + 2);
-	    	    Pattern integers = Pattern.compile ("\\d+");
-	    	    Matcher intMatcher = integers.matcher (tile);
-	    	    intMatcher.find();
-	    	    int ID = Integer.parseInt(intMatcher.group());
-	    	    tileGrid[y][x] = ID;
-	    	    // String s = "x"+ new Integer (y).toString() + " y" +new Integer(x).toString() + " ID"+ new Integer(ID).toString();
-	    	    // System.out.println(s);
-	    	}
+
+	    //loop through each line, add ID to tileGrid
+	    int yAxis = 0;
+	    for (int i = 0; i < tileStrings.size(); i++) {
+		String parts[] = tileStrings.get(i).split(",");
+		
+		//check whether more lines than excepted 
+		if (yAxis >= height && !(parts[0].isEmpty())) {
+		    Error = new OutputError ("More lines than excepted in text file");
+		}
+
+		//check whether more ID than excepted in one line
+		if (parts.length > width && !(parts[0].isEmpty())){
+		    Error = new OutputError ("More ID than excepted in line " + new Integer (yAxis+1).toString() );
+		}
+		
+		for (int x = 0;x < parts.length; x++) {
+		    //skip empty element
+		    if (parts[x].isEmpty()){
+			continue;
+		    }
+		    tileGrid[x][yAxis] = Integer.parseInt(parts[x]);		    
+		}
+		
+		if (!parts[0].isEmpty()){
+		    yAxis++;
+		}
 	    }
-	    
         }
     }
 }

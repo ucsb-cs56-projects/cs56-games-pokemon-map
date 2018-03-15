@@ -1,7 +1,7 @@
-package edu.ucsb.cs56.projects.games.pokemon.commands;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.commands;
 
-import edu.ucsb.cs56.projects.games.pokemon.World;
-import edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.World;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
 
 /**
  * A command to handle interaction

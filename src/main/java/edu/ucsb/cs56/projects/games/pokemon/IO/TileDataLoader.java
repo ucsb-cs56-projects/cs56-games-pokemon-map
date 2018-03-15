@@ -1,6 +1,6 @@
-package edu.ucsb.cs56.projects.games.pokemon.IO;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.IO;
 
-import edu.ucsb.cs56.projects.games.pokemon.TileData;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.TileData;
 
 /**
  * Loads Tile Data. Currently not in use

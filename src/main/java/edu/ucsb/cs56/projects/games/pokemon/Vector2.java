@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.games.pokemon;
+package main.java.edu.ucsb.cs56.projects.games.pokemon;
 
 /**
  * Stores an x and y value to do vector operations

@@ -1,9 +1,9 @@
-package edu.ucsb.cs56.projects.games.pokemon.tests;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.tests;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import edu.ucsb.cs56.projects.games.pokemon.components.CollisionComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.CollisionComponent;
 
 
 public class CollisionComponentTest {

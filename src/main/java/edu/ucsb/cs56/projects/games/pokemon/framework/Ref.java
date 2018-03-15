@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.games.pokemon.framework;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.framework;
 
 /**
  * A data structure for a reference

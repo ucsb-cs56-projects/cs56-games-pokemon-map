@@ -1,6 +1,6 @@
-package edu.ucsb.cs56.projects.games.pokemon.components;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.components;
 
-import edu.ucsb.cs56.projects.games.pokemon.Vector2;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.Vector2;
 
 /**
  * A component to handle movement of the entity

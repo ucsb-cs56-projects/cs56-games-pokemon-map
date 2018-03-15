@@ -1,6 +1,6 @@
-package edu.ucsb.cs56.projects.games.pokemon.framework;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.framework;
 
-import edu.ucsb.cs56.projects.games.pokemon.graphics.SpriteBatch;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.SpriteBatch;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,7 +54,7 @@ public class MainWindow extends JPanel {
         init();
         initialized = true;
         while (running) {
-            update(gameFrameTime);
+	    update(gameFrameTime);
             draw(spriteBatch, gameFrameTime);
             paintScreen(spriteBatch.getBackBuffer());
             deltaT = System.nanoTime() - currentTime;

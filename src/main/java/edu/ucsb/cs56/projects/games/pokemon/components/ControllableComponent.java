@@ -1,6 +1,6 @@
-package edu.ucsb.cs56.projects.games.pokemon.components;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.components;
 
-import edu.ucsb.cs56.projects.games.pokemon.*;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.*;
 
 /**
  * A component to control a entity

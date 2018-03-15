@@ -1,6 +1,6 @@
-package edu.ucsb.cs56.projects.games.pokemon.components;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.components;
 
-import edu.ucsb.cs56.projects.games.pokemon.Vector2;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.Vector2;
 
 import java.awt.*;
 
@@ -45,7 +45,7 @@ public class PositionComponent extends Component {
      * @param y the y value
      */
     public PositionComponent(int x, int y) {
-        this(x, y, new Vector2(0, 0));
+         this(x, y, new Vector2(0, 0));
 
     }
 
@@ -55,7 +55,7 @@ public class PositionComponent extends Component {
      * @param position the Point
      */
     public PositionComponent(Point position) {
-        this(position, new Vector2(0, 0));
+         this(position, new Vector2(0, 0));
     }
 
 

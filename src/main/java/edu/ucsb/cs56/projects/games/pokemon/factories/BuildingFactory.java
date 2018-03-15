@@ -1,10 +1,10 @@
-package edu.ucsb.cs56.projects.games.pokemon.factories;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.factories;
 
-import edu.ucsb.cs56.projects.games.pokemon.Assets;
-import edu.ucsb.cs56.projects.games.pokemon.components.CollisionComponent;
-import edu.ucsb.cs56.projects.games.pokemon.components.Entity;
-import edu.ucsb.cs56.projects.games.pokemon.components.GraphicsComponent;
-import edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.Assets;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.CollisionComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.Entity;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.GraphicsComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
 
 /**
  * Created by John Bowman on 11/8/2016.

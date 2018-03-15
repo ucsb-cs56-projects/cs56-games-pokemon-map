@@ -1,13 +1,13 @@
-package edu.ucsb.cs56.projects.games.pokemon.systems;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.systems;
 
-import edu.ucsb.cs56.projects.games.pokemon.Vector2;
-import edu.ucsb.cs56.projects.games.pokemon.World;
-import edu.ucsb.cs56.projects.games.pokemon.components.CollisionComponent;
-import edu.ucsb.cs56.projects.games.pokemon.components.Entity;
-import edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
-import edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
-import edu.ucsb.cs56.projects.games.pokemon.framework.Ref;
-import edu.ucsb.cs56.projects.games.pokemon.graphics.Animation;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.Vector2;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.World;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.CollisionComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.Entity;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.framework.Ref;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.Animation;
 
 /**
  * Handles all movement
@@ -30,8 +30,9 @@ public class MovementSystem extends SystemBase {
             PositionComponent PC = (PositionComponent)E.getComponent(PositionComponent.class);
             MovementComponent MC = (MovementComponent)E.getComponent(MovementComponent.class);
             
-            if (PC == null || MC == null) 
+            if ( MC == null) 
             	continue;
+	    
            
             PositionComponent NextPosition = PC;
             
@@ -67,6 +68,7 @@ public class MovementSystem extends SystemBase {
             PC = null;
             MC = null;
             NextPosition = null;
+      
         }
         entities = null;
         tiles = null;
@@ -77,7 +79,6 @@ public class MovementSystem extends SystemBase {
      * A method to check to see if one entity overlaps another
      *
      * @param PC1 the position component of the moving object
-     * @param MC1 the movement component of the moving object
      * @param entities the list of the world's entities
      * @param tiles the array of tiles in the world
      * @return a boolean that determines whether an entity overlaps another entity with collision
@@ -99,19 +100,7 @@ public class MovementSystem extends SystemBase {
                 return true;
             }
           
-            // //checks if moving entity's next position is outside the bounds of the map
-            // if (  (PC1.position.x >= 42) ||  (PC1.position.y >= 39)   ) {
-            // 	return true;
-            // }
-            
-            // if (  (PC1.position.x <= 1) ||  (PC1.position.y <= -1)   ) {
-            // 	return true;
-            // }
-            
-            
-            // else {
-            //     continue;
-            // }
+         
         }
 
         //checks all the tiles in the world

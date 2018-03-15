@@ -1,6 +1,6 @@
-package edu.ucsb.cs56.projects.games.pokemon;
+package main.java.edu.ucsb.cs56.projects.games.pokemon;
 
-import edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
 
 /**
  * Class to contain TileData
@@ -82,7 +82,6 @@ public class TileData {
             case 11: return Assets.water9;
 	    case 12: return Assets.flower;
 	    case 13: return Assets.flower2;
-	    case 14: return Assets.pokecenter;
 	    default: return Assets.grass_Default;
         }
     }
@@ -105,7 +104,6 @@ public class TileData {
             case 11: return true;
 	    case 12: return true;
             case 13: return true;
-	    case 14: return true;
 	    default: return false;
         }
     }
@@ -113,23 +111,4 @@ public class TileData {
 
 
 
-    //  public static String IDToString(int tileID) {
-    //     switch (tileID) {
-    //         //case 0: return "grass_Default";
-    //         case 0: return "grass_Wild";
-    //         // case 2: return Assets.workingTree;
-    //         // case 3: return Assets.water1;
-    //         // case 4: return Assets.water2;
-    //         // case 5: return Assets.water3;
-    //         // case 6: return Assets.water4;
-    //         // case 7: return Assets.water5;
-    //         // case 8: return Assets.water6;
-    //         // case 9: return Assets.water7;
-    //         // case 10: return Assets.water8;
-    //         // case 11: return Assets.water9;
-    // 	    // case 12: return Assets.flower;
-    // 	    // case 13: return Assets.flower2;
-    // 	    default: return "grass_Wild";
-    //     }
-    // }
 }

@@ -1,7 +1,7 @@
-package edu.ucsb.cs56.projects.games.pokemon.components;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.components;
 
-import edu.ucsb.cs56.projects.games.pokemon.graphics.Animation;
-import edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.Animation;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
 
 /**
  * A component to handle graphics of the entity

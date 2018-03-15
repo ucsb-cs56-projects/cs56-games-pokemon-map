@@ -1,14 +1,14 @@
-package edu.ucsb.cs56.projects.games.pokemon;
+package main.java.edu.ucsb.cs56.projects.games.pokemon;
 
-import edu.ucsb.cs56.projects.games.pokemon.commands.Command;
-import edu.ucsb.cs56.projects.games.pokemon.commands.InteractCommand;
-import edu.ucsb.cs56.projects.games.pokemon.commands.MoveCommand;
-import edu.ucsb.cs56.projects.games.pokemon.components.Entity;
-import edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
-import edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
-import edu.ucsb.cs56.projects.games.pokemon.framework.Pair;
-import edu.ucsb.cs56.projects.games.pokemon.systems.SystemBase;
-import edu.ucsb.cs56.projects.games.pokemon.systems.SystemMessage;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.commands.Command;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.commands.InteractCommand;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.commands.MoveCommand;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.Entity;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.framework.Pair;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.systems.SystemBase;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.systems.SystemMessage;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -61,10 +61,10 @@ public class InputHandler extends SystemBase implements KeyListener {
      * @return returns the command to interact
      */
     public Command updateInteract(PositionComponent positionComponent, World world) {
-        if (keys[4]) {
-            return new InteractCommand(positionComponent, world);
-        }
-        return null;
+         if (keys[4]) {
+             return new InteractCommand(positionComponent, world);
+         }
+         return null;
     }
 
     /**

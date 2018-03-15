@@ -1,7 +1,7 @@
-package edu.ucsb.cs56.projects.games.pokemon;
+package main.java.edu.ucsb.cs56.projects.games.pokemon;
 
 
-import edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
 
 /**
  * This class doesn't do anything yet and is a basic stub for later addition for text boxes

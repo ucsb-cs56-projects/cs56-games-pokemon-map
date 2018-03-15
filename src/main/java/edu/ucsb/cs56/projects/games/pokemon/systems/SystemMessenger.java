@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.games.pokemon.systems;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.systems;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

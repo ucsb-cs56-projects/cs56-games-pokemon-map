@@ -1,8 +1,8 @@
-package edu.ucsb.cs56.projects.games.pokemon.systems;
+package main.java.edu.ucsb.cs56.projects.games.pokemon.systems;
 
-import edu.ucsb.cs56.projects.games.pokemon.components.Entity;
-import edu.ucsb.cs56.projects.games.pokemon.framework.Pair;
-import edu.ucsb.cs56.projects.games.pokemon.framework.Ref;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.components.Entity;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.framework.Pair;
+import main.java.edu.ucsb.cs56.projects.games.pokemon.framework.Ref;
 
 import java.lang.ref.Reference;
 import java.util.Enumeration;
