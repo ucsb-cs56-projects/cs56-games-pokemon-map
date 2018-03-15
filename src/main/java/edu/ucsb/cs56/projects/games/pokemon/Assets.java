@@ -4,6 +4,7 @@ import edu.ucsb.cs56.projects.games.pokemon.graphics.Animation;
 import edu.ucsb.cs56.projects.games.pokemon.graphics.AnimationFrame;
 import edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
 
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -197,7 +198,7 @@ public class Assets {
     private static BufferedImage addImage(String name) {
         BufferedImage img = null;
         try {
-            File f = new File("src/edu/ucsb/cs56/projects/games/pokemon/" + name);
+            File f = new File("src/main/resources/" + name);
             System.out.println(f.getAbsolutePath());
             img = ImageIO.read(f);
         } catch (IOException e) {

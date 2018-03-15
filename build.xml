@@ -34,7 +34,7 @@
 
   
   <target name="run" description="run the main" depends="compile">
-    <java classname="main.java.edu.ucsb.cs56.projects.games.pokemon.framework.Main" classpath="build" fork="true"/>
+    <java classname="edu.ucsb.cs56.projects.games.pokemon.framework.Main" classpath="build" fork="true"/>
   </target>
 
 

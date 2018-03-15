@@ -82,6 +82,7 @@ public class TileData {
             case 11: return Assets.water9;
 	    case 12: return Assets.flower;
 	    case 13: return Assets.flower2;
+	    case 14: return Assets.pokecenter;
 	    default: return Assets.grass_Default;
         }
     }
@@ -91,7 +92,7 @@ public class TileData {
     public static boolean IDToCollision(int tileID) {
         switch (tileID) {
             case 0: return false;
-            case 1: return true;
+            case 1: return false;
             case 2: return true;
             case 3: return true;
             case 4: return true;
@@ -102,8 +103,9 @@ public class TileData {
             case 9: return true;
             case 10: return true;
             case 11: return true;
-	    case 12: return true;
+	    case 12: return false;
             case 13: return true;
+	    case 14: return true;
 	    default: return false;
         }
     }
