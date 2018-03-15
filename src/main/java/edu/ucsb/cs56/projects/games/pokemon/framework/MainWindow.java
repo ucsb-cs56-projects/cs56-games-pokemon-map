@@ -1,6 +1,6 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.framework;
+package edu.ucsb.cs56.projects.games.pokemon.framework;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.SpriteBatch;
+import edu.ucsb.cs56.projects.games.pokemon.graphics.SpriteBatch;
 
 import javax.swing.*;
 import java.awt.*;

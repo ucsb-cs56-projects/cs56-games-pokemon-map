@@ -1,10 +1,10 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.components;
+package edu.ucsb.cs56.projects.games.pokemon.components;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.InputHandler;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.World;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.commands.Command;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.commands.InteractCommand;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.commands.MoveCommand;
+import edu.ucsb.cs56.projects.games.pokemon.InputHandler;
+import edu.ucsb.cs56.projects.games.pokemon.World;
+import edu.ucsb.cs56.projects.games.pokemon.commands.Command;
+import edu.ucsb.cs56.projects.games.pokemon.commands.InteractCommand;
+import edu.ucsb.cs56.projects.games.pokemon.commands.MoveCommand;
 
 import javax.swing.text.Position;
 

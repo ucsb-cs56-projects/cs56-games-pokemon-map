@@ -1,6 +1,6 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.commands;
+package edu.ucsb.cs56.projects.games.pokemon.commands;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
+import edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
 
 import java.awt.*;
 

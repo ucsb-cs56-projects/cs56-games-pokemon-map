@@ -1,13 +1,13 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.systems;
+package edu.ucsb.cs56.projects.games.pokemon.systems;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.Vector2;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.World;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.CollisionComponent;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.Entity;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.framework.Ref;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.Animation;
+import edu.ucsb.cs56.projects.games.pokemon.Vector2;
+import edu.ucsb.cs56.projects.games.pokemon.World;
+import edu.ucsb.cs56.projects.games.pokemon.components.CollisionComponent;
+import edu.ucsb.cs56.projects.games.pokemon.components.Entity;
+import edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
+import edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
+import edu.ucsb.cs56.projects.games.pokemon.framework.Ref;
+import edu.ucsb.cs56.projects.games.pokemon.graphics.Animation;
 
 /**
  * Handles all movement

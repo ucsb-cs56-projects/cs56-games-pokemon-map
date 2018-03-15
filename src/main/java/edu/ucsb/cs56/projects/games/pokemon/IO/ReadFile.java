@@ -1,4 +1,4 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.IO;
+package edu.ucsb.cs56.projects.games.pokemon.IO;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

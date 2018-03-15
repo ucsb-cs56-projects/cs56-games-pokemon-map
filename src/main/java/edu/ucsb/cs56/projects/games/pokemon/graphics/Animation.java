@@ -1,6 +1,6 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.graphics;
+package edu.ucsb.cs56.projects.games.pokemon.graphics;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
+import edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
 
 import java.util.ArrayList;
 

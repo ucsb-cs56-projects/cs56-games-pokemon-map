@@ -1,6 +1,6 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon;
+package edu.ucsb.cs56.projects.games.pokemon;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
+import edu.ucsb.cs56.projects.games.pokemon.graphics.Texture;
 
 /**
  * Class to contain TileData

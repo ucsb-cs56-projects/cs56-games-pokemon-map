@@ -1,12 +1,12 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.systems;
+package edu.ucsb.cs56.projects.games.pokemon.systems;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.Assets;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.Vector2;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.World;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.Entity;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.GraphicsComponent;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.*;
+import edu.ucsb.cs56.projects.games.pokemon.Assets;
+import edu.ucsb.cs56.projects.games.pokemon.Vector2;
+import edu.ucsb.cs56.projects.games.pokemon.World;
+import edu.ucsb.cs56.projects.games.pokemon.components.Entity;
+import edu.ucsb.cs56.projects.games.pokemon.components.GraphicsComponent;
+import edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
+import edu.ucsb.cs56.projects.games.pokemon.graphics.*;
 
 import java.awt.*;
 

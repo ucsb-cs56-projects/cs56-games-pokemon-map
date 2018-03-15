@@ -1,4 +1,4 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.IO;
+package edu.ucsb.cs56.projects.games.pokemon.IO;
 
 /**
  * Reads characters from a string one at a time

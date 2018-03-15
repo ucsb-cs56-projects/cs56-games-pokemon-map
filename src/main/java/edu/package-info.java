@@ -13,4 +13,4 @@
  * @since 1.0
  * @see java.awt
  */
-package main.java.edu.ucsb.cs56.projects.games.pokemon;
+package edu.ucsb.cs56.projects.games.pokemon;

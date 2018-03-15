@@ -1,11 +1,11 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.IO;
+package edu.ucsb.cs56.projects.games.pokemon.IO;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.Assets;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.World;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.*;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.TileData;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.factories.*;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.IO.OutputError;
+import edu.ucsb.cs56.projects.games.pokemon.Assets;
+import edu.ucsb.cs56.projects.games.pokemon.World;
+import edu.ucsb.cs56.projects.games.pokemon.components.*;
+import edu.ucsb.cs56.projects.games.pokemon.TileData;
+import edu.ucsb.cs56.projects.games.pokemon.factories.*;
+import edu.ucsb.cs56.projects.games.pokemon.IO.OutputError;
 
 
 import java.util.ArrayList;

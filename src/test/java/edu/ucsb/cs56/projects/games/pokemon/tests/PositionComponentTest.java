@@ -1,7 +1,7 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.tests;
+package edu.ucsb.cs56.projects.games.pokemon.tests;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.Vector2;
+import edu.ucsb.cs56.projects.games.pokemon.components.PositionComponent;
+import edu.ucsb.cs56.projects.games.pokemon.Vector2;
 
 import java.awt.Point;
 

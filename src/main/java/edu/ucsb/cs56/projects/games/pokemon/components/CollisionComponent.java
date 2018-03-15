@@ -1,4 +1,4 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.components;
+package edu.ucsb.cs56.projects.games.pokemon.components;
 
 import java.awt.*;
 

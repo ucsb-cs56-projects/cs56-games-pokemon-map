@@ -1,11 +1,11 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.tests;
+package edu.ucsb.cs56.projects.games.pokemon.tests;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent.Direction;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.Vector2;
+import edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent;
+import edu.ucsb.cs56.projects.games.pokemon.components.MovementComponent.Direction;
+import edu.ucsb.cs56.projects.games.pokemon.Vector2;
 
 public class MovementComponentTest {
 

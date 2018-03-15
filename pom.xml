@@ -3,7 +3,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>main.java.edu.ucsb.cs56.projects.pokemon_map</groupId>
+  <groupId>edu.ucsb.cs56.projects.pokemon_map</groupId>
 
   <artifactId>pokemon_map</artifactId>
   <packaging>jar</packaging>
@@ -117,7 +117,7 @@
 	  </execution>
 	</executions>
 	<configuration>
-	  <mainClass>main.java.edu.ucsb.cs56.projects.games.pokemon.framework.Main</mainClass>
+	  <mainClass>edu.ucsb.cs56.projects.games.pokemon.framework.Main</mainClass>
 	  <arguments>
 	    <argument>foo</argument>
 	    <argument>bar</argument>
@@ -133,7 +133,7 @@
           <archive>
             <manifest>
               <!-- full package name of class with the main you want to run -->
-              <mainClass>main.java.edu.ucsb.cs56.projects.games.pokemon</mainClass>
+              <mainClass>edu.ucsb.cs56.projects.games.pokemon</mainClass>
             </manifest>
           </archive>
         </configuration>

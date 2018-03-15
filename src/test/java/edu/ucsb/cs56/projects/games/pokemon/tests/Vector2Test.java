@@ -1,6 +1,6 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.tests;
+package edu.ucsb.cs56.projects.games.pokemon.tests;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.Vector2;
+import edu.ucsb.cs56.projects.games.pokemon.Vector2;
 import org.junit.Assert;
 import org.junit.Test;
 

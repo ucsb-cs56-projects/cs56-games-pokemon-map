@@ -1,4 +1,4 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.commands;
+package edu.ucsb.cs56.projects.games.pokemon.commands;
 
 /**
  * An interface for commands

@@ -1,12 +1,12 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon;
+package edu.ucsb.cs56.projects.games.pokemon;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.IO.MapLoader;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.framework.MainWindow;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.SpriteBatch;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.systems.MovementSystem;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.systems.RenderSystem;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.systems.SystemMessenger;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.IO.ReadFile;
+import edu.ucsb.cs56.projects.games.pokemon.IO.MapLoader;
+import edu.ucsb.cs56.projects.games.pokemon.framework.MainWindow;
+import edu.ucsb.cs56.projects.games.pokemon.graphics.SpriteBatch;
+import edu.ucsb.cs56.projects.games.pokemon.systems.MovementSystem;
+import edu.ucsb.cs56.projects.games.pokemon.systems.RenderSystem;
+import edu.ucsb.cs56.projects.games.pokemon.systems.SystemMessenger;
+import edu.ucsb.cs56.projects.games.pokemon.IO.ReadFile;
 
 import java.awt.*;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.nio.charset.Charset;
  * @author William Bennett
  */
 public class Game extends MainWindow {
-    private static String testMap = setTestMap("src/main/java/edu/ucsb/cs56/projects/games/pokemon/maps/test.txt");
+    private static String testMap = setTestMap("src/edu/ucsb/cs56/projects/games/pokemon/maps/test.txt");
 
 
     World world;

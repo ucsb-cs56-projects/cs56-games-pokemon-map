@@ -1,9 +1,9 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon.framework;
+package edu.ucsb.cs56.projects.games.pokemon.framework;
 
 ///// Starting point for game
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.Game;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.framework.MainWindow;
+import edu.ucsb.cs56.projects.games.pokemon.Game;
+import edu.ucsb.cs56.projects.games.pokemon.framework.MainWindow;
 
 /**
  * Starting point for the game. Creates a MainWindow

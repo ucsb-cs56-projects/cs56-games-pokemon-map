@@ -1,13 +1,13 @@
-package main.java.edu.ucsb.cs56.projects.games.pokemon;
+package edu.ucsb.cs56.projects.games.pokemon;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import main.java.edu.ucsb.cs56.projects.games.pokemon.components.*;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.Animation;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.graphics.AnimationFrame;
-import main.java.edu.ucsb.cs56.projects.games.pokemon.factories.*;
+import edu.ucsb.cs56.projects.games.pokemon.components.*;
+import edu.ucsb.cs56.projects.games.pokemon.graphics.Animation;
+import edu.ucsb.cs56.projects.games.pokemon.graphics.AnimationFrame;
+import edu.ucsb.cs56.projects.games.pokemon.factories.*;
 
 /**
  * Contains tiles and NPCs as entities
