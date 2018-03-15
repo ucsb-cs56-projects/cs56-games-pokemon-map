@@ -18,7 +18,7 @@ import java.nio.charset.Charset;
  * @author William Bennett
  */
 public class Game extends MainWindow {
-    private static String testMap = setTestMap("src/edu/ucsb/cs56/projects/games/pokemon/maps/Pond_Map.txt");
+    private static String testMap = setTestMap("src/edu/ucsb/cs56/projects/games/pokemon/maps/test.txt");
 
 
     World world;
@@ -46,10 +46,11 @@ public class Game extends MainWindow {
 	    inputHandler.registerMessenger(systemMessenger);
         movementSystem = new MovementSystem();
         movementSystem.registerMessenger(systemMessenger);
-        world = new World(inputHandler);
+	MapLoader ml = new MapLoader();
+        world = new World(ml.loadMap(testMap,world),inputHandler);
         renderSystem = new RenderSystem(this.getBounds());
-        MapLoader ml = new MapLoader();
-        ml.loadMap(testMap, world);
+        //MapLoader ml = new MapLoader();
+        //ml.loadMap(testMap, world);
     }
 
     /**

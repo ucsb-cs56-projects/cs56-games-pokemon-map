@@ -55,12 +55,18 @@ public class Assets {
             niceTree,
             god,
             textBox,
+	    pikachu0,pikachu1,pikachu2,pikachu3,pikachu4,pikachu5,
+	    pikachu6,pikachu7,pikachu8,pikachu9,pikachu10,pikachu11,
             player0, player1, player2, player3, player4, player5,
             player6, player7, player8, player9, player10, player11;
+    
     public static AnimationFrame
+	    pikachu0f,pikachu1f,pikachu2f,pikachu3f,pikachu4f,pikachu5f,
+	    pikachu6f,pikachu7f,pikachu8f,pikachu9f,pikachu10f,pikachu11f,
             player0f, player1f, player2f, player3f, player4f, player5f,
             player6f, player7f, player8f, player9f, player10f, player11f;
     public static AnimationFrame[] playerAnimation;
+    public static AnimationFrame[] pikachuAnimation;
 
 
 
@@ -96,7 +102,62 @@ public class Assets {
         workingTree2 = new Texture(TileSet_Main, 64, 32, 32, 16);
         workingTree3 = new Texture(TileSet_Main, 96, 0, 32, 48);
 
-        bigPokemon = new Texture(TileSet_Pkmn, 16 * 31, 16 * 17, 16*4, 16 * 3);
+
+
+
+
+	// //try to add pikachu
+	pikachu0 = new Texture(TileSet_Pkmn, 151, 153, 17, 20);
+	pikachu1 = new Texture(TileSet_Pkmn, 130, 153, 17, 20);
+	pikachu2 = new Texture(TileSet_Pkmn, 174, 153, 17, 20);
+	pikachu3 = new Texture(TileSet_Pkmn, 151, 178, 17, 20);
+	pikachu4 = new Texture(TileSet_Pkmn, 172, 178, 17, 20);
+	pikachu5 = new Texture(TileSet_Pkmn, 130, 178, 17, 20);
+	pikachu6 = new Texture(TileSet_Pkmn, 149, 200, 18, 20);
+	pikachu7 = new Texture(TileSet_Pkmn, 171, 200, 19, 20);
+	pikachu8 = new Texture(TileSet_Pkmn, 126, 200, 19, 20);
+	pikachu9 = new Texture(TileSet_Pkmn, 150, 221, 19, 20);
+	pikachu10 = new Texture(TileSet_Pkmn, 173, 222, 19, 20);
+	pikachu11 = new Texture(TileSet_Pkmn, 128, 223, 19, 20);
+
+	pikachu0f = new AnimationFrame(pikachu0);
+	pikachu1f = new AnimationFrame(pikachu1);
+	pikachu2f = new AnimationFrame(pikachu2);
+	pikachu3f = new AnimationFrame(pikachu3);
+	pikachu4f = new AnimationFrame(pikachu4);
+	pikachu5f = new AnimationFrame(pikachu5);
+	pikachu6f = new AnimationFrame(pikachu6);
+	pikachu7f = new AnimationFrame(pikachu7);
+	pikachu8f = new AnimationFrame(pikachu8);
+	pikachu9f = new AnimationFrame(pikachu9);
+	pikachu10f = new AnimationFrame(pikachu10);
+	pikachu11f = new AnimationFrame(pikachu11);
+	
+	pikachuAnimation = new AnimationFrame[12];
+        pikachuAnimation[0] = pikachu0f;
+	pikachuAnimation[1] = pikachu1f;
+	pikachuAnimation[2] = pikachu2f;
+	pikachuAnimation[3] = pikachu3f;
+	pikachuAnimation[4] = pikachu4f;
+	pikachuAnimation[5] = pikachu5f;
+	pikachuAnimation[6] = pikachu6f;
+	pikachuAnimation[7] = pikachu7f;
+	pikachuAnimation[8] = pikachu8f;
+	pikachuAnimation[9] = pikachu9f;
+	pikachuAnimation[10] = pikachu10f;
+	pikachuAnimation[11] = pikachu11f;
+	
+
+
+
+
+
+
+
+	
+	//refered graphic/texture.java
+	//init: 4 entries- x,y,width,heigth
+        bigPokemon = new Texture(TileSet_Pkmn, 16 * 31, 16 * 17, 16*4, 16 * 4);
         pokeball = new Texture(TileSet_Main, 16 * 5, 16 * 3, 16, 16);
         pokecenter = new Texture(TileSet_Main, new Rectangle(0, 720, 80, 80));
         pokemart = new Texture(TileSet_Main, new Rectangle(0, 656, 64, 64));
@@ -240,6 +301,7 @@ public class Assets {
 	    case "workingTree": return Assets.workingTree;
 	    case "workingTree2": return Assets.workingTree2;
 	    case "workingTree3": return Assets.workingTree3;
+	    case "grass_Wild": return Assets.grass_Wild;
 	    default: return null;
         }
     }
