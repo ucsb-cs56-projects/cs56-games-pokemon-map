@@ -67,23 +67,25 @@ public class TileData {
      */
     public static Texture IDToTexture(int tileID) {
         switch (tileID) {
-            case 0: return Assets.grass_Default;
-            case 1: return Assets.grass_Wild;
-	    case 2: return Assets.workingTree;
-		//case 2: return Assets.flower3;
-            case 3: return Assets.water1;
-            case 4: return Assets.water2;
-            case 5: return Assets.water3;
-            case 6: return Assets.water4;
-            case 7: return Assets.water5;
-            case 8: return Assets.water6;
-            case 9: return Assets.water7;
-            case 10: return Assets.water8;
-            case 11: return Assets.water9;
-	    case 12: return Assets.flower;
-	    case 13: return Assets.flower2;
-	    case 14: return Assets.pokecenter;
-	    default: return Assets.grass_Default;
+	case 0: return Assets.grass_Default;
+	case 1: return Assets.grass_Wild;
+	case 2: return Assets.workingTree;
+	case 3: return Assets.water1;
+	case 4: return Assets.water2;
+	case 5: return Assets.water3;
+	case 6: return Assets.water4;
+	case 7: return Assets.water5;
+	case 8: return Assets.water6;
+	case 9: return Assets.water7;
+	case 10: return Assets.water8;
+	case 11: return Assets.water9;
+	case 12: return Assets.flower;
+	case 13: return Assets.flower2;
+	case 14: return Assets.pokecenter;
+	case 15: return Assets.pokemart;
+	case 16: return Assets.smallHouse;
+	case 17: return Assets.mediumHouse;
+	default: return Assets.grass_Default;
         }
     }
 
@@ -91,22 +93,25 @@ public class TileData {
     //does not work at all
     public static boolean IDToCollision(int tileID) {
         switch (tileID) {
-            case 0: return false;
-            case 1: return false;
-            case 2: return true;
-            case 3: return true;
-            case 4: return true;
-            case 5: return true;
-            case 6: return true;
-            case 7: return true;
-            case 8: return true;
-            case 9: return true;
-            case 10: return true;
-            case 11: return true;
-	    case 12: return false;
-            case 13: return true;
-	    case 14: return true;
-	    default: return false;
+	case 0: return false;
+	case 1: return false;
+	case 2: return true;
+	case 3: return true;
+	case 4: return true;
+	case 5: return true;
+	case 6: return true;
+	case 7: return true;
+	case 8: return true;
+	case 9: return true;
+	case 10: return true;
+	case 11: return true;
+	case 12: return true;
+	case 13: return true;
+	case 14: return true;
+	case 15: return true;
+	case 16: return true;
+	case 17: return true;
+	default: return false;
         }
     }
 

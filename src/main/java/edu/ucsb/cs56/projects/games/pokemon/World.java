@@ -55,6 +55,8 @@ public class World {
     //  * @param tiles the tile entities
     //  * @param inputHandler the main input handler
     //  */
+
+    //This is the constructor that we actually use
     public World(Entity[][] tiles, InputHandler inputHandler) {
         this.tiles = tiles;
         entities = new HashSet<>();
@@ -151,11 +153,6 @@ public class World {
 
          
 
-       ((GraphicsComponent)player1.getComponent(GraphicsComponent.class)).animation.advance(.99f,
-               (MovementComponent)player1.getComponent(MovementComponent.class));
-
-
-       
     
     }
 }

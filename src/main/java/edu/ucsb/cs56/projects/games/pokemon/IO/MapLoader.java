@@ -19,7 +19,7 @@ import javax.swing.*;
 /**
  * Loads the Map
  *
- * @author William Bennett, modified by Lyric Luo
+ * @author William Bennett, rewrittened by Lyric Luo
  */
 
 public class MapLoader {
@@ -47,14 +47,10 @@ public class MapLoader {
 		//check whether entity is larger than one grid
 		if (TileData.IDToTexture(tileGrid[x][y]).width() > 16 && TileData.IDToCollision(tileGrid[x][y]) == true ){
 		     widthTimes = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).width() / 16.0 -1) ;
-		     System.out.println(new Integer (x).toString() + " " + new Integer (widthTimes).toString());
 		 }
-	
-		
+			
 		if (TileData.IDToTexture(tileGrid[x][y]).height() > 16 && TileData.IDToCollision(tileGrid[x][y]) == true) {
 		    heightTimes = (int) Math.ceil(TileData.IDToTexture(tileGrid[x][y]).height() / 16.0 -1) ;
-		    System.out.println(new Integer (y).toString() + " " + new Integer (heightTimes).toString());
-
 		}
 
 		for(int i = widthTimes;i >= 0; i--) {
@@ -63,11 +59,13 @@ public class MapLoader {
 			//check whether entity goes out of map if it is larger than one grid
 			if (((x+i) > tileGrid.length-1) || ((y+j) > tileGrid[x].length-1)) {
 			    Error = new OutputError ("ID out of map at [" + new Integer (x).toString() + "," + new Integer (y).toString() + "]");
+			    throw new RuntimeException ("ID out of map at [" + new Integer (x).toString() + "," + new Integer (y).toString() + "]");
 			}
 
 			//check whether entity overlaps with others if it is larger than one grid
 			if (tileGrid[x+i][y+j] != 0 && (i!=0 || j!=0)) {
 			     Error = new OutputError ("ID overlap at [" + new Integer (x).toString() + "," + new Integer (y).toString() + "]");
+			     throw new RuntimeException ("ID overlap at [" + new Integer (x).toString() + "," + new Integer (y).toString() + "]");
 			    }
 	  
 		    }
@@ -161,11 +159,13 @@ public class MapLoader {
 		//check whether more lines than excepted 
 		if (yAxis >= height) {
 		    Error = new OutputError ("More lines than excepted in text file");
+		    throw new RuntimeException ("More lines than excepted in text file");
 		}
 
 		//check whether more ID than excepted in one line
 		if (parts.length > width){
 		    Error = new OutputError ("More ID than excepted in line " + new Integer (yAxis+1).toString() );
+		    throw new RuntimeException ("More ID than excepted in line " + new Integer (yAxis+1).toString() );
 		}
 		
 		for (int x = 0;x < parts.length; x++) {
