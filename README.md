@@ -61,3 +61,18 @@ Our Advice:
 This project is built from a lot of different packages that all work together to allow the game to function. To tackle the code, and get a decent understanding of it, I would start by looking at the entity/component classes. Once you understand the entities, understanding how the world loads becomes easier. After that, figuring out how the rendering and movement systems function becomes possible. Work outwards from there, until you have a good understanding of the whole picture, including how systemMessenger, animation, and I/O works. The main files in this game are World.java and Game.java. This is where everything comes together. This project has a lot to it so definitely familiarize yourself with the code early on. A good place to start might be with adding Pikachu back in. The first thing you implement will probably take the longest as this project has quite a bit of confusing code. Another great place to start would be reorganizing the map and making it "pretty". Pretty easy points but takes a bit of time to change values in Pond_map.txt. 
 
 
+# W18 final remarks
+
+## What the project does right now:
+ Using command "ant run" or "mvn exec:java" to run the project, it generates a pokemon map with player at the middle. The player can move around as long as there is no obstacle. Everything, like a tree, in the map is an entity with compounds, like position compound. The map generator basically reads a txt file from resources, and loads the map according to IDs of entities that assigned at each point. 
+ 
+## Features could be added & possible refactoring
+  Pikachu should follow the player as the player moves. Movable camera is pretty feasible as the map generator has been completely rewritten. Also, it will be very cool if player can truly interact with the map. For example, when the player hits the door of a building, he "goes inside" the building as a new map generated. I would recommend the issue #84, refactor into model & view controller pattern for the second part of the quarter, as it requires a solid understanding of the overall structure of the project. Getting this issue done is key to add more tests on the project.
+  
+## Bugs exit :
+ No major bugs. However, lots of classes and methods need to be adjusted to further develop new features. 
+ There are small bugs. For instance, some assets were not properly cutted, which results in weird things generated in the map. Try adding ID 14 in the txt file, and see what happenes. 
+ 
+## Advice on where to begin:
+ Checkout src/main/java/edu/ucsb/cs56/projects/games/pokemon/IO/MapLoader.java, to see how it reads the test.txt under src/main/resources/maps, and generates the map. The map is using a x-axis & y-axis coordinate with (0,0) at upper left concern. "Width" and "Height" tiles in txt file define the boundary of the map, and each number below represents the entity ID that shows up at that point of the map. Check out TileData.jave to see the ID nums avaiable. Try to modify ID nums in txt file and see what happens. 
+  After making some modifications on map, I would start by understanding the assets, entity of the map, and how entities related to compounts. Then move to the movement system, animation of the map. At last, checkout IO, Game, World, to see how everything comes together. An overall understand of the project's structure makes everything easier. 
