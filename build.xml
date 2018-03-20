@@ -1,92 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?>
-<project default="compile">
+<project>
 
-  <!-- build.xml for Mantis issue 0000748
-       name: Sam Baldwin for CS56, S12 -->
-
-    <!-- cleaned up by John Bowman, Devon Porcher -->
-    <!-- added to GitHub pages by Brandon Tran, Danielle Robinson -->
-  <property environment="env"/> <!-- load the environment variables -->
-
-
-
-
-
-  <property name="mainClass" value="edu.ucsb.cs56.projects.games.pokemon.framework.Main" />
-  <property name="javadoc_absolute_path" location="docs"/>
-
-
-  <path id="project.class.path">
-         <pathelement location="build"/>
-         <pathelement location="lib/junit-4.8.2.jar" />
+  
+  <path id="project.class.path"> 
+    <pathelement location="build"/>
+    <pathelement location="lib/junit-4.8.2.jar"/>
   </path>
 
-  <target name="compile" description="Compiles code">
+  <target name="compile" description="compile the code">
     <mkdir dir="build" />
-    <javac srcdir="src" destdir="build" debug="true" debuglevel="lines,vars,source" includeantruntime="false">
-     <classpath refid="project.class.path" />
+    <javac srcdir="src/main/java"
+	   destdir="build"
+	   includeantruntime="false"
+	   debug="true" >
+      <classpath refid="project.class.path" />
     </javac>
-   
+    <javac srcdir="src/test/java"
+	   destdir="build"
+	   includeantruntime="false"
+	   debug="true" >
+      <classpath refid="project.class.path" />
+    </javac>
 
-    <copy todir="build/images">
-	<fileset dir="src/edu/ucsb/cs56/projects/games/pokemon/images"/>
-    </copy>
-    <copy todir="build/music">
-	<fileset dir="src/edu/ucsb/cs56/projects/games/pokemon/music"/>
-    </copy>
+
   </target>
 
-  <target name="run" depends="compile" description="Runs Main (The game itself)">
-    <java classname="${mainClass}" classpath="build" fork="true" />  
+  <target name="clean" description="clean up the project">
+    <delete>
+      <fileset dir="build" includes="**/*.class"/>
+      <fileset dir="build" includes="**/*.jar"/>	
+    </delete>
+    <delete dir="build" />
   </target>
 
-  <target name="clean" description="Cleans old compiled files">
-    <delete dir="build" quiet="true" />
-    <delete dir="${javadoc_absolute_path}" quiet="true" />
-    <delete dir="dist" quiet="true" />
-    <delete dir="download" quiet="true" />
-    <delete dir="temp" quiet="true" />
+  
+  <target name="run" description="run the main" depends="compile">
+    <java classname="edu.ucsb.cs56.projects.games.pokemon.framework.Main" classpath="build" fork="true"/>
   </target>
 
-  <target name="test" depends="compile" description="Runs all JUnit tests. Tests must end with 'Test.java'">
 
-   <junit haltonerror="no" haltonfailure="no">
-       <classpath refid="project.class.path" />
 
-       <batchtest fork="yes">
-          <fileset dir="src">
-            <!-- this will pick up every class with a name ending in Test -->
-            <include name="**/*Test.java"/>
-          </fileset>
-       </batchtest>
-
-        <formatter type="plain" usefile="false" /> 
-       
-   </junit>
+  <target name="jar" depends="compile" description="create a jar file">
+    <jar destfile="build/rational.jar">
+      <fileset dir="build" includes="**/*.class"/>
+      <manifest>
+	<attribute name="Main-Class" value="edu.ucsb.cs56.projects.games.pokemon.framework,Main"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="test" depends="compile" description="run JUnit tests">
+    <junit haltonerror="no" haltonfailure="no" fork="true">
+      <classpath refid="project.class.path" />
+      <batchtest fork="yes">
+	<fileset dir="src/test/java">
+	  <include name="**/*.java"/>
+	</fileset>
+      </batchtest>
+      <formatter type="brief" usefile="false" />
+    </junit>
   </target>
 
+  <property name="javadoc_absolute_path" location="javadoc"/>
 
   <target name="javadoc" depends="compile" description="generate javadoc">
-        <delete quiet="true">
-		<fileset dir="${javadoc_absolute_path}" />
-        </delete>
-	<javadoc destdir="${javadoc_absolute_path}" packagenames="edu.ucsb.cs56.projects.games.pokemon.*" sourcepath="src">
-
-            <classpath refid="project.class.path" />
-            <link href="https://docs.oracle.com/javase/8/docs/api/" />
-        </javadoc>
-    </target>
-
-
-
-    <target name="jar" depends="compile" description="create a jar file">
-        <jar destfile="build/pokemon_map.jar">
-            <fileset dir="build" includes="*.class"/>
-            <manifest>
-                <attribute name="Main-Class" value="${mainClass}"/>
-            </manifest>
-        </jar>
-    </target>
-
-
+    <delete>
+      <fileset dir="javadoc" />
+    </delete>
+    <javadoc destdir="javadoc">
+      <fileset dir="src" >
+	<include name="main/java/**/*.java"/>
+	<include name="test/java/**/*.java"/>
+      </fileset>
+      <classpath refid="project.class.path" />
+      <link href="http://docs.oracle.com/javase/8/docs/api/" />          
+    </javadoc>
+    <echo>
+      javadoc written to file://${javadoc_absolute_path}/index.html
+    </echo> 
+  </target>
+  
 </project>
