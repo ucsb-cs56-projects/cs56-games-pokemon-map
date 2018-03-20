@@ -37,7 +37,7 @@ The source directory has 7 packages (commands, components, framework, graphics, 
 In order to get the tileset from the actual games, you need to get the images of the sprites you want. These images must be bmp files; any png file can be converted into bmp files via an online converter. Put the image in the images file, and simply read that image in Renderer.java. When the images are read in, the first two coordinates are the x and y coordinates of the top left corner of the image, and the last two coordinates are the bottom right x and y coordinates of the image(respectively). Harvest textures in Renderer.java, buildings in Building.java and characters in Character.java.
 
 ## How to Run
-To start the game, use ant run. It will compile automatically for you.
+To start the game, use ant run or mvn compile & mvn exec:java. It will compile automatically for you.
 
 ## How to Play
 To move, use the WASD or Arrow keys. To interact with objects, press the H key (currently does nothing).
